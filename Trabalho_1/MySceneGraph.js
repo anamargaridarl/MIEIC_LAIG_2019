@@ -228,7 +228,12 @@ class MySceneGraph {
      */
     parseView(viewsNode) {
         this.onXMLMinorError("To do: Parse views and create cameras.");
-
+        //FOR US TO DO:
+        //check if there is one view at least
+        //create a map to store all views  <-- this could/should be in constructor
+        //check for a valid default view
+        //in a loop parse all views
+        //create camera struct (different for 'perspective' and 'ortho'), adding it to the map
         return null;
     }
 
@@ -391,6 +396,10 @@ class MySceneGraph {
      * @param {textures block element} texturesNode
      */
     parseTextures(texturesNode) {
+        //FOR US TO DO
+        //check if there is one texture at least
+        //cycle through all textures and create the structs, adding to the map
+        //check for valid ids
 
         //For each texture in textures block, check ID and file URL
         this.onXMLMinorError("To do: Parse textures.");
@@ -425,7 +434,10 @@ class MySceneGraph {
             // Checks for repeated IDs.
             if (this.materials[materialID] != null)
                 return "ID must be unique for each light (conflict: ID = " + materialID + ")";
-
+            
+            //FOR US TO DO
+            //check valid material properties
+            //parse properties value and store them (struct) adding to the materials
             //Continue here
             this.onXMLMinorError("To do: Parse materials.");
         }
@@ -476,10 +488,14 @@ class MySceneGraph {
 
                         transfMatrix = mat4.translate(transfMatrix, transfMatrix, coordinates);
                         break;
-                    case 'scale':                        
+                    case 'scale':
+                        //FOR US TO DO
+                        //parse scale values and apply transformation matrix                        
                         this.onXMLMinorError("To do: Parse scale transformations.");
                         break;
                     case 'rotate':
+                        //FOR US TO DO
+                        //parse scale values (check first) and apply transformation matrix       
                         // angle
                         this.onXMLMinorError("To do: Parse rotate transformations.");
                         break;
@@ -560,6 +576,8 @@ class MySceneGraph {
                 this.primitives[primitiveId] = rect;
             }
             else {
+                //parse values for each type of primitive
+                //check values and create the primitives, adding it to the 'this.primitives' array
                 console.warn("To do: Parse other primitives.");
             }
         }
@@ -611,13 +629,30 @@ class MySceneGraph {
             var childrenIndex = nodeNames.indexOf("children");
 
             this.onXMLMinorError("To do: Parse components.");
-            // Transformations
 
+            //FOR US TO DO
+            //cycle through grandChildren (component properties)
+
+            // Transformations
+            
+            //check if a transformation is made by reference or defined there
+            //if reference, check valid reference and only one reference is accepted
+            // parse other transformations
+            
             // Materials
+
+            //check that there is at least one
+            //parse for inherited and list of materials
 
             // Texture
 
+            //parse for inherited, and parse length values
+
             // Children
+
+            //parse child values, for other components or primitives differently
+
+            //add component struct to map
         }
     }
 
@@ -742,4 +777,10 @@ class MySceneGraph {
         //To test the parsing/creation of the primitives, call the display function directly
         this.primitives['demoRectangle'].display();
     }
+
+    /* TO DO HELPER FUNCTIONS
+     * - Create a parser for values of each type: string, floats, etc;
+     *
+     *  
+     */
 }
