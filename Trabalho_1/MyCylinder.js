@@ -3,67 +3,59 @@
 * @constructor
 */
 class MyCylinder extends CGFobject {
-    constructor(scene, slices) {
-        super(scene);
-        this.slices = slices;
-        this.initBuffers();
-    }
+
+    constructor(scene, base, top, height, slices, stacks) {
+		super(scene);
+
+		this.base_radius = base;
+		this.top_radius = top;
+		this.height = height;
+		this.slices = slices;
+		this.stacks = stacks;
+
+		this.initBuffers();
+	};
+    
     initBuffers() {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
         this.texCoords = [];
 
-        var ang = 0;
-        var alphaAng = 2*Math.PI/this.slices;
+        
+        var step_angle = 2*Math.PI/this.slices;
+        var step_radius=(this.top_radius-this.base_radius)/this.stacks;
 
-        for(var i = 0; i < this.slices; i++){
-            // All vertices have to be declared for a given face
-            // even if they are shared with others, as the normals 
-            // in each face will be different
-
-            var ca=Math.cos(ang);
-            var sa=Math.sin(ang);
-            var caa=Math.cos(ang+alphaAng);
-            var saa=Math.sin(ang+alphaAng);
-            this.vertices.push(ca, 0, sa);
-            this.vertices.push(caa, 0, saa);
-            this.vertices.push(caa,1,saa);            
-            this.vertices.push(ca,1,sa);            
-
-            this.texCoords.push(
-                i*1/this.slices, 0,
-                (i+1)*1/this.slices,0,
-                i*1/this.slices, 1,
-                (i+1)*1/this.slices, 1
-            );
+        for(var i = 0; i <= this.stacks; i++) {
             
-            // triangle normal computed by cross product of two edges
+            for(var j = 0; j <= this.slices; j++){
+                
+
+                var ca=(this.base_radius + step_radius*i)*Math.cos(step_angle*j);
+                var sa=(this.base_radius + step_radius*i)*Math.sin(step_angle*j);
+                this.vertices.push(ca, sa, i*this.height/this.stacks);         
+
+                this.texCoords.push(
+                    j*1/this.slices, 
+                    1-i*1/this.stacks
+                );
+                
+                // push normal once for each vertex of this triangle
+                this.normals.push( Math.cos(step_angle*j), Math.sin(step_angle*j),0);
             
-            var normal = [
-                Math.cos(ang+alphaAng),
-                0,
-                Math.sin(ang + alphaAng)
-            ];
-
-            var normal1 = [
-                Math.cos(ang),
-                0,
-                Math.sin(ang)
-            ];
-
-            // push normal once for each vertex of this triangle
-            this.normals.push(...normal1);
-            this.normals.push(...normal);
-            this.normals.push(...normal);
-            this.normals.push(...normal1);
-           
-            this.indices.push(  4*i, (4*i+2) , (4*i+1),
-                                (4*i+3), (4*i +2),(4*i));
-
-            ang+=alphaAng;
+                
+            }
         }
-
+        
+        for(var i =0;i<this.stacks;i++) {
+            for(var j = 0; j<this.slices;j++) {
+                this.indices.push(
+                    (i+1)*(this.slices+1) + j,  i*(this.slices+1) + j,i*(this.slices+1) + j+1,
+                    i*(this.slices+1) + j+1,  (i+1)*(this.slices+1) + j+1, (i+1)*(this.slices+1) + j
+                );
+            }
+        }
+        
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
