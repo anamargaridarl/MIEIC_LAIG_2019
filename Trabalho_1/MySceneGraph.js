@@ -396,13 +396,42 @@ class MySceneGraph {
      * @param {textures block element} texturesNode
      */
     parseTextures(texturesNode) {
-        //FOR US TO DO
-        //check if there is one texture at least
-        //cycle through all textures and create the structs, adding to the map
-        //check for valid ids
 
-        //For each texture in textures block, check ID and file URL
-        this.onXMLMinorError("To do: Parse textures.");
+        const textures = texturesNode.children;
+
+        if(textures.length == 0) {
+            return "no textures present in the scene. Must be at least one texture.";
+        }
+
+        this.textures = [];
+
+        for(let i = 0; i < textures.length; i++) {
+            if (textures[i].nodeName != "texture") {
+                this.onXMLMinorError("unknown tag <" + textures[i].nodeName + ">");
+                continue;
+            }
+
+            // Get id of the current texture.
+            const textureID = this.reader.getString(textures[i], 'id');
+            if (textureID == null)
+                return "no ID defined for material";
+
+            // Checks for repeated IDs.
+            if (this.textures[textureID] != null)
+                return "ID must be unique for each light (conflict: ID = " + textureID + ")";
+            
+            const texFile = this.reader.getString(textures[i],'file');
+            // Checks if file extension is valid, ignores the texture completely otherwise.
+            if(texFile.match(/(\.jpg)$/) == null && texFile.match(/(\.png)$/) == null) {
+                this.onXMLMinorError("Texture file of invalid format (must be jpg or png). Ignoring texture.");
+                continue;
+            }
+
+            let tex = new CGFtexture(this.scene,texFile);
+            console.log("Texture id: " + textureID + "\tFilename: " + texFile);
+            this.textures[textureID] = tex;
+        }
+
         return null;
     }
 
@@ -433,16 +462,66 @@ class MySceneGraph {
 
             // Checks for repeated IDs.
             if (this.materials[materialID] != null)
-                return "ID must be unique for each light (conflict: ID = " + materialID + ")";
+                return "ID must be unique for each material (conflict: ID = " + materialID + ")";
             
-            //FOR US TO DO
-            //check valid material properties
-            //parse properties value and store them (struct) adding to the materials
-            //Continue here
-            this.onXMLMinorError("To do: Parse materials.");
+            const shine = this.reader.getFloat(children[i],'shininess');
+            if (!(shine != null && !isNaN(shine)))
+                    return "unable to parse shine of the primitive coordinates for ID = " + materialID;
+
+            let newMaterial = new CGFappearance(this.scene);
+            newMaterial.setShininess(shine);
+
+            //Has materials attributes
+            grandChildren= children[i].children;
+
+            //collect attr names
+            for (var j = 0; j < grandChildren.length; j++) {
+                nodeNames.push(grandChildren[j].nodeName);
+            }
+
+            //excess attributes warning
+            if(grandChildren.length > 4) {
+                this.onXMLMinorError("there is excess of attributes. Unknown attrbutes will be ignored")
+            }
+
+            const emissionIndex = nodeNames.indexOf("emission");
+            const ambientIndex = nodeNames.indexOf("ambient");
+            const diffuseIndex = nodeNames.indexOf("diffuse");
+            const specularIndex = nodeNames.indexOf("specular");
+
+            let attr_parsed = 0; //to check if strange attributes were on the file
+            
+            let color = [];
+            if (emissionIndex != -1) {
+                color = this.parseColor(grandChildren[emissionIndex],"emission");
+                newMaterial.setEmission(...color);
+                attr_parsed++;
+            }
+
+            if (ambientIndex != -1) {
+                color = this.parseColor(grandChildren[ambientIndex],"ambient");
+                newMaterial.setAmbient(...color);
+                attr_parsed++;
+            }
+            if (diffuseIndex != -1) {
+                color = this.parseColor(grandChildren[diffuseIndex],"diffuse");
+                newMaterial.setDiffuse(...color);
+                attr_parsed++;
+            }
+            if (specularIndex != -1) {
+                color = this.parseColor(grandChildren[specularIndex],"specular");
+                newMaterial.setSpecular(...color);
+                attr_parsed++;
+            }
+            
+            if(attr_parsed != 4) {
+                this.onXMLMinorError("Unknown components detected, but ignored");
+            }
+
+            this.materials[materialID] = newMaterial;
         }
 
-        //this.log("Parsed materials");
+        this.log("Parsed materials");
         return null;
     }
 
@@ -830,6 +909,8 @@ class MySceneGraph {
         //To do: Create display loop for transversing the scene graph
 
         //To test the parsing/creation of the primitives, call the display function directly
+        this.materials['demoMaterial'].setTexture(this.textures['demoJapan']);
+        this.materials['demoMaterial'].apply();
         this.primitives['demoRectangle'].display();
         //this.primitives['demoCylinder'].display();
         //this.primitives['demoTorus'].display();
