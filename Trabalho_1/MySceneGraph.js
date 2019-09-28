@@ -278,7 +278,7 @@ class MySceneGraph {
                 var from = this.parseCoordinates3D(grandChildren[fromIndex], "the FROM perpective");
                 var to = this.parseCoordinates3D(grandChildren[toIndex], "the TO perspective");
 
-                if (upIndex== null)
+                if (upIndex == null)
                     var up = vec3.fromValues(0, 1, 0)
                 else
                     var up = this.parseCoordinates3D(grandChildren[upIndex], "the UP perspective");
@@ -453,13 +453,13 @@ class MySceneGraph {
 
         const textures = texturesNode.children;
 
-        if(textures.length == 0) {
+        if (textures.length == 0) {
             return "no textures present in the scene. Must be at least one texture.";
         }
 
         this.textures = [];
 
-        for(let i = 0; i < textures.length; i++) {
+        for (let i = 0; i < textures.length; i++) {
             if (textures[i].nodeName != "texture") {
                 this.onXMLMinorError("unknown tag <" + textures[i].nodeName + ">");
                 continue;
@@ -473,15 +473,15 @@ class MySceneGraph {
             // Checks for repeated IDs.
             if (this.textures[textureID] != null)
                 return "ID must be unique for each light (conflict: ID = " + textureID + ")";
-            
-            const texFile = this.reader.getString(textures[i],'file');
+
+            const texFile = this.reader.getString(textures[i], 'file');
             // Checks if file extension is valid, ignores the texture completely otherwise.
-            if(texFile.match(/(\.jpg)$/) == null && texFile.match(/(\.png)$/) == null) {
+            if (texFile.match(/(\.jpg)$/) == null && texFile.match(/(\.png)$/) == null) {
                 this.onXMLMinorError("Texture file of invalid format (must be jpg or png). Ignoring texture.");
                 continue;
             }
 
-            let tex = new CGFtexture(this.scene,texFile);
+            let tex = new CGFtexture(this.scene, texFile);
             console.log("Texture id: " + textureID + "\tFilename: " + texFile);
             this.textures[textureID] = tex;
         }
@@ -517,16 +517,16 @@ class MySceneGraph {
             // Checks for repeated IDs.
             if (this.materials[materialID] != null)
                 return "ID must be unique for each material (conflict: ID = " + materialID + ")";
-            
-            const shine = this.reader.getFloat(children[i],'shininess');
+
+            const shine = this.reader.getFloat(children[i], 'shininess');
             if (!(shine != null && !isNaN(shine)))
-                    return "unable to parse shine of the primitive coordinates for ID = " + materialID;
+                return "unable to parse shine of the primitive coordinates for ID = " + materialID;
 
             let newMaterial = new CGFappearance(this.scene);
             newMaterial.setShininess(shine);
 
             //Has materials attributes
-            grandChildren= children[i].children;
+            grandChildren = children[i].children;
 
             //collect attr names
             for (var j = 0; j < grandChildren.length; j++) {
@@ -534,7 +534,7 @@ class MySceneGraph {
             }
 
             //excess attributes warning
-            if(grandChildren.length > 4) {
+            if (grandChildren.length > 4) {
                 this.onXMLMinorError("there is excess of attributes. Unknown attrbutes will be ignored")
             }
 
@@ -544,31 +544,31 @@ class MySceneGraph {
             const specularIndex = nodeNames.indexOf("specular");
 
             let attr_parsed = 0; //to check if strange attributes were on the file
-            
+
             let color = [];
             if (emissionIndex != -1) {
-                color = this.parseColor(grandChildren[emissionIndex],"emission");
+                color = this.parseColor(grandChildren[emissionIndex], "emission");
                 newMaterial.setEmission(...color);
                 attr_parsed++;
             }
 
             if (ambientIndex != -1) {
-                color = this.parseColor(grandChildren[ambientIndex],"ambient");
+                color = this.parseColor(grandChildren[ambientIndex], "ambient");
                 newMaterial.setAmbient(...color);
                 attr_parsed++;
             }
             if (diffuseIndex != -1) {
-                color = this.parseColor(grandChildren[diffuseIndex],"diffuse");
+                color = this.parseColor(grandChildren[diffuseIndex], "diffuse");
                 newMaterial.setDiffuse(...color);
                 attr_parsed++;
             }
             if (specularIndex != -1) {
-                color = this.parseColor(grandChildren[specularIndex],"specular");
+                color = this.parseColor(grandChildren[specularIndex], "specular");
                 newMaterial.setSpecular(...color);
                 attr_parsed++;
             }
-            
-            if(attr_parsed != 4) {
+
+            if (attr_parsed != 4) {
                 this.onXMLMinorError("Unknown components detected, but ignored");
             }
 
@@ -629,10 +629,20 @@ class MySceneGraph {
                         transfMatrix = mat4.scale(transfMatrix, transfMatrix, coordinates);
                         break;
                     case 'rotate':
-                        var axis = this.reader.getFloat(grandChildren[j], 'axis');
+                        var axis = this.reader.getString(grandChildren[j], 'axis');
                         var angle = this.reader.getFloat(grandChildren[j], 'angle');
 
-                        transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle, axis);
+                        switch (axis) {
+                            case 'x':
+                                transfMatrix = mat4.rotateX(transfMatrix, transfMatrix, angle);
+                                break;
+                            case 'y':
+                                transfMatrix = mat4.rotateY(transfMatrix, transfMatrix, angle);
+                                break;
+                            case 'z':
+                                transfMatrix = mat4.rotateZ(transfMatrix, transfMatrix, angle);
+                                break;
+                        }
                         break;
                 }
             }
