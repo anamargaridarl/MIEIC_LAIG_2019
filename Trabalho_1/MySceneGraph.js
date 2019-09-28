@@ -885,7 +885,19 @@ class MySceneGraph {
             var childrenIndex = nodeNames.indexOf("children");
 
             this.onXMLMinorError("To do: Parse components.");
-
+            
+            /*Suggestion:
+            * Create Component object to store all these properties
+            * and call proper functions to update(like transformation,
+            * apply materials and textures) or draw (if primitive)
+            * Store them in a array
+            * Be careful with children
+            * Make sure children refered are in fact in file and parsed
+            * Do this after parsing all components
+            * Make sure there is one component with the rootID (found in scene block)
+            * After this should be easy the root component display (or 'run') function 
+            * and the graph shall display on its own
+            */
             //FOR US TO DO
             //cycle through grandChildren (component properties)
 
@@ -907,8 +919,7 @@ class MySceneGraph {
             // Children
 
             //parse child values, for other components or primitives differently
-
-            //add component struct to map
+            
         }
     }
 
