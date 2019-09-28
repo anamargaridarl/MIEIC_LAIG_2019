@@ -37,8 +37,8 @@ class MySphere extends CGFobject {
 
         for (var st = 0; st < this.stacks; st++) {
             for (var sl = 0; sl < this.slices; sl++) {
-                this.indices.push(sl + (this.slices+1) * st, 1 + sl + (this.slices +1) * st, sl + (this.slices +1) * (st + 1));
-                this.indices.push(1 + sl + (this.slices +1) * st, 1 + sl + (this.slices +1) * (st + 1), sl + (this.slices +1) * (st + 1));
+                this.indices.push(1 + sl + (this.slices+1) * st, sl + (this.slices +1) * st, sl + (this.slices +1) * (st + 1));
+                this.indices.push(1 + sl + (this.slices +1) * st, sl + (this.slices +1) * (st + 1), 1 + sl + (this.slices +1) * (st + 1));
 
             }
         }
