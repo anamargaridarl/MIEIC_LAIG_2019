@@ -1024,16 +1024,10 @@ class MySceneGraph {
         //To do: Create display loop for transversing the scene graph
 
         //To test the parsing/creation of the primitives, call the display function directly
-        //this.materials['demoMaterial'].setTexture(this.textures['demoJapan']);
-        ///this.materials['demoMaterial'].apply();
+        this.materials['demoMaterial'].setTexture(this.textures['demoTexture']);
+        this.materials['demoMaterial'].apply();
         this.primitives['demoRectangle'].display();
         //this.primitives['demoCylinder'].display();
         //this.primitives['demoTorus'].display();
     }
-
-    /* TO DO HELPER FUNCTIONS
-     * - Create a parser for values of each type: string, floats, etc;
-     *
-     *  
-     */
 }
