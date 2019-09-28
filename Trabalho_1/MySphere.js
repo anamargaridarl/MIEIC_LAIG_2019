@@ -30,7 +30,8 @@ class MySphere extends CGFobject {
                 this.vertices.push(this.radius * Xaux, this.radius * Yaux, this.radius * Zaux);
                 this.normals.push(Xaux, Yaux, Zaux);
 
-                //this.texCoords.push((Math.cos(sl * phi) * Math.cos(teta * st) + 1) / 2, (Math.sin( phi * sl) * Math.cos(teta * sl) + 1) / 2);
+                this.texCoords.push((this.radius*Xaux+this.radius)/(2*this.radius), 
+                                    1-(this.radius*Yaux+this.radius)/(2*this.radius));
 
             }
         }

@@ -69,12 +69,36 @@ class MyTriangle extends CGFobject {
 		this.normals.push(...normal);
 		this.normals.push(...normal);
 		
-		
+		this.a = Math.sqrt(Math.pow(this.x1-this.x3,2)+Math.pow(this.y1-this.y3,2)+Math.pow(this.z1-this.z3,2));
+		this.b = Math.sqrt(Math.pow(this.x2-this.x1,2)+Math.pow(this.y2-this.y1,2)+Math.pow(this.z2-this.z1,2));
+		this.c = Math.sqrt(Math.pow(this.x3-this.x2,2)+Math.pow(this.y3-this.y2,2)+Math.pow(this.z3-this.z3,2));
+
+		this.cos_beta = (Math.pow(this.a,2)-Math.pow(this.b,2)+Math.pow(this.c,2))/(2*this.a*this.c);
+		this.sin_beta = Math.sqrt(1-Math.pow(this.cos_beta,2));
+
+		//setting default texCoords where length_s=length_t=1
+		/*this.texCoords = [
+			(this.c-this.a*this.cos_beta),1-this.a*this.sin_beta,
+			0,1,
+			this.c,1	
+		]*/
 		this.texCoords = [
-			
-		]
+			0, 1,
+			1, 1,
+			1, 0
+		];
+
+
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
-	}
+	};
+	//NEEDS TESTING
+	ajustTexCoords(length_s,length_t) {
+		this.texCoords = [
+			(this.c-this.a*this.cos_beta)/length_s,(length_t-this.a*this.sin_beta)/length_t,
+			0,length_t,
+			this.c/length_s,length_t
+		];
+	};
 }
