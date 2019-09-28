@@ -60,7 +60,7 @@
                         x3="0" y3="4" z3="1" />
         </primitive>
         <primitive id="sp">
-              <sphere radius="2" slices="20" stacks="20" />
+              <sphere radius="2" slices="20" stacks="15" />
         </primitive>
     </primitives>
 

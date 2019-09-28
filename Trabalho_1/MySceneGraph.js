@@ -241,11 +241,8 @@ class MySceneGraph {
         if (children == null)
             return "no view available"; //error or return?
 
-        //create a map to store all views  <-- this could/should be in constructor
         //check for a valid default view 
         //need checking?     <views default="defaultCamera">
-
-
 
         //in a loop parse all views
         //create camera struct (different for 'perspective' and 'ortho'), adding it to the map
@@ -865,7 +862,7 @@ class MySceneGraph {
             if (this.components[componentID] != null)
                 return "ID must be unique for each component (conflict: ID = " + componentID + ")";
 
-            grandChildren = children[i].children;
+            grandChildren = children[i].children; //component properties
 
             nodeNames = [];
             for (var j = 0; j < grandChildren.length; j++) {
@@ -1024,9 +1021,9 @@ class MySceneGraph {
         //To do: Create display loop for transversing the scene graph
 
         //To test the parsing/creation of the primitives, call the display function directly
-        this.materials['demoMaterial'].setTexture(this.textures['demoTexture']);
-        this.materials['demoMaterial'].apply();
-        this.primitives['demoRectangle'].display();
+        //this.materials['demoMaterial'].setTexture(this.textures['demoTexture']);
+        //this.materials['demoMaterial'].apply();
+        this.primitives['sp'].display();
         //this.primitives['demoCylinder'].display();
         //this.primitives['demoTorus'].display();
     }
