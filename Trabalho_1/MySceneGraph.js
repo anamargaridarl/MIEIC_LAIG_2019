@@ -617,7 +617,7 @@ class MySceneGraph {
                     }
                     break;
             }
-            
+
             if (comp != null)
                 comp.pushTransformation(transfMatrix);
             else
@@ -660,7 +660,7 @@ class MySceneGraph {
             grandChildren = children[i].children;
             // Specifications for the current transformation.
 
-            this.parseTransformationCore(grandChildren, null,transformationID);
+            this.parseTransformationCore(grandChildren, null, transformationID);
 
             this.log("Parsed transformations");
             return null;
@@ -883,7 +883,7 @@ class MySceneGraph {
             }
         }
 
-        this.parseTransformationCore(transformationNodes, comp,null); //how to push this tranformations to component (?)
+        this.parseTransformationCore(transformationNodes, comp, null); //how to push this tranformations to component (?)
 
     }
 
@@ -963,7 +963,7 @@ class MySceneGraph {
     parseChildrenComp(grandChildren, childrenIndex, comp) {
 
         var grandgrandChildren = [];
-        
+
         if (childrenIndex == null)
             this.onXMLMinorError("Children component doesn't exist");
 
@@ -998,6 +998,8 @@ class MySceneGraph {
 */
     parseComponents(componentsNode) {
 
+        var flag = 0;
+
         var children = componentsNode.children;
         var grandChildren = [];
         var nodeNames = [];
@@ -1019,9 +1021,13 @@ class MySceneGraph {
             if (componentID == null)
                 return "no ID defined for componentID";
 
+            if (componentID == this.idRoot)
+                flag = 1;
+
             // Checks for repeated IDs.
             if (this.components[componentID] != null)
                 return "ID must be unique for each component (conflict: ID = " + componentID + ")";
+
 
             grandChildren = children[i].children; //component properties
 
@@ -1055,137 +1061,141 @@ class MySceneGraph {
 
                 // Children
                 //parse child values, for other components or primitives differently
-                this.parseChildrenComp(grandChildren, childrenIndex, this.comp) 
+                this.parseChildrenComp(grandChildren, childrenIndex, this.comp)
 
-                }
-                
-                this.components.push(this.comp);
             }
+
+            this.components.push(this.comp);
+        }
+
+        if(flag == 0)
+            return "There needs to exists at least a component with same id as root";
+    
         }
 
 
-        /**
-         * Parse the coordinates from a node with ID = id
-         * @param {block element} node
-         * @param {message to be displayed in case of error} messageError
-         */
-        parseCoordinates3D(node, messageError) {
-            var position = [];
+    /**
+     * Parse the coordinates from a node with ID = id
+     * @param {block element} node
+     * @param {message to be displayed in case of error} messageError
+     */
+    parseCoordinates3D(node, messageError) {
+        var position = [];
 
-            // x
-            var x = this.reader.getFloat(node, 'x');
-            if (!(x != null && !isNaN(x)))
-                return "unable to parse x-coordinate of the " + messageError;
+        // x
+        var x = this.reader.getFloat(node, 'x');
+        if (!(x != null && !isNaN(x)))
+            return "unable to parse x-coordinate of the " + messageError;
 
-            // y
-            var y = this.reader.getFloat(node, 'y');
-            if (!(y != null && !isNaN(y)))
-                return "unable to parse y-coordinate of the " + messageError;
+        // y
+        var y = this.reader.getFloat(node, 'y');
+        if (!(y != null && !isNaN(y)))
+            return "unable to parse y-coordinate of the " + messageError;
 
-            // z
-            var z = this.reader.getFloat(node, 'z');
-            if (!(z != null && !isNaN(z)))
-                return "unable to parse z-coordinate of the " + messageError;
+        // z
+        var z = this.reader.getFloat(node, 'z');
+        if (!(z != null && !isNaN(z)))
+            return "unable to parse z-coordinate of the " + messageError;
 
-            position.push(...[x, y, z]);
+        position.push(...[x, y, z]);
 
-            return position;
-        }
-
-        /**
-         * Parse the coordinates from a node with ID = id
-         * @param {block element} node
-         * @param {message to be displayed in case of error} messageError
-         */
-        parseCoordinates4D(node, messageError) {
-            var position = [];
-
-            //Get x, y, z
-            position = this.parseCoordinates3D(node, messageError);
-
-            if (!Array.isArray(position))
-                return position;
-
-
-            // w
-            var w = this.reader.getFloat(node, 'w');
-            if (!(w != null && !isNaN(w)))
-                return "unable to parse w-coordinate of the " + messageError;
-
-            position.push(w);
-
-            return position;
-        }
-
-        /**
-         * Parse the color components from a node
-         * @param {block element} node
-         * @param {message to be displayed in case of error} messageError
-         */
-        parseColor(node, messageError) {
-            var color = [];
-
-            // R
-            var r = this.reader.getFloat(node, 'r');
-            if (!(r != null && !isNaN(r) && r >= 0 && r <= 1))
-                return "unable to parse R component of the " + messageError;
-
-            // G
-            var g = this.reader.getFloat(node, 'g');
-            if (!(g != null && !isNaN(g) && g >= 0 && g <= 1))
-                return "unable to parse G component of the " + messageError;
-
-            // B
-            var b = this.reader.getFloat(node, 'b');
-            if (!(b != null && !isNaN(b) && b >= 0 && b <= 1))
-                return "unable to parse B component of the " + messageError;
-
-            // A
-            var a = this.reader.getFloat(node, 'a');
-            if (!(a != null && !isNaN(a) && a >= 0 && a <= 1))
-                return "unable to parse A component of the " + messageError;
-
-            color.push(...[r, g, b, a]);
-
-            return color;
-        }
-
-        /*
-         * Callback to be executed on any read error, showing an error on the console.
-         * @param {string} message
-         */
-        onXMLError(message) {
-            console.error("XML Loading Error: " + message);
-            this.loadedOk = false;
-        }
-
-        /**
-         * Callback to be executed on any minor error, showing a warning on the console.
-         * @param {string} message
-         */
-        onXMLMinorError(message) {
-            console.warn("Warning: " + message);
-        }
-
-        /**
-         * Callback to be executed on any message.
-         * @param {string} message
-         */
-        log(message) {
-            console.log("   " + message);
-        }
-
-        /**
-         * Displays the scene, processing each node, starting in the root node.
-         */
-        displayScene() {
-            //To do: Create display loop for transversing the scene graph
-
-            //To test the parsing/creation of the primitives, call the display function directly
-            this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
-            this.materials['demoMaterial'].apply();
-            this.primitives['sp'].display();
-            //this.primitives['demoCylinder'].display();
-            //this.primitives['demoTorus'].display();
-        }
+        return position;
     }
+
+    /**
+     * Parse the coordinates from a node with ID = id
+     * @param {block element} node
+     * @param {message to be displayed in case of error} messageError
+     */
+    parseCoordinates4D(node, messageError) {
+        var position = [];
+
+        //Get x, y, z
+        position = this.parseCoordinates3D(node, messageError);
+
+        if (!Array.isArray(position))
+            return position;
+
+
+        // w
+        var w = this.reader.getFloat(node, 'w');
+        if (!(w != null && !isNaN(w)))
+            return "unable to parse w-coordinate of the " + messageError;
+
+        position.push(w);
+
+        return position;
+    }
+
+    /**
+     * Parse the color components from a node
+     * @param {block element} node
+     * @param {message to be displayed in case of error} messageError
+     */
+    parseColor(node, messageError) {
+        var color = [];
+
+        // R
+        var r = this.reader.getFloat(node, 'r');
+        if (!(r != null && !isNaN(r) && r >= 0 && r <= 1))
+            return "unable to parse R component of the " + messageError;
+
+        // G
+        var g = this.reader.getFloat(node, 'g');
+        if (!(g != null && !isNaN(g) && g >= 0 && g <= 1))
+            return "unable to parse G component of the " + messageError;
+
+        // B
+        var b = this.reader.getFloat(node, 'b');
+        if (!(b != null && !isNaN(b) && b >= 0 && b <= 1))
+            return "unable to parse B component of the " + messageError;
+
+        // A
+        var a = this.reader.getFloat(node, 'a');
+        if (!(a != null && !isNaN(a) && a >= 0 && a <= 1))
+            return "unable to parse A component of the " + messageError;
+
+        color.push(...[r, g, b, a]);
+
+        return color;
+    }
+
+    /*
+     * Callback to be executed on any read error, showing an error on the console.
+     * @param {string} message
+     */
+    onXMLError(message) {
+        console.error("XML Loading Error: " + message);
+        this.loadedOk = false;
+    }
+
+    /**
+     * Callback to be executed on any minor error, showing a warning on the console.
+     * @param {string} message
+     */
+    onXMLMinorError(message) {
+        console.warn("Warning: " + message);
+    }
+
+    /**
+     * Callback to be executed on any message.
+     * @param {string} message
+     */
+    log(message) {
+        console.log("   " + message);
+    }
+
+    /**
+     * Displays the scene, processing each node, starting in the root node.
+     */
+    displayScene() {
+        //To do: Create display loop for transversing the scene graph
+
+        //To test the parsing/creation of the primitives, call the display function directly
+        this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
+        this.materials['demoMaterial'].apply();
+        this.primitives['sp'].display();
+        //this.primitives['demoCylinder'].display();
+        //this.primitives['demoTorus'].display();
+    }
+}
