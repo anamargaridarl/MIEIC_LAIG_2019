@@ -1204,7 +1204,7 @@ class MySceneGraph {
      */
     displayScene() {
         //To do: Create display loop for transversing the scene graph
-
+        this.camera = this.views['defaultCamera'];
         //To test the parsing/creation of the primitives, call the display function directly
         // this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
         // this.materials['demoMaterial'].apply();
