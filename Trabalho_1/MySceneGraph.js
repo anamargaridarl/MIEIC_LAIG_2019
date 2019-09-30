@@ -261,16 +261,29 @@ class MySceneGraph {
             }
             else if (children[i].nodeName == "perspective") {
 
+                var angle = this.reader.getFloat(children[i], 'angle')
+                var near = this.reader.getFloat(children[i], 'near')
+                var far =  this.reader.getFloat(children[i], 'far')
+
                 var fromIndex = nodeNames.indexOf("from");
                 var toIndex = nodeNames.indexOf("to");
 
                 var from = this.parseCoordinates3D(grandChildren[fromIndex], "the FROM perpective");
                 var to = this.parseCoordinates3D(grandChildren[toIndex], "the TO perspective");
 
-                var camerap = new CGFcamera(children[i].angle, children[i].near, children[i].far, from, to)
+                var camerap = new CGFcamera(angle, near, far, from, to)
                 this.views[children[i].id] = camerap;
             }
             else if (children[i].nodeName == "ortho") {
+
+                var angle = this.reader.getFloat(children[i], 'angle')
+                var near = this.reader.getFloat(children[i], 'near')
+                var far =  this.reader.getFloat(children[i], 'far')
+
+                var left = this.reader.getFloat(children[i], 'left')
+                var right=this.reader.getFloat(children[i], 'right')
+                var bottom=this.reader.getFloat(children[i], 'bottom')
+                var top=this.reader.getFloat(children[i], 'top')
 
                 var fromIndex = nodeNames.indexOf("from");
                 var toIndex = nodeNames.indexOf("to");
@@ -284,7 +297,7 @@ class MySceneGraph {
                 else
                     var up = this.parseCoordinates3D(grandChildren[upIndex], "the UP perspective");
 
-                var camerao = new CGFcameraOrtho(children[i].left, children[i].right, children[i].bottom, children[i].top, children[i].near, children[i].far, from, to, up)
+                var camerao = new CGFcameraOrtho(left, right, bottom, top, near, far, from, to, up)
                 this.views[children[i].id] = camerao;
             }
 
@@ -1192,9 +1205,12 @@ class MySceneGraph {
         //To do: Create display loop for transversing the scene graph
 
         //To test the parsing/creation of the primitives, call the display function directly
-        this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
-        this.materials['demoMaterial'].apply();
-        this.primitives['sp'].display();
+        // this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
+        // this.materials['demoMaterial'].apply();
+        // this.primitives['sp'].display();
+
+        this.camera=this.views['defaultCamera'];
+        
         //this.primitives['demoCylinder'].display();
         //this.primitives['demoTorus'].display();
     }
