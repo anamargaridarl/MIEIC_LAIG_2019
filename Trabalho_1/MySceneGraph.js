@@ -196,6 +196,8 @@ class MySceneGraph {
             //Parse components block
             if ((error = this.parseComponents(nodes[index])) != null)
                 return error;
+
+            this.components.push(null)
         }
         this.log("all parsed");
     }
@@ -884,7 +886,7 @@ class MySceneGraph {
                 var id = this.reader.getString(grandgrandChildren[p], 'id');
 
                 if (id == null)
-                    this.onXMLMinorError("Invalid tranformation id:" + id);
+                    this.onXMLMinorError("No id associated to transformation");
 
                 if (this.transformations[id] == null)
                     this.onXMLMinorError("Invalid tranformation id:" + id);
@@ -897,8 +899,7 @@ class MySceneGraph {
             }
         }
 
-        this.parseTransformationCore(transformationNodes, comp, null); //how to push this tranformations to component (?)
-
+        this.parseTransformationCore(transformationNodes, comp, null);
     }
 
     parseMaterialsComp(grandChildren, materialsIndex, comp) {
@@ -921,9 +922,8 @@ class MySceneGraph {
             var id = this.reader.getString(grandgrandChildren[p], 'id');
 
             if (id == "inherit" && p != 0) {
-                //is suposed to push more than once if heredits(?) i think this is wrong
-                this.comp.pushMaterial(lastMaterial);
-                break; //leaves for
+                this.comp.activateMathHerd();
+                continue;
             }
             else if (this.materials[id] != null)
                 comp.pushMaterial(id);
@@ -935,43 +935,37 @@ class MySceneGraph {
     }
 
     parseTexturesComp(grandChildren, textureIndex, comp) {
-        var lastTexture;
+
         var grandgrandChildren = [];
 
         if (textureIndex == null)
             this.onXMLMinorError("Texture component doesn't exist");
 
-        grandgrandChildren = grandChildren[textureIndex].children;
+        grandgrandChildren = grandChildren[textureIndex];
 
-        //do i knew to make sure that are at least one texture? dont think so
-        for (var p = 0; p < grandgrandChildren.length; p++) {
 
-            var id = this.reader.getString(grandgrandChildren[p], 'id');
-            var length_s = this.reader.getFloat(grandgrandChildren[p], 'length_s');
-            var lenght_t = this.reader.getFloat(grandgrandChildren[p], 'lenght_t');
-            var text;
+        var id = this.reader.getString(grandgrandChildren, 'id');
+       // var length_s = this.reader.getFloat(grandgrandChildren, 'length_s');
+    //var lenght_t = this.reader.getFloat(grandgrandChildren, 'lenght_t');
+        var text = [];
 
-            if (id == "inherit" && p != 0) {
-                //is suposed to push more than once if heredits(?) i think this is wrong
-                comp.pushTexture(id);
-            }
-            if (id == "none" && p != 0) {
-                //remove texture that came from father
-                return 'bngfvsdckd';
-            }
-            else if (this.textures[id] != null) {
-                if ((length_s == null && length_t != null) || (length_s != null && length_t == null))
-                    this.onXMLMinorError("impossible to only have one lenght parameter>");
-                else { //disgusting. update to a struct or something similar
-                    text.push(id);
-                    text.push(lenght_s);
-                    text.push(lenght_t);
-                    comp.pushTexture(text);
-                }
-            }
-
-            lastTexture = this.reader.getString(grandgrandChildren[p], 'id'); //heredits the same lenght_s and _t ???
+        if (id == "inherit") {
+            this.comp.activateTextHerd();
         }
+        if (id == "none") {
+            this.comp.pushTexture(null);
+        }
+        else if (this.textures[id] != null) {
+           /* if ((length_s == null && length_t != null) || (length_s != null && length_t == null))
+                this.onXMLMinorError("impossible to only have one lenght parameter>");
+            else { //need to put in structure*/
+                text.push(id);
+              //  text.push(lenght_s);
+                //text.push(lenght_t);
+                comp.pushTexture(text);
+           // }
+        }
+
     }
 
     parseChildrenComp(grandChildren, childrenIndex, comp) {
@@ -992,11 +986,8 @@ class MySceneGraph {
 
             var id = this.reader.getString(grandgrandChildren[p], 'id');
 
-            if (this.components[id] != null) {
-                comp.pushComponent(id);
-            }
-            else if (this.primitives[id] != null) {
-                comp.pushPrimitive(id);
+            if (this.components[id] != null || this.primitives[id] != null) {
+                comp.pushChildren(id);
             }
             else
                 this.onXMLMinorError("unknown tag <" + id + ">");
@@ -1055,29 +1046,16 @@ class MySceneGraph {
             var textureIndex = nodeNames.indexOf("texture");
             var childrenIndex = nodeNames.indexOf("children");
 
-            //FOR US TO DO
-            //cycle through grandChildren (component properties)
-            for (var n = 0; n < grandChildren.length; n++) {
 
-                // Transformations
-                //check if a transformation is made by reference or defined there if reference, check valid reference and only one reference is accepted
-                // parse other transformations
-                this.parseTransformationsComp(grandChildren, transformationIndex, this.comp);
+            this.parseTransformationsComp(grandChildren, transformationIndex, this.comp);
 
-                // Materials
-                //check that there is at least one
-                //parse for inherited and list of materials
-                this.parseMaterialsComp(grandChildren, materialsIndex, this.comp);
+            this.parseMaterialsComp(grandChildren, materialsIndex, this.comp);
 
-                // Texture
-                //parse for inherited, and parse length values
-                this.parseTexturesComp(grandChildren, textureIndex, this.comp);
+            this.parseTexturesComp(grandChildren, textureIndex, this.comp);
 
-                // Children
-                //parse child values, for other components or primitives differently
-                this.parseChildrenComp(grandChildren, childrenIndex, this.comp)
+            this.parseChildrenComp(grandChildren, childrenIndex, this.comp)
 
-            }
+
 
             this.components.push(this.comp);
         }
@@ -1207,10 +1185,10 @@ class MySceneGraph {
 
         //To test the parsing/creation of the primitives, call the display function directly
         // this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
-        // this.materials['demoMaterial'].apply();
+        this.materials['demoMaterial'].apply();
         // this.primitives['sp'].display();
 
-        this.camera = this.views['defaultCamera'];
+
 
         //this.primitives['demoCylinder'].display();
         //this.primitives['demoTorus'].display();

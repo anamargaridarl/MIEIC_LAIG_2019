@@ -10,10 +10,20 @@ class MyComponent extends CGFobject {
         this.textures = [];
         this.materials = [];
         this.transformations = [];
-        this.primitives = [];
-        this.components = [];
+        this.children = [];
+
+        this.textHerd = false;
+        this.matHerd = false;
 
         this.initBuffers();
+    }
+
+    activateMathHerd() {
+        this.matHerd = true;
+    }
+
+    activateTextHerd() {
+        this.textHerd = true;
     }
 
     pushTexture(t) {
@@ -52,27 +62,16 @@ class MyComponent extends CGFobject {
         return this.materials;
     }
 
-    pushPrimitive(p) {
-        this.primitives.push(p);
+    pushChildren(p) {
+        this.children.push(p);
     }
 
-    setPrimitives(primitives) {
-        this.primitives = primitives;
+    setChildren(materials) {
+        this.materials = materials;
     }
 
-    getPrimitives() {
-        return this.primitives;
+    getChildren() {
+        return this.materials;
     }
 
-    pushComponent(c) {
-        this.components.push(c);
-    }
-
-    setComponents(components) {
-        this.components = components;
-    }
-
-    getComponents() {
-        return this.components;
-    }
 };
