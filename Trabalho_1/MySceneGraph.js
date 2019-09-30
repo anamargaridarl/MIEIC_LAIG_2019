@@ -259,11 +259,13 @@ class MySceneGraph {
                 this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
                 continue;
             }
-            else if (children[i].nodeName == "perspective") {
+            
+            var angle = this.reader.getFloat(children[i], 'angle')
+            var near = this.reader.getFloat(children[i], 'near')
+            var far =  this.reader.getFloat(children[i], 'far')
 
-                var angle = this.reader.getFloat(children[i], 'angle')
-                var near = this.reader.getFloat(children[i], 'near')
-                var far =  this.reader.getFloat(children[i], 'far')
+            
+            if (children[i].nodeName == "perspective") {
 
                 var fromIndex = nodeNames.indexOf("from");
                 var toIndex = nodeNames.indexOf("to");
@@ -275,10 +277,6 @@ class MySceneGraph {
                 this.views[children[i].id] = camerap;
             }
             else if (children[i].nodeName == "ortho") {
-
-                var angle = this.reader.getFloat(children[i], 'angle')
-                var near = this.reader.getFloat(children[i], 'near')
-                var far =  this.reader.getFloat(children[i], 'far')
 
                 var left = this.reader.getFloat(children[i], 'left')
                 var right=this.reader.getFloat(children[i], 'right')
