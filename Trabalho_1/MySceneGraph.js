@@ -937,17 +937,31 @@ class MySceneGraph {
     parseTexturesComp(grandChildren, textureIndex, comp) {
 
         var grandgrandChildren = [];
+        var length_s = 0;
+        var length_t = 0;
+        var id;
 
         if (textureIndex == null)
             this.onXMLMinorError("Texture component doesn't exist");
 
         grandgrandChildren = grandChildren[textureIndex];
 
+        id = this.reader.getString(grandgrandChildren, 'id');
 
-        var id = this.reader.getString(grandgrandChildren, 'id');
-       // var length_s = this.reader.getFloat(grandgrandChildren, 'length_s');
-    //var lenght_t = this.reader.getFloat(grandgrandChildren, 'lenght_t');
-        var text = [];
+        if (this.reader.hasAttribute(grandgrandChildren, 'length_s') && this.reader.hasAttribute(grandgrandChildren, 'lenght_t')) {
+            length_s = this.reader.getFloat(grandgrandChildren, 'lenght_s');
+            length_t = this.reader.getFloat(grandgrandChildren, 'lenght_t');
+        }
+        else {
+            length_s = 1;
+            length_t = 1;
+        }
+
+        var struct = {
+            s: length_s,
+            t: length_t,
+            id_t: id
+        };
 
         if (id == "inherit") {
             this.comp.activateTextHerd();
@@ -956,14 +970,11 @@ class MySceneGraph {
             this.comp.pushTexture(null);
         }
         else if (this.textures[id] != null) {
-           /* if ((length_s == null && length_t != null) || (length_s != null && length_t == null))
+            if ((length_s == null && length_t != null) || (length_s != null && length_t == null))
                 this.onXMLMinorError("impossible to only have one lenght parameter>");
             else { //need to put in structure*/
-                text.push(id);
-              //  text.push(lenght_s);
-                //text.push(lenght_t);
-                comp.pushTexture(text);
-           // }
+                comp.pushTexture(struct);
+            }
         }
 
     }
