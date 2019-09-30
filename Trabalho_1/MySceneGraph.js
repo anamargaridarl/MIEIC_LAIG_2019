@@ -259,12 +259,12 @@ class MySceneGraph {
                 this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
                 continue;
             }
-            
+
             var angle = this.reader.getFloat(children[i], 'angle')
             var near = this.reader.getFloat(children[i], 'near')
-            var far =  this.reader.getFloat(children[i], 'far')
+            var far = this.reader.getFloat(children[i], 'far')
 
-            
+
             if (children[i].nodeName == "perspective") {
 
                 var fromIndex = nodeNames.indexOf("from");
@@ -279,9 +279,9 @@ class MySceneGraph {
             else if (children[i].nodeName == "ortho") {
 
                 var left = this.reader.getFloat(children[i], 'left')
-                var right=this.reader.getFloat(children[i], 'right')
-                var bottom=this.reader.getFloat(children[i], 'bottom')
-                var top=this.reader.getFloat(children[i], 'top')
+                var right = this.reader.getFloat(children[i], 'right')
+                var bottom = this.reader.getFloat(children[i], 'bottom')
+                var top = this.reader.getFloat(children[i], 'top')
 
                 var fromIndex = nodeNames.indexOf("from");
                 var toIndex = nodeNames.indexOf("to");
@@ -879,10 +879,13 @@ class MySceneGraph {
 
         for (var p = 0; p < grandgrandChildren.length; p++) {
 
-            var id = this.reader.getString(grandgrandChildren[p], 'id');
 
-            //check if is passed by reference
-            if (id != null) {
+            if (grandgrandChildren[p].nodeName == 'transformationref') {
+                var id = this.reader.getString(grandgrandChildren[p], 'id');
+
+                if (id == null)
+                    this.onXMLMinorError("Invalid tranformation id:" + id);
+
                 if (this.transformations[id] == null)
                     this.onXMLMinorError("Invalid tranformation id:" + id);
                 else {
@@ -1079,10 +1082,10 @@ class MySceneGraph {
             this.components.push(this.comp);
         }
 
-        if(flag == 0)
+        if (flag == 0)
             return "There needs to exists at least a component with same id as root";
-    
-        }
+
+    }
 
 
     /**
@@ -1207,8 +1210,8 @@ class MySceneGraph {
         // this.materials['demoMaterial'].apply();
         // this.primitives['sp'].display();
 
-        this.camera=this.views['defaultCamera'];
-        
+        this.camera = this.views['defaultCamera'];
+
         //this.primitives['demoCylinder'].display();
         //this.primitives['demoTorus'].display();
     }
