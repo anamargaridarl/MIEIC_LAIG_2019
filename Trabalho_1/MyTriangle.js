@@ -77,15 +77,10 @@ class MyTriangle extends CGFobject {
 		this.sin_beta = Math.sqrt(1-Math.pow(this.cos_beta,2));
 
 		//setting default texCoords where length_s=length_t=1
-		/*this.texCoords = [
+		this.texCoords = [
 			(this.c-this.a*this.cos_beta),1-this.a*this.sin_beta,
 			0,1,
 			this.c,1	
-		]*/
-		this.texCoords = [
-			0, 1,
-			1, 1,
-			1, 0
 		];
 
 
