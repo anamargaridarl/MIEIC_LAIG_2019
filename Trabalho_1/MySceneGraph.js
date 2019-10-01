@@ -197,7 +197,7 @@ class MySceneGraph {
             if ((error = this.parseComponents(nodes[index])) != null)
                 return error;
 
-            this.components.push(null)
+            //this.components.push(null)
         }
         this.log("all parsed");
     }
@@ -675,9 +675,9 @@ class MySceneGraph {
 
             this.parseTransformationCore(grandChildren, null, transformationID);
 
-            this.log("Parsed transformations");
-            return null;
         }
+        this.log("Parsed transformations");
+        return null;
     }
 
     /**
@@ -984,7 +984,6 @@ class MySceneGraph {
         
         let grandgrandChildren = childrenComp.children;
         
-        //make sure at least one material exists present in this component.Should exist at least one
         if (grandgrandChildren == null) {
             this.onXMLError("No children present in this component. Must exist at least one.");
             return;
@@ -995,13 +994,17 @@ class MySceneGraph {
         for (let p = 0; p < grandgrandChildren.length; p++) {
 
             let id = this.reader.getString(grandgrandChildren[p], 'id');
-
-            if (this.components[id] != null || this.primitives[id] != null) {
+            
+            if( grandgrandChildren[p].nodeName == "primitiveref" && this.primitives[id] != null) {
+                children.push(this.primitives[id]);
+            }
+            else if (grandgrandChildren[p].nodeName == "componentref") {
                 this.requiredChildID.push(id);
                 children.push(id);
             }
-            else
-                this.onXMLMinorError("unknown tag <" + id + ">");
+            else {
+                this.onXMLMinorError("Child has invalid parameters. It will be ignored.");
+            }
         }
 
         return children;
@@ -1077,21 +1080,38 @@ class MySceneGraph {
 
             let childC = this.parseChildrenComp(grandChildren[childrenIndex]);
 
-            this.components.push(new MyComponent(this.scene,childC,matC,texC,transC));
+            this.components[componentID] = new MyComponent(this.scene,childC,matC,texC,transC);
         }
 
         if (!hasRootID)
             return "There needs to exists at least a component with same id as root";
 
         this.verifyChildPresence();
+        this.setCompChildren();
     }
-
+    
     verifyChildPresence() {
         for(let i = 0; i < this.requiredChildID.length; i++) {
             if(this.components[this.requiredChildID[i]] == null) {
                 this.onXMLError("Child with id: " + this.requiredChildID[i] + " hasn't been declared");
                 return;
             }
+        }
+    }
+
+    setCompChildren() {
+
+        let compArr = Object.keys(this.components);
+        for(let comp of compArr) {
+            let kids = [];
+            let childArr = this.components[comp].children;
+            for(let child of childArr) {
+                if(child instanceof CGFobject)
+                    kids.push(child);
+                else
+                    kids.push(this.components[child]);
+            }
+            this.components[comp].children = kids;
         }
     }
 
@@ -1215,11 +1235,9 @@ class MySceneGraph {
         //this.camera = this.views['defaultCamera'];
         //To test the parsing/creation of the primitives, call the display function directly
         // this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
-        this.materials['demoMaterial'].apply();
-        this.primitives['sp'].display();
-
-
-
+        // this.materials['demoMaterial'].apply();
+        // this.primitives['sp'].display();
+        this.components[this.idRoot].display();
         //this.primitives['demoCylinder'].display();
         //this.primitives['demoTorus'].display();
     }
