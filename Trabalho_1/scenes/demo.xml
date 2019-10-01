@@ -43,6 +43,13 @@
             <rotate axis="x" angle="-45" />
             <rotate axis="z" angle="-45" />
         </transformation>
+        <transformation id="lokiTrans">
+            <scale x="2" y="2" z="2" />
+            <translate x="2" y="2" z="2" />
+            <rotate axis="y" angle="45" />
+            <rotate axis="x" angle="-10" />
+            <rotate axis="z" angle="10" />
+        </transformation>
     </transformations>
 
     <primitives>
@@ -77,6 +84,19 @@
             <texture id="demoTexture"/>
             <children>
                 <primitiveref id="demoRectangle" />
+                <componentref id="canito" />
+            </children>
+        </component>
+        <component id="canito">
+            <transformation>
+                <transformationref id="lokiTrans" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="melhorCao" />
+            <children>
+                <primitiveref id="sp" />
             </children>
         </component>
     </components>
