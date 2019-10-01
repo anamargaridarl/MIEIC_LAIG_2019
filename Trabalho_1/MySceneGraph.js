@@ -593,7 +593,7 @@ class MySceneGraph {
         return null;
     }
 
-    parseTransformationCore(transformationNodes, comp, transformationID) {
+    parseTransformationCore(transformationNodes, explicitT, transformationID) {
 
         var transfMatrix = mat4.create();
 
@@ -631,8 +631,8 @@ class MySceneGraph {
                     break;
             }
 
-            if (comp != null)
-                comp.pushTransformation(transfMatrix);
+            if (explicitT)
+               return transfMatrix;
             else
                 this.transformations[transformationID] = transfMatrix;
 
@@ -870,140 +870,141 @@ class MySceneGraph {
     }
 
     //-------------- Component parser -------------------------------------------
-    parseTransformationsComp(grandChildren, transformationIndex, comp) {
+    parseTransformationComp(transformations) {
         var transformationNodes = [];
-        var grandgrandChildren = [];
+        var grandgrandChildren = transformations.children;
 
-        if (transformationIndex == null)
-            this.onXMLMinorError("Tranformation component doesn't exist");
-
-        grandgrandChildren = grandChildren[transformationIndex].children;
+        if(grandgrandChildren == null) {
+            return;
+        }
 
         for (var p = 0; p < grandgrandChildren.length; p++) {
-
-
+            
+            
             if (grandgrandChildren[p].nodeName == 'transformationref') {
+                if(transformationNodes.length > 0) {
+                    this.onXMLMinorError("Referencing transformation when explicit transformation is already defined. References will be ignored.");
+                    continue;
+                }
                 var id = this.reader.getString(grandgrandChildren[p], 'id');
-
+                
                 if (id == null)
-                    this.onXMLMinorError("No id associated to transformation");
-
+                this.onXMLMinorError("No id associated to transformation");
+                
                 if (this.transformations[id] == null)
-                    this.onXMLMinorError("Invalid tranformation id:" + id);
+                this.onXMLMinorError("Invalid tranformation id:" + id);
                 else {
-                    this.comp.pushTransformation(id)
+                    if(grandgrandChildren.length > 1) {
+                        this.onXMLMinorError("Has more transformations after the referenced id. Those will be ignored");
+                    }
+                    return this.transformations[id];
                 }
             }
             else {
                 transformationNodes.push(grandgrandChildren[p]);
             }
         }
-
-        this.parseTransformationCore(transformationNodes, comp, null);
+        
+        return this.parseTransformationCore(transformationNodes, true, null);
     }
 
-    parseMaterialsComp(grandChildren, materialsIndex, comp) {
+    parseMaterialsComp(materials) {
 
-        var lastMaterial;
-        var grandgrandChildren = [];
-
-        //make sure section exists
-        if (materialsIndex == null)
-            this.onXMLMinorError("No materials section present in this component");
-
-        grandgrandChildren = grandChildren[materialsIndex].children;
+        let grandgrandChildren = materials.children;
 
         //make sure at least one material exists
-        if (grandgrandChildren == null)
-            this.onXMLMinorError("No materials present in this component.Should exist at least one");
+        if (grandgrandChildren == null) {
+            this.onXMLError("No materials present in this component. Must exist at least one");
+            return;
+        }
+        
+        var materialsArr = [];
+        for (let p = 0; p < grandgrandChildren.length; p++) {
 
-        for (var p = 0; p < grandgrandChildren.length; p++) {
-
-            var id = this.reader.getString(grandgrandChildren[p], 'id');
-
-            if (id == "inherit" && p != 0) {
-                this.comp.activateMathHerd();
+            let id = this.reader.getString(grandgrandChildren[p], 'id');
+            if(id == null) {
+                this.onXMLMinorError("Missing material id. Ignoring this block");
                 continue;
             }
-            else if (this.materials[id] != null)
-                comp.pushMaterial(id);
-            else
-                this.onXMLMinorError("Invalid material id:" + id);
-
-            lastMaterial = this.reader.getString(grandgrandChildren[p], 'id');
+            else if(id != "inherit") {
+                //check if the material id referenced is invalid
+                if(this.materials[id] == null) {
+                    this.onXMLMinorError("Component declared invalid material with id: " + id +". This reference will be ignored");
+                    continue;
+                }
+                else {
+                    materialsArr.push(this.materials[id]);
+                }
+            }
+            else {
+                materialsArr.push(id);
+            }
         }
+
+        return materialsArr;
     }
 
-    parseTexturesComp(grandChildren, textureIndex, comp) {
+    parseTextureComp(texture) {
 
-        var grandgrandChildren = [];
-        var length_s = 0;
-        var length_t = 0;
-        var id;
-
-        if (textureIndex == null)
-            this.onXMLMinorError("Texture component doesn't exist");
-
-        grandgrandChildren = grandChildren[textureIndex];
-
-        id = this.reader.getString(grandgrandChildren, 'id');
-
-        if (this.reader.hasAttribute(grandgrandChildren, 'length_s') && this.reader.hasAttribute(grandgrandChildren, 'lenght_t')) {
-            length_s = this.reader.getFloat(grandgrandChildren, 'lenght_s');
-            length_t = this.reader.getFloat(grandgrandChildren, 'lenght_t');
+        let length_s = 1;
+        let length_t = 1;
+        
+        let tex = this.reader.getString(texture, 'id'); 
+        if(tex == null) {
+            this.onXMLError("No texture has been referenced for this component. It must be referenced");
+            return;
         }
-        else {
-            length_s = 1;
-            length_t = 1;
+
+        if (this.reader.hasAttribute(texture, 'length_s') && this.reader.hasAttribute(texture, 'length_t')) {
+            length_s = this.reader.getFloat(texture, 'length_s');
+            length_t = this.reader.getFloat(texture, 'length_t');
         }
 
         var struct = {
             s: length_s,
             t: length_t,
-            id_t: id
+            tex_t: tex
         };
 
-        if (id == "inherit") {
-            this.comp.activateTextHerd();
-        }
-        if (id == "none") {
-            this.comp.pushTexture(null);
-        }
-        else if (this.textures[id] != null) {
-            if ((length_s == null && length_t != null) || (length_s != null && length_t == null))
-                this.onXMLMinorError("impossible to only have one lenght parameter>");
-            else { //need to put in structure*/
-                comp.pushTexture(struct);
+        
+        if( tex != "inherit" && tex != "none") {
+            if(this.textures[tex] == null ) {
+                this.onXMLError("Component declared invalid texture with id: "+ tex + ". Will inherit the parent texture");
+                tex = "inherit";
             }
+            else if ((length_s == null && length_t != null) || (length_s != null && length_t == null))
+                this.onXMLError("impossible to only have one length parameter>");
+            else
+                struct.tex_t = this.textures[tex];
         }
-
+        return struct;
     }
 
-    parseChildrenComp(grandChildren, childrenIndex, comp) {
-
-        var grandgrandChildren = [];
-
-        if (childrenIndex == null)
-            this.onXMLMinorError("Children component doesn't exist");
-
-        grandgrandChildren = grandChildren[childrenIndex].children;
-
+    parseChildrenComp(childrenComp) {
+        
+        let grandgrandChildren = childrenComp.children;
+        
         //make sure at least one material exists present in this component.Should exist at least one
-        if (grandgrandChildren == null)
-            this.onXMLMinorError("No children present in this component.Should exist at least one");
+        if (grandgrandChildren == null) {
+            this.onXMLError("No children present in this component. Must exist at least one.");
+            return;
+        }
 
+        var children = [];
 
-        for (var p = 0; p < grandgrandChildren.length; p++) {
+        for (let p = 0; p < grandgrandChildren.length; p++) {
 
-            var id = this.reader.getString(grandgrandChildren[p], 'id');
+            let id = this.reader.getString(grandgrandChildren[p], 'id');
 
             if (this.components[id] != null || this.primitives[id] != null) {
-                comp.pushChildren(id);
+                this.requiredChildID.push(id);
+                children.push(id);
             }
             else
                 this.onXMLMinorError("unknown tag <" + id + ">");
-
         }
+
+        return children;
     }
 
 
@@ -1014,18 +1015,17 @@ class MySceneGraph {
 */
     parseComponents(componentsNode) {
 
-        var flag = 0;
+        let hasRootID = false;
 
-        var children = componentsNode.children;
-        var grandChildren = [];
-        var nodeNames = [];
+        let children = componentsNode.children;
+        let grandChildren = [];
+        let nodeNames = [];
+        this.requiredChildID = [];
 
         //need to check for rootid
 
         // Any number of components.
         for (var i = 0; i < children.length; i++) {
-
-            this.comp = new MyComponent(this.scene);
 
             if (children[i].nodeName != "component") {
                 this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
@@ -1033,12 +1033,12 @@ class MySceneGraph {
             }
 
             // Get id of the current component.
-            var componentID = this.reader.getString(children[i], 'id');
+            let componentID = this.reader.getString(children[i], 'id');
             if (componentID == null)
                 return "no ID defined for componentID";
 
             if (componentID == this.idRoot)
-                flag = 1;
+                hasRootID = true;
 
             // Checks for repeated IDs.
             if (this.components[componentID] != null)
@@ -1048,32 +1048,51 @@ class MySceneGraph {
             grandChildren = children[i].children; //component properties
 
             nodeNames = [];
-            for (var j = 0; j < grandChildren.length; j++) {
+            for (let j = 0; j < grandChildren.length; j++) {
                 nodeNames.push(grandChildren[j].nodeName);
             }
 
-            var transformationIndex = nodeNames.indexOf("transformation");
-            var materialsIndex = nodeNames.indexOf("materials");
-            var textureIndex = nodeNames.indexOf("texture");
-            var childrenIndex = nodeNames.indexOf("children");
+            let transformationIndex = nodeNames.indexOf("transformation");
+            if (transformationIndex == null)
+                this.onXMLError("Transformation block doesn't exist");
+            
+            let materialsIndex = nodeNames.indexOf("materials");
+            if (materialsIndex == null)
+                this.onXMLError("Materials section doesn't exist");
+            
+            let textureIndex = nodeNames.indexOf("texture");
+            if (textureIndex == null)
+                this.onXMLError("Texture block doesn't exist");
+            
+            let childrenIndex = nodeNames.indexOf("children");
+            if (childrenIndex == null)
+                this.onXMLError("Children block doesn't exist");
 
 
-            this.parseTransformationsComp(grandChildren, transformationIndex, this.comp);
+            let transC = this.parseTransformationComp(grandChildren[transformationIndex]);
 
-            this.parseMaterialsComp(grandChildren, materialsIndex, this.comp);
+            let matC = this.parseMaterialsComp(grandChildren[materialsIndex]);
 
-            this.parseTexturesComp(grandChildren, textureIndex, this.comp);
+            let texC = this.parseTextureComp(grandChildren[textureIndex]);
 
-            this.parseChildrenComp(grandChildren, childrenIndex, this.comp)
+            let childC = this.parseChildrenComp(grandChildren[childrenIndex]);
 
-
-
-            this.components.push(this.comp);
+            this.components.push(new MyComponent(this.scene,childC,matC,texC,transC));
         }
 
-        if (flag == 0)
+        if (!hasRootID)
             return "There needs to exists at least a component with same id as root";
 
+        this.verifyChildPresence();
+    }
+
+    verifyChildPresence() {
+        for(let i = 0; i < this.requiredChildID.length; i++) {
+            if(this.components[this.requiredChildID[i]] == null) {
+                this.onXMLError("Child with id: " + this.requiredChildID[i] + " hasn't been declared");
+                return;
+            }
+        }
     }
 
 
@@ -1193,11 +1212,11 @@ class MySceneGraph {
      */
     displayScene() {
         //To do: Create display loop for transversing the scene graph
-        this.camera = this.views['defaultCamera'];
+        //this.camera = this.views['defaultCamera'];
         //To test the parsing/creation of the primitives, call the display function directly
         // this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
         this.materials['demoMaterial'].apply();
-        // this.primitives['sp'].display();
+        this.primitives['sp'].display();
 
 
 
