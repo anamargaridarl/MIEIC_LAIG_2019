@@ -13,13 +13,6 @@ class MyTriangle extends CGFobject {
 		this.z2 = z2;
 		this.z3 = z3;
 		
-        this.b = Math.sqrt(Math.pow(this.x2 - this.x1) + Math.pow(this.y2 - this.y1) + Math.pow(this.z2 - this.z1))
-        this.a =  Math.sqrt(Math.pow(this.x3 - this.x1) + Math.pow(this.y3 - this.y1) + Math.pow(this.z3 - this.z1))
-        this.c =  Math.sqrt(Math.pow(this.x3 - this.x2) + Math.pow(this.y3 - this.y2) + Math.pow(this.z3 - this.z2))
-		
-        this.cosB = (Math.pow(this.a) - Math.pow(this.b) + Math.pow(this.a))/(2*this.a*this.c)
-        this.asinB = Math.sqrt(Math.pow(this.a) - Math.pow(this.cosB*this.a))
-		
         this.initBuffers();
 	}
 	initBuffers() {
@@ -82,8 +75,6 @@ class MyTriangle extends CGFobject {
 			0,1,
 			this.c,1	
 		];
-
-
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();

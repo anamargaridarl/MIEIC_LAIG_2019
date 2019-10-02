@@ -538,6 +538,7 @@ class MySceneGraph {
 
             let newMaterial = new CGFappearance(this.scene);
             newMaterial.setShininess(shine);
+            newMaterial.setTextureWrap('REPEAT','REPEAT');
 
             //Has materials attributes
             grandChildren = children[i].children;

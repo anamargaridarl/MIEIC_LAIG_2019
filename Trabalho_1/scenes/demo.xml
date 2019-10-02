@@ -10,7 +10,7 @@
 
     <ambient>
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-        <background r="0.0" g="0.0" b="0.0" a="1.0" />
+        <background r="0.8" g="0.8" b="0.8" a="1.0" />
     </ambient>
 
     <lights>
@@ -25,7 +25,8 @@
     <textures>
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
         <texture id="demoJapan" file="scenes/images/redwhite.jpg" />
-        <texture id="melhorCao" file="scenes/images/loki.jpg" />
+        <texture id="coroa" file="scenes/images/crown.jpg" />
+        <texture id="melhorCao" file="scenes/images/red_ball.jpg"  />
     </textures>
 
     <materials>
@@ -45,10 +46,10 @@
         </transformation>
         <transformation id="lokiTrans">
             <scale x="2" y="2" z="2" />
-            <translate x="2" y="2" z="2" />
+            <!-- <translate x="2" y="2" z="2" /> -->
             <rotate axis="y" angle="45" />
-            <rotate axis="x" angle="-10" />
-            <rotate axis="z" angle="10" />
+            <!-- <rotate axis="x" angle="-10" /> -->
+            <!-- <rotate axis="z" angle="10" /> -->
         </transformation>
     </transformations>
 
@@ -57,7 +58,7 @@
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
         </primitive>
         <primitive id="demoCylinder">
-            <cylinder base="5" top="5" height="10" slices="10" stacks="5" />
+            <cylinder base="5" top="5" height="10" slices="20" stacks="10" />
         </primitive>
         <primitive id="demoTorus">
             <torus inner="2" outer="10" slices="20" loops="20" />
@@ -65,7 +66,7 @@
         <primitive id="triang">
           <triangle   x1="0" y1="0" z1="0"
                         x2="5" y2="0" z2="0"
-                        x3="8" y3="4" z3="0" />
+                        x3="5" y3="4" z3="0" />
         </primitive>
         <primitive id="sp">
               <sphere radius="2" slices="30" stacks="30" />
@@ -81,9 +82,9 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="melhorCao" />
             <children>
-                <primitiveref id="demoRectangle" />
+                <primitiveref id="triang" />
                 <componentref id="canito" />
             </children>
         </component>
