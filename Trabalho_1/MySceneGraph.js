@@ -1236,11 +1236,11 @@ class MySceneGraph {
         //To do: Create display loop for transversing the scene graph
         //this.camera = this.views['defaultCamera'];
         //To test the parsing/creation of the primitives, call the display function directly
-        // this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
-        // this.materials['demoMaterial'].apply();
+        //  this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
+        //  this.materials['demoMaterial'].apply();
         // this.primitives['sp'].display();
         this.components[this.idRoot].display();
-        //this.primitives['demoCylinder'].display();
+        // this.primitives['TreeBase'].display();
         //this.primitives['demoTorus'].display();
     }
 }

@@ -11,7 +11,8 @@ class MyCylinder extends CGFobject {
 		this.top_radius = top;
 		this.height = height;
 		this.slices = slices;
-		this.stacks = stacks;
+        this.stacks = stacks;
+        this.lid = new MyCircle(scene,slices);        
 
 		this.initBuffers();
 	};
@@ -58,5 +59,17 @@ class MyCylinder extends CGFobject {
         
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
+    }
+    display() {
+        this.scene.pushMatrix();
+        this.scene.rotate(-Math.PI/2,1,0,0);
+        this.scene.scale(this.base_radius,1,this.base_radius);
+        this.lid.display();
+        this.scene.scale(this.top_radius/this.base_radius,1,this.top_radius/this.base_radius);
+        this.scene.rotate(Math.PI,1,0,0);
+        this.scene.translate(0,this.height,0);
+        this.lid.display();
+        this.scene.popMatrix();
+        super.display();
     }
 }
