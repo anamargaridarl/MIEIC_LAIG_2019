@@ -30,6 +30,7 @@
         <texture id="treeText" file="scenes/images/pine_leaves.jpg" />
         <texture id="treeBaseText" file="scenes/images/trunk-image.jpg" />
         <texture id="treeBallText" file="scenes/images/red.jpg" />
+        <texture id="fireplaceText" file="scenes/images/fireplace.jpg" />
     </textures>
 
     <materials>
@@ -42,19 +43,6 @@
     </materials>
 
     <transformations>
-        <transformation id="demoTransform">
-            <scale x="5" y="1" z="5" />
-            <rotate axis="x" angle="-45" />
-            <rotate axis="z" angle="-45" />
-        </transformation>
-
-        <transformation id="lokiTrans">
-            <translate x="2" y="2" z="2" />
-            <rotate axis="y" angle="45" />
-            <rotate axis="x" angle="-10" />
-            <rotate axis="z" angle="10" />
-        </transformation>
-
         <transformation id="treeTopTransf">
             <translate x="0" y="0" z="0.6" />   
             <scale x="0.6" y="0.6" z="0.6" />
@@ -80,10 +68,25 @@
             <scale x="0.5" y="0.5" z="0.5" />  
         </transformation> 
 
+        <transformation id="frameDaisyTransf">
+            <translate x="4" y="4.3" z="0" /> 
+            <scale x="2" y="1" z="1" />  
+        </transformation> 
+
+         <transformation id="frameLokiTransf">
+            <translate x="6.2" y="4.3" z="0" /> 
+            <scale x="2" y="1" z="1" />  
+        </transformation>
+
+        <transformation id="fireplaceTransf">
+            <translate x="5" y="1.5" z="0" /> 
+            <scale x="4" y="1.5" z="1" />  
+        </transformation>  
+
     </transformations>
 
     <primitives>
-        <primitive id="demoRectangle">
+        <primitive id="Rectangles">
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
         </primitive>
 
@@ -129,6 +132,9 @@
             <texture id="demoTexture"/>
             <children>
              <componentref id="tree" />
+             <componentref id="DaisyFrame" />
+              <componentref id="LokiFrame" />
+               <componentref id="fireplace" />
             </children>
         </component>
 
@@ -241,6 +247,44 @@
             </children>
         </component>   
 
-        <!---__________________________________________________________-->
+        <component id="DaisyFrame">
+            <transformation>
+               <transformationref id="frameDaisyTransf" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="melhorCadela" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>  
+
+         <component id="LokiFrame">
+            <transformation>
+               <transformationref id="frameLokiTransf" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="melhorCao" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component> 
+
+        <component id="fireplace">
+            <transformation>
+               <transformationref id="fireplaceTransf" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="fireplaceText" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component> 
+
     </components>
 </lxs>
