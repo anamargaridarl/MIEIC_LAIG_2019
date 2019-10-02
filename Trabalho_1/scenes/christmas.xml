@@ -26,6 +26,9 @@
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
         <texture id="demoJapan" file="scenes/images/redwhite.jpg" />
         <texture id="melhorCao" file="scenes/images/loki.jpg" />
+        <texture id="melhorCadela" file="scenes/images/daisylinda.jpg" />
+        <texture id="treeText" file="scenes/images/tree.jpg" />
+        <texture id="treeBase" file="scenes/images/red.jpg" />
     </textures>
 
     <materials>
@@ -43,48 +46,70 @@
             <rotate axis="x" angle="-45" />
             <rotate axis="z" angle="-45" />
         </transformation>
+
         <transformation id="lokiTrans">
-            <scale x="2" y="2" z="2" />
             <translate x="2" y="2" z="2" />
             <rotate axis="y" angle="45" />
             <rotate axis="x" angle="-10" />
             <rotate axis="z" angle="10" />
         </transformation>
+
+        <transformation id="treeBasicTransf">
+            <translate x="0" y="0.5" z="0" />
+            <scale x="0.2" y="0.2" z="0.2" />            
+        </transformation>
+
+        <transformation id="treePartTransf">
+            <scale x="0.8" y="0.8" z="0.8" />
+            <translate x="0" y="0" z="3.2" />   
+        </transformation> 
+
+        <transformation id="treeBaseTransf">
+            <scale x="0.5" y="0.5" z="0.5" />
+            <translate x="0" y="0" z="0" />   
+        </transformation> 
+
     </transformations>
 
     <primitives>
         <primitive id="demoRectangle">
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
         </primitive>
-        <primitive id="demoCylinder">
-            <cylinder base="5" top="5" height="10" slices="10" stacks="5" />
+
+        <primitive id="TreeBranches">
+            <cylinder base="6" top="4" height="3" slices="20" stacks="20" />
         </primitive>
+        
+        <primitive id="TreeBase">
+            <cylinder base="3" top="3" height="3" slices="20" stacks="20" />
+        </primitive>
+
         <primitive id="demoTorus">
-            <torus inner="2" outer="10" slices="20" loops="20" />
+            <torus inner="0.3" outer="1" slices="80" loops="80" />
         </primitive>
+
         <primitive id="triang">
           <triangle   x1="0" y1="0" z1="0"
                         x2="5" y2="0" z2="0"
                         x3="8" y3="4" z3="0" />
         </primitive>
+
         <primitive id="sp">
               <sphere radius="2" slices="30" stacks="30" />
         </primitive>
+
     </primitives>
 
     <components>
         <component id="demoRoot">
             <transformation>
-                <translate x="0" y="0" z="1" />
-                <scale x="2" y="1" z="1" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
             </materials>
             <texture id="demoTexture"/>
             <children>
-                <primitiveref id="demoRectangle" />
-                <componentref id="canito" />
+             <componentref id="tree" />
             </children>
         </component>
         <component id="canito">
@@ -99,5 +124,70 @@
                 <primitiveref id="sp" />
             </children>
         </component>
+        <!---__________________________________________________________-->
+
+
+         <component id="coroa">
+            <transformation>
+                
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeText" />
+            <children>
+                <primitiveref id="demoTorus" />
+            </children>
+        </component>
+
+
+        <!---__________________________________________________________-->
+
+
+
+        <component id="treePart">
+            <transformation>
+                <transformationref id="treePartTransf" />
+                <transformationref id="treeBasicTransf" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeText" />
+            <children>
+                <primitiveref id="TreeBranches" />
+            </children>
+        </component>  
+        <component id="treeBase">
+            <transformation>
+                <transformationref id="treeBaseTransf" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBase" />
+            <children>
+                <primitiveref id="TreeBase" />
+            </children>
+        </component>  
+        <component id="tree">
+            <transformation>
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="treeText" />
+            <children>
+                <componentref id="treePart" />
+                <componentref id="treePart" />
+                <componentref id="treePart" />
+                <componentref id="treePart" />
+                <componentref id="treePart" />
+                <componentref id="treePart" />
+                <componentref id="treeBase" />
+            </children>
+        </component>   
+        <!---__________________________________________________________-->
     </components>
 </lxs>

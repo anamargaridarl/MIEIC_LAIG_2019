@@ -617,15 +617,16 @@ class MySceneGraph {
                     var axis = this.reader.getString(transformationNodes[j], 'axis');
                     var angle = this.reader.getFloat(transformationNodes[j], 'angle');
 
+
                     switch (axis) {
                         case 'x':
-                            transfMatrix = mat4.rotateX(transfMatrix, transfMatrix, angle);
+                            transfMatrix = mat4.rotateX(transfMatrix, transfMatrix, angle*DEGREE_TO_RAD);
                             break;
                         case 'y':
-                            transfMatrix = mat4.rotateY(transfMatrix, transfMatrix, angle);
+                            transfMatrix = mat4.rotateY(transfMatrix, transfMatrix, angle*DEGREE_TO_RAD);
                             break;
                         case 'z':
-                            transfMatrix = mat4.rotateZ(transfMatrix, transfMatrix, angle);
+                            transfMatrix = mat4.rotateZ(transfMatrix, transfMatrix, angle*DEGREE_TO_RAD);
                             break;
                     }
                     break;

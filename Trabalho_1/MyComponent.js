@@ -48,7 +48,9 @@ class MyComponent extends CGFobject {
         for( let children of this.children) {
             //check if is component
             if(children instanceof MyComponent) {
+                this.scene.pushMatrix();
                 children.display(texP,matP);
+                this.scene.popMatrix();
             }
             else { // or primitive
                 if(children.updateTexCoords != null) { //if has function to update texCoords (eg: Triangle & Rectangle)
