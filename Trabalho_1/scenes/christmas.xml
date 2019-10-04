@@ -30,7 +30,9 @@
         <texture id="treeText" file="scenes/images/pine_leaves.jpg" />
         <texture id="treeBaseText" file="scenes/images/trunk-image.jpg" />
         <texture id="treeBallText" file="scenes/images/red.jpg" />
+        <texture id="treeBallYText" file="scenes/images/yellow_ball.jpg" />
         <texture id="fireplaceText" file="scenes/images/fireplace.jpg" />
+        <texture id="coroaText" file="scenes/images/leaves.jpg" />
     </textures>
 
     <materials>
@@ -83,6 +85,21 @@
             <scale x="4" y="1.5" z="1" />  
         </transformation>  
 
+         <transformation id="coroaBall1Transf">
+            <translate x="3.8" y="4.9" z="2.7" />   
+            <scale x="1.5" y="1.5" z="1.5" />  
+        </transformation>  
+
+         <transformation id="coroaBall2Transf">
+            <translate x="4.2" y="4.9" z="2.7" />   
+            <scale x="1.5" y="1.5" z="1.5" />  
+        </transformation>  
+
+         <transformation id="coroaBall3Transf">
+            <translate x="4" y="4.7" z="2.7" />   
+            <scale x="1.5" y="1.5" z="1.5" />  
+        </transformation>  
+
     </transformations>
 
     <primitives>
@@ -107,7 +124,7 @@
         </primitive>
     
         <primitive id="demoTorus">
-            <torus inner="0.3" outer="1" slices="80" loops="80" />
+            <torus inner="0.3" outer="0.8" slices="80" loops="80" />
         </primitive>
 
         <primitive id="triang">
@@ -131,12 +148,82 @@
             </materials>
             <texture id="demoTexture"/>
             <children>
-             <componentref id="tree" />
+             <componentref id="Tree" />
              <componentref id="DaisyFrame" />
-              <componentref id="LokiFrame" />
-               <componentref id="fireplace" />
+             <componentref id="LokiFrame" />
+             <componentref id="Fireplace" />
+             <componentref id="Coroa" />
             </children>
         </component>
+
+       <component id="Coroa">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="coroaText" />
+            <children>
+                <componentref id="CoroaBall1" />
+                <componentref id="CoroaBall2" />
+                <componentref id="CoroaBall3" />
+                <componentref id="CoroaBase" />
+            </children>
+        </component>
+
+        <component id="CoroaBall1">
+            <transformation>
+                <transformationref id="coroaBall1Transf" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="TreeBall" />
+            </children>
+        </component> 
+
+         <component id="CoroaBall2">
+            <transformation>
+                <transformationref id="coroaBall2Transf" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="TreeBall" />
+            </children>
+        </component> 
+
+         <component id="CoroaBall3">
+            <transformation>
+                <transformationref id="coroaBall3Transf" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="TreeBall" />
+            </children>
+        </component> 
+
+
+        <component id="CoroaBase">
+            <transformation>
+               <translate x="4" y="4" z="2.3" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="coroaText" />
+            <children>
+                <primitiveref id="demoTorus" />
+            </children>
+        </component>
+
 
        <component id="treeLeafs2">
             <transformation>
@@ -232,7 +319,7 @@
             </children>
         </component>   
 
-        <component id="tree">
+        <component id="Tree">
             <transformation>
                 <rotate axis="x" angle="-90" />
             </transformation>
@@ -273,7 +360,7 @@
             </children>
         </component> 
 
-        <component id="fireplace">
+        <component id="Fireplace">
             <transformation>
                <transformationref id="fireplaceTransf" />
             </transformation>

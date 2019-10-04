@@ -14,6 +14,7 @@ class MyComponent extends CGFobject {
     }
     
     display(textureP,materialP) {
+        
         if(this.transformation) {
             this.scene.multMatrix(this.transformation);
         }

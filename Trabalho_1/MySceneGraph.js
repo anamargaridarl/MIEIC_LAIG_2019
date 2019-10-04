@@ -632,13 +632,13 @@ class MySceneGraph {
                     }
                     break;
             }
-
-            if (explicitT)
-               return transfMatrix;
-            else
-                this.transformations[transformationID] = transfMatrix;
-
+            
         }
+        
+                    if (explicitT)
+                       return transfMatrix;
+                    else
+                        this.transformations[transformationID] = transfMatrix;
 
 
     }
