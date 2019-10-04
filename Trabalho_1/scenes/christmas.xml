@@ -455,14 +455,86 @@
 
         <component id="cabin">
             <transformation>
-                <rotate axis="z" angle="90" />
-                <scale x="10" y="3" z="0" />
-                <translate x="5" y="1.5" z="50" />
             </transformation>
             <materials>
                 <material id="woodMaterial" />
             </materials>
             <texture id="woodCabinWall" />
+            <children>
+                <componentref id="northWall" />
+                <componentref id="southWall" />
+                <componentref id="westWall" />
+                <componentref id="eastWall" />
+                <componentref id="floor" />
+            </children>
+        </component>
+        <component id="northWall">
+            <transformation>
+                <scale x="18" y="4" z="1" />
+                <translate x="0.5" y="1" z="-0.005" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodCabinWall" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+        <component id="southWall">
+            <transformation>
+                <scale x="18" y="4" z="1" />
+                <translate x="0.5" y="1" z="-0.005" />
+                <rotate axis="x" angle="180" />
+                <translate x="0" y="0" z="-20" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodCabinWall" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+        <component id="westWall">
+            <transformation>
+                <rotate axis="y" angle="-90" />
+                <scale x="20" y="4" z="1" />
+                <translate x="0.5" y="1" z="-0.005" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodCabinWall" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+        <component id="eastWall">
+            <transformation>
+                <translate x="18" y="0" z="0" />
+                <rotate axis="y" angle="-90" />
+                <scale x="20" y="4" z="1" />
+                <translate x="0.5" y="1" z="-0.005" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodCabinWall" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+        <component id="floor">
+            <transformation>
+                <rotate axis="x" angle="-90" />
+                <scale x="18" y="10" z="1" />
+                <translate x="0.5" y="-1" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="woodCabinFloor" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
