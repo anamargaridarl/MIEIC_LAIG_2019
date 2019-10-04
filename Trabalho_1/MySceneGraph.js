@@ -30,7 +30,7 @@ class MySceneGraph {
 
         this.idRoot = null;                    // The id of the root element.
 
-        this.views = [];
+        this.views = {};
 
         this.axisCoords = [];
         this.axisCoords['x'] = [1, 0, 0];
@@ -238,7 +238,6 @@ class MySceneGraph {
 
         children = viewsNode.children;
 
-        this.cameras = []
         //FOR US TO DO:
         //check if there is one view at least
         if (children == null)
