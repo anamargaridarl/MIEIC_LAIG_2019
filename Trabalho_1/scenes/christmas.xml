@@ -36,7 +36,9 @@
         <texture id="woodCabinWall" file="scenes/images/cabin_wall.jpg" />
         <texture id="woodCabinFloor" file="scenes/images/cabin_floor.jpg" />
         <texture id="present1Text" file="scenes/images/gift_wrap1.png" />
-          <texture id="present2Text" file="scenes/images/gift_wrap2.png" />
+        <texture id="present2Text" file="scenes/images/gift_wrap2.png" />
+        <texture id="window1Text" file="scenes/images/window_snow.jpg" />
+
     </textures>
 
     <materials>
@@ -110,23 +112,9 @@
                 <componentref id="Fireplace" />
                 <componentref id="Coroa" />
                 <componentref id="cabin" />
-             <componentref id="Present1" />
-             <componentref id="Present2" />
-            </children>
-        </component>
-
-       <component id="Coroa">
-            <transformation>
-            </transformation>
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-            <texture id="coroaText" />
-            <children>
-                <componentref id="CoroaBall1" />
-                <componentref id="CoroaBall2" />
-                <componentref id="CoroaBall3" />
-                <componentref id="CoroaBase" />
+                <componentref id="Present1" />
+                <componentref id="Present2" />
+                <componentref id="Window1" />
             </children>
         </component>
 
@@ -240,6 +228,34 @@
             </children>
         </component>
 
+        <component id="Coroa">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="coroaText" />
+            <children>
+                <componentref id="CoroaBall1" />
+                <componentref id="CoroaBall2" />
+                <componentref id="CoroaBall3" />
+                <componentref id="CoroaBase" />
+            </children>
+        </component>
+        
+        <component id="Window1">
+            <transformation>
+                <translate x="14" y="4.3" z="0" /> 
+                <scale x="2" y="0.5" z="1" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="window1Text" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
 
         <component id="CoroaBall1">
             <transformation>
@@ -398,12 +414,13 @@
 
         <component id="Tree">
             <transformation>
+                <translate x="3" y="0" z="3" />   
                 <rotate axis="x" angle="-90" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
             </materials>
-                <texture id="treeText" />
+                <texture id="none" />
             <children>
                 <componentref id="treeTop" />
                 <componentref id="treeBase"/>
@@ -413,7 +430,7 @@
 
         <component id="DaisyFrame">
             <transformation>
-                <translate x="4" y="4.3" z="0" /> 
+                <translate x="9" y="4.3" z="0" /> 
                 <scale x="2" y="1" z="1" />  
             </transformation>
             <materials>
@@ -427,7 +444,7 @@
 
          <component id="LokiFrame">
             <transformation>
-                <translate x="6.2" y="4.3" z="0" /> 
+                <translate x="11.2" y="4.3" z="0" /> 
                 <scale x="2" y="1" z="1" /> 
             </transformation>
             <materials>
@@ -441,7 +458,7 @@
 
         <component id="Fireplace">
             <transformation>
-                <translate x="5" y="1.5" z="0" /> 
+                <translate x="10" y="1.5" z="0" /> 
                 <scale x="4" y="1.5" z="1" />  
             </transformation>
             <materials>
@@ -498,7 +515,9 @@
         </component>
         <component id="westWall">
             <transformation>
-                <rotate axis="y" angle="-90" />
+                <translate x="0" y="8" z="0" />
+                <rotate axis="y" angle="90" />
+                <rotate axis="z" angle="-180" />
                 <scale x="20" y="4" z="1" />
                 <translate x="0.5" y="1" z="-0.005" />
             </transformation>
