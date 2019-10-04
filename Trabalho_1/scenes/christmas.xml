@@ -228,8 +228,24 @@
             </children>
         </component>
 
+        <component id="Window1">
+            <transformation>
+                <translate x="15" y="5.3" z="0" /> 
+                <scale x="3" y="1.5" z="1" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="window1Text" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
         <component id="Coroa">
             <transformation>
+                <translate x="17.8" y="5" z="3" /> 
+                <rotate axis="y" angle="-90" />   
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -243,23 +259,10 @@
             </children>
         </component>
         
-        <component id="Window1">
-            <transformation>
-                <translate x="14" y="4.3" z="0" /> 
-                <scale x="2" y="0.5" z="1" />
-            </transformation>
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-            <texture id="window1Text" />
-            <children>
-                <primitiveref id="Rectangles" />
-            </children>
-        </component>
 
         <component id="CoroaBall1">
             <transformation>
-                <translate x="3.8" y="4.9" z="2.7" />   
+                <translate x="-0.2" y="0.9" z="0.4" />   
                 <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
@@ -273,7 +276,7 @@
 
          <component id="CoroaBall2">
             <transformation>
-                <translate x="4.2" y="4.9" z="2.7" />   
+                <translate x="0.2" y="0.9" z="0.4" />   
                 <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
@@ -287,7 +290,7 @@
 
          <component id="CoroaBall3">
             <transformation>
-                <translate x="4" y="4.7" z="2.7" />   
+                <translate x="0" y="0.7" z="0.4" />   
                 <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
@@ -302,7 +305,6 @@
 
         <component id="CoroaBase">
             <transformation>
-               <translate x="4" y="4" z="2.3" />   
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -430,7 +432,7 @@
 
         <component id="DaisyFrame">
             <transformation>
-                <translate x="9" y="4.3" z="0" /> 
+                <translate x="9" y="5.3" z="0" /> 
                 <scale x="2" y="1" z="1" />  
             </transformation>
             <materials>
@@ -444,7 +446,7 @@
 
          <component id="LokiFrame">
             <transformation>
-                <translate x="11.2" y="4.3" z="0" /> 
+                <translate x="11.2" y="5.3" z="0" /> 
                 <scale x="2" y="1" z="1" /> 
             </transformation>
             <materials>
@@ -458,8 +460,8 @@
 
         <component id="Fireplace">
             <transformation>
-                <translate x="10" y="1.5" z="0" /> 
-                <scale x="4" y="1.5" z="1" />  
+                <translate x="10" y="1.6" z="0" /> 
+                <scale x="5" y="1.5" z="1" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
