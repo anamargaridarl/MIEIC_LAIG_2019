@@ -36,6 +36,7 @@
         <texture id="woodCabinWall" file="scenes/images/cabin_wall.jpg" />
         <texture id="woodCabinFloor" file="scenes/images/cabin_floor.jpg" />
         <texture id="present1Text" file="scenes/images/gift_wrap1.png" />
+          <texture id="present2Text" file="scenes/images/gift_wrap2.png" />
     </textures>
 
     <materials>
@@ -173,7 +174,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="present1Text" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
