@@ -32,19 +32,19 @@ class MyComponent extends CGFobject {
             materialP.apply();                                     
         }                                     
         else {                                     
-            if(this.texture == "inherit") {                                     
+            if(this.texture.tex_t == "inherit") {                                     
                 this.materials[this.currMatIndex].setTexture(textureP);                                     
             }                                     
-            else if (this.texture == "none") {                                     
+            else if (this.texture.tex_t == "none") {                                     
                 this.materials[this.currMatIndex].setTexture(null);                                     
             }                                     
             else {                                     
                 this.materials[this.currMatIndex].setTexture(this.texture.tex_t);                                     
-            }                                     
+            } 
             this.materials[this.currMatIndex].apply();                                     
         }                                     
 
-        let texP = (this.texture == "inherit") ? textureP: this.texture;
+        let texP = (this.texture.tex_t == "inherit") ? textureP: this.texture;
         let matP = (this.materials[this.currMatIndex] == "inherit") ? materialP : this.materials[this.currMatIndex];
         for( let children of this.children) {
             //check if is component

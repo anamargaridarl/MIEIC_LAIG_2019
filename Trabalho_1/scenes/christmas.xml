@@ -33,6 +33,7 @@
         <texture id="treeBallYText" file="scenes/images/yellow_ball.jpg" />
         <texture id="fireplaceText" file="scenes/images/fireplace.jpg" />
         <texture id="coroaText" file="scenes/images/leaves.jpg" />
+        <texture id="present1Text" file="scenes/images/gift_wrap1.png" />
     </textures>
 
     <materials>
@@ -45,60 +46,6 @@
     </materials>
 
     <transformations>
-        <transformation id="treeTopTransf">
-            <translate x="0" y="0" z="0.6" />   
-            <scale x="0.6" y="0.6" z="0.6" />
-        </transformation> 
-
-        <transformation id="treeLeafs2Transf">
-            <translate x="0" y="0" z="2.1" />   
-            <scale x="0.8" y="0.8" z="0.8" />
-        </transformation> 
-
-        <transformation id="treeLeafs3Transf">
-            <translate x="0" y="0" z="3.8" />   
-            <scale x="0.7" y="0.7" z="0.8" />
-        </transformation>
-
-        <transformation id="treeLeafs4Transf">
-            <translate x="0" y="0" z="5.1" />   
-            <scale x="0.6" y="0.6" z="0.6" />
-        </transformation> 
-
-          <transformation id="treeLeafs5Transf">
-            <translate x="0" y="0" z="6.2" /> 
-            <scale x="0.5" y="0.5" z="0.5" />  
-        </transformation> 
-
-        <transformation id="frameDaisyTransf">
-            <translate x="4" y="4.3" z="0" /> 
-            <scale x="2" y="1" z="1" />  
-        </transformation> 
-
-         <transformation id="frameLokiTransf">
-            <translate x="6.2" y="4.3" z="0" /> 
-            <scale x="2" y="1" z="1" />  
-        </transformation>
-
-        <transformation id="fireplaceTransf">
-            <translate x="5" y="1.5" z="0" /> 
-            <scale x="4" y="1.5" z="1" />  
-        </transformation>  
-
-         <transformation id="coroaBall1Transf">
-            <translate x="3.8" y="4.9" z="2.7" />   
-            <scale x="1.5" y="1.5" z="1.5" />  
-        </transformation>  
-
-         <transformation id="coroaBall2Transf">
-            <translate x="4.2" y="4.9" z="2.7" />   
-            <scale x="1.5" y="1.5" z="1.5" />  
-        </transformation>  
-
-         <transformation id="coroaBall3Transf">
-            <translate x="4" y="4.7" z="2.7" />   
-            <scale x="1.5" y="1.5" z="1.5" />  
-        </transformation>  
 
     </transformations>
 
@@ -153,6 +100,9 @@
              <componentref id="LokiFrame" />
              <componentref id="Fireplace" />
              <componentref id="Coroa" />
+             <componentref id="Present1" />
+             <componentref id="Present2" />
+
             </children>
         </component>
 
@@ -171,9 +121,121 @@
             </children>
         </component>
 
+        <component id="Present1">
+            <transformation>
+                <translate x="1" y="0" z="2" />   
+                <scale x="0.7" y="0.7" z="0.7" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present1Text" />
+            <children>
+                <componentref id="Present11" />
+                <componentref id="Present12" />
+                <componentref id="Present13" />
+                <componentref id="Present14" />
+                <componentref id="Present15" />
+            </children>
+        </component>
+
+        <component id="Present2">
+            <transformation>
+                <translate x="4" y="0" z="2" />   
+                <scale x="0.7" y="0.7" z="1.7" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present1Text" />
+            <children>
+                <componentref id="Present11" />
+                <componentref id="Present12" />
+                <componentref id="Present13" />
+                <componentref id="Present14" />
+                <componentref id="Present15" />
+            </children>
+        </component>
+
+        <component id="Present11">
+            <transformation>
+                <translate x="3.8" y="0" z="4" />   
+                <scale x="1" y="0.5" z="1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+        <component id="Present12">
+            <transformation>
+                <translate x="3.8" y="0.5" z="3.5" />   
+                <rotate axis="x" angle="-90" /> 
+                <scale x="1" y="0.5" z="1" />                  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present1Text" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+        <component id="Present13">
+            <transformation>
+                <translate x="3.8" y="0" z="3" />   
+                <rotate axis="x" angle="-180" /> 
+                <scale x="1" y="0.5" z="1" />                  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present1Text" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+        <component id="Present14">
+            <transformation>
+                <translate x="3.3" y="0" z="3.5" />   
+                <rotate axis="y" angle="-90" /> 
+                <scale x="1" y="0.5" z="1" />                  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present1Text" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+        <component id="Present15">
+            <transformation>
+                <translate x="4.3" y="0" z="3.5" />   
+                <rotate axis="y" angle="90" /> 
+                <scale x="1" y="0.5" z="1" />                  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present1Text" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+
         <component id="CoroaBall1">
             <transformation>
-                <transformationref id="coroaBall1Transf" />
+                <translate x="3.8" y="4.9" z="2.7" />   
+                <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -186,7 +248,8 @@
 
          <component id="CoroaBall2">
             <transformation>
-                <transformationref id="coroaBall2Transf" />
+                <translate x="4.2" y="4.9" z="2.7" />   
+                <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -199,7 +262,8 @@
 
          <component id="CoroaBall3">
             <transformation>
-                <transformationref id="coroaBall3Transf" />
+                <translate x="4" y="4.7" z="2.7" />   
+                <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -227,7 +291,8 @@
 
        <component id="treeLeafs2">
             <transformation>
-                <transformationref id="treeLeafs2Transf" />
+                <translate x="0" y="0" z="2.1" />   
+                <scale x="0.8" y="0.8" z="0.8" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -240,7 +305,8 @@
 
         <component id="treeLeafs3">
             <transformation>
-                <transformationref id="treeLeafs3Transf" />
+                <translate x="0" y="0" z="3.8" />   
+                <scale x="0.7" y="0.7" z="0.8" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -253,7 +319,8 @@
 
         <component id="treeLeafs4">
             <transformation>
-                <transformationref id="treeLeafs4Transf" />
+                <translate x="0" y="0" z="5.1" />   
+                <scale x="0.6" y="0.6" z="0.6" />   
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -266,7 +333,8 @@
 
         <component id="treeLeafs5">
             <transformation>
-                <transformationref id="treeLeafs5Transf" />
+                <translate x="0" y="0" z="6.2" /> 
+                <scale x="0.5" y="0.5" z="0.5" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -304,7 +372,8 @@
    
         <component id="treeTop">
             <transformation>
-                <transformationref id="treeTopTransf" />
+                <translate x="0" y="0" z="0.6" />   
+                <scale x="0.6" y="0.6" z="0.6" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -336,7 +405,8 @@
 
         <component id="DaisyFrame">
             <transformation>
-               <transformationref id="frameDaisyTransf" />
+                <translate x="4" y="4.3" z="0" /> 
+                <scale x="2" y="1" z="1" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -349,7 +419,8 @@
 
          <component id="LokiFrame">
             <transformation>
-               <transformationref id="frameLokiTransf" />
+                <translate x="6.2" y="4.3" z="0" /> 
+                <scale x="2" y="1" z="1" /> 
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -362,7 +433,8 @@
 
         <component id="Fireplace">
             <transformation>
-               <transformationref id="fireplaceTransf" />
+                <translate x="5" y="1.5" z="0" /> 
+                <scale x="4" y="1.5" z="1" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
