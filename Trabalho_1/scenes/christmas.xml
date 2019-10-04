@@ -174,7 +174,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present1Text" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -189,7 +189,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present1Text" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -204,7 +204,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present1Text" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -219,7 +219,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present1Text" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -234,7 +234,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present1Text" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -468,6 +468,7 @@
                 <componentref id="floor" />
             </children>
         </component>
+
         <component id="northWall">
             <transformation>
                 <scale x="18" y="4" z="1" />
@@ -476,7 +477,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="woodCabinWall" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -491,7 +492,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="woodCabinWall" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -505,7 +506,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="woodCabinWall" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -520,7 +521,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="woodCabinWall" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="Rectangles" />
             </children>
