@@ -32,6 +32,8 @@ class MySceneGraph {
 
         this.views = [];
 
+        this.viewID = null;
+
         this.axisCoords = [];
         this.axisCoords['x'] = [1, 0, 0];
         this.axisCoords['y'] = [0, 1, 0];
@@ -239,13 +241,17 @@ class MySceneGraph {
         children = viewsNode.children;
 
         this.cameras = []
+
+        this.viewID = this.reader.getString(viewsNode, 'default');
+        var flag = 0;
+
         //FOR US TO DO:
         //check if there is one view at least
         if (children == null)
             return "no view available"; //error or return?
 
+        
         //check for a valid default view 
-        //need checking?     <views default="defaultCamera">
 
         //in a loop parse all views
         //create camera struct (different for 'perspective' and 'ortho'), adding it to the map
@@ -262,10 +268,14 @@ class MySceneGraph {
                 continue;
             }
 
+
+            var id = this.reader.getString(children[i], 'id')
             var angle = this.reader.getFloat(children[i], 'angle')
             var near = this.reader.getFloat(children[i], 'near')
             var far = this.reader.getFloat(children[i], 'far')
 
+            if(id == this.viewID)
+                flag =1;
 
             if (children[i].nodeName == "perspective") {
 
@@ -302,7 +312,11 @@ class MySceneGraph {
             }
 
         }
-        return null;
+
+        if(flag == 0)
+            this.onXMLMinorError("<No default camara with id:" + this.viewID  + ">");
+        else
+            return null;
     }
 
     /**
