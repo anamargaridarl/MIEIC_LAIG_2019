@@ -48,7 +48,9 @@
         <texture id="present2Text" file="scenes/images/gift_wrap2.png" />
         <texture id="window1Text" file="scenes/images/window_snow.jpg" />
         <texture id="goldTex" file="scenes/images/gold.jpg" />
-
+        <texture id="greenCookie" file="scenes/images/xmas_cookie1.jpg" />
+        <texture id="treeCookie" file="scenes/images/xmas_cookie2.jpg" />
+        <texture id="cookiePlate" file="scenes/images/xmas_plate.jpg" />
     </textures>
 
     <materials>
@@ -114,6 +116,10 @@
         <primitive id="starPoint">
             <cylinder base="0.08" top="0" height="0.4" slices="20" stacks="10" />
         </primitive>
+
+        <primitive id="disk">
+            <cylinder base="1" top="1" height="0.01" slices="30" stacks="1" />
+        </primitive>
     </primitives>
 
     <components>
@@ -129,10 +135,11 @@
                 <componentref id="DaisyFrame" />
                 <componentref id="LokiFrame" />
                 <componentref id="Coroa" />
-                <componentref id="cabin" />
+                <componentref id="Cabin" />
                 <componentref id="Present1" />
                 <componentref id="Present2" />
                 <componentref id="Window1" />
+                <componentref id="Cookies" />
             </children>
         </component>
 
@@ -319,7 +326,6 @@
                 <primitiveref id="sphere" />
             </children>
         </component> 
-
 
         <component id="CoroaBase">
             <transformation>
@@ -578,7 +584,7 @@
             </children>
         </component> 
 
-        <component id="cabin">
+        <component id="Cabin">
             <transformation>
             </transformation>
             <materials>
@@ -624,6 +630,7 @@
                 <primitiveref id="Rectangles" />
             </children>
         </component>
+
         <component id="westWall">
             <transformation>
                 <translate x="0" y="8" z="0" />
@@ -640,6 +647,7 @@
                 <primitiveref id="Rectangles" />
             </children>
         </component>
+       
         <component id="eastWall">
             <transformation>
                 <translate x="18" y="0" z="0" />
@@ -655,6 +663,7 @@
                 <primitiveref id="Rectangles" />
             </children>
         </component>
+
         <component id="floor">
             <transformation>
                 <rotate axis="x" angle="-90" />
@@ -742,6 +751,59 @@
                 <texture id="inherit" length_s="0.5" length_t="0.4"/>
             <children>
                 <primitiveref id="Rectangles"/>
+            </children>
+        </component>
+
+        <component id="Cookies">
+            <transformation>
+                <translate x="4" y="2.6" z="15" />
+                <rotate axis="x" angle="90" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="cookiePlate" />
+                <componentref id="greenCookies"/>
+                <!-- <componentref id="treeCookies" /> -->
+            </children>
+        </component>
+
+        <component id="cookiePlate">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="cookiePlate"/>
+            <children>
+                <primitiveref id="disk" />
+            </children>
+        </component>
+
+        <component id="greenCookies">
+            <transformation>
+                <scale x="0.2" y="0.2" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="greenCookie"/>
+            <children>
+                <primitiveref id="disk" />
+            </children>
+        </component>
+
+        <component id="treeCookies">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="treeCookies"/>
+            <children>
+                <primitiveref id="disk" />
             </children>
         </component>
 
