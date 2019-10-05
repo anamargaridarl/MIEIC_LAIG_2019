@@ -128,7 +128,6 @@
                 <componentref id="ChristmasTree" />
                 <componentref id="DaisyFrame" />
                 <componentref id="LokiFrame" />
-                <componentref id="Fireplace" />
                 <componentref id="Coroa" />
                 <componentref id="cabin" />
                 <componentref id="Present1" />
@@ -579,20 +578,6 @@
             </children>
         </component> 
 
-        <component id="Fireplace">
-            <transformation>
-                <translate x="10" y="1.6" z="0" /> 
-                <scale x="5" y="1.5" z="1" />  
-            </transformation>
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-                <texture id="fireplaceText" />
-            <children>
-                <primitiveref id="Rectangles" />
-            </children>
-        </component> 
-
         <component id="cabin">
             <transformation>
             </transformation>
@@ -606,6 +591,7 @@
                 <componentref id="westWall" />
                 <componentref id="eastWall" />
                 <componentref id="floor" />
+                <componentref id="fireplace" />
             </children>
         </component>
 
@@ -683,5 +669,82 @@
                 <primitiveref id="Rectangles" />
             </children>
         </component>
+
+        <component id="fireplace">
+            <transformation>
+                <translate x="10" y="1.5" z="0" /> 
+                <scale x="4" y="1.5" z="1" />  
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+                <texture id="inherit" />
+            <children>
+                <componentref id="fireplaceWestBor" />
+                <componentref id="fireplaceEastBor" />
+                <componentref id="fireplaceNorthBor" />
+                <componentref id="fireplaceFront" />
+            </children>
+        </component>
+
+        <component id="fireplaceFront">
+            <transformation>
+                <translate x="0" y="0" z="1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="fireplaceText" />
+            <children>
+                <primitiveref id="Rectangles"/>
+            </children>
+        </component>
+
+        <component id="fireplaceWestBor">
+            <transformation>
+                <scale x="0.2" y="1" z="1" />  
+                <rotate axis="y" angle="-90" />
+                <translate x="0.5" y="0" z="2.5" /> 
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+                <texture id="inherit" />
+            <children>
+                <primitiveref id="Rectangles"/>
+            </children>
+        </component>
+
+        <component id="fireplaceEastBor">
+             <transformation>
+                <scale x="0.2" y="1" z="1" />  
+                <rotate axis="y" angle="90" />
+                <translate x="-0.5" y="0" z="2.5" /> 
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+                <texture id="inherit" />
+            <children>
+                <primitiveref id="Rectangles"/>
+            </children>
+        </component>
+
+        <component id="fireplaceNorthBor">
+            <transformation>
+                <scale x="1" y="1" z="0.5" />
+                <rotate axis="x" angle="-90" /> 
+                <translate x="0" y="-1" z="1" /> 
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+                <texture id="inherit" length_s="0.5" length_t="0.4"/>
+            <children>
+                <primitiveref id="Rectangles"/>
+            </children>
+        </component>
+
+
     </components>
 </lxs>
