@@ -21,7 +21,7 @@ class MyInterface extends CGFinterface {
         this.gui = new dat.GUI();
 
         // add a group of controls (and open/expand by defult)
-
+        this.createViewDropdown();
         this.initKeys();
 
         return true;
@@ -46,5 +46,12 @@ class MyInterface extends CGFinterface {
 
     isKeyPressed(keyCode) {
         return this.activeKeys[keyCode] || false;
+    }
+
+    createViewDropdown() {
+        // this.viewKeys = this.scene.views.keys();
+        // this.gui.add(this.scene,"viewID",this.viewKeys)
+        //     .name("Current view:")
+        //     .onChange(vID => this.scene.updateCurrView(vID));
     }
 }

@@ -238,16 +238,9 @@ class MySceneGraph {
 
         children = viewsNode.children;
 
-        //FOR US TO DO:
-        //check if there is one view at least
         if (children == null)
             return "no view available"; //error or return?
 
-        //check for a valid default view 
-        //need checking?     <views default="defaultCamera">
-
-        //in a loop parse all views
-        //create camera struct (different for 'perspective' and 'ortho'), adding it to the map
         for (var i = 0; i < children.length; i++) {
 
             grandChildren = children[i].children;
