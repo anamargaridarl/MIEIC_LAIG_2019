@@ -55,6 +55,8 @@
         <texture id="treeCookie" file="scenes/images/xmas_cookie2.jpg" />
         <texture id="cookiePlate" file="scenes/images/xmas_plate.jpg" />
         <texture id="doorText" file="scenes/images/cabin_door5.jpg" />
+        <texture id="carpetText" file="scenes/images/carpet.jpg" />
+
 
     </textures>
 
@@ -151,6 +153,11 @@
                 <componentref id="Window1" />
                 <componentref id="Door" />
                 <componentref id="Cookies" />
+                <componentref id="Carpete" />
+                <componentref id="Chair1" />
+                <componentref id="Chair2" />
+                <componentref id="Chair3" />
+                <componentref id="Chair4" />
             </children>
         </component>
 
@@ -375,6 +382,170 @@
                 <componentref id="TableLeg2" />
                 <componentref id="TableLeg3" />
                 <componentref id="TableLeg4" />
+            </children>
+        </component>
+
+        <component id="Chair1">
+            <transformation>
+                <translate x="2.5" y="0" z="12.8" /> 
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="ChairTop" />
+                <componentref id="ChairLeg1" />
+                <componentref id="ChairLeg2" />
+                <componentref id="ChairLeg3" />
+                <componentref id="ChairLeg4" />
+            </children>
+        </component>
+
+         <component id="Chair2">
+            <transformation>
+                <translate x="5.2" y="0" z="12.8" /> 
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="ChairTop" />
+                <componentref id="ChairLeg1" />
+                <componentref id="ChairLeg2" />
+                <componentref id="ChairLeg3" />
+                <componentref id="ChairLeg4" />
+            </children>
+        </component>
+
+         <component id="Chair3">
+            <transformation>
+                <translate x="2.5" y="0" z="17.2" /> 
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="ChairTop" />
+                <componentref id="ChairLeg1" />
+                <componentref id="ChairLeg2" />
+                <componentref id="ChairLeg3" />
+                <componentref id="ChairLeg4" />
+            </children>
+        </component>
+
+         <component id="Chair4">
+            <transformation>
+                <translate x="5.2" y="0" z="17.2" /> 
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="ChairTop" />
+                <componentref id="ChairLeg1" />
+                <componentref id="ChairLeg2" />
+                <componentref id="ChairLeg3" />
+                <componentref id="ChairLeg4" />
+            </children>
+        </component>
+
+
+        <component id="ChairLeg1">
+            <transformation>
+                <translate x="0.2" y="0.7" z="0.2" /> 
+                <scale x="0.1" y="1.4" z="0.1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+            <component id="ChairLeg2">
+            <transformation>
+                <translate x="0.2" y="0.7" z="-0.2" /> 
+                <scale x="0.1" y="1.4" z="0.1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+        <component id="ChairLeg3">
+            <transformation>
+                <translate x="0.8" y="0.7" z="-0.2" /> 
+                <scale x="0.1" y="1.4" z="0.1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+          <component id="ChairLeg4">
+            <transformation>
+                <translate x="0.8" y="0.7" z="0.2" /> 
+                <scale x="0.1" y="1.4" z="0.1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+         <component id="ChairTop">
+            <transformation>
+                <translate x="0" y="1.5" z="0" /> 
+                <scale x="1.1" y="0.2" z="1.1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="tableText" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
             </children>
         </component>
 
@@ -625,9 +796,74 @@
             </children>
         </component>    
 
+        <component id="treeBall6">
+            <transformation>
+                <translate x="-0.5" y="1.4" z="1.9" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component> 
+
+        <component id="treeBall7">
+            <transformation>
+                <translate x="-0.5" y="2.5" z="1.5" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall8">
+            <transformation>
+                <translate x="-0.5" y="3.3" z="1.3" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall9">
+            <transformation>
+                <translate x="-0.5" y="4.1" z="1" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall10">
+            <transformation>
+                <translate x="-0.5" y="4.7" z="0.7" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
         <component id="treeBall">
             <transformation>
-                <translate x="1.2" y="1.2" z="2.3" />   
+                <translate x="1.4" y="1.5" z="1.3" />   
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -640,7 +876,7 @@
 
         <component id="treeBall2">
             <transformation>
-                <translate x="1.3" y="5" z="2.3" />   
+                <translate x="1.4" y="2.5" z="0.8" />   
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -650,6 +886,241 @@
                 <primitiveref id="sphere" />
             </children>
         </component>
+
+        <component id="treeBall3">
+            <transformation>
+                <translate x="1" y="3.4" z="0.9" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall4">
+            <transformation>
+                <translate x="0.7" y="4.1" z="0.9" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall5">
+            <transformation>
+                <translate x="0.6" y="4.8" z="0.4" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall11">
+            <transformation>
+                <translate x="-2" y="1.3" z="0" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component> 
+
+        <component id="treeBall12">
+            <transformation>
+                <translate x="-1.6" y="2.5" z="0" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall13">
+            <transformation>
+                <translate x="-1.4" y="3.3" z="0" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall14">
+            <transformation>
+                <translate x="-1.1" y="4.1" z="0" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall15">
+            <transformation>
+                <translate x="-0.9" y="4.7" z="0" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall16">
+            <transformation>
+                <translate x="-0.5" y="1.3" z="-2" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component> 
+
+        <component id="treeBall17">
+            <transformation>
+                <translate x="-0.5" y="2.5" z="-1.5" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall18">
+            <transformation>
+                <translate x="-0.5" y="3.2" z="-1.4" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall19">
+            <transformation>
+                <translate x="-0.5" y="4.1" z="-1" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall20">
+            <transformation>
+                <translate x="-0.5" y="4.6" z="-0.9" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+    <component id="treeBall21">
+            <transformation>
+                <translate x="1" y="1.3" z="-1.8" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component> 
+
+        <component id="treeBall22">
+            <transformation>
+                <translate x="1" y="2.5" z="-1.2" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall23">
+            <transformation>
+                <translate x="1" y="3.2" z="-1.1" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall24">
+            <transformation>
+                <translate x="0.9" y="4.1" z="-0.7" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
+        <component id="treeBall25">
+            <transformation>
+                <translate x="0.7" y="4.6" z="-0.6" />   
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="treeBallText" />
+            <children>
+                <primitiveref id="sphere" />
+            </children>
+        </component>
+
 
         <component id="treeBase">
             <transformation>
@@ -788,6 +1259,7 @@
         <component id="ChristmasTree">
             <transformation>
                 <translate x="3" y="0" z="3" />   
+                <rotate axis="y" angle="20" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -798,9 +1270,48 @@
                 <componentref id="treeBase"/>
                 <componentref id="treeBall"/>
                 <componentref id="treeBall2"/>
+                <componentref id="treeBall3"/>
+                <componentref id="treeBall4"/>
+                <componentref id="treeBall5"/>
+                <componentref id="treeBall6"/>
+                <componentref id="treeBall7"/>
+                <componentref id="treeBall8"/>
+                <componentref id="treeBall9"/>
+                <componentref id="treeBall10"/>
+                <componentref id="treeBall11"/>
+                <componentref id="treeBall12"/>
+                <componentref id="treeBall13"/>
+                <componentref id="treeBall14"/>
+                <componentref id="treeBall15"/>
+                <componentref id="treeBall16"/>
+                <componentref id="treeBall17"/>
+                <componentref id="treeBall18"/>
+                <componentref id="treeBall19"/>
+                <componentref id="treeBall20"/>
+                <componentref id="treeBall21"/>
+                <componentref id="treeBall22"/>
+                <componentref id="treeBall23"/>
+                <componentref id="treeBall24"/>
+                <componentref id="treeBall25"/>
                 <componentref id="treeStar" />
             </children>
         </component>   
+
+
+        <component id="Carpete">
+            <transformation>
+                <translate x="10" y="0.01" z="5" /> 
+                <scale x="8" y="2" z="2.5" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="carpetText" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>  
 
         <component id="DaisyFrame">
             <transformation>
