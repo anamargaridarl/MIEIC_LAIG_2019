@@ -123,7 +123,7 @@
         </primitive>
 
         <primitive id="disk">
-            <cylinder base="1" top="1" height="0.01" slices="30" stacks="1" />
+            <cylinder base="1" top="0.8" height="0.02" slices="30" stacks="1" />
         </primitive>
     </primitives>
 
@@ -156,7 +156,7 @@
 
         <component id="Present1">
             <transformation>
-                <translate x="1" y="0.4" z="5.2" />   
+                <translate x="1" y="0.35" z="5.2" />   
                 <rotate axis="y" angle="-30" /> 
                 <scale x="0.7" y="0.7" z="0.7" />  
             </transformation>
@@ -176,7 +176,7 @@
 
         <component id="Present2">
             <transformation>
-                <translate x="2.7" y="0.4" z="6.2" />   
+                <translate x="2.7" y="0.35" z="6.2" />   
                 <rotate axis="y" angle="97" /> 
                 <scale x="0.7" y="0.7" z="1.4" />  
             </transformation>
@@ -196,7 +196,7 @@
 
         <component id="Present3">
             <transformation>
-                <translate x="5.2" y="0.4" z="4.9" />  
+                <translate x="5.2" y="0.5" z="4.9" />  
                 <rotate axis="y" angle="55" /> 
                 <scale x="1.2" y="1" z="1" />  
             </transformation>
@@ -217,20 +217,21 @@
         <component id="Present4">
             <transformation>
                 <translate x="4" y="0.4" z="5.7" />   
-                <scale x="4" y="4" z="4" />  
+                <scale x="4" y="4" z="4" />
+                <rotate axis="x" angle="-90" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
             </materials>
             <texture id="present3Text" />
             <children>
-            <primitiveref id="TreeBall" />
+            <primitiveref id="sphere" />
             </children>
         </component>
 
          <component id="Present5">
             <transformation>
-                <translate x="4.5" y="0.4" z="5.3" />  
+                <translate x="4.5" y="0.5" z="5.3" />  
                 <scale x="0.3" y="1" z="0.6" />  
             </transformation>
             <materials>
@@ -249,7 +250,7 @@
 
         <component id="Present6">
             <transformation>
-                <translate x="1.5" y="1" z="5.5" />  
+                <translate x="1.5" y="0.95" z="5.5" />  
                 <scale x="0.6" y="0.5" z="0.6" />  
             </transformation>
             <materials>
@@ -498,7 +499,7 @@
 
         <component id="Coroa">
             <transformation>
-                <translate x="17.8" y="5" z="3" /> 
+                <translate x="17.7" y="5" z="3" /> 
                 <rotate axis="y" angle="-90" />   
             </transformation>
             <materials>
@@ -1001,7 +1002,7 @@
 
         <component id="Cookies">
             <transformation>
-                <translate x="4" y="2.6" z="15" />
+                <translate x="4.5" y="2.62" z="15" />
                 <rotate axis="x" angle="90" />
             </transformation>
             <materials>
@@ -1011,12 +1012,13 @@
             <children>
                 <componentref id="cookiePlate" />
                 <componentref id="greenCookies"/>
-                <!-- <componentref id="treeCookies" /> -->
+                <componentref id="treeCookies" />
             </children>
         </component>
 
         <component id="cookiePlate">
             <transformation>
+                <scale x="1" y="1" z="1.6" />
             </transformation>
             <materials>
                 <material id="inherit" />
@@ -1029,29 +1031,142 @@
 
         <component id="greenCookies">
             <transformation>
-                <scale x="0.2" y="0.2" z="1" />
+                <scale x="0.2" y="0.2" z="0.5" />
+                <translate x="0" y="0" z="-0.02" />
             </transformation>
             <materials>
                 <material id="inherit" />
             </materials>
             <texture id="greenCookie"/>
             <children>
+                <componentref id="greenCookie1" />
+                <componentref id="greenCookie2" />
+                <componentref id="greenCookie3" />
+                <componentref id="greenCookie4" />
+                <primitiveref id="disk" />
+            </children>
+        </component>
+
+        <component id="greenCookie1">
+            <transformation>
+                <translate x="1.8" y="1.8" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit"/>
+            <children>
+                <primitiveref id="disk" />
+            </children>
+        </component>
+
+        <component id="greenCookie2">
+            <transformation>
+                <translate x="-1.8" y="1.8" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit"/>
+            <children>
+                <primitiveref id="disk" />
+            </children>
+        </component>
+        
+        <component id="greenCookie3">
+            <transformation>
+                <translate x="1.8" y="-1.8" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit"/>
+            <children>
+                <primitiveref id="disk" />
+            </children>
+        </component>
+
+        <component id="greenCookie4">
+            <transformation>
+                <translate x="-1.8" y="-1.8" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="inherit"/>
+            <children>
                 <primitiveref id="disk" />
             </children>
         </component>
 
         <component id="treeCookies">
-            <transformation>
+             <transformation>
+                <scale x="0.17" y="0.17" z="0.5" />
+                <translate x="0" y="0" z="-0.02" />
             </transformation>
             <materials>
                 <material id="inherit" />
             </materials>
             <texture id="treeCookie"/>
             <children>
-                <primitiveref id="disk" />
+                <componentref id="treeCookie1" />
+                <componentref id="treeCookie2" />
+                <componentref id="treeCookie3" />
+                <componentref id="treeCookie4" />
             </children>
         </component>
 
+    <component id="treeCookie1">
+        <transformation>
+            <translate x="2.4" y="0" z="0" />
+        </transformation>
+        <materials>
+            <material id="inherit" />
+        </materials>
+        <texture id="inherit"/>
+        <children>
+            <primitiveref id="disk" />
+        </children>
+    </component>
+    
+    <component id="treeCookie2">
+        <transformation>
+            <translate x="-2.4" y="0" z="0" />
+        </transformation>
+        <materials>
+            <material id="inherit" />
+        </materials>
+        <texture id="inherit"/>
+        <children>
+            <primitiveref id="disk" />
+        </children>
+    </component>
+    
+    <component id="treeCookie3">
+        <transformation>
+            <translate x="0" y="2.4" z="0" />
+        </transformation>
+        <materials>
+            <material id="inherit" />
+        </materials>
+        <texture id="inherit"/>
+        <children>
+            <primitiveref id="disk" />
+        </children>
+    </component>
+    
+    <component id="treeCookie4">
+        <transformation>
+            <translate x="0" y="-2.4" z="0" />
+        </transformation>
+        <materials>
+            <material id="inherit" />
+        </materials>
+        <texture id="inherit"/>
+        <children>
+            <primitiveref id="disk" />
+        </children>
+    </component>
 
     </components>
 </lxs>
