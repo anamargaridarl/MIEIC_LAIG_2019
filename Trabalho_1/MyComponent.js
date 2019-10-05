@@ -21,7 +21,7 @@ class MyComponent extends CGFobject {
 
         if(this.materials[this.currMatIndex] == "inherit") {                                                                         
             if(this.texture.tex_t == "inherit") {                                     
-                materialP.setTexture(textureP.tex_t);                                     
+                materialP.setTexture(this.getParentTexture(textureP));                                     
             }                                     
             else if (this.texture.tex_t == "none") {                                     
                 materialP.setTexture(null);                                     
@@ -33,7 +33,7 @@ class MyComponent extends CGFobject {
         }                                     
         else {                                     
             if(this.texture.tex_t == "inherit") {                                     
-                this.materials[this.currMatIndex].setTexture(textureP.tex_t);                                     
+                this.materials[this.currMatIndex].setTexture(this.getParentTexture(textureP));                                     
             }                                     
             else if (this.texture.tex_t == "none") {                                     
                 this.materials[this.currMatIndex].setTexture(null);                                     
@@ -60,6 +60,13 @@ class MyComponent extends CGFobject {
                 children.display();
             }
         }
+    }
+
+    getParentTexture(texStruct) {
+        if(texStruct.tex_t == "none")
+            return null;
+        else
+            return texStruct.tex_t;
     }
 
     updateMaterial() {
