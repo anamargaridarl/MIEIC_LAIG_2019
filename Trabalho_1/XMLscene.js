@@ -40,7 +40,7 @@ class XMLscene extends CGFscene {
      * Initializes the scene cameras.
      */
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(10, 30, 50), vec3.fromValues(10, 0, 5));
     }
 
     initViews()
@@ -133,10 +133,11 @@ class XMLscene extends CGFscene {
 
         this.pushMatrix();
         this.axis.display();
-
+        
         for (var i = 0; i < this.lights.length; i++) {
             this.lights[i].setVisible(true);
             this.lights[i].enable();
+            //this.lights[i].update();
         }
 
         if (this.sceneInited) {
@@ -149,5 +150,10 @@ class XMLscene extends CGFscene {
 
         this.popMatrix();
         // ---- END Background, camera and axis setup
+    }
+
+    updateCurrView(viewID) {
+        // const newView = this.views[viewID];
+        // this.interface.setActiveCamera(newView);
     }
 }

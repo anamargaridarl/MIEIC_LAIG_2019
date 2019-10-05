@@ -30,7 +30,7 @@ class MySceneGraph {
 
         this.idRoot = null;                    // The id of the root element.
 
-        this.views = [];
+        this.views = {};
 
         this.viewID = null;
 

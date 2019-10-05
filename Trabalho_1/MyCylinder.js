@@ -23,7 +23,14 @@ class MyCylinder extends CGFobject {
         this.normals = [];
         this.texCoords = [];
 
-        
+        //Calculo auxiliar para Normal no eixo Z
+        const base_vec = [this.base_radius,0,0];
+        const side_vec = [this.base_radius-this.top_radius,0,this.height];
+        const base_vec_l = this.base_radius;
+        const side_vec_l = Math.sqrt(Math.pow(this.base_radius-this.top_radius,2)+Math.pow(this.height,2));
+        const dot_product = base_vec[0]*side_vec[0] + base_vec[1]*side_vec[1] + base_vec[2]*side_vec[2];
+        const cos_side = dot_product/(base_vec_l*side_vec_l);
+
         var step_angle = 2*Math.PI/this.slices;
         var step_radius=(this.top_radius-this.base_radius)/this.stacks;
 
@@ -42,7 +49,7 @@ class MyCylinder extends CGFobject {
                 );
                 
                 // push normal once for each vertex of this triangle
-                this.normals.push( Math.cos(step_angle*j), Math.sin(step_angle*j),0);
+                this.normals.push( Math.cos(step_angle*j), Math.sin(step_angle*j),cos_side);
             
                 
             }
