@@ -1101,7 +1101,7 @@
 
     <component id="treeCookie1">
         <transformation>
-            <translate x="2.2" y="0" z="0" />
+            <translate x="2.4" y="0" z="0" />
         </transformation>
         <materials>
             <material id="inherit" />
@@ -1114,7 +1114,7 @@
     
     <component id="treeCookie2">
         <transformation>
-            <translate x="-2.2" y="0" z="0" />
+            <translate x="-2.4" y="0" z="0" />
         </transformation>
         <materials>
             <material id="inherit" />
@@ -1127,7 +1127,7 @@
     
     <component id="treeCookie3">
         <transformation>
-            <translate x="0" y="2.2" z="0" />
+            <translate x="0" y="2.4" z="0" />
         </transformation>
         <materials>
             <material id="inherit" />
@@ -1140,7 +1140,7 @@
     
     <component id="treeCookie4">
         <transformation>
-            <translate x="0" y="-2.2" z="0" />
+            <translate x="0" y="-2.4" z="0" />
         </transformation>
         <materials>
             <material id="inherit" />
