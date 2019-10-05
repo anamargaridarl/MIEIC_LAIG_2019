@@ -156,7 +156,7 @@
 
         <component id="Present1">
             <transformation>
-                <translate x="1" y="0.4" z="5.2" />   
+                <translate x="1" y="0.35" z="5.2" />   
                 <rotate axis="y" angle="-30" /> 
                 <scale x="0.7" y="0.7" z="0.7" />  
             </transformation>
@@ -176,7 +176,7 @@
 
         <component id="Present2">
             <transformation>
-                <translate x="2.7" y="0.4" z="6.2" />   
+                <translate x="2.7" y="0.35" z="6.2" />   
                 <rotate axis="y" angle="97" /> 
                 <scale x="0.7" y="0.7" z="1.4" />  
             </transformation>
@@ -196,7 +196,7 @@
 
         <component id="Present3">
             <transformation>
-                <translate x="5.2" y="0.4" z="4.9" />  
+                <translate x="5.2" y="0.5" z="4.9" />  
                 <rotate axis="y" angle="55" /> 
                 <scale x="1.2" y="1" z="1" />  
             </transformation>
@@ -217,20 +217,21 @@
         <component id="Present4">
             <transformation>
                 <translate x="4" y="0.4" z="5.7" />   
-                <scale x="4" y="4" z="4" />  
+                <scale x="4" y="4" z="4" />
+                <rotate axis="x" angle="-90" />  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
             </materials>
             <texture id="present3Text" />
             <children>
-            <primitiveref id="TreeBall" />
+            <primitiveref id="sphere" />
             </children>
         </component>
 
          <component id="Present5">
             <transformation>
-                <translate x="4.5" y="0.4" z="5.3" />  
+                <translate x="4.5" y="0.5" z="5.3" />  
                 <scale x="0.3" y="1" z="0.6" />  
             </transformation>
             <materials>
@@ -249,7 +250,7 @@
 
         <component id="Present6">
             <transformation>
-                <translate x="1.5" y="1" z="5.5" />  
+                <translate x="1.5" y="0.95" z="5.5" />  
                 <scale x="0.6" y="0.5" z="0.6" />  
             </transformation>
             <materials>
@@ -483,7 +484,7 @@
 
         <component id="Door">
             <transformation>
-              <translate x="17.8" y="3" z="15" /> 
+              <translate x="18" y="3" z="15" /> 
                  <rotate axis="y" angle="-90" />   
                 <scale x="3" y="3" z="1" />
             </transformation>
@@ -498,7 +499,7 @@
 
         <component id="Coroa">
             <transformation>
-                <translate x="17.8" y="5" z="3" /> 
+                <translate x="17.7" y="5" z="3" /> 
                 <rotate axis="y" angle="-90" />   
             </transformation>
             <materials>
