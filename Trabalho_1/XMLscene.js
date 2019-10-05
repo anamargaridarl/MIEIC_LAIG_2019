@@ -40,15 +40,15 @@ class XMLscene extends CGFscene {
      * Initializes the scene cameras.
      */
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(10, 30, 50), vec3.fromValues(10, 0, 5));
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(10, 10, 10), vec3.fromValues(10, 0, 5));
     }
 
-    initViews()
+  /*  initViews()
     {
-        this.camera = this.graph.views[this.graph.viewID];
+        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(70, 10, 50), vec3.fromValues(10, 0, 5));
         this.viewID = this.graph.viewID;
-        this.interface.setActiveCamera(this.camera);
-    }
+        //this.interface.setActiveCamera(this.camera);
+    }*/
     /**
      * Initializes the scene lights with the values read from the XML file.
      */
@@ -106,7 +106,7 @@ class XMLscene extends CGFscene {
 
         this.initLights();
 
-        this.initViews();
+       // this.initViews();
 
         this.sceneInited = true;
 
