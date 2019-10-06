@@ -32,31 +32,28 @@
 
     <textures>
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
-        <texture id="demoJapan" file="scenes/images/redwhite.jpg" />
         <texture id="melhorCao" file="scenes/images/loki.jpg" />
         <texture id="melhorCadelaOG" file="scenes/images/missy.jpg" />
-        <texture id="melhorCadela" file="scenes/images/daisylinda.jpg" />
+        <texture id="melhorCadela" file="scenes/images/daisy.jpg" />
         <texture id="treeText" file="scenes/images/pine_leaves.jpg" />
         <texture id="treeBaseText" file="scenes/images/trunk-image.jpg" />
         <texture id="treeBallText" file="scenes/images/red.jpg" />
-        <texture id="treeBallYText" file="scenes/images/yellow_ball.jpg" />
         <texture id="fireplaceText" file="scenes/images/fireplace.jpg" />
         <texture id="coroaText" file="scenes/images/leaves.jpg" />
         <texture id="woodCabinWall" file="scenes/images/cabin_wall.jpg" />
-        <texture id="woodCabinFloor" file="scenes/images/cabin_floor3.jpg" />
+        <texture id="woodCabinFloor" file="scenes/images/cabin_floor.jpg" />
         <texture id="present1Text" file="scenes/images/gift_wrap1.png" />
         <texture id="present2Text" file="scenes/images/gift_wrap2.jpg" />
         <texture id="present3Text" file="scenes/images/gift_wrap3.jpg" />
         <texture id="present4Text" file="scenes/images/gift_wrap4.jpg" />
         <texture id="tableText" file="scenes/images/table.jpg" />
         <texture id="window1Text" file="scenes/images/window_snow.jpg" />
-        <texture id="goldTex" file="scenes/images/gold.jpg" />
         <texture id="greenCookie" file="scenes/images/xmas_cookie1.jpg" />
         <texture id="treeCookie" file="scenes/images/xmas_cookie2.jpg" />
         <texture id="cookiePlate" file="scenes/images/xmas_plate.jpg" />
-        <texture id="doorText" file="scenes/images/cabin_door5.jpg" />
+        <texture id="doorText" file="scenes/images/cabin_door.jpg" />
         <texture id="carpetText" file="scenes/images/carpet.jpg" />
-
+        <texture id="goldTex" file="scenes/images/gold.jpg" />
 
     </textures>
 
@@ -94,7 +91,7 @@
         <primitive id="Rectangles">
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
         </primitive>
-        
+
         <primitive id="TreeBranches">
             <cylinder base="4" top="2" height="3" slices="20" stacks="20" />
         </primitive>
