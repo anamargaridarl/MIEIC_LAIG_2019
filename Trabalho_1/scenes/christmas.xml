@@ -82,14 +82,19 @@
     </materials>
 
     <transformations>
+     <transformation id="floorTrans">
+                <rotate axis="x" angle="-90" />
+                <scale x="18" y="10" z="1" />
+                <translate x="0.5" y="-1" z="0" />
 
+                 </transformation>
     </transformations>
 
     <primitives>
         <primitive id="Rectangles">
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
         </primitive>
-
+        
         <primitive id="TreeBranches">
             <cylinder base="4" top="2" height="3" slices="20" stacks="20" />
         </primitive>
@@ -1423,9 +1428,7 @@
 
         <component id="floor">
             <transformation>
-                <rotate axis="x" angle="-90" />
-                <scale x="18" y="10" z="1" />
-                <translate x="0.5" y="-1" z="0" />
+                  <transformationref id="floorTrans" />
             </transformation>
             <materials>
                 <material id="inherit" />
