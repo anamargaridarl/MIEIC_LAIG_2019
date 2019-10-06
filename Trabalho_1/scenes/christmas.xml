@@ -79,12 +79,11 @@
     </materials>
 
     <transformations>
-     <transformation id="floorTrans">
-                <rotate axis="x" angle="-90" />
-                <scale x="18" y="10" z="1" />
-                <translate x="0.5" y="-1" z="0" />
-
-                 </transformation>
+        <transformation id="floorTrans">
+            <rotate axis="x" angle="-90" />
+            <scale x="18" y="10" z="1" />
+            <translate x="0.5" y="-1" z="0" />
+        </transformation>
     </transformations>
 
     <primitives>
