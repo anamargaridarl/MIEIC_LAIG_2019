@@ -2,9 +2,9 @@
     <scene root="demoRoot" axis_length="5"/>
 
     <views default="defaultCamera">
-        <perspective id="defaultCamera" near="0.1" far="40" angle="45">
-            <from x="67" y="50" z="30" />
-            <to x="0" y="-2" z="0" />
+        <perspective id="defaultCamera" near="0.1" far="500" angle="45">
+            <from x="10" y="8" z="30" />
+            <to x="10" y="0" z="5" />
         </perspective>
     </views>
 
@@ -137,7 +137,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="demoTexture"/>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
             <children>
                 <componentref id="ChristmasTree" />
                 <componentref id="DaisyFrame" />
@@ -171,7 +171,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present1Text" />
+            <texture id="present1Text" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -191,7 +191,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present2Text" />
+            <texture id="present2Text" length_s="1" length_t="1"/>
             <children>
                  <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -211,7 +211,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present1Text" />
+            <texture id="present1Text" length_s="1" length_t="1"/>
             <children>
                  <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -231,7 +231,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present3Text" />
+            <texture id="present3Text" length_s="1" length_t="1"/>
             <children>
             <primitiveref id="sphere" />
             </children>
@@ -245,7 +245,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present4Text" />
+            <texture id="present4Text" length_s="1" length_t="1"/>
             <children>
                  <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -264,7 +264,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="present4Text" />
+            <texture id="present4Text" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -283,7 +283,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -302,7 +302,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -321,7 +321,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -340,7 +340,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -358,7 +358,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -376,7 +376,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="TableTop" />
                 <componentref id="TableLeg" />
@@ -393,7 +393,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="ChairTop" />
                 <componentref id="ChairLeg1" />
@@ -410,7 +410,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="ChairTop" />
                 <componentref id="ChairLeg1" />
@@ -427,7 +427,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="ChairTop" />
                 <componentref id="ChairLeg1" />
@@ -444,7 +444,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="ChairTop" />
                 <componentref id="ChairLeg1" />
@@ -463,7 +463,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -482,7 +482,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -501,7 +501,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -520,7 +520,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -539,7 +539,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="tableText" />
+            <texture id="tableText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -558,7 +558,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -573,7 +573,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -588,7 +588,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -603,7 +603,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -618,7 +618,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -633,7 +633,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -648,7 +648,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="window1Text" />
+            <texture id="window1Text" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -663,7 +663,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="doorText" />
+            <texture id="doorText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -677,7 +677,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="coroaText" />
+            <texture id="coroaText" length_s="1" length_t="1"/>
             <children>
                 <componentref id="CoroaBall1" />
                 <componentref id="CoroaBall2" />
@@ -695,7 +695,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -709,7 +709,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -723,7 +723,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -735,7 +735,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="coroaText" />
+            <texture id="coroaText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="demoTorus" />
             </children>
@@ -749,7 +749,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeText" />
+            <texture id="treeText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="TreeBranches" />
             </children>
@@ -763,7 +763,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeText" />
+            <texture id="treeText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="TreeBranches2" />
             </children>
@@ -777,7 +777,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeText" />
+            <texture id="treeText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="TreeBranches2" />
             </children>
@@ -791,7 +791,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeText" />
+            <texture id="treeText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="TreeBranches3" />
             </children>
@@ -804,7 +804,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -817,7 +817,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -830,7 +830,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -843,7 +843,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -856,7 +856,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -869,7 +869,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -882,7 +882,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -895,7 +895,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -908,7 +908,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -921,7 +921,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -934,7 +934,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -947,7 +947,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -960,7 +960,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -973,7 +973,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -986,7 +986,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -999,7 +999,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1012,7 +1012,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1025,7 +1025,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1038,7 +1038,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1051,7 +1051,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1064,7 +1064,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1077,7 +1077,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1090,7 +1090,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1103,7 +1103,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1116,7 +1116,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBallText" />
+            <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1130,7 +1130,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeBaseText" />
+            <texture id="treeBaseText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="TreeBase" />
             </children>
@@ -1145,7 +1145,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="treeText" />
+            <texture id="treeText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="TreeBranches" />
                 <componentref id="treeLeafs2" />
@@ -1163,7 +1163,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="goldTex" />
+            <texture id="goldTex" length_s="1" length_t="1"/>
             <children>
                 <componentref id="starBody" />
                 <componentref id="starPointUp" />
@@ -1182,7 +1182,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="starPoint" />
             </children>
@@ -1196,7 +1196,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="starPoint" />
             </children>
@@ -1210,7 +1210,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="starPoint" />
             </children>
@@ -1224,7 +1224,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="starPoint" />
             </children>
@@ -1237,7 +1237,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="starPoint" />
             </children>
@@ -1251,7 +1251,7 @@
             <materials>
                 <material id="goldStar" />
             </materials>
-            <texture id="melhorCadelaOG" />
+            <texture id="melhorCadelaOG" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="sphere" />
             </children>
@@ -1265,7 +1265,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-            <texture id="none" />
+            <texture id="none" length_s="1" length_t="1"/>
             <children>
                 <componentref id="treeTop" />
                 <componentref id="treeBase"/>
@@ -1308,7 +1308,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-                <texture id="carpetText" />
+                <texture id="carpetText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -1322,7 +1322,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-                <texture id="melhorCadela" />
+                <texture id="melhorCadela" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -1336,7 +1336,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-                <texture id="melhorCao" />
+                <texture id="melhorCao" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -1348,7 +1348,7 @@
             <materials>
                 <material id="woodMaterial" />
             </materials>
-            <texture id="woodCabinWall" />
+            <texture id="woodCabinWall" length_s="1" length_t="1"/>
             <children>
                 <componentref id="northWall" />
                 <componentref id="southWall" />
@@ -1367,7 +1367,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -1383,7 +1383,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -1400,7 +1400,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -1416,7 +1416,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -1429,7 +1429,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="woodCabinFloor" />
+            <texture id="woodCabinFloor" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -1443,7 +1443,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-                <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <componentref id="fireplaceWestBor" />
                 <componentref id="fireplaceEastBor" />
@@ -1459,7 +1459,7 @@
             <materials>
                 <material id="demoMaterial" />
             </materials>
-                <texture id="fireplaceText" />
+            <texture id="fireplaceText" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles"/>
             </children>
@@ -1474,7 +1474,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-                <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles"/>
             </children>
@@ -1489,7 +1489,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-                <texture id="inherit" />
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles"/>
             </children>
@@ -1504,7 +1504,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-                <texture id="inherit" length_s="0.5" length_t="0.4"/>
+            <texture id="inherit" length_s="0.5" length_t="0.4"/>
             <children>
                 <primitiveref id="Rectangles"/>
             </children>
@@ -1518,7 +1518,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="none"/>
+            <texture id="none" length_s="1" length_t="1"/>
             <children>
                 <componentref id="cookiePlate" />
                 <componentref id="greenCookies"/>
@@ -1533,7 +1533,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="cookiePlate"/>
+            <texture id="cookiePlate" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="disk" />
             </children>
@@ -1547,7 +1547,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="greenCookie"/>
+            <texture id="greenCookie" length_s="1" length_t="1"/>
             <children>
                 <componentref id="greenCookie1" />
                 <componentref id="greenCookie2" />
@@ -1564,7 +1564,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit"/>
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="disk" />
             </children>
@@ -1577,7 +1577,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit"/>
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="disk" />
             </children>
@@ -1590,7 +1590,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit"/>
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="disk" />
             </children>
@@ -1603,7 +1603,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit"/>
+            <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="disk" />
             </children>
@@ -1617,7 +1617,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="treeCookie"/>
+            <texture id="treeCookie" length_s="1" length_t="1"/>
             <children>
                 <componentref id="treeCookie1" />
                 <componentref id="treeCookie2" />
@@ -1633,7 +1633,7 @@
         <materials>
             <material id="inherit" />
         </materials>
-        <texture id="inherit"/>
+        <texture id="inherit" length_s="1" length_t="1"/>
         <children>
             <primitiveref id="disk" />
         </children>
@@ -1646,7 +1646,7 @@
         <materials>
             <material id="inherit" />
         </materials>
-        <texture id="inherit"/>
+        <texture id="inherit" length_s="1" length_t="1"/>
         <children>
             <primitiveref id="disk" />
         </children>
@@ -1659,7 +1659,7 @@
         <materials>
             <material id="inherit" />
         </materials>
-        <texture id="inherit"/>
+        <texture id="inherit" length_s="1" length_t="1"/>
         <children>
             <primitiveref id="disk" />
         </children>
@@ -1672,7 +1672,7 @@
         <materials>
             <material id="inherit" />
         </materials>
-        <texture id="inherit"/>
+        <texture id="inherit" length_s="1" length_t="1"/>
         <children>
             <primitiveref id="disk" />
         </children>
