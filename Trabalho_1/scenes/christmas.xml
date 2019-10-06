@@ -19,6 +19,7 @@
             <ambient r="1" g="1" b="1" a="1.0" />
             <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            <attenuation constant="0" linear="1" quadratic="0" /> 
         </omni>
         <spot id="treeLights" enabled="1" angle="10" exponent="10">
             <location x="3" y="7" z="3" w="1" />
@@ -26,7 +27,7 @@
             <ambient r="0.0" g="0.0" b="0.0" a="1.0" />
             <diffuse r="0.87" g="0.87" b="0.35" a="1.0" />
             <specular r="0.87" g="0.87" b="0.35" a="0.6" />
-            <attenuation constant="0" linear="0" quadratic="0" />
+            <attenuation constant="0" linear="1" quadratic="0" /> 
         </spot>
     </lights>
 
