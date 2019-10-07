@@ -510,7 +510,7 @@ class MySceneGraph {
             }
 
             let tex = new CGFtexture(this.scene, texFile);
-            console.log("Texture id: " + textureID + "\tFilename: " + texFile);
+            
             this.textures[textureID] = tex;
         }
 

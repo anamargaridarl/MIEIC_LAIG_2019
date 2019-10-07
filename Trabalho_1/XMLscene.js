@@ -11,7 +11,6 @@ class XMLscene extends CGFscene {
     constructor(myinterface) {
         super();
 
-        this.viewID = null;
         this.interface = myinterface;
     }
 
@@ -43,12 +42,12 @@ class XMLscene extends CGFscene {
         this.camera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(10, 8, 30), vec3.fromValues(10, 0, 5));
     }
 
-  /*  initViews()
+    initViews()
     {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(70, 10, 50), vec3.fromValues(10, 0, 5));
-        this.viewID = this.graph.viewID;
-        //this.interface.setActiveCamera(this.camera);
-    }*/
+        const views = this.graph.views;
+        this.camera = this.graph.views[this.graph.viewID];
+        this.interface.setActiveCamera(this.camera);
+    }
     /**
      * Initializes the scene lights with the values read from the XML file.
      */
@@ -106,11 +105,11 @@ class XMLscene extends CGFscene {
 
         this.initLights();
 
-       // this.initViews();
+        this.initViews();
 
         this.sceneInited = true;
 
-
+        this.interface.createViewDropdown();
 
     }
 
@@ -137,7 +136,6 @@ class XMLscene extends CGFscene {
         for (var i = 0; i < this.lights.length; i++) {
             this.lights[i].setVisible(true);
             this.lights[i].enable();
-            //this.lights[i].update();
         }
 
         if (this.sceneInited) {
@@ -153,7 +151,7 @@ class XMLscene extends CGFscene {
     }
 
     updateCurrView(viewID) {
-        // const newView = this.views[viewID];
-        // this.interface.setActiveCamera(newView);
+        this.camera = this.graph.views[viewID];
+        this.interface.setActiveCamera(this.camera);
     }
 }

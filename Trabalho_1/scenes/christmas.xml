@@ -1,10 +1,14 @@
 <lxs>
     <scene root="demoRoot" axis_length="5"/>
 
-    <views default="defaultCamera">
-        <perspective id="defaultCamera" near="0.1" far="500" angle="45">
+    <views default="roomOverview">
+        <perspective id="roomOverview" near="0.1" far="1000" angle="45">
             <from x="10" y="8" z="30" />
             <to x="10" y="0" z="5" />
+        </perspective>
+        <perspective id="bobiesPers" near="0.1" far="500" angle="45">
+            <from x="10" y="5" z="5" />
+            <to x="10" y="5" z="0" />
         </perspective>
     </views>
 
