@@ -10,7 +10,15 @@
             <from x="10" y="5" z="5" />
             <to x="10" y="5" z="0" />
         </perspective>
-    </views>
+        <perspective id="biscuitsPers" near="0.1" far="500" angle="90">
+            <from x="5" y="4" z="15" />
+            <to x="5" y="0" z="14" />
+        </perspective>
+        <ortho id="room_side_ortho_plane" near="0.1" far="70" left="-10" right="10" top="10" bottom="-10">
+            <from x="15" y="5" z="5" />
+            <to x="0" y="5" z="5" />
+        </ortho>
+        </views>
 
     <globals>
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />

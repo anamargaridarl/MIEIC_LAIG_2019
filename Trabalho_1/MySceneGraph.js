@@ -236,7 +236,6 @@ class MySceneGraph {
     parseView(viewsNode) {
         var children = [];
         var grandChildren = [];
-        var nodeNames = []; //grandchildren names
 
         children = viewsNode.children;
 
@@ -258,6 +257,7 @@ class MySceneGraph {
         for (var i = 0; i < children.length; i++) {
 
             grandChildren = children[i].children;
+            const nodeNames = [];
 
             for (var j = 0; j < grandChildren.length; j++) {
                 nodeNames.push(grandChildren[j].nodeName);
@@ -270,15 +270,15 @@ class MySceneGraph {
 
 
             var id = this.reader.getString(children[i], 'id')
-            var angle = this.reader.getFloat(children[i], 'angle')
             var near = this.reader.getFloat(children[i], 'near')
             var far = this.reader.getFloat(children[i], 'far')
-
+            
             if(id == this.viewID)
-                flag =1;
-
+            flag =1;
+            
             if (children[i].nodeName == "perspective") {
-
+                
+                var angle = this.reader.getFloat(children[i], 'angle')
                 var fromIndex = nodeNames.indexOf("from");
                 var toIndex = nodeNames.indexOf("to");
 
