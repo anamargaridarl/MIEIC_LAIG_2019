@@ -297,12 +297,13 @@ class MySceneGraph {
 
                 var fromIndex = nodeNames.indexOf("from");
                 var toIndex = nodeNames.indexOf("to");
+                
                 var upIndex = nodeNames.indexOf("up");
 
                 var from = this.parseCoordinates3D(grandChildren[fromIndex], "the FROM perpective");
                 var to = this.parseCoordinates3D(grandChildren[toIndex], "the TO perspective");
 
-                if (upIndex == null)
+                if (upIndex == -1)
                     var up = vec3.fromValues(0, 1, 0)
                 else
                     var up = this.parseCoordinates3D(grandChildren[upIndex], "the UP perspective");
