@@ -55,7 +55,7 @@ class MyComponent extends CGFobject {
             }
             else { // or primitive
                 if(children.updateTexCoords != null) { //if has function to update texCoords (eg: Triangle & Rectangle)
-                    children.updateTexCoords(this.texture.s,this.texture.t);
+                    children.updateTexCoords(texP.s,texP.t);
                 }
                 children.display();
             }
