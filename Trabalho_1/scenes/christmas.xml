@@ -77,8 +77,8 @@
             <specular r="0.05" g="0.05" b="0.05" a="1.0" />
         </material>
         <material id="woodMaterial" shininess="15">
-            <!-- <emission r="0.1" g="0.1" b="0.1" a="1.0" /> -->
-            <ambient r="0.08" g="0.05" b="0.0" a="1.0" />
+            <emission r="0.1" g="0.1" b="0.1" a="1.0" />
+            <ambient r="0.16" g="0.10" b="0.0" a="1.0" />
             <diffuse r="0.16" g="0.10" b="0.0" a="1.0" />
             <specular r="0.16" g="0.10" b="0.0" a="1.0" />
         </material>
