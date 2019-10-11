@@ -27,19 +27,19 @@
     </globals>
 
     <lights>
-        <omni id="demoLight" enabled="1">
+        <!-- <omni id="demoLight" enabled="1">
             <location x="9.8" y="10" z="10" w="1.0" />
             <ambient r="0.8" g="0.8" b="0.8" a="1.0" />
             <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
             <attenuation constant="1" linear="0" quadratic="0" /> 
-        </omni>
+        </omni> -->
         <spot id="treeLights" enabled="1" angle="1" exponent="1">
             <location x="4" y="7" z="4" w="1" />
-            <target x="-5" y="-7" z="0" />
-            <ambient r="0.0" g="0.0" b="0.0" a="1.0" />
-            <diffuse r="0.87" g="0.87" b="0.35" a="1.0" />
-            <specular r="0.87" g="0.87" b="0.35" a="0.6" /> 
+            <target x="0" y="-7" z="0" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+            <diffuse r="1" g="1" b="1" a="1.0" />
+            <specular r="1" g="1" b="1" a="1" /> 
         </spot> 
     </lights>
 
@@ -72,7 +72,7 @@
 
     <materials>
         <material id="demoMaterial" shininess="10">
-            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <emission r="0.1" g="0.1" b="0.1" a="1.0" />
             <ambient r="0.10" g=".10" b=".10" a="1.0" />
             <diffuse r="0.5" g="0.50" b="0.5" a="1.0" />
             <specular r="0.05" g="0.05" b="0.05" a="1.0" />
