@@ -14,9 +14,10 @@
             <from x="5" y="4" z="15" />
             <to x="5" y="0" z="14" />
         </perspective>
-        <ortho id="room_side_ortho_plane" near="0.1" far="70" left="-10" right="10" top="10" bottom="-10">
-            <from x="15" y="5" z="5" />
-            <to x="0" y="5" z="5" />
+        <ortho id="room_side_ortho_plane" near="10" far="70" left="-7" right="7" top="7" bottom="-7">
+            <from x="-5" y="10" z="-10" />
+            <to x="5" y="5" z="5" />
+            <up x="0" y="1" z="0" /> 
         </ortho>
         </views>
 
@@ -87,6 +88,21 @@
             <ambient r="0.77" g="0.70" b="0.34" a="1.0" />
             <diffuse r="0.77" g="0.70" b="0.34" a="1.0" />
             <specular r="0.77" g="0.70" b="0.34" a="1.0" />
+        </material>
+        <material id="present1Mat" shininess="1">
+            <ambient r="0.8*0.1" g="0.36*0.1" b="0.036*0.1"  a="1.0" />
+            <diffuse r="0.8" g="0.36" b="0.036"  a="1.0" />
+            <specular r="0.8*0.01" g="0.36*0.01" b="0.036*0.01"  a="1.0" />
+        </material>
+        <material id="present2Mat" shininess="1">
+            <ambient r="0.1" g="0.1" b="0.1"  a="1.0" />
+            <diffuse r="0.8" g="0.8" b="0.8"  a="1.0" />
+            <specular r="0.01" g="0.01" b="0.01"  a="1.0" />
+        </material>
+          <material id="present3Mat" shininess="1">
+            <ambient r="0" g="0.75*0.5" b="0.5"  a="1.0" />
+            <diffuse r="0" g="0.75" b="1"  a="1.0" />
+            <specular r="0" g="0.75*0.1" b="0.1"  a="1.0" />
         </material>
     </materials>
 
@@ -181,7 +197,7 @@
                 <scale x="0.7" y="0.7" z="0.7" />  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="present2Mat" />
             </materials>
             <texture id="present1Text" length_s="1" length_t="1"/>
             <children>
@@ -201,9 +217,9 @@
                 <scale x="0.7" y="0.7" z="1.4" />  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="present3Mat" />
             </materials>
-            <texture id="present2Text" length_s="1" length_t="1"/>
+            <texture id="present2Text" length_s="2" length_t="1"/>
             <children>
                  <componentref id="Quad11" />
                 <componentref id="Quad12" />
@@ -221,7 +237,7 @@
                 <scale x="1.2" y="1" z="1" />  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="present2Mat" />
             </materials>
             <texture id="present1Text" length_s="1" length_t="1"/>
             <children>
@@ -255,7 +271,7 @@
                 <scale x="0.3" y="1" z="0.6" />  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="present1Mat" />
             </materials>
             <texture id="present4Text" length_s="1" length_t="1"/>
             <children>
@@ -274,7 +290,7 @@
                 <scale x="0.6" y="0.5" z="0.6" />  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="present1Mat" />
             </materials>
             <texture id="present4Text" length_s="1" length_t="1"/>
             <children>
@@ -1441,7 +1457,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="woodCabinFloor" length_s="1" length_t="1"/>
+            <texture id="woodCabinFloor" length_s="2" length_t="2"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
