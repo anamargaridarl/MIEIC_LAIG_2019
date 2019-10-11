@@ -22,6 +22,8 @@ class XMLscene extends CGFscene {
         super.init(application);
 
         this.sceneInited = false;
+        this.roomLight = true;
+        this.treeLight = true;
 
         this.initCameras();
         this.enableTextures(true);
@@ -60,9 +62,17 @@ class XMLscene extends CGFscene {
             if (i >= 8)
                 break;              // Only eight lights allowed by WebGL.
 
+            if(key == "roomLight") {
+                this.roomLightID = i;
+            }
+
+            if(key == "treeLight") {
+                this.treeLightID = i;
+            }
+
             if (this.graph.lights.hasOwnProperty(key)) {
                 var light = this.graph.lights[key];
-
+                
                 this.lights[i].setPosition(light[2][0], light[2][1], light[2][2], light[2][3]);
                 this.lights[i].setAmbient(light[3][0], light[3][1], light[3][2], light[3][3]);
                 this.lights[i].setDiffuse(light[4][0], light[4][1], light[4][2], light[4][3]);
@@ -110,6 +120,7 @@ class XMLscene extends CGFscene {
         this.sceneInited = true;
 
         this.interface.createViewDropdown();
+        this.interface.createLightsCheckboxes();
 
     }
 
@@ -137,10 +148,24 @@ class XMLscene extends CGFscene {
         if (this.sceneInited) {
             // Draw axis
             this.setDefaultAppearance();
-            
-            for (var i = 0; i < this.graph.lights.length; i++) {
+            //get Array of objects to allow iteration in for loop (JS behavior adaptation)
+            const lightArr = Object.keys(this.graph.lights);
+            for (var i = 0; i < lightArr.length; i++) {
                 this.lights[i].setVisible(true);
-                this.lights[i].enable();
+                if(i == this.roomLightID) {
+                    if(this.roomLight)
+                        this.lights[i].enable();
+                    else
+                        this.lights[i].disable(); 
+                }
+                else if(i == this.treeLightID) {
+                    if(this.treeLight)
+                        this.lights[i].enable();
+                    else
+                        this.lights[i].disable(); 
+                }
+                else
+                    this.lights[i].enable();
                 this.lights[i].update();
             }
             // Displays the scene (MySceneGraph function).

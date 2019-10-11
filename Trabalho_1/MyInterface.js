@@ -53,4 +53,11 @@ class MyInterface extends CGFinterface {
             .name("Current view:")
             .onChange(vID => this.scene.updateCurrView(vID));
     }
+
+    createLightsCheckboxes() {
+        this.gui.add(this.scene,"roomLight")
+            .name("Switch room light:");
+        this.gui.add(this.scene,"treeLight")
+            .name("Switch tree light:");
+    }
 }
