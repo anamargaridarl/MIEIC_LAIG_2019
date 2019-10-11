@@ -528,11 +528,11 @@ class MySceneGraph {
         this.materials = [];
 
         var grandChildren = [];
-        var nodeNames = [];
-
+        
         // Any number of materials.
         for (var i = 0; i < children.length; i++) {
-
+            
+            var nodeNames = [];
             if (children[i].nodeName != "material") {
                 this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
                 continue;
@@ -598,7 +598,7 @@ class MySceneGraph {
                 attr_parsed++;
             }
 
-            if (attr_parsed != 4) {
+            if (attr_parsed > 4) {
                 this.onXMLMinorError("Unknown components detected, but ignored");
             }
 
@@ -973,8 +973,13 @@ class MySceneGraph {
         }
 
         if (this.reader.hasAttribute(texture, 'length_s') && this.reader.hasAttribute(texture, 'length_t')) {
-            length_s = this.reader.getFloat(texture, 'length_s');
-            length_t = this.reader.getFloat(texture, 'length_t');
+            if(tex == "inherit" || tex == "none") {
+                this.onXMLMinorError("Inherited or none texture declared with length_s and length_t values. Those will be ignored.");
+            }
+            else {
+                length_s = this.reader.getFloat(texture, 'length_s');
+                length_t = this.reader.getFloat(texture, 'length_t');
+            } 
         }
 
         var struct = {

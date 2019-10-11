@@ -133,16 +133,16 @@ class XMLscene extends CGFscene {
         this.pushMatrix();
         this.axis.display();
         
-        for (var i = 0; i < this.graph.lights.length; i++) {
-            this.lights[i].setVisible(true);
-            this.lights[i].enable();
-            this.lights[i].update();
-        }
         
         if (this.sceneInited) {
             // Draw axis
             this.setDefaultAppearance();
             
+            for (var i = 0; i < this.graph.lights.length; i++) {
+                this.lights[i].setVisible(true);
+                this.lights[i].enable();
+                this.lights[i].update();
+            }
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
         }
