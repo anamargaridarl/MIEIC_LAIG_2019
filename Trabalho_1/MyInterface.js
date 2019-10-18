@@ -36,6 +36,7 @@ class MyInterface extends CGFinterface {
     }
 
     processKeyDown(event) {
+        this.scene.checkKeys(event.code);
         this.activeKeys[event.code]=true;
     };
 

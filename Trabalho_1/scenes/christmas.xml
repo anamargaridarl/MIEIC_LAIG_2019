@@ -50,7 +50,7 @@
         <texture id="melhorCadela" file="scenes/images/daisy.jpg" />
         <texture id="treeText" file="scenes/images/pine_leaves.jpg" />
         <texture id="treeBaseText" file="scenes/images/trunk-image.jpg" />
-        <texture id="treeBallText" file="scenes/images/red.jpg" />
+        <texture id="treeBallText" file="scenes/images/silver_ball.jpg" />
         <texture id="fireplaceText" file="scenes/images/fireplace.jpg" />
         <texture id="coroaText" file="scenes/images/leaves.jpg" />
         <texture id="woodCabinWall" file="scenes/images/cabin_wall.jpg" />
@@ -110,7 +110,7 @@
             <diffuse r="0.1" g="0.008" b="0.06" a="1.0" />
             <specular r="0.5" g="0.04" b="0.3" a="1.0" />
         </material>
-        <material id="daisy" shininess="1">
+        <material id="dogs" shininess="1">
             <emission r="1" g="1" b="1" a="1.0" />
             <ambient r="0.10" g=".008" b=".060" a="1.0" />
             <diffuse r="1" g="0.08" b="0.6" a="1.0" />
@@ -118,9 +118,14 @@
         </material>
          <material id="ballsMat" shininess="1">
             <emission r="0.0" g="0.0" b="0.0" a="1.0" />
-            <ambient r="0.4" g="0.4" b="0.4" a="1.0" />
-            <diffuse r="0.5" g="0.5" b="0.5" a="1.0" />
-            <specular r="0.7" g="0.7" b="0.7" a="1.0" />
+            <ambient r="0.271" g="0" b="0" a="1.0" />
+            <diffuse r="0.271" g="0" b="0" a="1.0" />
+            <specular r="0.543" g="0" b="0" a="1.0" />
+        </material>
+         <material id="iluminationballsMat" shininess="1">
+            <ambient r="0.414" g="0.34" b="0.107" a="1.0" />
+            <diffuse r="0.414" g="0.34" b="0.107" a="1.0" />
+            <specular r="0.83" g="0.68" b="0.21" a="1.0" />
         </material>
         <material id="fireMat" shininess="1">
             <emission r="0.4" g="0.4" b="0.4" a="1.0" />
@@ -276,10 +281,10 @@
             </materials>
             <texture id="present2Text" length_s="2" length_t="1"/>
             <children>
-                 <componentref id="Quad11" />
-                <componentref id="Quad12" />
-                <componentref id="Quad13" />
+                <componentref id="Quad11p6" />
+                <componentref id="Quad12p6" />
                 <componentref id="Quad14" />
+                <componentref id="Quad13p6" />
                 <componentref id="Quad15" />
                 <componentref id="Quad16" />
             </children>
@@ -330,9 +335,9 @@
             </materials>
             <texture id="present4Text" length_s="1" length_t="1"/>
             <children>
-                 <componentref id="Quad11" />
+                <componentref id="Quad11p5" />
                 <componentref id="Quad12" />
-                <componentref id="Quad13" />
+                <componentref id="Quad13p5" />
                 <componentref id="Quad14" />
                 <componentref id="Quad15" />
                 <componentref id="Quad16" />
@@ -633,7 +638,7 @@
             </children>
         </component>
 
-        <component id="Quad11">
+          <component id="Quad11">
             <transformation>
                 <translate x="0.5" y="0" z="0.5" />   
                 <scale x="1" y="0.5" z="1" />  
@@ -642,6 +647,49 @@
                 <material id="demoMaterial" />
             </materials>
             <texture id="inherit" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+        <component id="Quad11p5">
+            <transformation>
+                <translate x="0.5" y="0" z="0.5" />   
+                <scale x="1" y="0.5" z="1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present4Text" length_s="1" length_t="2"/>
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+        <component id="Quad11p6">
+            <transformation>
+                <translate x="0.5" y="0" z="0.5" />   
+                <scale x="1" y="0.5" z="1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present2Text" length_s="1" length_t="2"/>
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+        <component id="Quad12p6">
+            <transformation>
+                <translate x="0.5" y="0.5" z="0" />   
+                <rotate axis="x" angle="-90" /> 
+                <scale x="1" y="0.5" z="1" />                  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="present2Text" length_s="1" length_t="3"/>
             <children>
                 <primitiveref id="Rectangles" />
             </children>
@@ -661,6 +709,37 @@
                 <primitiveref id="Rectangles" />
             </children>
         </component>
+
+        <component id="Quad13p6">
+            <transformation>
+                <translate x="0.5" y="0" z="-0.5" />   
+                <rotate axis="x" angle="-180" /> 
+                <scale x="1" y="0.5" z="1" />                  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="present2Text" length_s="1" length_t="2"/>
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+          <component id="Quad13p5">
+            <transformation>
+                <translate x="0.5" y="0" z="-0.5" />   
+                <rotate axis="x" angle="-180" /> 
+                <scale x="1" y="0.5" z="1" />                  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="present4Text" length_s="1" length_t="2"/>
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
 
         <component id="Quad13">
             <transformation>
@@ -776,7 +855,7 @@
                 <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="ballsMat" />
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -790,7 +869,7 @@
                 <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="ballsMat" />
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -804,7 +883,7 @@
                 <scale x="1.5" y="1.5" z="1.5" />  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="ballsMat" />
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -885,7 +964,9 @@
                 <translate x="-0.5" y="1.4" z="1.9" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                  <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -898,7 +979,9 @@
                 <translate x="-0.5" y="2.5" z="1.5" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+              <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -912,6 +995,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -925,6 +1010,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -937,7 +1024,9 @@
                 <translate x="-0.5" y="4.7" z="0.7" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                  <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -950,7 +1039,9 @@
                 <translate x="1.4" y="1.5" z="1.3" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                  <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -963,7 +1054,9 @@
                 <translate x="1.4" y="2.5" z="0.8" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -976,7 +1069,9 @@
                 <translate x="1" y="3.4" z="0.9" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                  <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -989,7 +1084,9 @@
                 <translate x="0.7" y="4.1" z="0.9" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                  <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1003,6 +1100,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1016,6 +1115,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>
+                <material id="iluminationballsMat" />
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1029,6 +1130,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1042,6 +1145,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>           
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1055,6 +1160,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>           
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1067,7 +1174,9 @@
                 <translate x="-0.9" y="4.7" z="0" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                  <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1080,7 +1189,9 @@
                 <translate x="-0.5" y="1.3" z="-2" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                  <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1094,6 +1205,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1106,7 +1219,9 @@
                 <translate x="-0.5" y="3.2" z="-1.4" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                 <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1119,7 +1234,9 @@
                 <translate x="-0.5" y="4.1" z="-1" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1132,7 +1249,9 @@
                 <translate x="-0.5" y="4.6" z="-0.9" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                  <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1145,7 +1264,9 @@
                 <translate x="1" y="1.3" z="-1.8" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1159,6 +1280,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1171,7 +1294,9 @@
                 <translate x="1" y="3.2" z="-1.1" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1185,6 +1310,8 @@
             </transformation>
             <materials>
                 <material id="ballsMat" />
+                <material id="iluminationballsMat" />         
+                <material id = "demoMaterial"/>  
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1197,7 +1324,9 @@
                 <translate x="0.7" y="4.6" z="-0.6" />   
             </transformation>
             <materials>
-                <material id="ballsMat" />
+                 <material id="ballsMat" />
+                <material id = "demoMaterial"/>  
+                <material id="iluminationballsMat" />         
             </materials>
             <texture id="treeBallText" length_s="1" length_t="1"/>
             <children>
@@ -1404,7 +1533,7 @@
             </transformation>
             <materials>
                 <material id="demoMaterial" />
-                <material id="daisy" />
+                <material id="dogs" />
             </materials>
                 <texture id="melhorCadela" length_s="1" length_t="1"/>
             <children>
@@ -1419,6 +1548,7 @@
             </transformation>
             <materials>
                 <material id="demoMaterial" />
+                <material id="dogs" />
             </materials>
                 <texture id="melhorCao" length_s="1" length_t="1"/>
             <children>
