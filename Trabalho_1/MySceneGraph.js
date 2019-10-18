@@ -1040,7 +1040,6 @@ class MySceneGraph {
                 children.push(this.primitives[id]);
             }
             else if (grandgrandChildren[p].nodeName == "componentref") {
-                this.requiredChildID.push(id);
                 children.push(id);
             }
             else {
@@ -1064,7 +1063,8 @@ class MySceneGraph {
         let children = componentsNode.children;
         let grandChildren = [];
         let nodeNames = [];
-        this.requiredChildID = [];
+        
+
 
         //need to check for rootid
 
@@ -1127,16 +1127,29 @@ class MySceneGraph {
         if (!hasRootID)
             return "There needs to exists at least a component with same id as root";
 
-        this.verifyChildPresence();
+        this.verifyComponents(this.idRoot,new Set());
         this.setCompChildren();
     }
-    
-    verifyChildPresence() {
-        for(let i = 0; i < this.requiredChildID.length; i++) {
-            if(this.components[this.requiredChildID[i]] == null) {
-                this.onXMLError("Child with id: " + this.requiredChildID[i] + " hasn't been declared");
-                return;
-            }
+
+    verifyComponents(currComp,ancestors) {
+        let currAncestors = new Set(ancestors);
+        
+        if(currComp instanceof CGFobject) // is the child is primitive
+            return;
+        if(this.components[currComp] == null) {
+            this.onXMLError("Compoenent with id: " + currComp + " hasn't been declared.");
+            return;
+        }
+        if(currAncestors.has(currComp)) {
+            this.onXMLError("Component with ID: " + currComp + " is an ancestor.");
+            return;
+        }
+        else {
+            currAncestors.add(currComp);
+        }
+
+        for(let child of this.components[currComp].children) {
+            this.verifyComponents(child,currAncestors);
         }
     }
 
