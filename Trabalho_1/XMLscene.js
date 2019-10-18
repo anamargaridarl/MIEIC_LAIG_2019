@@ -182,8 +182,8 @@ class XMLscene extends CGFscene {
         this.interface.setActiveCamera(this.camera);
     }
 
-    checkKeys() {
-        if (this.gui.isKeyPressed("KeyM")) {
+    checkKeys(eventCode) {
+        if (eventCode == "KeyM") {
             this.graph.components["demoRoot"].updateMaterial();
         }
     }
@@ -191,6 +191,5 @@ class XMLscene extends CGFscene {
     update(t)
     {
         console.log("meias")
-        this.checkKeys();
     }
 }

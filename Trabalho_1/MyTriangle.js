@@ -82,9 +82,9 @@ class MyTriangle extends CGFobject {
 	//NEEDS TESTING
 	updateTexCoords(length_s,length_t) {
 		this.texCoords = [
-			(this.c-this.a*this.cos_beta)/length_s,(length_t-this.a*this.sin_beta)/length_t,
-			0,length_t,
-			this.c/length_s,length_t
+			0,0,
+			(this.c * this.cos_beta / length_s), (this.c * this.sin_beta) /length_t,
+			(this.a / length_t),0
 		];
 		this.updateTexCoordsGLBuffers();
 	};
