@@ -180,8 +180,8 @@
 
         <primitive id="triang">
           <triangle   x1="0" y1="0" z1="0"
-                        x2="5" y2="0" z2="0"
-                        x3="8" y3="4" z3="0" />
+                        x2="1" y2="2" z2="0"
+                        x3="2" y3="0" z3="0" />
         </primitive>
 
         <primitive id="sphere">
@@ -226,6 +226,8 @@
                 <componentref id="Chair2" />
                 <componentref id="Chair3" />
                 <componentref id="Chair4" />
+                <componentref id="Triangle" />
+
             </children>
         </component>
 
@@ -246,6 +248,19 @@
                 <componentref id="Quad14" />
                 <componentref id="Quad15" />
                 <componentref id="Quad16" />
+            </children>
+        </component>
+
+         <component id="Triangle">
+            <transformation>
+                <translate x="1" y="0.35" z="5.2" />   
+            </transformation>
+            <materials>
+                <material id="present2Mat" />
+            </materials>
+            <texture id="present1Text" length_s="3" length_t="3"/>
+            <children>
+                <primitiveref id ="triang" />
             </children>
         </component>
 

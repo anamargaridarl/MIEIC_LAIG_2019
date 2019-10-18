@@ -697,6 +697,23 @@ class MySceneGraph {
         return null;
     }
 
+    verifyTriangle(x1,y1,z1,x2,y2,z2,x3,y3,z3)
+    {
+        console.log("cenas");
+        var a = Math.sqrt(Math.pow(x2-x1,2)+Math.pow(y2-y1,2)+Math.pow(z2-z1,2));
+        var b = Math.sqrt(Math.pow(x3-x1,2)+Math.pow(y3-y1,2)+Math.pow(z3-z1,2));
+        var c = Math.sqrt(Math.pow(x3-x2,2)+Math.pow(y3-y2,2)+Math.pow(z3-z2,2));
+
+        if( (a < (b+c)) &&
+            (b < (a+c)) && 
+            (c < (a+b)))
+            return true;
+        else 
+            return false;
+
+    }
+    
+
     /**
      * Parses the <primitives> block.
      * @param {primitives block element} primitivesNode
@@ -768,23 +785,23 @@ class MySceneGraph {
                 //parse values for each type of primitive
                 //check values and create the primitives, adding it to the 'this.primitives' array
                 const base = this.reader.getFloat(grandChildren[0], 'base');
-                if (!(base != null && !isNaN(base)))
+                if (!(base != null && !isNaN(base) && base >= 0))
                     return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
 
                 const top = this.reader.getFloat(grandChildren[0], 'top');
-                if (!(top != null && !isNaN(top)))
+                if (!(top != null && !isNaN(top)&& top >= 0))
                     return "unable to parse top of the primitive coordinates for ID = " + primitiveId;
 
                 const hgt = this.reader.getFloat(grandChildren[0], 'height');
-                if (!(hgt != null && !isNaN(hgt)))
+                if (!(hgt != null && !isNaN(hgt) && hgt >= 0 ))
                     return "unable to parse height of the primitive coordinates for ID = " + primitiveId;
 
                 const slices = this.reader.getFloat(grandChildren[0], 'slices');
-                if (!(slices != null && !isNaN(slices)))
+                if (!(slices != null && !isNaN(slices) && slices > 0))
                     return "unable to parse slices of the primitive coordinates for ID = " + primitiveId;
 
                 const stacks = this.reader.getFloat(grandChildren[0], 'stacks');
-                if (!(stacks != null && !isNaN(stacks)))
+                if (!(stacks != null && !isNaN(stacks) && stacks > 0 ))
                     return "unable to parse stacks of the primitive coordinates for ID = " + primitiveId;
 
                 const cylin = new MyCylinder(this.scene, base, top, hgt, slices, stacks);
@@ -795,19 +812,19 @@ class MySceneGraph {
             else if (primitiveType == 'torus') {
 
                 const inner = this.reader.getFloat(grandChildren[0], 'inner');
-                if (!(inner != null && !isNaN(inner)))
+                if (!(inner != null && !isNaN(inner) && inner >= 0))
                     return "unable to parse inner of the primitive coordinates for ID = " + primitiveId;
 
                 const outer = this.reader.getFloat(grandChildren[0], 'outer');
-                if (!(outer != null && !isNaN(outer)))
+                if (!(outer != null && !isNaN(outer) && outer >= 0))
                     return "unable to parse outer of the primitive coordinates for ID = " + primitiveId;
 
                 const slices = this.reader.getFloat(grandChildren[0], 'slices');
-                if (!(slices != null && !isNaN(slices)))
+                if (!(slices != null && !isNaN(slices) && slices > 0))
                     return "unable to parse slices of the primitive coordinates for ID = " + primitiveId;
 
                 const loops = this.reader.getFloat(grandChildren[0], 'loops');
-                if (!(loops != null && !isNaN(loops)))
+                if (!(loops != null && !isNaN(loops) && loops > 0))
                     return "unable to parse loops of the primitive coordinates for ID = " + primitiveId;
 
                 const torus = new MyTorus(this.scene, inner, outer, slices, loops);
@@ -852,8 +869,10 @@ class MySceneGraph {
                 if (!(z3 != null && !isNaN(z3)))
                     return "unable to parse y1 of the primitive coordinates for ID = " + primitiveId;
 
-
-                var triang = new MyTriangle(this.scene, primitiveId, x1, y1, z1, x2, y2, z2, x3, y3, z3);
+                if(this.verifyTriangle(x1,y1,z1,x2,y2,z2,x3,y3,z3))
+                    var triang = new MyTriangle(this.scene, primitiveId, x1, y1, z1, x2, y2, z2, x3, y3, z3);
+                else
+                    return "invalid values of the primitive coordinates for ID = " + primitiveId;
 
                 this.primitives[primitiveId] = triang;
 
@@ -863,15 +882,15 @@ class MySceneGraph {
             else if (primitiveType == 'sphere') {
 
                 const radius = this.reader.getFloat(grandChildren[0], 'radius');
-                if (!(radius != null && !isNaN(radius)))
+                if (!(radius != null && !isNaN(radius)&& radius > 0))
                     return "unable to parse slices of the primitive coordinates for ID = " + primitiveId;
 
                 const slices = this.reader.getFloat(grandChildren[0], 'slices');
-                if (!(slices != null && !isNaN(slices)))
+                if (!(slices != null && !isNaN(slices) &&slices >0))
                     return "unable to parse slices of the primitive coordinates for ID = " + primitiveId;
 
                 const stacks = this.reader.getFloat(grandChildren[0], 'stacks');
-                if (!(stacks != null && !isNaN(stacks)))
+                if (!(stacks != null && !isNaN(stacks) &&stacks >0))
                     return "unable to parse stacks of the primitive coordinates for ID = " + primitiveId;
 
                 var sphere = new MySphere(this.scene, primitiveId, radius, slices, stacks);
