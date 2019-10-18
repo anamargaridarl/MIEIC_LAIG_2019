@@ -59,5 +59,7 @@ class MyInterface extends CGFinterface {
             .name("Switch room light:");
         this.gui.add(this.scene,"treeLight")
             .name("Switch tree light:");
+        this.gui.add(this.scene,"axisActive")
+            .name("Display axis");
     }
 }

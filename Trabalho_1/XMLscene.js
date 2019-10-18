@@ -24,7 +24,7 @@ class XMLscene extends CGFscene {
         this.sceneInited = false;
         this.roomLight = true;
         this.treeLight = true;
-
+        this.axisActive = false;
         this.initCameras();
         this.enableTextures(true);
 
@@ -142,7 +142,8 @@ class XMLscene extends CGFscene {
         this.applyViewMatrix();
 
         this.pushMatrix();
-        this.axis.display();
+        if(this.axisActive)
+            this.axis.display();
         
         
         if (this.sceneInited) {

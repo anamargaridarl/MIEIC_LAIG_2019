@@ -29,7 +29,7 @@ class MyCylinder extends CGFobject {
         const base_vec_l = this.base_radius;
         const side_vec_l = Math.sqrt(Math.pow(this.base_radius-this.top_radius,2)+Math.pow(this.height,2));
         const dot_product = base_vec[0]*side_vec[0] + base_vec[1]*side_vec[1] + base_vec[2]*side_vec[2];
-        const cos_side = dot_product/(base_vec_l*side_vec_l);
+        const cos_side = dot_product/(base_vec_l*side_vec_l); // the slope of the normal
 
         var step_angle = 2*Math.PI/this.slices;
         var step_radius=(this.top_radius-this.base_radius)/this.stacks;
@@ -48,8 +48,8 @@ class MyCylinder extends CGFobject {
                     1-i*1/this.stacks
                 );
                 
-                // push normal once for each vertex of this triangle
-                this.normals.push( Math.cos(step_angle*j), Math.sin(step_angle*j),cos_side);
+                // push normal once for each vertex of this cylinder
+                this.normals.push( Math.cos(step_angle*j)/Math.sqrt(1+Math.pow(cos_side,2)), Math.sin(step_angle*j)/Math.sqrt(1+Math.pow(cos_side,2)),cos_side/Math.sqrt(1+Math.pow(cos_side,2)));
             
                 
             }
