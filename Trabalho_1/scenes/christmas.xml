@@ -27,20 +27,20 @@
     </globals>
 
     <lights>
-        <omni id="demoLight" enabled="1">
+        <omni id="roomLight" enabled="1">
             <location x="9.8" y="10" z="10" w="1.0" />
             <ambient r="0.8" g="0.8" b="0.8" a="1.0" />
             <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
             <specular r="1.0" g="1.0" b="1.0" a="1.0" />
             <attenuation constant="1" linear="0" quadratic="0" /> 
         </omni>
-        <spot id="treeLights" enabled="1" angle="1" exponent="1">
+        <spot id="treeLight" enabled="1" angle="1" exponent="1">
             <location x="4" y="7" z="4" w="1" />
             <target x="0" y="-7" z="0" />
             <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
             <diffuse r="1" g="1" b="1" a="1.0" />
-            <specular r="1" g="1" b="1" a="1" /> 
-        </spot> 
+            <specular r="1" g="1" b="1" a="1" />
+        </spot>
     </lights>
 
     <textures>
@@ -148,8 +148,9 @@
     <transformations>
         <transformation id="floorTrans">
             <rotate axis="x" angle="-90" />
-            <scale x="18" y="10" z="1" />
-            <translate x="0.5" y="-1" z="0" />
+            <translate x="-0.03" y="0" z="0" />
+            <scale x="18.06" y="10" z="1" />
+            <translate x="0.5" y="-1" z="0.01" />
         </transformation>
     </transformations>
 
@@ -1383,7 +1384,7 @@
 
         <component id="Carpete">
             <transformation>
-                <translate x="10" y="0.01" z="5" /> 
+                <translate x="10" y="0.02" z="5" /> 
                 <scale x="8" y="2" z="2.5" />
                 <rotate axis="x" angle="-90" />
             </transformation>
@@ -1444,7 +1445,8 @@
 
         <component id="northWall">
             <transformation>
-                <scale x="18" y="4" z="1" />
+                <translate x="-0.02" y="0" z="0" />
+                <scale x="18.05" y="4" z="1" />
                 <translate x="0.5" y="1" z="-0.005" />
             </transformation>
             <materials>
