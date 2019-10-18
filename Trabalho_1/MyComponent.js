@@ -2,10 +2,10 @@
 * MyComponent
 * @constructor
 */
-class MyComponent extends CGFobject {
+class MyComponent {
 
     constructor(scene, children, materials, texture, transformation) {
-        super(scene);
+        this.scene = scene;
         this.children = children;
         this.materials = materials;
         this.texture = texture;
