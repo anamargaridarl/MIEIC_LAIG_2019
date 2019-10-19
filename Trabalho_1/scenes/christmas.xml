@@ -166,6 +166,10 @@
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
         </primitive>
 
+        <primitive id="CandleBottom">
+            <cylinder base="2" top="1" height="3" slices="20" stacks="20" />
+        </primitive>
+
         <primitive id="TreeBranches">
             <cylinder base="4" top="2" height="3" slices="20" stacks="20" />
         </primitive>
@@ -188,7 +192,7 @@
 
         <primitive id="triang">
           <triangle   x1="0" y1="0" z1="0"
-                        x2="1" y2="2" z2="0"
+                        x2="1" y2="1" z2="0"
                         x3="2" y3="0" z3="0" />
         </primitive>
 
@@ -225,6 +229,7 @@
                 <componentref id="Present4" />
                 <componentref id="Present5" />
                 <componentref id="Present6" />
+                <componentref id="Present7" />
                 <componentref id="Table" />
                 <componentref id="Window1" />
                 <componentref id="Door" />
@@ -234,7 +239,6 @@
                 <componentref id="Chair2" />
                 <componentref id="Chair3" />
                 <componentref id="Chair4" />
-                <componentref id="Triangle" />
 
             </children>
         </component>
@@ -256,19 +260,6 @@
                 <componentref id="Quad14" />
                 <componentref id="Quad15" />
                 <componentref id="Quad16" />
-            </children>
-        </component>
-
-         <component id="Triangle">
-            <transformation>
-                <translate x="1" y="0.35" z="5.2" />   
-            </transformation>
-            <materials>
-                <material id="present2Mat" />
-            </materials>
-            <texture id="present1Text" length_s="3" length_t="3"/>
-            <children>
-                <primitiveref id ="triang" />
             </children>
         </component>
 
@@ -362,6 +353,105 @@
                 <componentref id="Quad14" />
                 <componentref id="Quad15" />
                 <componentref id="Quad16" />
+            </children>
+        </component>
+
+         <component id="SideRec1">
+            <transformation>
+                <translate x="0.4" y="0.24" z="0.65" />   
+                <rotate axis="x" angle="-32.4" /> 
+                <scale x="0.8" y="0.28" z="1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+
+        <component id="SideRec2">
+            <transformation>
+                <translate x="0.4" y="0.24" z="0.35" />   
+                <rotate axis="x" angle="32.4" /> 
+                 <rotate axis="y" angle="180" /> 
+                <scale x="0.8" y="0.28" z="1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+
+        <component id="SideRec3">
+            <transformation>
+                <translate x="0.4" y="0" z="0.5" />   
+                <rotate axis="x" angle="90" /> 
+                <scale x="0.8" y="0.3" z="1" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+             <texture id="present2Text" length_s="2" length_t="2"/>
+            <children>
+                <primitiveref id="Rectangles" />
+            </children>
+        </component>
+
+
+        <component id="SideTri1">
+            <transformation>
+                <translate x="0.79" y="0" z="0.8" /> 
+                <rotate axis="y" angle="90" /> 
+                <scale x="0.3" y="0.476" z="1" />   
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="present2Text" length_s="2" length_t="2"/>
+            <children>
+                <primitiveref id ="triang" />
+            </children>
+        </component> 
+
+        <component id="SideTri2">
+            <transformation>
+                <translate x="0" y="0" z="0.8" /> 
+                <rotate axis="y" angle="90" /> 
+                <scale x="0.3" y="0.476" z="1" />   
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="present2Text" length_s="2" length_t="2"/>
+            <children>
+                <primitiveref id ="triang" />
+            </children>
+        </component>
+
+        <component id="Present7">
+            <transformation>
+                <translate x="6.1" y="0" z="2.2" /> 
+                <rotate axis="y" angle="-80" /> 
+                <scale x="1.5" y="1.2" z="1.5" /> 
+
+            </transformation>
+            <materials>
+                <material id="present2Mat" />
+            </materials>
+            <texture id="present2Text" length_s="1" length_t="1"/>
+            <children>
+                <componentref id ="SideTri1" />
+                <componentref id ="SideTri2" />
+                <componentref id ="SideRec1" />
+                <componentref id ="SideRec2" />
+                <componentref id ="SideRec3" />
             </children>
         </component>
 
