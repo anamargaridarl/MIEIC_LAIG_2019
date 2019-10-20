@@ -285,7 +285,7 @@ class MySceneGraph {
                 var from = this.parseCoordinates3D(grandChildren[fromIndex], "the FROM perpective");
                 var to = this.parseCoordinates3D(grandChildren[toIndex], "the TO perspective");
 
-                var camerap = new CGFcamera(angle, near, far, from, to)
+                var camerap = new CGFcamera(DEGREE_TO_RAD *angle, near, far, from, to)
                 this.views[children[i].id] = camerap;
             }
             else if (children[i].nodeName == "ortho") {
