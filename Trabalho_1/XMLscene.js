@@ -188,8 +188,5 @@ class XMLscene extends CGFscene {
         }
     }
 
-    update(t)
-    {
-        console.log("meias")
-    }
+   
 }
