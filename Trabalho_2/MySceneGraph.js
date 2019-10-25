@@ -244,14 +244,12 @@ class MySceneGraph {
         this.viewID = this.reader.getString(viewsNode, 'default');
         var flag = 0;
 
-        //FOR US TO DO:
         //check if there is one view at least
         if (children == null)
-            return "no view available"; //error or return?
+            return "no view available"; 
 
         
         //check for a valid default view 
-
         //in a loop parse all views
         //create camera struct (different for 'perspective' and 'ortho'), adding it to the map
         for (var i = 0; i < children.length; i++) {
@@ -285,7 +283,7 @@ class MySceneGraph {
                 var from = this.parseCoordinates3D(grandChildren[fromIndex], "the FROM perpective");
                 var to = this.parseCoordinates3D(grandChildren[toIndex], "the TO perspective");
 
-                var camerap = new CGFcamera(angle, near, far, from, to)
+                var camerap = new CGFcamera(DEGREE_TO_RAD *angle, near, far, from, to)
                 this.views[children[i].id] = camerap;
             }
             else if (children[i].nodeName == "ortho") {
@@ -1285,14 +1283,6 @@ class MySceneGraph {
      * Displays the scene, processing each node, starting in the root node.
      */
     displayScene() {
-        //To do: Create display loop for transversing the scene graph
-        //this.camera = this.views['defaultCamera'];
-        //To test the parsing/creation of the primitives, call the display function directly
-        //  this.materials['demoMaterial'].setTexture(this.textures['melhorCao']);
-        //  this.materials['demoMaterial'].apply();
-        // this.primitives['sp'].display();
         this.components[this.idRoot].display();
-        // this.primitives['TreeBase'].display();
-        //this.primitives['demoTorus'].display();
     }
 }
