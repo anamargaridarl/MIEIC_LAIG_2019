@@ -959,7 +959,7 @@ class MySceneGraph {
                         
                         ptsV = [x,y,z];
                     }
-                    ctrlPts[i] = ptsV;
+                    ctrlPts.push(...ptsV);
                 }
 
                 patch.setCtrlPts(ctrlPts);
