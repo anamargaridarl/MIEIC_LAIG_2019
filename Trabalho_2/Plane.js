@@ -1,29 +1,27 @@
 class Plane extends CGFobject {
   constructor(scene,npartsU,npartsV) {
     super(scene);
-    const controlPts = this.getCtrlPts(npartsU,npartsV);
-    const surface = new CGFnurbsSurface(1,1,controlPts);
-    this.plane = new CGFnurbsObject(scene,npartsU,npartsV,surface);
+    this.npartsU = npartsU;
+    this.npartsV = npartsV;
     this.initBuffers();
   }
-
-  getCtrlPts(npartsU,npartsV) {
-    let pts = [];
-    const step_i = 1/npartsV;
-    const step_j = 1/npartsU;
-
-    for(let i = 0; i<1; i+=step_i) {
-      let pts_v = [];
-      for(let j = 0; j<1; j+=step_j) {
-        pts_v.push(i-0.5,0,0.5-j);
-      }
-      pts.push(pts_v);
-    }
-
-    return pts;
-  }
-
+  
   initBuffers() {
+    
+    let ctrlPts = [ // U = 0
+                    [ // V = 0..1
+                      [-0.5,0,0.5,1],
+                      [-0.5,0,-0.5,1]
+                    ],
+                    // U = 1
+                    [ // V = 0..1
+                      [0.5,0,0.5,1],
+                      [0.5,0,-0.5,1]
+                    ]
+                  ];
+    
+    var surface = new CGFnurbsSurface(1,1,ctrlPts);
+    this.plane = new CGFnurbsObject(this.scene,this.npartsU,this.npartsV,surface);
     this.plane.initBuffers();
   }
 

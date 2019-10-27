@@ -207,6 +207,43 @@
         <primitive id="disk">
             <cylinder base="1" top="0.8" height="0.02" slices="30" stacks="1" />
         </primitive>
+
+        <!-- ////////////////////////////////TESTING ///////////////////////////////// -->
+        <primitive id ="cylinder">
+            <cylinder2 base="2" top="2" height="5" slices="30" stacks="30" />
+        </primitive>
+
+        <primitive id="plane" >
+            <plane npartsU="5" npartsV="10" />
+        </primitive>
+        <!-- ///////////////////////////////////////////////////////////////////////// -->
+        <primitive id="tableCloth" >
+            <patch npointsU="3" npointsV="7" npartsU="10" npartsV="10" >
+                <controlpoint xx="-3" yy="-2" zz="-2" />
+                <controlpoint xx="-3" yy="-1.9" zz="-0.5" />
+                <controlpoint xx="-3" yy="-1.8" zz="-1" />
+                <controlpoint xx="-3" yy="0" zz="-1" />
+                <controlpoint xx="-3" yy="1.8" zz="-1" />
+                <controlpoint xx="-3" yy="1.9" zz="-0.5" />
+                <controlpoint xx="-3" yy="2" zz="-2" />
+                
+                <controlpoint xx="0" yy="-2" zz="-0.5" />
+                <controlpoint xx="0" yy="-1.9" zz="-0.5" />
+                <controlpoint xx="0" yy="-1.8" zz="-1" />
+                <controlpoint xx="0" yy="0" zz="-1" />
+                <controlpoint xx="0" yy="1.8" zz="-1" />
+                <controlpoint xx="0" yy="1.9" zz="-0.5" />
+                <controlpoint xx="0" yy="2" zz="-0.5" />
+                
+                <controlpoint xx="3" yy="-2" zz="-2" />
+                <controlpoint xx="3" yy="-1.9" zz="-0.5" />
+                <controlpoint xx="3" yy="-1.8" zz="-1" />
+                <controlpoint xx="3" yy="0" zz="-1" />
+                <controlpoint xx="3" yy="1.8" zz="-1" />
+                <controlpoint xx="3" yy="1.9" zz="-0.5" />
+                <controlpoint xx="3" yy="2" zz="-2" />
+            </patch>
+        </primitive>
     </primitives>
 
     <components>
@@ -549,6 +586,21 @@
             </children>
         </component>
 
+        <component id="TableSheet">
+            <transformation>
+                <translate x="2.5" y="0.89" z="0" />
+                <scale x="0.8" y="0.8" z="1.08" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="carpetText" />
+            <children>
+                <primitiveref id="tableCloth" />
+            </children>
+        </component>
+        
         <component id="Table">
             <transformation>
                 <translate x="2" y="2.5" z="15" /> 
@@ -558,6 +610,7 @@
             </materials>
             <texture id="tableText" length_s="1" length_t="1"/>
             <children>
+                <componentref id="TableSheet" />
                 <componentref id="TableTop" />
                 <componentref id="TableLeg" />
                 <componentref id="TableLeg2" />
@@ -1794,7 +1847,7 @@
 
         <component id="Cookies">
             <transformation>
-                <translate x="4.5" y="2.62" z="15" />
+                <translate x="4.5" y="2.72" z="15" />
                 <rotate axis="x" angle="90" />
             </transformation>
             <materials>

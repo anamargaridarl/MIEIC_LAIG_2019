@@ -939,30 +939,28 @@ class MySceneGraph {
                     return "There are control points undefined for primitive " + primitiveId + ". There must be exactly: " + nptsU*nptsV + " control points.";
                 }
                 
-                var patch = new Patch(this.scene, nptsU, nptsV, npartsU, npartsV);
                 const ctrlPts = [];
-
                 for(let i = 0; i < nptsU; i++) {
                     const ptsV = [];
                     for(let j =0; j<nptsV;j++) {
-                        const x = this.reader.getFloat(grandgrandChildren[nptsU*i+j], 'xx');
+                        const x = this.reader.getFloat(grandgrandChildren[nptsV*i+j], 'xx');
                         if (!(x != null && !isNaN(x)))
-                            return "unable to parse x of the primitive coordinates for ID = " + primitiveId;
+                        return "unable to parse x of the control point nº" + (i+1) + " of the patch with ID = " + primitiveId;
                 
-                        const y = this.reader.getFloat(grandChildren[nptsU*i+j], 'yy');
+                        const y = this.reader.getFloat(grandgrandChildren[nptsV*i+j], 'yy');
                         if (!(y != null && !isNaN(y)))
-                            return "unable to parse y of the primitive coordinates for ID = " + primitiveId;
-                
-                        const z = this.reader.getFloat(grandChildren[nptsU*i+j], 'zz');
-                        if (!(z != null && !isNaN(z)))
-                        return "unable to parse z of the primitive coordinates for ID = " + primitiveId;
+                        return "unable to parse y of the control point nº" + (i+1) + " of the patch with ID = " + primitiveId;
                         
-                        ptsV = [x,y,z];
+                        const z = this.reader.getFloat(grandgrandChildren[nptsV*i+j], 'zz');
+                        if (!(z != null && !isNaN(z)))
+                        return "unable to parse z of the control point nº" + (i+1) + " of the patch with ID = " + primitiveId;
+                        
+                        ptsV.push([x,y,z,1]);
                     }
-                    ctrlPts.push(...ptsV);
+                    ctrlPts.push(ptsV);
                 }
-
-                patch.setCtrlPts(ctrlPts);
+                
+                var patch = new Patch(this.scene, nptsU, nptsV, npartsU, npartsV,ctrlPts);
                 this.primitives[primitiveId] = patch;
             }
             
@@ -1353,5 +1351,8 @@ class MySceneGraph {
      */
     displayScene() {
         this.components[this.idRoot].display();
+        // this.materials['demoMaterial'].apply();
+        // this.materials['demoMaterial'].setTexture(this.textures['carpetText']);
+        // this.primitives['patch'].display();
     }
 }
