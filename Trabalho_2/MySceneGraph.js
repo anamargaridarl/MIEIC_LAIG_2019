@@ -1353,6 +1353,6 @@ class MySceneGraph {
         this.components[this.idRoot].display();
         // this.materials['demoMaterial'].apply();
         // this.materials['demoMaterial'].setTexture(this.textures['carpetText']);
-        // this.primitives['patch'].display();
+        // this.primitives['cylinder'].display();
     }
 }
