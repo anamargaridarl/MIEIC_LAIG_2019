@@ -36,7 +36,8 @@ class XMLscene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.setUpdatePeriod(100);
 
-        this.texRTT = new CGFtextureRTT(this,this.gl.canvas.width/4,this.gl.canvas.height/4);
+        this.texRTT = new CGFtextureRTT(this,this.gl.canvas.width,this.gl.canvas.height);
+        this.secureCam = new MySecurityCamera(this);
     }
 
     /**
@@ -146,7 +147,7 @@ class XMLscene extends CGFscene {
             this.camera = camera;
             this.interface.setActiveCamera(this.camera);
         }
-        
+
         this.pushMatrix();
         if(this.axisActive)
             this.axis.display();
@@ -196,9 +197,16 @@ class XMLscene extends CGFscene {
 
     display() {
         // this.texRTT.attachToFrameBuffer();
-        // this.render(this.secCamera);
+        // 	this.render(this.secCamera);
+        // 	this.gl.disable(this.gl.DEPTH_TEST);
+        // 		this.secureCam.display(this.texRTT);
+        // 	this.gl.enable(this.gl.DEPTH_TEST);
         // this.texRTT.detachFromFrameBuffer();
-        this.render(this.graph.views[this.graph.viewID]);
+				
+				this.render();
+        this.gl.disable(this.gl.DEPTH_TEST);
+          this.secureCam.display(this.texRTT);
+        this.gl.enable(this.gl.DEPTH_TEST);
     }
 
    
