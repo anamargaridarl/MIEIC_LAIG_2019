@@ -35,6 +35,9 @@ class XMLscene extends CGFscene {
 
         this.axis = new CGFaxis(this);
         this.setUpdatePeriod(100);
+
+        this.texRTT = new CGFtextureRTT(this,this.gl.canvas.width,this.gl.canvas.height);
+        this.secureCam = new MySecurityCamera(this);
     }
 
     /**
@@ -42,11 +45,11 @@ class XMLscene extends CGFscene {
      */
     initCameras() {
         this.camera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(10, 8, 30), vec3.fromValues(10, 0, 5));
+        this.secCamera = new CGFcamera(0.78,0.1,500,vec3.fromValues(16,10,20),vec3.fromValues(8,2,8));
     }
 
     initViews()
     {
-        const views = this.graph.views;
         this.camera = this.graph.views[this.graph.viewID];
         this.interface.setActiveCamera(this.camera);
     }
@@ -125,9 +128,9 @@ class XMLscene extends CGFscene {
     }
 
     /**
-     * Displays the scene.
+     * Renders the scene.
      */
-    display() {
+    render(camera) {
         // ---- BEGIN Background, camera and axis setup
 
         // Clear image and depth buffer everytime we update the scene
@@ -140,6 +143,10 @@ class XMLscene extends CGFscene {
 
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
+        if(camera) {
+            this.camera = camera;
+            this.interface.setActiveCamera(this.camera);
+        }
 
         this.pushMatrix();
         if(this.axisActive)
@@ -186,6 +193,20 @@ class XMLscene extends CGFscene {
         if (eventCode == "KeyM") {
             this.graph.components["demoRoot"].updateMaterial();
         }
+    }
+
+    display() {
+        // this.texRTT.attachToFrameBuffer();
+        // 	this.render(this.secCamera);
+        // 	this.gl.disable(this.gl.DEPTH_TEST);
+        // 		this.secureCam.display(this.texRTT);
+        // 	this.gl.enable(this.gl.DEPTH_TEST);
+        // this.texRTT.detachFromFrameBuffer();
+				
+				this.render();
+        this.gl.disable(this.gl.DEPTH_TEST);
+          this.secureCam.display(this.texRTT);
+        this.gl.enable(this.gl.DEPTH_TEST);
     }
 
    
