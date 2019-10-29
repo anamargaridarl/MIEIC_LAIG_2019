@@ -161,6 +161,18 @@
         </transformation>
     </transformations>
 
+    <animations>
+        <animation id="ani1" >
+            <keyframe instant="1">
+                <translate x="2" y="3" z="5" />
+                <rotate angle_x="0" angle_y="90" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+        </animation>
+    </animations> 
+
+
+
     <primitives>
         <primitive id="Rectangles">
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
