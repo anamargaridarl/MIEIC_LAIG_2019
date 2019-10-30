@@ -8,8 +8,9 @@ var LIGHTS_INDEX = 3;
 var TEXTURES_INDEX = 4;
 var MATERIALS_INDEX = 5;
 var TRANSFORMATIONS_INDEX = 6;
-var PRIMITIVES_INDEX = 7;
-var COMPONENTS_INDEX = 8;
+var ANIMATIONS_INDEX = 7;
+var PRIMITIVES_INDEX = 8;
+var COMPONENTS_INDEX = 9;
 
 /**
  * MySceneGraph class, representing the scene graph.
@@ -176,7 +177,7 @@ class MySceneGraph {
     if ((index = nodeNames.indexOf('animations')) == -1)
       return 'tag <animations> missing';
     else {
-      if (index != TRANSFORMATIONS_INDEX)
+      if (index != ANIMATIONS_INDEX)
         this.onXMLMinorError('tag <animations> out of order');
 
       // Parse transformations block
@@ -287,9 +288,7 @@ class MySceneGraph {
         var to = this.parseCoordinates3D(
             grandChildren[toIndex], 'the TO perspective');
 
-        var camerap = new CGFcamera(
-                          DEGREE_TO_RAD * angle, near, far, from,
-                          to);
+        var camerap = new CGFcamera(DEGREE_TO_RAD * angle, near, far, from, to);
         this.views[children[i].id] = camerap;
       } else if (children[i].nodeName == 'ortho') {
         var left = this.reader.getFloat(children[i], 'left')
@@ -313,8 +312,7 @@ class MySceneGraph {
               grandChildren[upIndex], 'the UP perspective');
 
         var camerao = new CGFcameraOrtho(
-                          left, right, bottom, top, near, far, from, to,
-                          up);
+            left, right, bottom, top, near, far, from, to, up);
         this.views[children[i].id] = camerao;
       }
     }
@@ -622,54 +620,55 @@ class MySceneGraph {
   parseRotationAnimation(rotationNode) {
     var rotations = mat4.create();
 
-    var angle_x = this.reader.getFloat(rotationNode,'angle_x');
+    var angle_x = this.reader.getFloat(rotationNode, 'angle_x');
     this.parseRotationCore('x', angle_x, rotations);
-    var angle_y = this.reader.getFloat(rotationNode,'angle_y');
+    var angle_y = this.reader.getFloat(rotationNode, 'angle_y');
     this.parseRotationCore('y', angle_y, rotations);
-    var angle_z = this.reader.getFloat(rotationNode,'angle_z');
+    var angle_z = this.reader.getFloat(rotationNode, 'angle_z');
     this.parseRotationCore('z', angle_z, rotations);
 
     return rotations;
   }
-  
+
   parseAnimations(animationNodes) {
     var children = animationNodes.children;
     this.animations = [];
     var grandChildren = [];
-    
+
     // Any number of animations
     for (var i = 0; i < children.length; i++) {
       if (children[i].nodeName != 'animation') {
         this.onXMLMinorError('unknown tag <' + children[i].nodeName + '>');
         continue;
       }
-      
+
       // Get id of the current transformation.
       var animationID = this.reader.getString(children[i], 'id');
       if (animationID == null) return 'no ID defined for animation';
-      
+
       // Checks for repeated IDs.
       if (this.animations[animationID] != null)
-      return 'ID must be unique for each transformation (conflict: ID = ' +
-      animationID + ')';
-      
+        return 'ID must be unique for each transformation (conflict: ID = ' +
+            animationID + ')';
+
       grandChildren = children[i].children;
-      
+
       if (grandChildren == null) return 'no keyframe defined';
-      
-      for(let n = 0; n < grandChildren.length; n++)
-      {
+
+      for (let n = 0; n < grandChildren.length; n++) {
         let transf = [];
-        let instant =  this.reader.getFloat(grandChildren[n], 'instant');
-        //NEED TO IMPLEMENT VERIFICATIONS TO KEYFRAMES AND TRANSFORMATIONS
+        let instant = this.reader.getFloat(grandChildren[n], 'instant');
+        // NEED TO IMPLEMENT VERIFICATIONS TO KEYFRAMES AND TRANSFORMATIONS
         let grandgrandChildren = grandChildren[n].children;
         var finalMatrix = mat4.create();
         transf.push(grandgrandChildren[0]);
         transf.push(grandgrandChildren[2]);
-        mat4.multiply(finalMatrix,this.parseRotationAnimation(grandgrandChildren[1]), this.parseTransformationCore(transf,true, null));
-        var animation = new KeyFrameAnimation(0,i,instant,this.finalMatrix);
+        mat4.multiply(
+            finalMatrix, this.parseRotationAnimation(grandgrandChildren[1]),
+            this.parseTransformationCore(transf, true, null));
+        var animation = new KeyFrameAnimation(0, i, instant, this.finalMatrix);
 
-      this.animations[animationID]= animation;
+        this.animations[animationID] = animation;
       }
     }
   }
@@ -811,14 +810,18 @@ class MySceneGraph {
 
       grandChildren = children[i].children;
 
- // Validate the primitive type
-            if (grandChildren.length != 1 ||
-                (grandChildren[0].nodeName != 'rectangle' && grandChildren[0].nodeName != 'triangle' &&
-                    grandChildren[0].nodeName != 'cylinder' && grandChildren[0].nodeName != 'sphere' &&
-                    grandChildren[0].nodeName != 'torus' && grandChildren[0].nodeName != 'plane'&& 
-                    grandChildren[0].nodeName != 'patch'&& grandChildren[0].nodeName != 'cylinder2' )) {
-                return "There must be exactly 1 primitive type (rectangle, triangle, cylinder, sphere, torus, plane, patch or cylinder2)"
-            }
+      // Validate the primitive type
+      if (grandChildren.length != 1 ||
+          (grandChildren[0].nodeName != 'rectangle' &&
+           grandChildren[0].nodeName != 'triangle' &&
+           grandChildren[0].nodeName != 'cylinder' &&
+           grandChildren[0].nodeName != 'sphere' &&
+           grandChildren[0].nodeName != 'torus' &&
+           grandChildren[0].nodeName != 'plane' &&
+           grandChildren[0].nodeName != 'patch' &&
+           grandChildren[0].nodeName != 'cylinder2')) {
+        return 'There must be exactly 1 primitive type (rectangle, triangle, cylinder, sphere, torus, plane, patch or cylinder2)'
+      }
 
       // Specifications for the current primitive.
       var primitiveType = grandChildren[0].nodeName;
@@ -848,19 +851,10 @@ class MySceneGraph {
         if (!(y2 != null && !isNaN(y2) && y2 > y1))
           return 'unable to parse y2 of the primitive coordinates for ID = ' +
               primitiveId;
-                this.primitives[primitiveId] = rect;
-            }
-            else if (primitiveType == 'cylinder' || primitiveType == 'cylinder2') {
-                //parse values for each type of primitive
-                //check values and create the primitives, adding it to the 'this.primitives' array
-                const base = this.reader.getFloat(grandChildren[0], 'base');
-                if (!(base != null && !isNaN(base) && base >= 0))
-                    return "unable to parse base of the primitive coordinates for ID = " + primitiveId;
 
         var rect = new MyRectangle(this.scene, primitiveId, x1, x2, y1, y2);
-
         this.primitives[primitiveId] = rect;
-      } else if (primitiveType == 'cylinder') {
+      } else if (primitiveType == 'cylinder' || primitiveType == 'cylinder2') {
         // parse values for each type of primitive
         // check values and create the primitives, adding it to the
         // 'this.primitives' array
@@ -889,11 +883,11 @@ class MySceneGraph {
           return 'unable to parse stacks of the primitive coordinates for ID = ' +
               primitiveId;
 
-       var cylin;
-                if(primitiveType == 'cylinder')
-                    cylin = new MyCylinder(this.scene, base, top, hgt, slices, stacks);
-                else
-                    cylin = new Cylinder2(this.scene, base, top, hgt, slices, stacks);
+        var cylin;
+        if (primitiveType == 'cylinder')
+          cylin = new MyCylinder(this.scene, base, top, hgt, slices, stacks);
+        else
+          cylin = new Cylinder2(this.scene, base, top, hgt, slices, stacks);
 
         this.primitives[primitiveId] = cylin;
 
@@ -1000,84 +994,95 @@ class MySceneGraph {
 
         this.primitives[primitiveId] = sphere;
       }
-    }
 
+      else if (primitiveType == 'plane') {
+        const npartsU = this.reader.getFloat(grandChildren[0], 'npartsU');
+        if (!(npartsU != null && !isNaN(npartsU) && npartsU > 0))
+          return 'unable to parse npartsU of the primitive coordinates for ID = ' +
+              primitiveId;
+
+        const npartsV = this.reader.getFloat(grandChildren[0], 'npartsV');
+        if (!(npartsV != null && !isNaN(npartsV) && npartsV > 0))
+          return 'unable to parse npartsV of the primitive coordinates for ID = ' +
+              primitiveId;
+
+        var plane = new Plane(this.scene, npartsU, npartsV);
+
+        this.primitives[primitiveId] = plane;
+
+      } else if (primitiveType == 'patch') {
+        const nptsU = this.reader.getFloat(grandChildren[0], 'npointsU');
+        if (!(nptsU != null && !isNaN(nptsU) && nptsU > 0))
+          return 'unable to parse npointsU of the primitive coordinates for ID = ' +
+              primitiveId;
+
+        const nptsV = this.reader.getFloat(grandChildren[0], 'npointsV');
+        if (!(nptsV != null && !isNaN(nptsV) && nptsV > 0))
+          return 'unable to parse npointsV of the primitive coordinates for ID = ' +
+              primitiveId;
+
+        const npartsU = this.reader.getFloat(grandChildren[0], 'npartsU');
+        if (!(npartsU != null && !isNaN(npartsU) && npartsU > 0))
+          return 'unable to parse npartsU of the primitive coordinates for ID = ' +
+              primitiveId;
+
+        const npartsV = this.reader.getFloat(grandChildren[0], 'npartsV');
+        if (!(npartsV != null && !isNaN(npartsV) && npartsV > 0))
+          return 'unable to parse npartsV of the primitive coordinates for ID = ' +
+              primitiveId;
+
+
+        let grandgrandChildren = grandChildren[0].children;
+
+        if (grandgrandChildren == null ||
+            grandgrandChildren.length != nptsU * nptsV) {
+          return 'There are control points undefined for primitive ' +
+              primitiveId + '. There must be exactly: ' + nptsU * nptsV +
+              ' control points.';
+        }
+
+        const ctrlPts = [];
+        for (let i = 0; i < nptsU; i++) {
+          const ptsV = [];
+          for (let j = 0; j < nptsV; j++) {
+            const x =
+                this.reader.getFloat(grandgrandChildren[nptsV * i + j], 'xx');
+            if (!(x != null && !isNaN(x)))
+              return 'unable to parse x of the control point nº' + (i + 1) +
+                  ' of the patch with ID = ' + primitiveId;
+
+            const y =
+                this.reader.getFloat(grandgrandChildren[nptsV * i + j], 'yy');
+            if (!(y != null && !isNaN(y)))
+              return 'unable to parse y of the control point nº' + (i + 1) +
+                  ' of the patch with ID = ' + primitiveId;
+
+            const z =
+                this.reader.getFloat(grandgrandChildren[nptsV * i + j], 'zz');
+            if (!(z != null && !isNaN(z)))
+              return 'unable to parse z of the control point nº' + (i + 1) +
+                  ' of the patch with ID = ' + primitiveId;
+
+            ptsV.push([x, y, z, 1]);
+          }
+          ctrlPts.push(ptsV);
+        }
+
+        var patch =
+            new Patch(this.scene, nptsU, nptsV, npartsU, npartsV, ctrlPts);
+        this.primitives[primitiveId] = patch;
+      }
+    }
     this.log('Parsed primitives');
     return null;
   }
 
-            
-            else if(primitiveType == 'plane') {
-                const npartsU = this.reader.getFloat(grandChildren[0], 'npartsU');
-                if (!(npartsU != null && !isNaN(npartsU) && npartsU >0))
-                    return "unable to parse npartsU of the primitive coordinates for ID = " + primitiveId;
 
-                const npartsV = this.reader.getFloat(grandChildren[0], 'npartsV');
-                if (!(npartsV != null && !isNaN(npartsV) && npartsV >0))
-                    return "unable to parse npartsV of the primitive coordinates for ID = " + primitiveId;
-
-                var plane = new Plane(this.scene, npartsU,npartsV);
-
-                this.primitives[primitiveId] = plane;
-
-            }
-            else if(primitiveType == 'patch') {
-                const nptsU = this.reader.getFloat(grandChildren[0], 'npointsU');
-                if (!(nptsU != null && !isNaN(nptsU) &&nptsU >0))
-                    return "unable to parse npointsU of the primitive coordinates for ID = " + primitiveId;
-
-                const nptsV = this.reader.getFloat(grandChildren[0], 'npointsV');
-                if (!(nptsV != null && !isNaN(nptsV) &&nptsV >0))
-                    return "unable to parse npointsV of the primitive coordinates for ID = " + primitiveId;
-
-                const npartsU = this.reader.getFloat(grandChildren[0], 'npartsU');
-                if (!(npartsU != null && !isNaN(npartsU) && npartsU >0))
-                    return "unable to parse npartsU of the primitive coordinates for ID = " + primitiveId;
-
-                const npartsV = this.reader.getFloat(grandChildren[0], 'npartsV');
-                if (!(npartsV != null && !isNaN(npartsV) && npartsV >0))
-                    return "unable to parse npartsV of the primitive coordinates for ID = " + primitiveId;
-    
-                    
-                let grandgrandChildren = grandChildren[0].children;
-                    
-                if(grandgrandChildren == null || grandgrandChildren.length != nptsU*nptsV) {
-                    return "There are control points undefined for primitive " + primitiveId + ". There must be exactly: " + nptsU*nptsV + " control points.";
-                }
-                
-                const ctrlPts = [];
-                for(let i = 0; i < nptsU; i++) {
-                    const ptsV = [];
-                    for(let j =0; j<nptsV;j++) {
-                        const x = this.reader.getFloat(grandgrandChildren[nptsV*i+j], 'xx');
-                        if (!(x != null && !isNaN(x)))
-                        return "unable to parse x of the control point nº" + (i+1) + " of the patch with ID = " + primitiveId;
-                
-                        const y = this.reader.getFloat(grandgrandChildren[nptsV*i+j], 'yy');
-                        if (!(y != null && !isNaN(y)))
-                        return "unable to parse y of the control point nº" + (i+1) + " of the patch with ID = " + primitiveId;
-                        
-                        const z = this.reader.getFloat(grandgrandChildren[nptsV*i+j], 'zz');
-                        if (!(z != null && !isNaN(z)))
-                        return "unable to parse z of the control point nº" + (i+1) + " of the patch with ID = " + primitiveId;
-                        
-                        ptsV.push([x,y,z,1]);
-                    }
-                    ctrlPts.push(ptsV);
-                }
-                
-                var patch = new Patch(this.scene, nptsU, nptsV, npartsU, npartsV,ctrlPts);
-                this.primitives[primitiveId] = patch;
-            }
-            
-        }
-
-
- //-------------- Component parser -------------------------------------------
+  //-------------- Component parser -------------------------------------------
   parseTransformationComp(transformations) {
     var transformationNodes = [];
     var grandgrandChildren = transformations.children;
-    
+
     if (grandgrandChildren == null) {
       return;
     }
