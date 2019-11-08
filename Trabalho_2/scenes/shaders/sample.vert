@@ -9,9 +9,6 @@ attribute vec2 aTextureCoord;
 
 varying vec2 vTextureCoord;
 uniform float timeFactor;
-uniform float normScale;
-varying vec4 coords;
-varying vec4 normal;
 
 void main() {
 	vTextureCoord = aTextureCoord;

@@ -45,12 +45,17 @@ class XMLscene extends CGFscene {
      */
     initCameras() {
         this.camera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(10, 8, 30), vec3.fromValues(10, 0, 5));
-        this.secCamera = new CGFcamera(0.78,0.1,500,vec3.fromValues(16,10,20),vec3.fromValues(8,2,8));
         this.sceneCamera = this.camera;
+
+        this.secCamera = new CGFcamera(0.78,0.1,500,vec3.fromValues(16,10,20),vec3.fromValues(8,2,8));
+        
     }
 
     initViews()
     {
+        this.graph.views["secCamera"] = this.secCamera;
+        this.secCamID = "secCamera";
+        
         this.camera = this.graph.views[this.graph.viewID];
         this.sceneCamera = this.camera;
         this.interface.setActiveCamera(this.camera);
@@ -194,6 +199,10 @@ class XMLscene extends CGFscene {
         this.camera = this.graph.views[viewID];
         this.interface.setActiveCamera(this.camera);
         this.sceneCamera = this.camera;
+    }
+
+    updateSecCam(secID) {
+        this.secCamera = this.graph.views[secID];
     }
 
     update(t)

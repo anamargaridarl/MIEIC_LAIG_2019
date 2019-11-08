@@ -9,7 +9,7 @@ class MyTranslation {
   update(t,lastinstance,instance,matrix)
   {
     let per = 1 - ( (instance-t)/(instance-lastinstance));
-    console.log(per);
+    //console.log(per);
 
     if(per != 0)
     {
