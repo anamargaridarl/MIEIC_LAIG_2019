@@ -199,10 +199,9 @@ class XMLscene extends CGFscene {
     update(t)
     {
         if(this.sceneInited) {
-            this.graph.components["demoRoot"].updateAnimation(t);
+            this.graph.components["demoRoot"].updateAnimation(t/1000);
             this.secureCam.update(t);
         }
-        
     }
 
     checkKeys(eventCode) {

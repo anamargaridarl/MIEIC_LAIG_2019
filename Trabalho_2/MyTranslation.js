@@ -4,24 +4,23 @@ class MyTranslation {
     this.y = y;
     this.z = z;
 
-    this.divX = 0;
-    this.divY = 0;
-    this.divZ = 0;
   }
 
   update(t,lastinstance,instance,matrix)
   {
     let per = 1 - ( (instance-t)/(instance-lastinstance));
-    
-    this.divX = this.angle_x / per;
-    this.divY = this.angle_y /  per;
-    this.divZ = this.angle_z /  per;
+    console.log(per);
 
-    let transfMatrix = mat4.create();
+    if(per != 0)
+    {
+    let divX = this.x * per;
+    let divY = this.y *  per;
+    let divZ = this.z *  per;
     
-    transfMatrix =
-    mat4.translate(transfMatrix, transfMatrix, [this.divX,this.divY,this.divZ]);
-    mat4.multiply(matrix,transfMatrix,matrix);
-
+    var position = [];
+    position.push(...[divX,divY, divZ]);
+    matrix = mat4.translate(matrix, matrix, [divX,divY,divZ]);
+    }
+    
   }
 }

@@ -6,6 +6,7 @@ class MyComponent {
 
     constructor(scene, children, materials, texture, transformation,animation) {
         this.scene = scene;
+        this.original = scene;
         this.children = children;
         this.materials = materials;
         this.texture = texture;
@@ -16,6 +17,12 @@ class MyComponent {
     
     display(textureP,materialP) {
         
+        if(this.animation != null)
+        {
+            this.scene = this.original;
+            this.animation.display(this.scene);
+        }
+
         if(this.transformation) {
             this.scene.multMatrix(this.transformation);
         }

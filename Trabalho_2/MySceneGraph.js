@@ -624,8 +624,8 @@ class MySceneGraph {
     let angle_y = this.reader.getFloat(rotationNode, 'angle_y');
     let angle_z = this.reader.getFloat(rotationNode, 'angle_z');
 
-    let rotation = new MyRotation(this,angle_x,angle_y,angle_z);
-    return rotation;
+    return new MyRotation(this,angle_x,angle_y,angle_z);
+
   }
 
   parseTranslationAnimation(translationNode) {
@@ -681,7 +681,7 @@ class MySceneGraph {
         // NEED TO IMPLEMENT VERIFICATIONS TO KEYFRAMES AND TRANSFORMATIONS
         let grandgrandChildren = grandChildren[n].children;
         
-        let translation = this .parseTranslationAnimation(grandgrandChildren[0]);
+        let translation = this.parseTranslationAnimation(grandgrandChildren[0]);
         let rotation = this.parseRotationAnimation(grandgrandChildren[1]);
         let scale = this.parseScaleAnimation(grandgrandChildren[2]);
 
@@ -1241,7 +1241,7 @@ class MySceneGraph {
   parseAnimationComp(animationComp)
   {
     if(animationComp == null)
-    return; 
+    return null; 
     
     let id = this.reader.getString(animationComp, 'id');
     return this.animations[id];
