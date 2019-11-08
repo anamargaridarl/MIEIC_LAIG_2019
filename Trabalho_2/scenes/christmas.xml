@@ -267,7 +267,7 @@
             </materials>
             <texture id="demoTexture" length_s="1" length_t="1"/>
             <children>
-                 <!-- <componentref id="ChristmasTree" />
+                <componentref id="ChristmasTree" />
                 <componentref id="DaisyFrame" />
                 <componentref id="LokiFrame" />
                 <componentref id="Coroa" />
@@ -280,18 +280,18 @@
                 <componentref id="Present6" />
                 <componentref id="Present7" />
                 <componentref id="Table" />
-                <componentref id="Window1" />  -->
+                <componentref id="Window1" />  
                 <componentref id="Door" />
-                 <!-- <componentref id="Cookies" />
+                 <componentref id="Cookies" />
                 <componentref id="Carpete" />
                 <componentref id="Chair1" />
                 <componentref id="Chair2" />
                 <componentref id="Chair3" />
-                <componentref id="Chair4" />  -->
+                <componentref id="Chair4" />  
 
             </children>
          </component>
-        <!-- <component id="Present1"> 
+         <component id="Present1"> 
             <transformation>
                 <translate x="1" y="0.35" z="5.2" />   
                 <rotate axis="y" angle="-30" /> 
@@ -970,7 +970,7 @@
             <children>
                 <primitiveref id="Rectangles" />
             </children>
-         </component> -->
+         </component> 
 
         <component id="Door">
             <transformation>
@@ -988,7 +988,7 @@
             </children>
         </component>
 
-        <!-- <component id="Coroa">  
+        <component id="Coroa">  
             <transformation>
                 <translate x="17.7" y="5" z="3" /> 
                 <rotate axis="y" angle="-90" />   
@@ -2023,6 +2023,6 @@
         <children>
             <primitiveref id="disk" />
         </children>
-    </component>  -->
+    </component>  
     </components>
 </lxs>
