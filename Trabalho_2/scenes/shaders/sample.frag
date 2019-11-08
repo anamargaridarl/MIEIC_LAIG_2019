@@ -8,12 +8,6 @@ uniform float timeFactor;
 uniform vec4 selColor;
 
 void main() {
-  // half the object gets the normal color. The other half sums r+g+b
-  if (coords.x > 0.0)
-    gl_FragColor =  normal;
-  else   {
-    gl_FragColor.rgb = abs(coords.xyz)/3.0;
-    gl_FragColor.a = 1.0;
-  }
-  gl_FragColor.rgb=mix(gl_FragColor.rgb, selColor.rgb, timeFactor);
+  gl_FragColor = vec4(selColor.rgb,1);
+  //if(mod(vTextureCoord.y * 10.0, 2.0) > 1.0)color = vec4(color.rgb*0.5,1.0);fragColor = vec4(color.rgb, 1.0);
 }

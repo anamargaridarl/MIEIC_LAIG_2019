@@ -46,11 +46,13 @@ class XMLscene extends CGFscene {
     initCameras() {
         this.camera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(10, 8, 30), vec3.fromValues(10, 0, 5));
         this.secCamera = new CGFcamera(0.78,0.1,500,vec3.fromValues(16,10,20),vec3.fromValues(8,2,8));
+        this.sceneCamera = this.camera;
     }
 
     initViews()
     {
         this.camera = this.graph.views[this.graph.viewID];
+        this.sceneCamera = this.camera;
         this.interface.setActiveCamera(this.camera);
     }
     /**
@@ -130,23 +132,26 @@ class XMLscene extends CGFscene {
     /**
      * Renders the scene.
      */
-    render(camera) {
+    render(usingSecCam) {
         // ---- BEGIN Background, camera and axis setup
 
         // Clear image and depth buffer everytime we update the scene
         this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-
+        if(usingSecCam) {
+            this.camera = this.secCamera;
+        }
+        else {
+            this.camera = this.sceneCamera;
+        }
+        //
         // Initialize Model-View matrix as identity (no transformation
         this.updateProjectionMatrix();
         this.loadIdentity();
 
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        if(camera) {
-            this.camera = camera;
-            this.interface.setActiveCamera(this.camera);
-        }
+        
 
         this.pushMatrix();
         if(this.axisActive)
@@ -154,6 +159,7 @@ class XMLscene extends CGFscene {
         
         
         if (this.sceneInited) {
+            
             // Draw axis
             this.setDefaultAppearance();
             //get Array of objects to allow iteration in for loop (JS behavior adaptation)
@@ -187,6 +193,7 @@ class XMLscene extends CGFscene {
     updateCurrView(viewID) {
         this.camera = this.graph.views[viewID];
         this.interface.setActiveCamera(this.camera);
+        this.sceneCamera = this.camera;
     }
 
     update(t)
@@ -202,16 +209,14 @@ class XMLscene extends CGFscene {
     }
 
     display() {
-        // this.texRTT.attachToFrameBuffer();
-        // 	this.render(this.secCamera);
-        // 	this.gl.disable(this.gl.DEPTH_TEST);
-        // 		this.secureCam.display(this.texRTT);
-        // 	this.gl.enable(this.gl.DEPTH_TEST);
-        // this.texRTT.detachFromFrameBuffer();
-				
-				this.render();
+        
+        this.texRTT.attachToFrameBuffer();
+        this.render(true);
+        this.texRTT.detachFromFrameBuffer();		
+        this.render(false);
+        
         this.gl.disable(this.gl.DEPTH_TEST);
-          this.secureCam.display(this.texRTT);
+        this.secureCam.display(this.texRTT);
         this.gl.enable(this.gl.DEPTH_TEST);
     }
 

@@ -15,10 +15,7 @@ varying vec4 coords;
 varying vec4 normal;
 
 void main() {
-	vec4 vertex=vec4(aVertexPosition+aVertexNormal*normScale*timeFactor*0.1, 1.0);
+	vec4 vertex=vec4(aVertexPosition, 1.0);
 	
-	gl_Position = uPMatrix * uMVMatrix * vertex;
-	
-	normal = vec4(aVertexNormal, 1.0);
-	coords = vertex / 10.0;
+	gl_Position = vertex;
 }

@@ -247,7 +247,7 @@ class MySceneGraph {
 
     this.cameras = []
 
-                   this.viewID = this.reader.getString(viewsNode, 'default');
+    this.viewID = this.reader.getString(viewsNode, 'default');
     var flag = 0;
 
     // check if there is one view at least
