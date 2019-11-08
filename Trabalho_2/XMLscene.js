@@ -198,8 +198,11 @@ class XMLscene extends CGFscene {
 
     update(t)
     {
-        if(this.sceneInited)
+        if(this.sceneInited) {
             this.graph.components["demoRoot"].updateAnimation(t);
+            this.secureCam.update(t);
+        }
+        
     }
 
     checkKeys(eventCode) {

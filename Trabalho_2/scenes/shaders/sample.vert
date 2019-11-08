@@ -5,17 +5,17 @@
 attribute vec3 aVertexPosition;
 attribute vec3 aVertexNormal;
 attribute vec2 aTextureCoord;
-uniform mat4 uMVMatrix;
-uniform mat4 uPMatrix;
-uniform mat4 uNMatrix;
 
+
+varying vec2 vTextureCoord;
 uniform float timeFactor;
 uniform float normScale;
 varying vec4 coords;
 varying vec4 normal;
 
 void main() {
+	vTextureCoord = aTextureCoord;
+	vTextureCoord = vec2(vTextureCoord.x,1.0-vTextureCoord.y);
 	vec4 vertex=vec4(aVertexPosition, 1.0);
-	
 	gl_Position = vertex;
 }

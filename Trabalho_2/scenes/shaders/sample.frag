@@ -3,11 +3,15 @@
 #endif
 
 varying vec4 coords;
-varying vec4 normal;
+varying vec2 vTextureCoord;
+uniform sampler2D uSampler;
 uniform float timeFactor;
-uniform vec4 selColor;
+uniform vec2 resolution;
 
 void main() {
-  gl_FragColor = vec4(selColor.rgb,1);
-  //if(mod(vTextureCoord.y * 10.0, 2.0) > 1.0)color = vec4(color.rgb*0.5,1.0);fragColor = vec4(color.rgb, 1.0);
+  vec4 color = texture2D(uSampler, vTextureCoord);
+  if(mod(vTextureCoord.y * 10.0-timeFactor, 2.0) > 1.0)
+      color = vec4(color.rgb*0.5,1);//color = vec4(1,1,1,1.0);
+
+  gl_FragColor = color;
 }
