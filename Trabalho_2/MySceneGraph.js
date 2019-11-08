@@ -246,7 +246,7 @@ class MySceneGraph {
 
     this.cameras = []
 
-                   this.viewID = this.reader.getString(viewsNode, 'default');
+    this.viewID = this.reader.getString(viewsNode, 'default');
     var flag = 0;
 
     // check if there is one view at least
@@ -766,7 +766,6 @@ class MySceneGraph {
   }
 
   verifyTriangle(x1, y1, z1, x2, y2, z2, x3, y3, z3) {
-    console.log('cenas');
     var a = Math.sqrt(
         Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2) + Math.pow(z2 - z1, 2));
     var b = Math.sqrt(
