@@ -4,35 +4,41 @@
  */
 class KeyFrameAnimation extends Animation {
 
-  constructor(currentTime, keyframe,instance, transformations) {
-    super(currentTime);
+  constructor(keyframe,lastintance,instance,rotation,translation,scale) {
+    super();
+    this.currentTime =0;
+    this.lastintance = lastintance;
     this.keyframe = keyframe;
     this.instance = instance;
-    this.transformations = transformations;
+    this.rotation = rotation;
+    this.scale = scale;
+    this.translation = translation;
+    this.matrix = mat4.create();
+  }
+  
+  update(t,scene)
+  {   
+    if(this.currentTime == 0)
+      this.currentTime = t;
+
+    let time = t - this.currentTime;
+
+   if(time < this.lastintance || time > this.instance)
+    return;
+
+   this.rotation.update(time,this.lastintance,this.instance,this.matrix);
+   this.translation.update(time,this.lastintance,this.instance,this.matrix);
+   this.apply(scene);
+   //this.scale.update(t,this.t);   
   }
 
-  getKeyFrame()
+  apply(scene)
   {
-    return this.keyframe;
+    scene.multMatrix(this.matrix);
   }
+  
 
-  getInstance()
-  {
-    return this.instance;
-  }
-
-  isFinished()
-  {
-    if(this.currentTime > this.instance)
-      return true;
-    else 
-      return false;
-  }
-
-  rotationInter()
-  {
-    
-  } 
+ 
 
 
 }

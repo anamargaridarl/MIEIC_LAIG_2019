@@ -4,13 +4,14 @@
 */
 class MyComponent {
 
-    constructor(scene, children, materials, texture, transformation) {
+    constructor(scene, children, materials, texture, transformation,animation) {
         this.scene = scene;
         this.children = children;
         this.materials = materials;
         this.texture = texture;
         this.transformation = transformation;
         this.currMatIndex = 0;
+        this.animation = animation;
     }
     
     display(textureP,materialP) {
@@ -60,6 +61,7 @@ class MyComponent {
                 children.display();
             }
         }
+
     }
 
     getParentTexture(texStruct) {
@@ -75,6 +77,17 @@ class MyComponent {
         for(let child of this.children) {
             if(child instanceof MyComponent)
             child.updateMaterial();
+        }
+    }
+
+    updateAnimation(t)
+    {
+        if(this.animation)
+        this.animation.update(t,this.scene);
+
+        for(let child of this.children) {
+            if(child instanceof MyComponent)
+            child.updateAnimation(t,this.scene);
         }
     }
 

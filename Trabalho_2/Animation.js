@@ -4,19 +4,8 @@
  */
 class Animation {
 
-  constructor(currentTime) {
-    this.currentTime = currentTime;
+  constructor() {
   }
-
-  //update state based on time passed
-  update(deltaTime) {
-    this.currentTime += deltaTime;
-  }
-
-  //apply transformation to matrix scene
-  apply() {
-    
-
-  }
+  
 
 }
