@@ -34,7 +34,7 @@ class XMLscene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.axis = new CGFaxis(this);
-        this.setUpdatePeriod(100);
+        this.setUpdatePeriod(1000);
 
         this.texRTT = new CGFtextureRTT(this,this.gl.canvas.width,this.gl.canvas.height);
         this.secureCam = new MySecurityCamera(this);
@@ -187,6 +187,12 @@ class XMLscene extends CGFscene {
     updateCurrView(viewID) {
         this.camera = this.graph.views[viewID];
         this.interface.setActiveCamera(this.camera);
+    }
+
+    update(t)
+    {
+        if(this.sceneInited)
+            this.graph.components["demoRoot"].updateAnimation(t);
     }
 
     checkKeys(eventCode) {

@@ -21,6 +21,7 @@ class MySceneGraph {
    */
   constructor(filename, scene) {
     this.loadedOk = null;
+    this.animations = [];
 
     // Establish bidirectional references between scene and graph.
     this.scene = scene;
@@ -618,16 +619,33 @@ class MySceneGraph {
   }
 
   parseRotationAnimation(rotationNode) {
-    var rotations = mat4.create();
 
-    var angle_x = this.reader.getFloat(rotationNode, 'angle_x');
-    this.parseRotationCore('x', angle_x, rotations);
-    var angle_y = this.reader.getFloat(rotationNode, 'angle_y');
-    this.parseRotationCore('y', angle_y, rotations);
-    var angle_z = this.reader.getFloat(rotationNode, 'angle_z');
-    this.parseRotationCore('z', angle_z, rotations);
+    let angle_x = this.reader.getFloat(rotationNode, 'angle_x');
+    let angle_y = this.reader.getFloat(rotationNode, 'angle_y');
+    let angle_z = this.reader.getFloat(rotationNode, 'angle_z');
 
-    return rotations;
+    let rotation = new MyRotation(this,angle_x,angle_y,angle_z);
+    return rotation;
+  }
+
+  parseTranslationAnimation(translationNode) {
+
+    let x = this.reader.getFloat(translationNode, 'x');
+    let y = this.reader.getFloat(translationNode, 'y');
+    let z = this.reader.getFloat(translationNode, 'z');
+
+    let translation = new MyTranslation(x,y,z);
+    return translation;
+  }
+
+  parseScaleAnimation(scaleNode) {
+
+    let x = this.reader.getFloat(scaleNode, 'x');
+    let y = this.reader.getFloat(scaleNode, 'y');
+    let z = this.reader.getFloat(scaleNode, 'z');
+
+    let scale = new MyScale(x,y,z);
+    return scale;
   }
 
   parseAnimations(animationNodes) {
@@ -655,20 +673,22 @@ class MySceneGraph {
 
       if (grandChildren == null) return 'no keyframe defined';
 
+      var lastinstance = 0;
+
       for (let n = 0; n < grandChildren.length; n++) {
-        let transf = [];
-        let instant = this.reader.getFloat(grandChildren[n], 'instant');
+        
+        var instant = this.reader.getFloat(grandChildren[n], 'instant');
         // NEED TO IMPLEMENT VERIFICATIONS TO KEYFRAMES AND TRANSFORMATIONS
         let grandgrandChildren = grandChildren[n].children;
-        var finalMatrix = mat4.create();
-        transf.push(grandgrandChildren[0]);
-        transf.push(grandgrandChildren[2]);
-        mat4.multiply(
-            finalMatrix, this.parseRotationAnimation(grandgrandChildren[1]),
-            this.parseTransformationCore(transf, true, null));
-        var animation = new KeyFrameAnimation(0, i, instant, this.finalMatrix);
+        
+        let translation = this .parseTranslationAnimation(grandgrandChildren[0]);
+        let rotation = this.parseRotationAnimation(grandgrandChildren[1]);
+        let scale = this.parseScaleAnimation(grandgrandChildren[2]);
 
+        var animation = new KeyFrameAnimation(n, lastinstance,instant, rotation,translation,scale);
         this.animations[animationID] = animation;
+
+        lastinstance = instant;
       }
     }
   }
@@ -1219,6 +1239,14 @@ class MySceneGraph {
     return children;
   }
 
+  parseAnimationComp(animationComp)
+  {
+    if(animationComp == null)
+    return; 
+    
+    let id = this.reader.getString(animationComp, 'id');
+    return this.animations[id];
+  }
 
 
   /**
@@ -1266,6 +1294,10 @@ class MySceneGraph {
       if (transformationIndex == null)
         this.onXMLError('Transformation block doesn\'t exist');
 
+        let animationIndex = nodeNames.indexOf('animationref');
+        if (animationIndex == null)
+          this.onXMLError('Animation block doesn\'t exist');
+
       let materialsIndex = nodeNames.indexOf('materials');
       if (materialsIndex == null)
         this.onXMLError('Materials section doesn\'t exist');
@@ -1273,9 +1305,6 @@ class MySceneGraph {
       let textureIndex = nodeNames.indexOf('texture');
       if (textureIndex == null) this.onXMLError('Texture block doesn\'t exist');
 
-      let animationIndex = nodeNames.indexOf('animation');
-      if (animationIndex == null)
-        this.onXMLError('Animation block doesn\'t exist');
 
       let childrenIndex = nodeNames.indexOf('children');
       if (childrenIndex == null)
@@ -1288,12 +1317,14 @@ class MySceneGraph {
       let matC = this.parseMaterialsComp(grandChildren[materialsIndex]);
 
       let texC = this.parseTextureComp(grandChildren[textureIndex]);
+      
+      let animationC = this.parseAnimationComp(grandChildren[animationIndex]);
 
-      // let aniC = this.parseAnimationsComp()
       let childC = this.parseChildrenComp(grandChildren[childrenIndex]);
 
+
       this.components[componentID] =
-          new MyComponent(this.scene, childC, matC, texC, transC);
+          new MyComponent(this.scene, childC, matC, texC, transC,animationC);
     }
 
     if (!hasRootID)
