@@ -34,7 +34,7 @@ class XMLscene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.axis = new CGFaxis(this);
-        this.setUpdatePeriod(1000);
+        this.setUpdatePeriod(50);
 
         this.texRTT = new CGFtextureRTT(this,this.gl.canvas.width,this.gl.canvas.height);
         this.secureCam = new MySecurityCamera(this);

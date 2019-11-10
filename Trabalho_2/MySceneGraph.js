@@ -673,23 +673,25 @@ class MySceneGraph {
 
       if (grandChildren == null) return 'no keyframe defined';
 
-      var lastinstance = 0;
-
+      let lastinstance = 0;
+      let keyframes = []; 
+      
+      //keyframes
       for (let n = 0; n < grandChildren.length; n++) {
         
         var instant = this.reader.getFloat(grandChildren[n], 'instant');
-        // NEED TO IMPLEMENT VERIFICATIONS TO KEYFRAMES AND TRANSFORMATIONS
         let grandgrandChildren = grandChildren[n].children;
         
         let translation = this.parseTranslationAnimation(grandgrandChildren[0]);
         let rotation = this.parseRotationAnimation(grandgrandChildren[1]);
         let scale = this.parseScaleAnimation(grandgrandChildren[2]);
 
-        var animation = new KeyFrameAnimation(n, lastinstance,instant, rotation,translation,scale);
-        this.animations[animationID] = animation;
-
+        keyframes.push(new KeyFrameAnimation(n+1, lastinstance,instant, rotation,translation,scale));
+        
         lastinstance = instant;
       }
+
+      this.animations[animationID] = new Animation(keyframes);
     }
   }
 

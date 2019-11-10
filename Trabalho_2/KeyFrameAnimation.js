@@ -12,15 +12,18 @@ class KeyFrameAnimation extends Animation {
     this.rotation = rotation;
     this.scale = scale;
     this.translation = translation;
-    this.matrix = mat4.create();
     this.finished = false;
+    this.start = false;
   }
 
   update(t) {
 
+
+    if(this.start)
     this.matrix =  mat4.create();
-    
-    if (this.currentTime == 0) this.currentTime = t;
+
+    if (this.currentTime == 0) 
+      this.currentTime = t;
 
     let time = t - this.currentTime;
 
@@ -33,10 +36,11 @@ class KeyFrameAnimation extends Animation {
     this.rotation.update(time, this.lastintance, this.instance, this.matrix);
     this.translation.update(time, this.lastintance, this.instance, this.matrix);
     // this.scale.update(t,this.t);
+    this.start = true;
   }
 
   display(scene) {
-    
+
     if(this.finished)
       return;
     scene.multMatrix(this.matrix);

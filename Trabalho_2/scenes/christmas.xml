@@ -67,6 +67,8 @@
         <texture id="doorText" file="scenes/images/cabin_door.jpg" />
         <texture id="carpetText" file="scenes/images/carpet.jpg" />
         <texture id="goldTex" file="scenes/images/gold.jpg" />
+        <texture id="windowFrameText" file="scenes/images/window_frame.jpg" />
+
 
     </textures>
 
@@ -162,13 +164,28 @@
     </transformations>
 
     <animations>
-        <animation id="ani1" >
-            <keyframe instant="5">
-                <translate x="0" y="2" z="0" />
-                <rotate angle_x="0" angle_y="90" angle_z="0" />
+        <animation id="CoroaAni" >
+            <keyframe instant="2">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="30" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="4">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="-30" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
         </animation>
+
+        <animation id="ballPresentAni" >
+            <keyframe instant="5">
+                <translate x="0" y="-1" z="0" />
+                <rotate angle_x="0" angle_y="360" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+           </animation>
+
+        
     </animations> 
 
 
@@ -275,7 +292,7 @@
                 <componentref id="Present1" />
                 <componentref id="Present2" />
                 <componentref id="Present3" />
-                <componentref id="Present4" />
+                <componentref id="Present4" /> 
                 <componentref id="Present5" />
                 <componentref id="Present6" />
                 <componentref id="Present7" />
@@ -361,6 +378,20 @@
                 <material id="present4Mat" />
             </materials>
             <texture id="present3Text" length_s="1" length_t="1"/>
+            <children>
+                <componentref id ="Present4Aux"/>
+            </children>
+        </component>
+
+        <component id="Present4Aux">
+            <transformation>
+                <translate x="0" y="0" z="0" />   
+            </transformation>
+                <animationref id="ballPresentAni" />
+            <materials>
+                <material id="present4Mat" />
+            </materials>
+            <texture id="inherit"/>
             <children>
             <primitiveref id="sphere" />
             </children>
@@ -969,8 +1000,251 @@
             <texture id="window1Text" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
+                <componentref id="WindowFrame" />
             </children>
          </component> 
+
+        <component id="WindowFrame">
+            <transformation>
+                <translate x="0" y="0" z="0" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="windowFrameText" />
+            <children>
+                <componentref id="WindowFrameLeft" />
+                <componentref id="WindowFrameRight" />
+            </children>
+        </component>
+
+          <component id="WindowFrameLeft">
+            <transformation>
+                <translate x="0" y="0" z="0" /> 
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="WindowFrameComp1" />
+                <componentref id="WindowFrameComp3" />
+                <componentref id="WindowFrameComp5" />
+                <componentref id="WindowFrameComp7" />
+                <componentref id="WindowFrameComp9" />
+            </children>
+        </component>
+
+        <component id="WindowFrameRight">
+            <transformation>
+                <translate x="0" y="0" z="0" /> 
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="WindowFrameComp2" />
+                <componentref id="WindowFrameComp4" />
+                <componentref id="WindowFrameComp6" />
+                <componentref id="WindowFrameComp8" />
+                <componentref id="WindowFrameComp10" />
+            </children>
+        </component>
+
+
+        <component id="WindowFrameComp9">
+            <transformation>
+                <translate x="0.01" y="0" z="0" /> 
+                <scale x="0.025" y="2" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+        <component id="WindowFrameComp10">
+            <transformation>
+                <translate x="-0.01" y="0" z="0" /> 
+                <scale x="0.025" y="2" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+          <component id="WindowFrameComp3">
+            <transformation>
+                <translate x="-0.49" y="0" z="0" /> 
+                <scale x="0.49" y="0.2" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+        <component id="WindowFrameComp8">
+            <transformation>
+                <translate x="0" y="-1" z="0" /> 
+                <scale x="0.5" y="0.1" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+
+          <component id="WindowFrameComp7">
+            <transformation>
+                <translate x="-0.49" y="-1" z="0" /> 
+                <scale x="0.49" y="0.1" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+         <component id="WindowFrameComp6">
+            <transformation>
+                <translate x="0" y="1" z="0" /> 
+                <scale x="0.5" y="0.1" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+
+          <component id="WindowFrameComp5">
+            <transformation>
+                <translate x="-0.49" y="1" z="0" /> 
+                <scale x="0.49" y="0.1" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+         <component id="WindowFrameComp4">
+            <transformation>
+                <translate x="0" y="0" z="0" /> 
+                <scale x="0.49" y="0.2" z="0.1"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+        <component id="WindowFrameComp1">
+            <transformation>
+                <translate x="-0.49" y="0" z="0" /> 
+                <scale x="0.05" y="2" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
+        <component id="WindowFrameComp2">
+            <transformation>
+                <translate x="0.45" y="0" z="0" /> 
+                <scale x="0.05" y="2" z="0.2"/>  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <componentref id="Quad11" />
+                <componentref id="Quad12" />
+                <componentref id="Quad13" />
+                <componentref id="Quad14" />
+                <componentref id="Quad15" />
+                <componentref id="Quad16" />
+            </children>
+        </component>
+
 
         <component id="Door">
             <transformation>
@@ -978,7 +1252,6 @@
                  <rotate axis="y" angle="-90" />   
                 <scale x="3" y="3" z="1" />
             </transformation>
-            <animationref id="ani1" />
             <materials>
                 <material id="woodMaterial" />
             </materials>
@@ -997,6 +1270,20 @@
                 <material id="demoMaterial" />
             </materials>
             <texture id="coroaText" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="CoroaAux"/>
+            </children>
+        </component>
+
+        <component id="CoroaAux">  
+            <transformation>
+                <translate x="0" y="0" z="0" /> 
+            </transformation>
+            <animationref id="CoroaAni" />
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="inherit"/>
             <children>
                 <componentref id="CoroaBall1" />
                 <componentref id="CoroaBall2" />
