@@ -4,32 +4,16 @@ class MyScale {
     this.y = y;
     this.z = z;
 
-    this.divX = 0;
-    this.divY = 0;
-    this.divZ = 0;
   }
 
-  getX() {
-    return this.x;
+  update(t, lastinstance, instance, matrix) {
+
+    let per = 1 - ((instance - t) / (instance - lastinstance));
+    let n = 10;
+
+    let Rx = Math.pow(x*per,1/n);
+    let Ry = Math.pow(x*per,1/n);
+    let Rz = Math.pow(x*per,1/n);
   }
 
-  getY() {
-    return this.y;
-  }
-
-  getZ() {
-    return this.z;
-  }
-
-  setDivX(X) {
-    this.divX = X;
-  }
-
-  setDivY(Y) {
-    this.divY = Y;
-  }
-
-  setDivX(Z) {
-    this.divZ = Z;
-  }
 }
