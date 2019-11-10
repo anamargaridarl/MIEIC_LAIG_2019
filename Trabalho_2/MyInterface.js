@@ -43,6 +43,9 @@ class MyInterface extends CGFinterface {
          this.gui.add(this.scene.graph,"viewID",this.viewKeys)
             .name("Current view:")
             .onChange(vID => this.scene.updateCurrView(vID));
+        this.gui.add(this.scene,"secCamID",this.viewKeys)
+            .name("Security Camera:")
+            .onChange(sID => this.scene.updateSecCam(sID));
     }
 
     createLightsCheckboxes() {
