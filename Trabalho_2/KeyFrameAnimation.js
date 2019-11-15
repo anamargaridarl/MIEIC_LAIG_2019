@@ -31,8 +31,8 @@ class KeyFrameAnimation extends Animation {
       this.finished = true;
     }
     
-    this.rotation.update(time,animation,this.keyframe, this.matrix);
     this.translation.update(time, animation,this.keyframe, this.matrix);
+    this.rotation.update(time,animation,this.keyframe, this.matrix);
     this.scale.update(animation,this.keyframe, this.matrix);
 
    

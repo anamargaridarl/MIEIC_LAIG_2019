@@ -68,6 +68,9 @@
         <texture id="carpetText" file="scenes/images/carpet.jpg" />
         <texture id="goldTex" file="scenes/images/gold.jpg" />
         <texture id="windowFrameText" file="scenes/images/window_frame.jpg" />
+        <texture id="drapesText" file="scenes/images/beije.jpg" />
+
+
 
 
     </textures>
@@ -156,10 +159,9 @@
 
     <transformations>
         <transformation id="floorTrans">
-            <rotate axis="x" angle="-90" />
-            <translate x="-0.03" y="0" z="0" />
-            <scale x="18.06" y="10" z="1" />
-            <translate x="0.5" y="-1" z="0.01" />
+            <translate x="-0.03" y="0" z="9.8" />
+            <scale x="18.06" y="1" z="20" />
+            <translate x="0.5" y="0" z="0.01" />
         </transformation>
     </transformations>
 
@@ -168,9 +170,29 @@
             <keyframe instant="2">
                 <translate x="0" y="0" z="0" />
                 <rotate angle_x="0" angle_y="0" angle_z="30" />
-                <scale x="1" y="2" z="1" />
+                <scale x="1" y="1" z="1" />
             </keyframe>
             <keyframe instant="4">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="-60" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+                 <keyframe instant="6">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="60" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="8">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="-60" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+                 <keyframe instant="10">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="60" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="12">
                 <translate x="0" y="0" z="0" />
                 <rotate angle_x="0" angle_y="0" angle_z="-60" />
                 <scale x="1" y="1" z="1" />
@@ -179,9 +201,9 @@
 
         <animation id="ballPresentAni" >
             <keyframe instant="5">
-                <translate x="0" y="-1" z="0" />
-                <rotate angle_x="0" angle_y="360" angle_z="0" />
-                <scale x="1" y="2" z="1" />
+                <translate x="1" y="0" z="1" />
+                <rotate angle_x="360" angle_y="0" angle_z="360" />
+                <scale x="1" y="1" z="1" />
             </keyframe>
            </animation>
 
@@ -300,6 +322,55 @@
                 <controlpoint xx="3" yy="2" zz="-2" />
             </patch>
         </primitive>
+
+        <primitive id="cortina" >
+            <patch npointsU="9" npointsV="4" npartsU="10" npartsV="10" >
+                <controlpoint xx="0" yy="6" zz="0" />
+                <controlpoint xx="0" yy="5" zz="0" />
+                <controlpoint xx="0" yy="4" zz="0" />
+                <controlpoint xx="0" yy="3" zz="0" />
+
+                <controlpoint xx="1" yy="6" zz="1" />
+                <controlpoint xx="1" yy="5" zz="1" />      
+                <controlpoint xx="1" yy="4" zz="1" />
+                <controlpoint xx="1" yy="3" zz="1" />
+
+                <controlpoint xx="2" yy="6" zz="-2" />
+                <controlpoint xx="2" yy="5" zz="-2" />
+                <controlpoint xx="2" yy="4" zz="-2" />
+                <controlpoint xx="2" yy="3" zz="-2" />
+
+                <controlpoint xx="3" yy="6" zz="1" />
+                <controlpoint xx="3" yy="5" zz="1" />
+                <controlpoint xx="3" yy="4" zz="1" />
+                <controlpoint xx="3" yy="3" zz="1" />
+
+                <controlpoint xx="4" yy="6" zz="0" />
+                <controlpoint xx="4" yy="5" zz="0" />
+                <controlpoint xx="4" yy="4" zz="0" />
+                <controlpoint xx="4" yy="3" zz="0" />
+
+                <controlpoint xx="5" yy="6" zz="2" />
+                <controlpoint xx="5" yy="5" zz="2" />      
+                <controlpoint xx="5" yy="4" zz="2" />
+                <controlpoint xx="5" yy="3" zz="2" />
+
+                <controlpoint xx="6" yy="6" zz="-2" />
+                <controlpoint xx="6" yy="5" zz="-2" />
+                <controlpoint xx="6" yy="4" zz="-2" />
+                <controlpoint xx="6" yy="3" zz="-2" />
+
+                <controlpoint xx="7" yy="6" zz="1" />
+                <controlpoint xx="7" yy="5" zz="1" />
+                <controlpoint xx="7" yy="4" zz="1" />
+                <controlpoint xx="7" yy="3" zz="1" />
+
+                <controlpoint xx="8" yy="6" zz="0" />
+                <controlpoint xx="8" yy="5" zz="0" />
+                <controlpoint xx="8" yy="4" zz="0" />
+                <controlpoint xx="8" yy="3" zz="0" />
+            </patch>
+        </primitive>
     </primitives>
 
     <components>
@@ -325,6 +396,7 @@
                 <componentref id="Present7" />
                 <componentref id="Table" />
                 <componentref id="Window1" />  
+                <componentref id="Window2" />  
                 <componentref id="Door" />
                  <componentref id="Cookies" />
                 <componentref id="Carpete" />
@@ -332,9 +404,62 @@
                 <componentref id="Chair2" />
                 <componentref id="Chair3" />
                 <componentref id="Chair4" />  
+                <componentref id="CortinasR" /> 
+                <componentref id="CortinasL" />  
+                <componentref id="Barra" />  
+
+
+
 
             </children>
          </component>
+
+
+        <component id="Barra"> 
+            <transformation>
+                <translate x="15" y="6.3" z="0.1" />  
+                <scale x="0.9" y="0.1" z="0.1" />  
+                <rotate axis="y" angle="90" /> 
+            </transformation>
+            <materials>
+                <material id="present2Mat" />
+            </materials>
+            <texture id="woodCabinWall" length_s="0.05" length_t="0.05"/>
+            <children>
+                <primitiveref id = "cylinder"/>
+            </children>
+        </component>
+
+          <component id="CortinasR"> 
+            <transformation>
+                <translate x="17" y="-2.9" z="0.5" />   
+                <rotate axis="y" angle="180" /> 
+                <scale x="0.2" y="1.6" z="1" />  
+            </transformation>
+            <materials>
+                <material id="present2Mat" />
+            </materials>
+            <texture id="drapesText" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id = "cortina"/>
+            </children>
+        </component>
+
+         <component id="CortinasL"> 
+            <transformation>
+                <translate x="14.5" y="-2.9" z="0.5" />   
+                <rotate axis="y" angle="180" /> 
+                <scale x="0.2" y="1.6" z="1" />  
+            </transformation>
+            <materials>
+                <material id="present2Mat" />
+            </materials>
+            <texture id="drapesText" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id = "cortina"/>
+            </children>
+        </component>
+
          <component id="Present1"> 
             <transformation>
                 <translate x="1" y="0.35" z="5.2" />   
@@ -399,7 +524,6 @@
             <transformation>
                 <translate x="4" y="0.4" z="5.7" />   
                 <scale x="4" y="4" z="4" />
-                <rotate axis="x" angle="-90" />  
             </transformation>
             <materials>
                 <material id="present4Mat" />
@@ -420,7 +544,7 @@
             </materials>
             <texture id="inherit"/>
             <children>
-            <primitiveref id="sphere" />
+                <primitiveref id="sphere" />
             </children>
         </component>
 
@@ -1015,6 +1139,21 @@
             </children>
         </component>
 
+        <component id="Window2">
+            <transformation>
+                <translate x="15" y="4" z="0" /> 
+                <scale x="3.5" y="2" z="1" />
+            </transformation>
+            <materials>
+                <material id="windowMat" />
+            </materials>
+            <texture id="window1Text" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="Rectangles" />
+                <componentref id="WindowFrameBottom2" />
+            </children>
+         </component> 
+
         <component id="Window1">
             <transformation>
                 <translate x="0" y="4.5" z="15" /> 
@@ -1028,8 +1167,44 @@
             <children>
                 <primitiveref id="Rectangles" />
                 <componentref id="WindowFrame" />
+                <componentref id="WindowFrameBottom" />
             </children>
          </component> 
+
+    <component id="WindowFrameBottom2">
+            <transformation>
+                <translate x="0" y="0" z="0" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="windowFrameText" />
+            <children>
+                <componentref id="WindowFrameCompR3" />
+                <componentref id="WindowFrameCompR4" />
+                <componentref id="WindowFrameCompR5" />
+                <componentref id="WindowFrameCompL3" />
+                <componentref id="WindowFrameCompL4" />
+                <componentref id="WindowFrameCompL5" />
+
+            </children>
+        </component>
+
+        <component id="WindowFrameBottom">
+            <transformation>
+                <translate x="0" y="0" z="0" />  
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="windowFrameText" />
+            <children>
+                <componentref id="WindowFrameCompR3" />
+                <componentref id="WindowFrameCompR4" />
+                <componentref id="WindowFrameCompL3" />
+                <componentref id="WindowFrameCompL4" />
+            </children>
+        </component>
 
         <component id="WindowFrame">
             <transformation>
@@ -1187,7 +1362,7 @@
 
         <component id="WindowFrameCompR5">
             <transformation>
-                <translate x="0.48" y="0" z="0" /> 
+                <translate x="0.47" y="0" z="0" /> 
                 <scale x="0.025" y="2.1" z="0.2"/>  
             </transformation>
             <materials>
@@ -1227,8 +1402,8 @@
 
          <component id="WindowFrameCompL2">
             <transformation>
-                <translate x="-0.45" y="0" z="0" /> 
-                <scale x="0.49" y="0.2" z="0.1"/>  
+                <translate x="-0.465" y="0" z="0" /> 
+                <scale x="0.5" y="0.2" z="0.1"/>  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -1247,8 +1422,8 @@
 
          <component id="WindowFrameCompL3">
             <transformation>
-                <translate x="-0.45" y="1" z="0" /> 
-                <scale x="0.5" y="0.1" z="0.2"/>  
+                <translate x="-0.5" y="1" z="0" /> 
+                <scale x="0.55" y="0.1" z="0.2"/>  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -1266,7 +1441,7 @@
 
          <component id="WindowFrameCompL4">
             <transformation>
-                <translate x="-0.45" y="-1" z="0" /> 
+                <translate x="-0.5" y="-1" z="0" /> 
                 <scale x="0.5" y="0.1" z="0.2"/>  
             </transformation>
             <materials>
@@ -1285,7 +1460,7 @@
 
         <component id="WindowFrameCompL5">
             <transformation>
-                <translate x="-0.46" y="0" z="0" /> 
+                <translate x="-0.5" y="0" z="0" /> 
                 <scale x="0.025" y="2" z="0.2"/>  
             </transformation>
             <materials>
@@ -2122,7 +2297,7 @@
             </materials>
             <texture id="woodCabinFloor" length_s="2" length_t="2"/>
             <children>
-                <primitiveref id="Rectangles" />
+                <primitiveref id="plane" />
             </children>
         </component>
 
