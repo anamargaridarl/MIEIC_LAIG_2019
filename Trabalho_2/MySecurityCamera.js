@@ -4,6 +4,7 @@ class MySecurityCamera extends CGFobject {
     this.camera = new MyRectangle(scene,"SecurityCamera",0.5,1,-1,-0.5);
     this.cameraShader = new CGFshader(scene.gl,"scenes/shaders/sample.vert","scenes/shaders/sample.frag");
     this.cameraShader.setUniformsValues({uSampler: 0, timeFactor:0});
+    this.shaderC = 0;
   }
 
   display(texRTT) {
@@ -15,6 +16,7 @@ class MySecurityCamera extends CGFobject {
   }
 
   update(t) {
-    this.cameraShader.setUniformsValues({timeFactor: t / 100 % 1000});
+    this.shaderC += 0.01;
+    this.cameraShader.setUniformsValues({timeFactor: this.shaderC});
   }
 }
