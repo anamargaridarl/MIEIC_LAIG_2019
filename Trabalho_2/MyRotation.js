@@ -7,6 +7,7 @@ class MyRotation {
   }
 
   update(t,animation,keyframe, matrix) {
+    
     let instance = animation.keyframes[keyframe-1].instance;
     let lastinstance = animation.keyframes[keyframe-1].lastinstance;
 
