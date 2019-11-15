@@ -1088,7 +1088,6 @@ class MySceneGraph {
           }
           ctrlPts.push(ptsV);
         }
-
         var patch =
             new Patch(this.scene, nptsU, nptsV, npartsU, npartsV, ctrlPts);
         this.primitives[primitiveId] = patch;
