@@ -1236,10 +1236,10 @@
             </children>
         </component>
     
-
           <component id="WindowFrameRightAux">
             <transformation>
             </transformation>
+            <animationref id = "WindowFrameRightAni"/>
             <materials>
                 <material id="demoMaterial" />
             </materials>

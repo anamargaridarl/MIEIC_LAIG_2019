@@ -682,6 +682,19 @@ class MySceneGraph {
         var instant = this.reader.getFloat(grandChildren[n], 'instant');
         let grandgrandChildren = grandChildren[n].children;
         
+        if (grandgrandChildren[0].nodeName != 'translate') {
+          this.onXMLMinorError('unknown tag <' + grandgrandChildren[0].nodeName + '>');
+          continue;
+        }
+        if (grandgrandChildren[1].nodeName != 'rotate') {
+          this.onXMLMinorError('unknown tag <' + grandgrandChildren[1].nodeName + '>');
+          continue;
+        }
+        if (grandgrandChildren[2].nodeName != 'scale') {
+          this.onXMLMinorError('unknown tag <' + grandgrandChildren[2].nodeName + '>');
+          continue;
+        }
+
         let translation = this.parseTranslationAnimation(grandgrandChildren[0]);
         let rotation = this.parseRotationAnimation(grandgrandChildren[1]);
         let scale = this.parseScaleAnimation(grandgrandChildren[2]);
