@@ -60,7 +60,7 @@
         <texture id="present3Text" file="scenes/images/gift_wrap3.jpg" />
         <texture id="present4Text" file="scenes/images/gift_wrap4.jpg" />
         <texture id="tableText" file="scenes/images/table.jpg" />
-        <texture id="window1Text" file="scenes/images/window_image.jpg" />
+        <texture id="window1Text" file="scenes/images/window_image_kevin.png" />
         <texture id="greenCookie" file="scenes/images/xmas_cookie1.jpg" />
         <texture id="treeCookie" file="scenes/images/xmas_cookie2.jpg" />
         <texture id="cookiePlate" file="scenes/images/xmas_plate.jpg" />
@@ -1171,7 +1171,6 @@
                 <primitiveref id="Rectangles" />
                 <componentref id="WindowFrame" />
                 <componentref id="WindowFrameBottom" />
-                <componentref id="kevin" />
             </children>
          </component> 
 
@@ -2538,21 +2537,6 @@
                 <primitiveref id="disk" />
             </children>
         </component>  
-
-        <component id="kevin">
-            <transformation>
-                <translate x="0.3" y="-0.7" z="0.01" />
-                <scale x="0.3" y="0.6" z="1" />
-                <rotate axis="z" angle="15" />
-                <rotate axis="x" angle="90" /> 
-            </transformation>
-            <materials>
-                <material id="inherit" />
-            </materials>
-            <texture id="homeAlone" />
-            <children>
-                <primitiveref id="plane" />
-            </children>
-        </component>
     </components>
+
 </lxs>
