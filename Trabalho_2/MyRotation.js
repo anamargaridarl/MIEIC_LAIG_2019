@@ -8,11 +8,13 @@ class MyRotation {
 
   update(t,animation,keyframe, matrix) {
     
+    console.log('keyframe'+keyframe)
     let instance = animation.keyframes[keyframe-1].instance;
     let lastinstance = animation.keyframes[keyframe-1].lastinstance;
 
     let per = 1 - ((instance- t) / (instance - lastinstance));
-   
+   if(per > 1)
+   per =1;
     let a_x = 0;
     let a_y = 0;
     let a_z = 0;
@@ -25,17 +27,21 @@ class MyRotation {
       a_z =  animation.keyframes[n].rotation.angle_z;
     }
 
-    if (this.angle_x != 0) {
       let divX = (this.angle_x - a_x)* per;
       this.scene.parseRotationCore('x', divX, matrix);
-    }
-    if (this.angle_y != 0) {
+      console.log(keyframe + ':'+ divX)
+    
       let divY = (this.angle_y -a_y)* per;
       this.scene.parseRotationCore('y', divY, matrix);
-    }
-    if (this.angle_z != 0) {
+      console.log(keyframe + ':'+divY)
+
+    
       let divZ = (this.angle_z -a_z) * per;
       this.scene.parseRotationCore('z', divZ, matrix);
-    }
+      console.log(keyframe + ':'+divZ)
+
+  
+
+
   }
 }

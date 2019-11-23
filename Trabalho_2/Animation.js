@@ -13,19 +13,16 @@ class Animation {
   }
 
   display(scene) {
-
-      for (let i = 0; i < this.keyframes.length; i++) {
-        this.keyframes[i].display(scene);
-      }
-    
+    for (let i = 0; i < this.keyframes.length; i++) {
+      this.keyframes[i].display(scene);
+    }
   }
 
   update(t) {
-
-    if(this.keyframes[this.length-1].finished != true)
-
-    for (let i = 0; i < this.keyframes.length; i++) {
-      this.keyframes[i].update(t, this);
+    if (this.keyframes[this.length - 1].finished != true) {
+      for (let i = 0; i < this.keyframes.length; i++) {
+        this.keyframes[i].update(t, this);
+      }
     }
   }
 }
