@@ -60,7 +60,7 @@
         <texture id="present3Text" file="scenes/images/gift_wrap3.jpg" />
         <texture id="present4Text" file="scenes/images/gift_wrap4.jpg" />
         <texture id="tableText" file="scenes/images/table.jpg" />
-        <texture id="window1Text" file="scenes/images/window_image_kevin.png" />
+        <texture id="window1Text" file="scenes/images/window_image_kevin2.png" />
         <texture id="greenCookie" file="scenes/images/xmas_cookie1.jpg" />
         <texture id="treeCookie" file="scenes/images/xmas_cookie2.jpg" />
         <texture id="cookiePlate" file="scenes/images/xmas_plate.jpg" />
@@ -165,17 +165,17 @@
      <animations> 
         <animation id="CoroaAni" >
             <keyframe instant="2">
-                <translate x="1" y="0" z="0" />
+                <translate x="0" y="0" z="0" />
                 <rotate angle_x="0" angle_y="0" angle_z="30" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
             <keyframe instant="4">
-                <translate x="1" y="0" z="0" />
+                <translate x="0" y="0" z="0" />
                 <rotate angle_x="0" angle_y="0" angle_z="-60" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
                  <keyframe instant="6">
-                <translate x="1" y="0" z="0" />
+                <translate x="0" y="0" z="0" />
                 <rotate angle_x="0" angle_y="0" angle_z="60" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
