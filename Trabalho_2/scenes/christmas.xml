@@ -1153,28 +1153,11 @@
             <texture id="window1Text" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Rectangles" />
-                <componentref id="WindowFrameBottom2" />
+                <componentref id="WindowFrame2" />
             </children>
          </component> 
 
-        <component id="Window1">
-            <transformation>
-                <translate x="0" y="4.5" z="15" /> 
-                <rotate axis="y" angle="90" /> 
-                <scale x="5.5" y="2.5" z="1" />
-            </transformation>
-            <materials>
-                <material id="windowMat" />
-            </materials>
-            <texture id="window1Text" length_s="1" length_t="1"/>
-            <children>
-                <primitiveref id="Rectangles" />
-                <componentref id="WindowFrame" />
-                <componentref id="WindowFrameBottom" />
-            </children>
-         </component> 
-
-    <component id="WindowFrameBottom2">
+        <component id="WindowFrame2">
             <transformation>
             </transformation>
             <materials>
@@ -1188,12 +1171,41 @@
                 <componentref id="WindowFrameCompL3" />
                 <componentref id="WindowFrameCompL4" />
                 <componentref id="WindowFrameCompL5" />
+            </children>
+        </component>
 
+        <component id="Window1">
+            <transformation>
+                <translate x="0" y="4.5" z="15" /> 
+                <rotate axis="y" angle="90" /> 
+            </transformation>
+            <materials>
+                <material id="windowMat" />
+            </materials>
+            <texture id="window1Text" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="WindowImage" />
+                <componentref id="WindowFrame" />
+                <componentref id="WindowFrameBottom" />
+            </children>
+         </component> 
+
+        <component id="WindowImage">
+            <transformation>
+                <scale x="5.5" y="2.5" z="1" />
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+                <texture id="window1Text" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="Rectangles" />
             </children>
         </component>
 
         <component id="WindowFrameBottom">
             <transformation>
+                <scale x="5.5" y="2.5" z="1" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -1222,7 +1234,7 @@
 
         <component id="WindowFrameRight">
             <transformation>
-                <translate x="-0.50" y="0" z="0" /> 
+                <translate x="-3" y="0" z="0" /> 
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -1235,6 +1247,7 @@
     
           <component id="WindowFrameRightAux">
             <transformation>
+                <scale x="5.61" y="2.5" z="1" />
             </transformation>
             <animationref id = "WindowFrameRightAni"/>
             <materials>
@@ -1252,7 +1265,7 @@
     
          <component id="WindowFrameLeft">
             <transformation>
-                <translate x="0.45" y="0" z="0" /> 
+                <translate x="2.6" y="0" z="0" /> 
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -1265,6 +1278,7 @@
 
         <component id="WindowFrameLeftAux">
             <transformation>
+                <scale x="5.61" y="2.5" z="1" />
             </transformation>
             <animationref id = "WindowFrameLeftAni"/>
             <materials>
@@ -1378,7 +1392,7 @@
 
         <component id="WindowFrameCompL1">
             <transformation>
-                <scale x="0.05" y="2" z="0.2"/>  
+                <scale x="0.05" y="2.1" z="0.20"/>  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -1397,8 +1411,8 @@
 
          <component id="WindowFrameCompL2">
             <transformation>
-                <translate x="-0.465" y="0" z="0" /> 
-                <scale x="0.5" y="0.2" z="0.1"/>  
+                <translate x="-0.48" y="0" z="0" /> 
+                <scale x="0.52" y="0.2" z="0.12"/>  
             </transformation>
             <materials>
                 <material id="demoMaterial" />
