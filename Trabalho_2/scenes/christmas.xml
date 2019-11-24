@@ -1161,7 +1161,7 @@
             <transformation>
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="windowMat" />
             </materials>
             <texture id="windowFrameText" />
             <children>
@@ -1195,7 +1195,7 @@
                 <scale x="5.5" y="2.5" z="1" />
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
                 <texture id="window1Text" length_s="1" length_t="1"/>
             <children>
@@ -1208,7 +1208,7 @@
                 <scale x="5.5" y="2.5" z="1" />
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="windowFrameText" />
             <children>
@@ -1223,7 +1223,7 @@
             <transformation>
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="windowFrameText" />
             <children>
@@ -1237,7 +1237,7 @@
                 <translate x="-3" y="0" z="0" /> 
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1251,7 +1251,7 @@
             </transformation>
             <animationref id = "WindowFrameRightAni"/>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1268,7 +1268,7 @@
                 <translate x="2.6" y="0" z="0" /> 
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1282,7 +1282,7 @@
             </transformation>
             <animationref id = "WindowFrameLeftAni"/>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1300,7 +1300,7 @@
                 <scale x="0.05" y="2" z="0.2"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1318,7 +1318,7 @@
                 <scale x="0.49" y="0.2" z="0.2"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1337,7 +1337,7 @@
                 <scale x="0.49" y="0.1" z="0.2"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1357,7 +1357,7 @@
                 <scale x="0.49" y="0.1" z="0.2"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1376,7 +1376,7 @@
                 <scale x="0.025" y="2.1" z="0.2"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1395,7 +1395,7 @@
                 <scale x="0.05" y="2.1" z="0.20"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1415,7 +1415,7 @@
                 <scale x="0.52" y="0.2" z="0.12"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1435,7 +1435,7 @@
                 <scale x="0.55" y="0.1" z="0.2"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1454,7 +1454,7 @@
                 <scale x="0.5" y="0.1" z="0.2"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
@@ -1473,7 +1473,7 @@
                 <scale x="0.025" y="2" z="0.2"/>  
             </transformation>
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
             <texture id="inherit" />
             <children>
