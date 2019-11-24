@@ -8,7 +8,6 @@ class MyRotation {
 
   update(t,animation,keyframe, matrix) {
     
-    console.log('keyframe'+keyframe)
     let instance = animation.keyframes[keyframe-1].instance;
     let lastinstance = animation.keyframes[keyframe-1].lastinstance;
 
@@ -29,16 +28,13 @@ class MyRotation {
 
       let divX = (this.angle_x - a_x)* per;
       this.scene.parseRotationCore('x', divX, matrix);
-      console.log(keyframe + ':'+ divX)
     
       let divY = (this.angle_y -a_y)* per;
       this.scene.parseRotationCore('y', divY, matrix);
-      console.log(keyframe + ':'+divY)
 
     
       let divZ = (this.angle_z -a_z) * per;
       this.scene.parseRotationCore('z', divZ, matrix);
-      console.log(keyframe + ':'+divZ)
 
   
 
