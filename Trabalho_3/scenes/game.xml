@@ -114,7 +114,7 @@
 
         <primitive id="circle">
             <circle slices="30"/>
-        </primitive
+        </primitive>
         
     </primitives>
 
