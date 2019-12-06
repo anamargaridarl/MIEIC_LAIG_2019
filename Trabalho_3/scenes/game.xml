@@ -1,0 +1,312 @@
+<lxs>
+    <scene root="Root" axis_length="5"/>
+
+    <views default="roomOverview">
+        <perspective id="roomOverview" near="0.1" far="1000" angle="45">
+            <from x="10" y="8" z="30" />
+            <to x="10" y="0" z="5" />
+        </perspective>
+        <ortho id="room_side_ortho_plane" near="10" far="70" left="-7" right="7" top="7" bottom="-7">
+            <from x="-5" y="10" z="-10" />
+            <to x="5" y="5" z="5" />
+            <up x="0" y="1" z="0" /> 
+        </ortho>
+        </views>
+
+    <globals>
+        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+        <background r="0.8" g="0.8" b="0.8" a="1.0" />
+    </globals>
+
+    <lights>
+        <omni id="roomLight" enabled="1">
+            <location x="9.8" y="10" z="10" w="1.0" />
+            <ambient r="0.8" g="0.8" b="0.8" a="1.0" />
+            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+            <attenuation constant="1" linear="0" quadratic="0" /> 
+        </omni>
+        <spot id="treeLight" enabled="1" angle="1" exponent="1">
+            <location x="4" y="7" z="4" w="1" />
+            <target x="0" y="-7" z="0" />
+            <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
+            <diffuse r="1" g="1" b="1" a="1.0" />
+            <specular r="1" g="1" b="1" a="1" />
+        </spot>
+    </lights>
+
+    <textures>
+        <texture id="demoTexture" file="scenes/images/vidral.jpg" />
+        <texture id="Loki_Miguel" file="scenes/images/loki_player.jpg" />
+        <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
+    </textures>
+
+    <materials>
+        <material id="defaultMat" shininess="10">
+            <emission r="0.1" g="0.1" b="0.1" a="1.0" />
+            <ambient r="0.10" g=".10" b=".10" a="1.0" />
+            <diffuse r="0.5" g="0.50" b="0.5" a="1.0" />
+            <specular r="0.05" g="0.05" b="0.05" a="1.0" />
+        </material>
+    </materials>
+
+    <transformations>
+        <transformation id="floorTrans">
+            <translate x="-0.03" y="0" z="9.8" />
+            <scale x="18.06" y="1" z="20" />
+            <translate x="0.5" y="0" z="0.01" />
+        </transformation>
+
+        <transformation id="platformTrans">
+            <rotate axis="x" angle="-90" />
+            <translate x="0" y="0" z="-4" />
+        </transformation>
+    </transformations>
+
+     <animations> 
+        <animation id="CoroaAni" >
+            <keyframe instant="2">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="30" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>            
+           </animation>
+
+        
+    </animations> 
+
+
+
+    <primitives>
+        <primitive id="rectangle">
+            <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
+        </primitive>
+
+        <primitive id="demoTorus">
+            <torus inner="0.3" outer="0.8" slices="80" loops="80" />
+        </primitive>
+
+        <primitive id="triang">
+          <triangle   x1="0" y1="0" z1="0"
+                        x2="1" y2="1" z2="0"
+                        x3="2" y3="0" z3="0" />
+        </primitive>
+
+        <primitive id="sphere">
+              <sphere radius="0.1" slices="30" stacks="30" />
+        </primitive>
+
+        <primitive id="disk">
+            <cylinder base="1" top="0.8" height="0.02" slices="30" stacks="1" />
+        </primitive>
+
+        <primitive id ="platform">
+            <cylinder base="2" top="2" height="0.2" slices="30" stacks="30" />
+        </primitive>
+
+        <primitive id="plane" >
+            <plane npartsU="5" npartsV="10" />
+        </primitive>
+        
+    </primitives>
+
+    <components>
+        
+        <component id="LeftScreenSide">
+            <transformation>
+                <scale x="0.5" y="2" z="1" />
+                <rotate axis="y" angle="-90"/>
+                <translate x="0" y="0" z="4" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="RightScreenSide">
+            <transformation>
+                <scale x="0.5" y="2" z="1" />
+                <rotate axis="y" angle="90"/>
+                <translate x="0" y="0" z="4" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+        
+        <component id="TopScreenSide">
+            <transformation>
+                <scale x="4" y="1" z="0.5" />
+                <rotate axis="x" angle="-90"/>
+                <translate x="0" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+        
+        <component id="BottomScreenSide">
+            <transformation>
+                <scale x="4" y="1" z="0.5" />
+                <rotate axis="x" angle="90"/>
+                <translate x="0" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="BackScreenSide">
+            <transformation>
+                <scale x="4" y="2" z="1" />
+                <rotate axis="x" angle="180"/>
+                <translate x="0" y="0" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+        
+        <component id="FrontScreenSide_P2">
+            <transformation>
+                <scale x="4" y="2" z="1" />
+                <translate x="0" y="0" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="Daisyzinha" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+        
+        <component id="FrontScreenSide_P1">
+            <transformation>
+                <scale x="4" y="2" z="1" />
+                <translate x="0" y="0" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="Loki_Miguel" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="Platform">
+            <transformation>
+                <transformationref id="platformTrans" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="platform" />
+            </children>
+        </component>
+
+        <component id="Player_Screen_P2">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="LeftScreenSide"/>
+                <componentref id="RightScreenSide"/>
+                <componentref id="TopScreenSide"/>
+                <componentref id="BottomScreenSide"/>
+                <componentref id="BackScreenSide"/>
+                <componentref id="FrontScreenSide_P2"/>
+            </children>
+        </component>
+
+        <component id="Player2">
+            <transformation>
+                <!-- <translate x="14" y="3" z="8" /> -->
+                <translate x="14" y="0" z="0" /> 
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Platform"/>
+                <componentref id="Player_Screen_P2" />
+            </children>
+        </component>
+        
+        <component id="Player_Screen_P1">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="LeftScreenSide"/>
+                <componentref id="RightScreenSide"/>
+                <componentref id="TopScreenSide"/>
+                <componentref id="BottomScreenSide"/>
+                <componentref id="BackScreenSide"/>
+                <componentref id="FrontScreenSide_P1"/>
+            </children>
+        </component>
+
+        <component id="Player1">
+            <transformation>
+                <!-- <translate x="8" y="3" z="8" /> -->
+                <translate x="8" y="0" z="0" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Platform"/>
+                <componentref id="Player_Screen_P1" />
+            </children>
+        </component>
+        
+        <component id="Root">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+               <primitiveref id="rectangle"/>
+               <componentref id="Player1" />
+               <componentref id="Player2" />
+            </children>
+         </component>
+
+       
+    </components>
+
+</lxs>
