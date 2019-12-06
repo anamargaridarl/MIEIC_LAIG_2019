@@ -1,6 +1,6 @@
 /**
-* MyInterface class, creating a GUI interface.
-*/
+ * MyInterface class, creating a GUI interface.
+ */
 class MyInterface extends CGFinterface {
     /**
      * @constructor
@@ -30,8 +30,8 @@ class MyInterface extends CGFinterface {
      * initKeys
      */
     initKeys() {
-        this.scene.gui=this;
-        this.processKeyboard=function(){};
+        this.scene.gui = this;
+        this.processKeyboard = function() {};
     }
 
     processKeyDown(event) {
@@ -39,21 +39,17 @@ class MyInterface extends CGFinterface {
     };
 
     createViewDropdown() {
-         this.viewKeys = Object.keys(this.scene.graph.views);
-         this.gui.add(this.scene.graph,"viewID",this.viewKeys)
-            .name("Current view:")
-            .onChange(vID => this.scene.updateCurrView(vID));
-        this.gui.add(this.scene,"secCamID",this.viewKeys)
-            .name("Security Camera:")
-            .onChange(sID => this.scene.updateSecCam(sID));
+        // this.viewKeys = Object.keys(this.scene.graph.views);
+        // this.gui.add(this.scene.graph, "viewID", this.viewKeys)
+        //     .name("Current view:")
+        //     .onChange(vID => this.scene.updateCurrView(vID));
+        // this.gui.add(this.scene, "secCamID", this.viewKeys)
+        //     .name("Security Camera:")
+        //     .onChange(sID => this.scene.updateSecCam(sID));
     }
 
     createLightsCheckboxes() {
-        this.gui.add(this.scene,"roomLight")
-            .name("Switch room light:");
-        this.gui.add(this.scene,"treeLight")
-            .name("Switch tree light:");
-        this.gui.add(this.scene,"axisActive")
+        this.gui.add(this.scene, "axisActive")
             .name("Display axis");
     }
 }

@@ -36,8 +36,8 @@ class XMLscene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.setUpdatePeriod(50);
 
-        this.texRTT = new CGFtextureRTT(this,this.gl.canvas.width,this.gl.canvas.height);
-        this.secureCam = new MySecurityCamera(this);
+        this.texRTT = new CGFtextureRTT(this, this.gl.canvas.width, this.gl.canvas.height);
+        // this.secureCam = new MySecurityCamera(this);
     }
 
     /**
@@ -47,22 +47,21 @@ class XMLscene extends CGFscene {
         this.camera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(10, 8, 30), vec3.fromValues(10, 0, 5));
         this.sceneCamera = this.camera;
 
-        this.secCamera = new CGFcamera(0.78,0.1,500,vec3.fromValues(16,10,20),vec3.fromValues(8,2,8));
-        
+        // this.secCamera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(16, 10, 20), vec3.fromValues(8, 2, 8));
+
     }
 
-    initViews()
-    {
-        this.graph.views["secCamera"] = this.secCamera;
-        this.secCamID = "secCamera";
-        
-        this.camera = this.graph.views[this.graph.viewID];
-        this.sceneCamera = this.camera;
-        this.interface.setActiveCamera(this.camera);
-    }
-    /**
-     * Initializes the scene lights with the values read from the XML file.
-     */
+    initViews() {
+            this.graph.views["secCamera"] = this.secCamera;
+            this.secCamID = "secCamera";
+
+            this.camera = this.graph.views[this.graph.viewID];
+            this.sceneCamera = this.camera;
+            this.interface.setActiveCamera(this.camera);
+        }
+        /**
+         * Initializes the scene lights with the values read from the XML file.
+         */
     initLights() {
         var i = 0;
         // Lights index.
@@ -70,19 +69,19 @@ class XMLscene extends CGFscene {
         // Reads the lights from the scene graph.
         for (var key in this.graph.lights) {
             if (i >= 8)
-                break;              // Only eight lights allowed by WebGL.
+                break; // Only eight lights allowed by WebGL.
 
-            if(key == "roomLight") {
+            if (key == "roomLight") {
                 this.roomLightID = i;
             }
 
-            if(key == "treeLight") {
+            if (key == "treeLight") {
                 this.treeLightID = i;
             }
 
             if (this.graph.lights.hasOwnProperty(key)) {
                 var light = this.graph.lights[key];
-                
+
                 this.lights[i].setPosition(light[2][0], light[2][1], light[2][2], light[2][3]);
                 this.lights[i].setAmbient(light[3][0], light[3][1], light[3][2], light[3][3]);
                 this.lights[i].setDiffuse(light[4][0], light[4][1], light[4][2], light[4][3]);
@@ -108,14 +107,14 @@ class XMLscene extends CGFscene {
     }
 
     setDefaultAppearance() {
-        this.setAmbient(0.2, 0.4, 0.8, 1.0);
-        this.setDiffuse(0.2, 0.4, 0.8, 1.0);
-        this.setSpecular(0.2, 0.4, 0.8, 1.0);
-        this.setShininess(10.0);
-    }
-    /** Handler called when the graph is finally loaded. 
-     * As loading is asynchronous, this may be called already after the application has started the run loop
-     */
+            this.setAmbient(0.2, 0.4, 0.8, 1.0);
+            this.setDiffuse(0.2, 0.4, 0.8, 1.0);
+            this.setSpecular(0.2, 0.4, 0.8, 1.0);
+            this.setShininess(10.0);
+        }
+        /** Handler called when the graph is finally loaded. 
+         * As loading is asynchronous, this may be called already after the application has started the run loop
+         */
     onGraphLoaded() {
         this.axis = new CGFaxis(this, this.graph.referenceLength);
 
@@ -143,12 +142,11 @@ class XMLscene extends CGFscene {
         // Clear image and depth buffer everytime we update the scene
         this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-        if(usingSecCam) {
-            this.camera = this.secCamera;
-        }
-        else {
-            this.camera = this.sceneCamera;
-        }
+        // if (usingSecCam) {
+        //     this.camera = this.secCamera;
+        // } else {
+        //     this.camera = this.sceneCamera;
+        // }
         //
         // Initialize Model-View matrix as identity (no transformation
         this.updateProjectionMatrix();
@@ -156,34 +154,32 @@ class XMLscene extends CGFscene {
 
         // Apply transformations corresponding to the camera position relative to the origin
         this.applyViewMatrix();
-        
+
 
         this.pushMatrix();
-        if(this.axisActive)
+        if (this.axisActive)
             this.axis.display();
-        
-        
+
+
         if (this.sceneInited) {
-            
+
             // Draw axis
             this.setDefaultAppearance();
             //get Array of objects to allow iteration in for loop (JS behavior adaptation)
             const lightArr = Object.keys(this.graph.lights);
             for (var i = 0; i < lightArr.length; i++) {
                 this.lights[i].setVisible(true);
-                if(i == this.roomLightID) {
-                    if(this.roomLight)
+                if (i == this.roomLightID) {
+                    if (this.roomLight)
                         this.lights[i].enable();
                     else
-                        this.lights[i].disable(); 
-                }
-                else if(i == this.treeLightID) {
-                    if(this.treeLight)
+                        this.lights[i].disable();
+                } else if (i == this.treeLightID) {
+                    if (this.treeLight)
                         this.lights[i].enable();
                     else
-                        this.lights[i].disable(); 
-                }
-                else
+                        this.lights[i].disable();
+                } else
                     this.lights[i].enable();
                 this.lights[i].update();
             }
@@ -201,15 +197,14 @@ class XMLscene extends CGFscene {
         this.sceneCamera = this.camera;
     }
 
-    updateSecCam(secID) {
-        this.secCamera = this.graph.views[secID];
-    }
+    // updateSecCam(secID) {
+    //     this.secCamera = this.graph.views[secID];
+    // }
 
-    update(t)
-    {
-        if(this.sceneInited) {
-            this.graph.components["demoRoot"].updateAnimation(t/1000);
-            this.secureCam.update(t);
+    update(t) {
+        if (this.sceneInited) {
+            this.graph.components["demoRoot"].updateAnimation(t / 1000);
+            // this.secureCam.update(t);
         }
     }
 
@@ -220,16 +215,16 @@ class XMLscene extends CGFscene {
     }
 
     display() {
-        
+
         this.texRTT.attachToFrameBuffer();
         this.render(true);
-        this.texRTT.detachFromFrameBuffer();		
+        this.texRTT.detachFromFrameBuffer();
         this.render(false);
-        
-        this.gl.disable(this.gl.DEPTH_TEST);
-        this.secureCam.display(this.texRTT);
-        this.gl.enable(this.gl.DEPTH_TEST);
+
+        // this.gl.disable(this.gl.DEPTH_TEST);
+        // this.secureCam.display(this.texRTT);
+        // this.gl.enable(this.gl.DEPTH_TEST);
     }
 
-   
+
 }
