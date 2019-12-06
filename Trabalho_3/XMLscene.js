@@ -203,14 +203,14 @@ class XMLscene extends CGFscene {
 
     update(t) {
         if (this.sceneInited) {
-            this.graph.components["demoRoot"].updateAnimation(t / 1000);
+            this.graph.components["Root"].updateAnimation(t / 1000);
             // this.secureCam.update(t);
         }
     }
 
     checkKeys(eventCode) {
         if (eventCode == "KeyM") {
-            this.graph.components["demoRoot"].updateMaterial();
+            this.graph.components["Root"].updateMaterial();
         }
     }
 
