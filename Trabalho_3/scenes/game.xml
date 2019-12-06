@@ -39,6 +39,7 @@
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
         <texture id="Loki_Miguel" file="scenes/images/loki_player.jpg" />
         <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
+        <texture id="clockface" file="scenes/images/clock.jpg"/>
     </textures>
 
     <materials>
@@ -132,6 +133,7 @@
                <componentref id="Player1"/>
                <componentref id="Player2"/>
                <componentref id="ScoreBoards"/>
+               <componentref id="Clock"/>
             </children>
         </component>
 
@@ -176,6 +178,21 @@
             <children>
                 <componentref id="Score_P1"/>
                 <componentref id="Score_P2"/>
+            </children>
+        </component>
+
+        <component id="Clock">
+            <transformation>
+                <transformationref id="clockTrans"/>
+            </transformation>
+             <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="platform"/>
+                <componentref id="ClockFace"/>
+                <componentref id="Pointers"/>
             </children>
         </component>
 
@@ -458,6 +475,80 @@
             <texture id="inherit" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="ClockFace">
+            <transformation>
+                <translate x="0" y="0" z="0.2"/>
+                <rotate axis="x" angle="90"/>
+                <scale x="2" y="1" z="2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="clockface" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="circle" />
+            </children>
+        </component>
+        
+        <component id="Pointers">
+            <transformation>
+                <translate x="0" y="0" z="0.25" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="inherit" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="HourPointer"/>
+                <componentref id="MinPointer"/>
+                <componentref id="SecPointer"/>
+            </children>
+        </component>
+
+        <component id="HourPointer">
+            <transformation>
+                <translate x="0" y="0.5" z="0" />
+                <scale x="0.1" y="0.5" z="1"/>
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="inherit" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle"/>
+            </children>
+        </component>
+        
+        <component id="MinPointer">
+            <transformation>
+                <rotate axis="z" angle="-90"/>
+                <translate x="0" y="1" z="0" />
+                <scale x="0.1" y="1" z="1"/>
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="inherit" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle"/>
+            </children>
+        </component>
+        
+        <component id="SecPointer">
+            <transformation>
+                <rotate axis="z" angle="-30"/>
+                <translate x="0" y="1" z="0" />
+                <scale x="0.05" y="1" z="1"/>
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="inherit" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle"/>
             </children>
         </component>
     </components>
