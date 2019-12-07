@@ -40,6 +40,15 @@
         <texture id="Loki_Miguel" file="scenes/images/loki_player.jpg" />
         <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
         <texture id="clockface" file="scenes/images/clock.jpg"/>
+        <texture id="darkblue" file="scenes/images/darkblue.jpg"/>
+        <texture id="blue" file="scenes/images/blue.jpg"/>
+        <texture id="bordo" file="scenes/images/bordo.png"/>
+        <texture id="yellow" file="scenes/images/yellow.jpg"/>
+        <texture id="purple" file="scenes/images/purple.jpg"/>
+        <texture id="pink" file="scenes/images/pink.jpg"/>
+        <texture id="green" file="scenes/images/green.jpg"/>
+        <texture id="darkgreen" file="scenes/images/darkgreen.jpg"/>
+
     </textures>
 
     <materials>
@@ -66,6 +75,11 @@
         <transformation id="scoreTrans">
             <translate x="12" y="6" z="0" />
         </transformation>
+
+        <transformation id="clockTrans">
+            <translate x="-10" y="10" z="0" />
+        </transformation>
+
     </transformations>
 
      <animations> 
@@ -83,6 +97,25 @@
 
 
     <primitives>
+        <primitive id="RectangleT4">
+            <rectangle x1="0" y1="0" x2="4" y2="1" />
+        </primitive>
+
+        <primitive id="RectangleT5">
+            <rectangle x1="0" y1="0" x2="5" y2="1" />
+        </primitive>
+
+        <primitive id="Triangle">
+          <triangle   x1="0" y1="1" z1="0"
+                        x2="0" y2="0" z2="0"
+                        x3="1" y3="0" z3="0" />
+        </primitive>
+
+        <primitive id="Square">
+            <rectangle x1="0" y1="0" x2="1" y2="1" />
+        </primitive>
+
+
         <primitive id="rectangle">
             <rectangle x1="-0.5" y1="-1" x2="0.5" y2="1" />
         </primitive>
@@ -129,13 +162,854 @@
             </materials>
             <texture id="demoTexture" length_s="1" length_t="1"/>
             <children>
-               <primitiveref id="rectangle"/>
                <componentref id="Player1"/>
                <componentref id="Player2"/>
                <componentref id="ScoreBoards"/>
                <componentref id="Clock"/>
+               <componentref id="Board"/>
             </children>
         </component>
+
+        <component id="Board">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="BottomBoard"/>
+                <componentref id="L1"/>
+                <componentref id="L2"/>
+                <componentref id="L3"/>
+                <componentref id="L4"/>
+                <componentref id="L5"/>
+                <componentref id="L6"/>
+                <componentref id="L7"/>
+                <componentref id="L8"/>
+                <componentref id="L1T"/>
+                <componentref id="L2T"/>
+                <componentref id="L3T"/>
+                <componentref id="L4T"/>
+                <componentref id="L5T"/>
+                <componentref id="L6T"/>
+                <componentref id="L7T"/>
+                <componentref id="L8T"/>
+                <componentref id="RectangleId2"/>
+                <componentref id="RectangleId3"/>
+                <componentref id="RectangleId6"/>
+                <componentref id="RectangleId7"/>
+                <componentref id="RectangleId8"/>
+                <componentref id="RectangleId1"/>
+                <componentref id="RectangleId4"/>
+                <componentref id="RectangleId5"/>
+            </children>
+        </component>
+
+        <component id="BottomBoard">
+            <transformation>
+                <scale x="10" y="0" z="10" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkgreen" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="plane"/>
+            </children>
+        </component>
+
+        <component id="RectangleId2">
+            <transformation>
+                <translate x="-4" y="0.01" z="-4" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="bordo" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="RectangleT4"/>
+            </children>
+        </component>
+
+
+        <component id="RectangleId3">
+            <transformation>
+                <translate x="0" y="0.01" z="-4" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="blue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="RectangleT5"/>
+            </children>
+        </component>
+
+        <component id="RectangleId6">
+            <transformation>
+                <translate x="0" y="0.01" z="5" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="bordo" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="RectangleT4"/>
+            </children>
+        </component>
+
+         <component id="RectangleId7">
+            <transformation>
+                <translate x="-5" y="0.01" z="5" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="blue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="RectangleT5"/>
+            </children>
+        </component>
+
+        <component id="RectangleId8">
+            <transformation>
+                <translate x="-5" y="0.01" z="0" />
+                <rotate axis="y" angle="-90" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="bordo" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="RectangleT4"/>
+            </children>
+        </component>
+
+
+        <component id="RectangleId1">
+            <transformation>
+                <translate x="-5" y="0.01" z="-5" />
+                <rotate axis="y" angle="-90" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="blue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="RectangleT5"/>
+            </children>
+        </component>
+
+         <component id="RectangleId4">
+            <transformation>
+                <translate x="4" y="0.01" z="-4" />
+                <rotate axis="y" angle="-90" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="bordo" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="RectangleT4"/>
+            </children>
+        </component>
+
+
+        <component id="RectangleId5">
+            <transformation>
+                <translate x="4" y="0.01" z="0" />
+                <rotate axis="y" angle="-90" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="blue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="RectangleT5"/>
+            </children>
+        </component>
+
+        <component id="TriangleId6">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="yellow" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="Triangle"/>
+            </children>
+        </component>
+
+        <component id="TriangleId5">
+            <transformation>
+                <translate x="1" y="1" z="0" />
+                <rotate axis="z" angle="180" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="purple" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="Triangle"/>
+            </children>
+        </component>
+
+        <component id="TriangleId4">
+            <transformation>
+                <translate x="1" y="0" z="0" />
+                <rotate axis="z" angle="90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="green" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="Triangle"/>
+            </children>
+        </component>
+
+        <component id="TriangleId3">
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate axis="x" angle="180" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="pink" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="Triangle"/>
+            </children>
+        </component>
+
+        <component id="L1">
+            <transformation>
+                <translate x="0" y="0" z="-3" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Square5"/>
+                <componentref id="Square6"/>
+                <componentref id="Square7"/>
+                <componentref id="Square8"/>
+            </children>
+        </component>
+
+        <component id="L2">
+            <transformation>
+                <translate x="0" y="0" z="-2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Square1"/>
+                <componentref id="Square2"/>
+                <componentref id="Square3"/>
+                <componentref id="Square4"/>
+            </children>
+        </component>
+
+        <component id="L3">
+            <transformation>
+                <translate x="0" y="0" z="-1" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Square5"/>
+                <componentref id="Square6"/>
+                <componentref id="Square7"/>
+                <componentref id="Square8"/>
+            </children>
+        </component>
+
+        <component id="L4">
+            <transformation>
+                <translate x="0" y="0" z="0" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Square1"/>
+                <componentref id="Square2"/>
+                <componentref id="Square3"/>
+                <componentref id="Square4"/>
+            </children>
+        </component>
+
+        <component id="L5">
+            <transformation>
+                <translate x="0" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Square5"/>
+                <componentref id="Square6"/>
+                <componentref id="Square7"/>
+                <componentref id="Square8"/>
+            </children>
+        </component>
+
+        <component id="L6">
+            <transformation>
+                <translate x="0" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Square1"/>
+                <componentref id="Square2"/>
+                <componentref id="Square3"/>
+                <componentref id="Square4"/>
+            </children>
+        </component>
+
+        <component id="L7">
+            <transformation>
+                <translate x="0" y="0" z="3" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Square5"/>
+                <componentref id="Square6"/>
+                <componentref id="Square7"/>
+                <componentref id="Square8"/>
+            </children>
+        </component>
+
+        <component id="L8">
+            <transformation>
+                <translate x="0" y="0" z="4" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Square1"/>
+                <componentref id="Square2"/>
+                <componentref id="Square3"/>
+                <componentref id="Square4"/>
+            </children>
+        </component>
+
+        <component id="Square1">
+            <transformation>
+                <translate x="-3" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id= "Square"/>
+            </children>
+        </component>
+        <component id="Square2">
+            <transformation>
+                <translate x="-1" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id= "Square"/>
+            </children>
+        </component>
+        <component id="Square3">
+            <transformation>
+                <translate x="1" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id= "Square"/>
+            </children>
+        </component>
+        <component id="Square4">
+            <transformation>
+                <translate x="3" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id= "Square"/>
+            </children>
+        </component>
+
+        <component id="Square5">
+            <transformation>
+                <translate x="-4" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id= "Square"/>
+            </children>
+        </component>
+        <component id="Square6">
+            <transformation>
+                <translate x="-2" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id= "Square"/>
+            </children>
+        </component>
+        <component id="Square7">
+            <transformation>
+                <translate x="0" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id= "Square"/>
+            </children>
+        </component>
+        <component id="Square8">
+            <transformation>
+                <translate x="2" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id= "Square"/>
+            </children>
+        </component>
+
+        <component id="L1T">
+            <transformation>
+                <translate x="0" y="0" z="-3" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="Id6T1"/>
+                <componentref id="Id5T1"/>
+                <componentref id="Id6T2"/>
+                <componentref id="Id5T2"/>
+                <componentref id="Id6T3"/>
+                <componentref id="Id5T3"/>
+                <componentref id="Id6T4"/>
+                <componentref id="Id5T4"/>
+            </children>
+        </component>
+
+        <component id="L2T">
+            <transformation>
+                <translate x="0" y="0" z="-2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="Id3T1"/>
+                <componentref id="Id4T1"/>
+                <componentref id="Id3T2"/>
+                <componentref id="Id4T2"/>
+                <componentref id="Id3T3"/>
+                <componentref id="Id4T3"/>
+                <componentref id="Id3T4"/>
+                <componentref id="Id4T4"/>
+            </children>
+        </component>
+
+        <component id="L3T">
+            <transformation>
+                <translate x="0" y="0" z="-1" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="Id6T1"/>
+                <componentref id="Id5T1"/>
+                <componentref id="Id6T2"/>
+                <componentref id="Id5T2"/>
+                <componentref id="Id6T3"/>
+                <componentref id="Id5T3"/>
+                <componentref id="Id6T4"/>
+                <componentref id="Id5T4"/>
+            </children>
+        </component>
+
+        <component id="L4T">
+            <transformation>
+                <translate x="0" y="0" z="0" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="Id3T1"/>
+                <componentref id="Id4T1"/>
+                <componentref id="Id3T2"/>
+                <componentref id="Id4T2"/>
+                <componentref id="Id3T3"/>
+                <componentref id="Id4T3"/>
+                <componentref id="Id3T4"/>
+                <componentref id="Id4T4"/>
+            </children>
+        </component>
+
+        <component id="L5T">
+            <transformation>
+                <translate x="0" y="0" z="1" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="Id6T1"/>
+                <componentref id="Id5T1"/>
+                <componentref id="Id6T2"/>
+                <componentref id="Id5T2"/>
+                <componentref id="Id6T3"/>
+                <componentref id="Id5T3"/>
+                <componentref id="Id6T4"/>
+                <componentref id="Id5T4"/>
+            </children>
+        </component>
+
+        <component id="L6T">
+            <transformation>
+                <translate x="0" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="Id3T1"/>
+                <componentref id="Id4T1"/>
+                <componentref id="Id3T2"/>
+                <componentref id="Id4T2"/>
+                <componentref id="Id3T3"/>
+                <componentref id="Id4T3"/>
+                <componentref id="Id3T4"/>
+                <componentref id="Id4T4"/>
+            </children>
+        </component>
+
+        <component id="L7T">
+            <transformation>
+                <translate x="0" y="0" z="3" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="Id6T1"/>
+                <componentref id="Id5T1"/>
+                <componentref id="Id6T2"/>
+                <componentref id="Id5T2"/>
+                <componentref id="Id6T3"/>
+                <componentref id="Id5T3"/>
+                <componentref id="Id6T4"/>
+                <componentref id="Id5T4"/>
+            </children>
+        </component>
+
+        <component id="L8T">
+            <transformation>
+                <translate x="0" y="0" z="4" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none"/>
+            <children>
+                <componentref id="Id3T1"/>
+                <componentref id="Id4T1"/>
+                <componentref id="Id3T2"/>
+                <componentref id="Id4T2"/>
+                <componentref id="Id3T3"/>
+                <componentref id="Id4T3"/>
+                <componentref id="Id3T4"/>
+                <componentref id="Id4T4"/>
+            </children>
+        </component>
+
+        <component id="Id6T1">
+            <transformation>
+                <translate x="-3" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId6"/>
+            </children>
+        </component>
+
+        <component id="Id5T1">
+            <transformation>
+                <translate x="-3" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId5"/>
+            </children>
+        </component>
+
+        <component id="Id6T2">
+            <transformation>
+                <translate x="-1" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId6"/>
+            </children>
+        </component>
+
+         <component id="Id5T2">
+            <transformation>
+                <translate x="-1" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" />
+            <children>
+                <componentref id= "TriangleId5"/>
+            </children>
+        </component>
+
+        <component id="Id6T3">
+            <transformation>
+                <translate x="1" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId6"/>
+            </children>
+        </component>
+
+         <component id="Id5T3">
+            <transformation>
+                <translate x="1" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId5"/>
+            </children>
+        </component>
+
+        <component id="Id6T4">
+            <transformation>
+                <translate x="3" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId6"/>
+            </children>
+        </component>
+
+         <component id="Id5T4">
+            <transformation>
+                <translate x="3" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue"/>
+            <children>
+                <componentref id= "TriangleId5"/>
+            </children>
+        </component>
+
+        <component id="Id3T1">
+            <transformation>
+                <translate x="-4" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId3"/>
+            </children>
+        </component>
+
+        <component id="Id4T1">
+            <transformation>
+                <translate x="-4" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId4"/>
+            </children>
+        </component>
+
+        <component id="Id3T2">
+            <transformation>
+                <translate x="-2" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId3"/>
+            </children>
+        </component>
+
+         <component id="Id4T2">
+            <transformation>
+                <translate x="-2" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue" />
+            <children>
+                <componentref id= "TriangleId4"/>
+            </children>
+        </component>
+
+        <component id="Id3T3">
+            <transformation>
+                <translate x="0" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId3"/>
+            </children>
+        </component>
+
+         <component id="Id4T3">
+            <transformation>
+                <translate x="0" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId4"/>
+            </children>
+        </component>
+
+        <component id="Id3T4">
+            <transformation>
+                <translate x="2" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="none" />
+            <children>
+                <componentref id= "TriangleId3"/>
+            </children>
+        </component>
+
+        <component id="Id4T4">
+            <transformation>
+                <translate x="2" y="0.01" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkblue"/>
+            <children>
+                <componentref id= "TriangleId4"/>
+            </children>
+        </component>
+
 
         <component id="Player1">
             <transformation>
