@@ -172,6 +172,7 @@
 
         <component id="Board">
             <transformation>
+                <scale x="1.75" y="1" z="1.75" />
             </transformation>
             <materials>
                 <material id="defaultMat" />
@@ -179,6 +180,11 @@
             <texture id="demoTexture" length_s="1" length_t="1"/>
             <children>
                 <componentref id="BottomBoard"/>
+                <componentref id="BottomBottomBoard"/>
+                <componentref id="FrontSide"/>
+                <componentref id="LeftSide"/>
+                <componentref id="RightSide"/>
+                <componentref id="BackSide"/>
                 <componentref id="L1"/>
                 <componentref id="L2"/>
                 <componentref id="L3"/>
@@ -206,9 +212,86 @@
             </children>
         </component>
 
+         <component id="FrontSide">
+            <transformation>
+                <translate x="0" y="-0.5" z="5" />
+                <scale x="10" y="1" z="1" />
+                <rotate axis="x" angle="90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkgreen" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="plane"/>
+            </children>
+        </component>
+
+        <component id="BackSide">
+            <transformation>
+                <translate x="0" y="-0.5" z="-5" />
+                <scale x="10" y="1" z="1" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkgreen" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="plane"/>
+            </children>
+        </component>
+
+        <component id="LeftSide">
+            <transformation>
+                <translate x="-5" y="-0.5" z="0" />
+                <scale x="1" y="1" z="10" />
+                <rotate axis="y" angle="-90" />
+                <rotate axis="x" angle="90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkgreen" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="plane"/>
+            </children>
+        </component>
+
+         <component id="RightSide">
+            <transformation>
+                <translate x="5" y="-0.5" z="0" />
+                <scale x="1" y="1" z="10" />
+                <rotate axis="y" angle="90" />
+                <rotate axis="x" angle="90" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkgreen" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="plane"/>
+            </children>
+        </component>
+
         <component id="BottomBoard">
             <transformation>
                 <scale x="10" y="0" z="10" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="darkgreen" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="plane"/>
+            </children>
+        </component>
+
+         <component id="BottomBottomBoard">
+            <transformation>
+                <translate x="0" y="-1" z="0" />
+                <scale x="10" y="1" z="10" />
+                <rotate axis="x" angle="-180" />
             </transformation>
             <materials>
                 <material id="defaultMat" />
@@ -1014,7 +1097,7 @@
         <component id="Player1">
             <transformation>
                 <!-- <translate x="8" y="3" z="8" /> -->
-                <translate x="8" y="0" z="0" />
+                <translate x="12" y="0" z="0" />
             </transformation>
             <materials>
                 <material id="defaultMat" />
@@ -1029,7 +1112,7 @@
         <component id="Player2">
             <transformation>
                 <!-- <translate x="14" y="3" z="8" /> -->
-                <translate x="14" y="0" z="0" /> 
+                <translate x="18" y="0" z="0" /> 
             </transformation>
             <materials>
                 <material id="defaultMat" />
