@@ -170,9 +170,8 @@
             </children>
         </component>
 
-        <component id="Board">
+        <component id="GameBoardStructure">
             <transformation>
-                <scale x="1.75" y="1" z="1.75" />
             </transformation>
             <materials>
                 <material id="defaultMat" />
@@ -185,6 +184,17 @@
                 <componentref id="LeftSide"/>
                 <componentref id="RightSide"/>
                 <componentref id="BackSide"/>
+            </children>
+        </component>
+
+         <component id="GameBoard">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
                 <componentref id="L1"/>
                 <componentref id="L2"/>
                 <componentref id="L3"/>
@@ -209,6 +219,20 @@
                 <componentref id="RectangleId1"/>
                 <componentref id="RectangleId4"/>
                 <componentref id="RectangleId5"/>
+            </children>
+        </component>
+
+        <component id="Board">
+            <transformation>
+                <scale x="1.75" y="1" z="1.75" />
+            </transformation>
+            <materials>
+                <material id="defaultMat" />
+            </materials>
+            <texture id="demoTexture" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="GameBoardStructure"/>
+                <componentref id="GameBoard"/>            
             </children>
         </component>
 
