@@ -13,8 +13,6 @@ class MyComponent {
         this.transformation = transformation;
         this.currMatIndex = 0;
         this.animation = animation;
-
-
     }
 
     display(textureP, materialP) {
