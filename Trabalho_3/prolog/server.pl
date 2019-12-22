@@ -7,29 +7,32 @@
 
 :- http_handler(root(create),buildBoard, []).
 :- http_handler(root(plays),getPossiblePlays,[]).
-% testing
-:- http_handler(root(test),test,[]).
-:- json_object
-    testing(b:list).
 
 :- json_object
-    board(b:list(list), p:list).
+    board(board:list)
+:- json_object
+    boardState(board:list(list), plays:list).
 
 :- json_object
     possPlays(p:list).
 
+:- json_object
+    computer_move(player:integer,board:list,played:list,level:integer).
+
+:- json_object
+    move_result(played:list,board:list,state:integer).
 
 
 buildBoard(_) :-
   cors_enable,  
   buildBlankList(B),
-  prolog_to_json(B, JSONOut),
+  prolog_to_json(, JSONOut),
   reply_json(JSONOut).
 
 getPossiblePlays(Request) :-
   cors_enable,
   http_read_json(Request, JSONIn),
-  json_to_prolog(JSONIn, board(B,P)),
+  json_to_prolog(JSONIn, boardState(B,P)),
   valid_moves(B,P,Out),
   prolog_to_json(Out,JSONOut),
   reply_json(JSONOut).
@@ -39,18 +42,10 @@ getPossiblePlays(Request) :-
 
 server :-
   http_server(http_dispatch,[port(8080)]).
-  
 
-
-% testing
-test(Request) :-
-  cors_enable,
-  http_read_json(Request,JSONIn),
-  json_to_prolog(JSONIn,testing(B)),
-  displayList(B),
-  reply_json("Okay").  
-
-displayList([]).
-displayList([L|Ls]) :-
-  print(L),
-  displayList(Ls).
+% Necessary predicates to send requests
+% 
+% - computer moves (random and greedy) (choose_move)
+% - player move (move)
+% - verify game state (value)
+% 
