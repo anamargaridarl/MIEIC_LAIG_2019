@@ -36,6 +36,8 @@ class XMLscene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.setUpdatePeriod(50);
 
+        this.board;
+        this.orchestrator;
         this.texRTT = new CGFtextureRTT(this, this.gl.canvas.width, this.gl.canvas.height);
         // this.secureCam = new MySecurityCamera(this);
     }
@@ -131,6 +133,9 @@ class XMLscene extends CGFscene {
         this.interface.createViewDropdown();
         this.interface.createLightsCheckboxes();
 
+        this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
+        this.orchestrator = new MyGameOrchestrator(this, this.board);
+
     }
 
     /**
@@ -221,6 +226,8 @@ class XMLscene extends CGFscene {
         this.texRTT.detachFromFrameBuffer();
         this.render(false);
 
+        if (this.graph != undefined)
+            this.orchestrator.display();
         // this.gl.disable(this.gl.DEPTH_TEST);
         // this.secureCam.display(this.texRTT);
         // this.gl.enable(this.gl.DEPTH_TEST);

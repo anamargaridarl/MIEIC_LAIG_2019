@@ -147,9 +147,7 @@ class MyGameBoard extends CGFobject {
                 this.applyTransformation(row, col, this.pieces[row][col]);
             }
         }
-
         this.scene.popMatrix();
-
 
     }
 

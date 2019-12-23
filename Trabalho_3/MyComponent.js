@@ -80,6 +80,10 @@ class MyComponent {
         }
     }
 
+    changeCurrentMaterialIndex(ind) {
+        this.currMatIndex = ind;
+    }
+
     updateAnimation(t) {
         if (this.animation)
             this.animation.update(t, this.scene);

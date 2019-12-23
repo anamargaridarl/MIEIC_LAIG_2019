@@ -37,9 +37,6 @@ getPossiblePlays(Request) :-
   prolog_to_json(Out,JSONOut),
   reply_json(JSONOut).
 
-
-  
-
 server :-
   http_server(http_dispatch,[port(8080)]).
 

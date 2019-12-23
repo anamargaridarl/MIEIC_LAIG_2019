@@ -230,11 +230,11 @@ class MySceneGraph {
             if (i % 2 != 0) {
                 //first up triangle; second down triangle
                 let triangles = [];
-                triangles.push(new MyPiece(this.scene, n, 0, this.components['TriangleId5']));
-                triangles.push(new MyPiece(this.scene, n, 0, this.components['TriangleId6']));
+                triangles.push(new MyPiece(this.scene, n, this.components['TriangleId5']));
+                triangles.push(new MyPiece(this.scene, n, this.components['TriangleId6']));
                 line.push(triangles);
             } else
-                line.push(new MyPiece(this.scene, n + i, 0, this.components['Square']));
+                line.push(new MyPiece(this.scene, n + i, this.components['Square']));
             n++;
         }
 
@@ -261,11 +261,11 @@ class MySceneGraph {
             if (i % 2 == 0) {
                 //first up triangle; second down triangle
                 let triangles = [];
-                triangles.push(new MyPiece(this.scene, n + i, 0, this.components['TriangleId3']));
-                triangles.push(new MyPiece(this.scene, n + i, 0, this.components['TriangleId4']));
+                triangles.push(new MyPiece(this.scene, n + i, this.components['TriangleId3']));
+                triangles.push(new MyPiece(this.scene, n + i, this.components['TriangleId4']));
                 line.push(triangles);
             } else
-                line.push(new MyPiece(this.scene, n + i, 0, this.components['Square']));
+                line.push(new MyPiece(this.scene, n + i, this.components['Square']));
             n++;
         }
 
@@ -300,14 +300,14 @@ class MySceneGraph {
 
     loadRectangles() {
         let rectangles = [];
-        rectangles.push(new MyPiece(this.scene, 1, 0, this.components['RectangleT5T']));
-        rectangles.push(new MyPiece(this.scene, 2, 0, this.components['RectangleT4T']));
-        rectangles.push(new MyPiece(this.scene, 3, 0, this.components['RectangleT5T']));
-        rectangles.push(new MyPiece(this.scene, 4, 0, this.components['RectangleT4T']));
-        rectangles.push(new MyPiece(this.scene, 5, 0, this.components['RectangleT5T']));
-        rectangles.push(new MyPiece(this.scene, 6, 0, this.components['RectangleT4T']));
-        rectangles.push(new MyPiece(this.scene, 7, 0, this.components['RectangleT5T']));
-        rectangles.push(new MyPiece(this.scene, 8, 0, this.components['RectangleT4T']));
+        rectangles.push(new MyPiece(this.scene, 1, this.components['RectangleT5T']));
+        rectangles.push(new MyPiece(this.scene, 2, this.components['RectangleT4T']));
+        rectangles.push(new MyPiece(this.scene, 3, this.components['RectangleT5T']));
+        rectangles.push(new MyPiece(this.scene, 4, this.components['RectangleT4T']));
+        rectangles.push(new MyPiece(this.scene, 5, this.components['RectangleT5T']));
+        rectangles.push(new MyPiece(this.scene, 6, this.components['RectangleT4T']));
+        rectangles.push(new MyPiece(this.scene, 7, this.components['RectangleT5T']));
+        rectangles.push(new MyPiece(this.scene, 8, this.components['RectangleT4T']));
         return rectangles;
     }
 
@@ -324,8 +324,6 @@ class MySceneGraph {
             else if (i % 2 != 0)
                 this.pieces.push(this.loadOddRow(n, i, rectangles));
         }
-
-        this.board = new MyGameBoard(this.scene, this.pieces);
     }
 
     childrenPieces(board) {
@@ -1626,6 +1624,5 @@ class MySceneGraph {
      */
     displayScene() {
         this.components[this.idRoot].display();
-        this.board.display();
     }
 }
