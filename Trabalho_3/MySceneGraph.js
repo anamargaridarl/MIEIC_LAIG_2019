@@ -319,9 +319,9 @@ class MySceneGraph {
                 this.pieces.push(this.firstLine(rectangles));
             else if (i == 9)
                 this.pieces.push(this.lastLine(rectangles));
-            else if (i % 2 == 0 && i != 0)
+            else if (i % 2 == 0)
                 this.pieces.push(this.loadEvenRow(n, i, rectangles));
-            else
+            else if (i % 2 != 0)
                 this.pieces.push(this.loadOddRow(n, i, rectangles));
         }
 
