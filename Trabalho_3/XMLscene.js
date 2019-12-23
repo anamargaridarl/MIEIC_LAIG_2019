@@ -27,6 +27,7 @@ class XMLscene extends CGFscene {
         this.axisActive = false;
         this.initCameras();
         this.enableTextures(true);
+        this.setPickEnabled(true);
 
         this.gl.clearDepth(100.0);
         this.gl.enable(this.gl.DEPTH_TEST);
@@ -135,6 +136,24 @@ class XMLscene extends CGFscene {
 
         this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
         this.orchestrator = new MyGameOrchestrator(this, this.board);
+        this.orchestrator.registerPickables();
+
+    }
+
+    logPicking() {
+        if (!this.pickMode) {
+            if (this.pickResults !== null && this.pickResults.length > 0) {
+                for (let i = 0; i < this.pickResults.length; i++) {
+                    const obj = this.pickResults[i][0];
+                    if (obj) {
+                        const clickId = this.pickResults[i][1];
+                        console.log("Picked object: " + obj + ", with pick id " + customId);
+                        this.orchestrator.changeColor(clickId);
+                    }
+                }
+                this.pickResults = [];
+            }
+        }
 
     }
 
@@ -221,13 +240,17 @@ class XMLscene extends CGFscene {
 
     display() {
 
+        this.logPicking();
+        this.clearPickRegistration();
+
         this.texRTT.attachToFrameBuffer();
         this.render(true);
         this.texRTT.detachFromFrameBuffer();
         this.render(false);
 
-        if (this.graph != undefined)
+        if (this.graph != undefined) {
             this.orchestrator.display();
+        }
         // this.gl.disable(this.gl.DEPTH_TEST);
         // this.secureCam.display(this.texRTT);
         // this.gl.enable(this.gl.DEPTH_TEST);

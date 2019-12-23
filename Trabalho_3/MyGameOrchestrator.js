@@ -14,4 +14,12 @@ class MyGameOrchestrator extends CGFobject {
         this.gameboard.changeColor();
     }
 
+    changeColor(id) {
+        this.gameboard.changeColorId(id);
+    }
+
+    registerPickables() {
+        this.gameboard.registerPickables();
+    }
+
 }

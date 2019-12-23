@@ -8,6 +8,7 @@ class MyPiece extends CGFobject {
         super(scene);
 
         this.id = id;
+
         //color 0 --> transparent
         //color 1 --> color player1
         //color 2 --> color player2

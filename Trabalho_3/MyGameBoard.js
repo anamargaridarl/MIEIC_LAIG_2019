@@ -20,6 +20,18 @@ class MyGameBoard extends CGFobject {
         return this.pieces[row][column];
     }
 
+    changeColorId(id) {
+        for (let row = 1; row < 9; row++) {
+            for (let col = 1; col < 9; col++) {
+                if (this.pieces[row][col].id == id) {
+                    this.pieces[row][col].changeColor(1, 1);
+                    return;
+                }
+            }
+        }
+    }
+
+
     applyTransformation(row, col, unit) {
 
         if (Array.isArray(unit)) {
@@ -167,4 +179,23 @@ class MyGameBoard extends CGFobject {
         this.pieces[0][0].changeColor(1, 2);
     }
 
+    registerPickables() {
+
+        console.log('meiasazuis');
+
+        this.scene.registerForPick(this.pieces[0][0].id, this.pieces[0][0]);
+        this.scene.registerForPick(this.pieces[0][1].id, this.pieces[0][1]);
+        this.scene.registerForPick(this.pieces[0][6].id, this.pieces[0][6]);
+        this.scene.registerForPick(this.pieces[1][9].id, this.pieces[1][9]);
+        this.scene.registerForPick(this.pieces[6][9].id, this.pieces[6][9]);
+        this.scene.registerForPick(this.pieces[9][8].id, this.pieces[9][8]);
+        this.scene.registerForPick(this.pieces[9][0].id, this.pieces[9][0]);
+        this.scene.registerForPick(this.pieces[6][0].id, this.pieces[6][0]);
+
+        for (let row = 1; row < 9; row++) {
+            for (let col = 1; col < 9; col++) {
+                this.scene.registerForPick(this.pieces[row][col].id, this.pieces[row][col]);
+            }
+        }
+    }
 }
