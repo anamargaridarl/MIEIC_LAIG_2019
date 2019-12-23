@@ -137,6 +137,7 @@ class MyGameBoard extends CGFobject {
 
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
+        mat4.translate(transfMatrix, transfMatrix, [-11, 0.01, -8]);
         transfMatrix = mat4.scale(transfMatrix, transfMatrix, [2, 2, 2]);
         this.scene.multMatrix(transfMatrix);
 

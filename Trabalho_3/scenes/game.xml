@@ -166,11 +166,14 @@
                <componentref id="Player2"/>
                <componentref id="ScoreBoards"/>
                <componentref id="Clock"/>
+               <componentref id="GameBoardStructure"/>
+
             </children>
         </component>
 
         <component id="GameBoardStructure">
             <transformation>
+                <translate x="-1" y="0" z="0" />
                 <scale x="1.75" y="1" z="1.75" />
             </transformation>
             <materials>
