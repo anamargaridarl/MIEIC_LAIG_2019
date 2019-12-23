@@ -307,6 +307,8 @@
 
         <component id="RectangleT5T">
             <transformation>
+            <rotate axis="x" angle="-90" />
+
             </transformation>
             <materials>
                 <material id="defaultMat" />
