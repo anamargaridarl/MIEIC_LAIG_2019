@@ -11,6 +11,7 @@ class MyGameOrchestrator extends CGFobject {
 
     display() {
         this.gameboard.display();
+        this.gameboard.changeColor();
     }
 
 }

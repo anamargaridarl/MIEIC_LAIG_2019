@@ -32,10 +32,9 @@ class MyPiece extends CGFobject {
                 this.color = 0;
         }
 
-        applyChangeColor();
     }
 
-    applyChangeColor() {
+    applyColor() {
         this.piece.changeCurrentMaterialIndex(this.color);
     }
 

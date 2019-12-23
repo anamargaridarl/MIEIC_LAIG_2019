@@ -27,6 +27,7 @@ class MyGameBoard extends CGFobject {
             let transfMatrix = mat4.create();
             mat4.translate(transfMatrix, transfMatrix, [col, 0, row]);
             this.scene.multMatrix(transfMatrix);
+            unit[0].applyColor();
             unit[0].piece.display();
             this.scene.popMatrix();
 
@@ -34,6 +35,7 @@ class MyGameBoard extends CGFobject {
             let transfMatrix2 = mat4.create();
             mat4.translate(transfMatrix2, transfMatrix2, [col, 0, row]);
             this.scene.multMatrix(transfMatrix2);
+            unit[1].applyColor();
             unit[1].piece.display();
             this.scene.popMatrix();
         } else {
@@ -41,6 +43,7 @@ class MyGameBoard extends CGFobject {
             let transfMatrix = mat4.create();
             mat4.translate(transfMatrix, transfMatrix, [col, 0, row]);
             this.scene.multMatrix(transfMatrix);
+            unit.applyColor();
             unit.piece.display();
             this.scene.popMatrix();
         }
@@ -52,6 +55,7 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 1]);
         this.scene.multMatrix(transfMatrix);
+        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }
@@ -61,6 +65,7 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [1, 0, 0]);
         this.scene.multMatrix(transfMatrix);
+        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }
@@ -70,6 +75,7 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 0]);
         this.scene.multMatrix(transfMatrix);
+        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }
@@ -80,6 +86,7 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 10]);
         this.scene.multMatrix(transfMatrix);
+        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }
@@ -90,6 +97,7 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-9, 0, 10]);
         this.scene.multMatrix(transfMatrix);
+        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }
@@ -99,6 +107,7 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 9]);
         this.scene.multMatrix(transfMatrix);
+        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }
@@ -108,6 +117,7 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [0, 0, 9]);
         this.scene.multMatrix(transfMatrix);
+        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }
@@ -118,6 +128,7 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-8, 0, 1]);
         this.scene.multMatrix(transfMatrix);
+        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }
@@ -140,7 +151,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [-11, 0.01, -8]);
         transfMatrix = mat4.scale(transfMatrix, transfMatrix, [2, 2, 2]);
         this.scene.multMatrix(transfMatrix);
-
         this.displayRectangles(this.pieces);
         for (let row = 1; row < 9; row++) {
             for (let col = 1; col < 9; col++) {
@@ -149,6 +159,12 @@ class MyGameBoard extends CGFobject {
         }
         this.scene.popMatrix();
 
+    }
+
+    changeColor() {
+        this.pieces[1][1].changeColor(1, 1);
+        this.pieces[1][3].changeColor(1, 2);
+        this.pieces[0][0].changeColor(1, 2);
     }
 
 }
