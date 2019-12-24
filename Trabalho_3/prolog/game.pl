@@ -322,3 +322,22 @@ twoComputerGame(Board,Aux,Lvl1,Lvl2) :-
   (game_over(StateOut2);
   (twoComputerGame(BoardOut2,AuxF,Lvl1,Lvl2),!)))).
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LAIG ADAPTATIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+player_move(Board,Played,Player,Row,Col,T,BoardOut,PlayedOut,StateOut) :-
+  getShapeAddCoord(Board,Row,Col,T,Tout,_),          %fetch played piece from board --> board piece format: [Color,Id]; 'Piece' format: [[Row,Col],[Color,Id]]
+  fillPiece(Board,Row,Col,Tout,Player,BoardOut),         %fill played piece color field in board 
+  addPlayAux(Played,BoardOut,Col,Row,Tout, PlayedOut),       %add played piece to auxiliar structure --> pieces format: [[Row,Col],[Color,Id]] 
+  value(BoardOut,PlayedOut,StateOut).
+
+cpu_move(Board,Played,Player,Poss,0,BoardOut,PlayedOut,StateOut) :-
+  getRandomPiece(Poss,Row,Col,T),               %differs from move because the piece played will be obatined randomly
+  fillPiece(Board,Row,Col,T,Player,BoardOut),        
+  addPlayAux(Played,BoardOut,Col,Row,T, PlayedOut),
+  value(BoardOut,PlayedOut,StateOut).
+
+cpu_move(Board,Played,Player,Poss,1,BoardOut,PlayedOut,StateOut) :-
+  getGreedyPiece(Board,Played,Player,Poss,Row,Col,T), %instead of choosing randomly, decided which piece is best with a greedy strategy
+  fillPiece(Board,Row,Col,T,Player,BoardOut),        
+  addPlayAux(Played,BoardOut,Col,Row,T, PlayedOut),
+  value(BoardOut,PlayedOut,StateOut).
