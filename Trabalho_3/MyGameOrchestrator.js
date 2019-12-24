@@ -1,20 +1,24 @@
 class MyGameOrchestrator extends CGFobject {
 
-    constructor(scene ) {
+    constructor(scene, gameboard) {
         super(scene);
 
         this.gamesequence = [];
-        //this.animator = new MyAnimator();
-
-        let filename = getUrlVars()['file'] || "game.xml" || "christmas.xml";
-        this.theme = new MySceneGraph(filename,scene);
-        this.gameboard = new MyGameBoard(scene, theme.pieces);
-        //this.prolog = new MyPrologInterface();
+        this.gameboard = gameboard;
         this.initBuffers();
+
     };
 
-    display(){
+    display() {
         this.gameboard.display();
-        this.theme.displayScene();
+        //test function
+        this.gameboard.changeColor();
     }
+
+    //test function
+    changeColor(id) {
+        this.gameboard.changeColorId(id);
+    }
+
+
 }

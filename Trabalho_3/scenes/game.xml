@@ -40,6 +40,7 @@
         <texture id="Loki_Miguel" file="scenes/images/loki_player.jpg" />
         <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
         <texture id="clockface" file="scenes/images/clock.jpg"/>
+        <texture id="noplay" file="scenes/images/noplay.jpg"/>
         <texture id="darkblue" file="scenes/images/darkblue.jpg"/>
         <texture id="blue" file="scenes/images/blue.jpg"/>
         <texture id="bordo" file="scenes/images/bordo.png"/>
@@ -58,6 +59,23 @@
             <diffuse r="0.5" g="0.50" b="0.5" a="1.0" />
             <specular r="0.05" g="0.05" b="0.05" a="1.0" />
         </material>
+
+
+        <material id="player1" shininess="10">
+            <emission r="1" g="0.08" b="0.6" a="1.0" />
+            <ambient r="1" g=".08" b=".6" a="1.0" />
+            <diffuse r="1" g="0.08" b="0.6" a="1.0" />
+            <specular r="0.1" g="0.0" b="0.06" a="1.0" />
+        </material>
+
+
+        <material id="player2" shininess="10">
+            <emission r="0.11" g="0.6" b="1" a="1.0" />
+            <ambient r="0.11" g=".6" b="1" a="1.0" />
+            <diffuse r="0.11" g="0.6" b="1" a="1.0" />
+            <specular r="0.01" g="0.06" b="0.1" a="1.0" />
+        </material>
+
     </materials>
 
     <transformations>
@@ -285,9 +303,11 @@
                 <rotate axis="x" angle="-90" />
             </transformation>
             <materials>
-                <material id="defaultMat" />
+                 <material id="defaultMat" />
+                <material id="player1" />
+                <material id="player2" />
             </materials>
-            <texture id="bordo" length_s="1" length_t="1"/>
+            <texture id="noplay" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="RectangleT4"/>
             </children>
@@ -298,9 +318,11 @@
                 <rotate axis="x" angle="-90" />
             </transformation>
             <materials>
-                <material id="defaultMat" />
+                 <material id="defaultMat" />
+                <material id="player1" />
+                <material id="player2" />
             </materials>
-            <texture id="pink" length_s="1" length_t="1"/>
+            <texture id="noplay" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Square"/>
             </children>
@@ -314,9 +336,11 @@
 
             </transformation>
             <materials>
-                <material id="defaultMat" />
+                 <material id="defaultMat" />
+                <material id="player1" />
+                <material id="player2" />
             </materials>
-            <texture id="blue" length_s="1" length_t="1"/>
+            <texture id="noplay" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="RectangleT5"/>
             </children>
@@ -328,9 +352,11 @@
 
             </transformation>
             <materials>
-                <material id="defaultMat" />
+                 <material id="defaultMat" />
+                <material id="player1" />
+                <material id="player2" />
             </materials>
-            <texture id="yellow" length_s="1" length_t="1"/>
+            <texture id="noplay" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Triangle"/>
             </children>
@@ -345,8 +371,10 @@
             </transformation>
             <materials>
                 <material id="defaultMat" />
+                <material id="player1" />
+                <material id="player2" />
             </materials>
-            <texture id="purple" length_s="1" length_t="1"/>
+            <texture id="noplay" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Triangle"/>
             </children>
@@ -359,9 +387,11 @@
             <rotate axis="z" angle="90" />
             </transformation>
             <materials>
-                <material id="defaultMat" />
+                 <material id="defaultMat" />
+                <material id="player1" />
+                <material id="player2" />
             </materials>
-            <texture id="green" length_s="1" length_t="1"/>
+            <texture id="noplay" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Triangle"/>
             </children>
@@ -373,9 +403,11 @@
                 <rotate axis="x" angle="90" />
             </transformation>
             <materials>
-                <material id="defaultMat" />
+                 <material id="defaultMat" />
+                <material id="player1" />
+                <material id="player2" />
             </materials>
-            <texture id="pink" length_s="1" length_t="1"/>
+            <texture id="noplay" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Triangle"/>
             </children>
