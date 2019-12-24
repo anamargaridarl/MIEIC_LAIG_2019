@@ -154,6 +154,15 @@ class MyGameBoard extends CGFobject {
         this.applyTransformationRectangle6(pieces[9][8]);
         this.applyTransformationRectangle7(pieces[9][0]);
         this.applyTransformationRectangle8(pieces[6][0]);
+        console.log(this.pieces[0][0].id);
+        this.scene.registerForPick(this.pieces[0][0].id, this.pieces[0][0]);
+        this.scene.registerForPick(this.pieces[0][1].id, this.pieces[0][1]);
+        this.scene.registerForPick(this.pieces[0][6].id, this.pieces[0][6]);
+        this.scene.registerForPick(this.pieces[1][9].id, this.pieces[1][9]);
+        this.scene.registerForPick(this.pieces[6][9].id, this.pieces[6][9]);
+        this.scene.registerForPick(this.pieces[9][8].id, this.pieces[9][8]);
+        this.scene.registerForPick(this.pieces[9][0].id, this.pieces[9][0]);
+        this.scene.registerForPick(this.pieces[6][0].id, this.pieces[6][0]);
     }
 
     display() {
@@ -167,6 +176,7 @@ class MyGameBoard extends CGFobject {
         for (let row = 1; row < 9; row++) {
             for (let col = 1; col < 9; col++) {
                 this.applyTransformation(row, col, this.pieces[row][col]);
+                this.scene.registerForPick(this.pieces[row][col].id, this.pieces[row][col]);
             }
         }
         this.scene.popMatrix();
@@ -179,23 +189,21 @@ class MyGameBoard extends CGFobject {
         this.pieces[0][0].changeColor(1, 2);
     }
 
-    registerPickables() {
+    // registerPickables() {
 
-        console.log('meiasazuis');
+    //     this.scene.registerForPick(this.pieces[0][0].id, this.pieces[0][0]);
+    //     this.scene.registerForPick(this.pieces[0][1].id, this.pieces[0][1]);
+    //     this.scene.registerForPick(this.pieces[0][6].id, this.pieces[0][6]);
+    //     this.scene.registerForPick(this.pieces[1][9].id, this.pieces[1][9]);
+    //     this.scene.registerForPick(this.pieces[6][9].id, this.pieces[6][9]);
+    //     this.scene.registerForPick(this.pieces[9][8].id, this.pieces[9][8]);
+    //     this.scene.registerForPick(this.pieces[9][0].id, this.pieces[9][0]);
+    //     this.scene.registerForPick(this.pieces[6][0].id, this.pieces[6][0]);
 
-        this.scene.registerForPick(this.pieces[0][0].id, this.pieces[0][0]);
-        this.scene.registerForPick(this.pieces[0][1].id, this.pieces[0][1]);
-        this.scene.registerForPick(this.pieces[0][6].id, this.pieces[0][6]);
-        this.scene.registerForPick(this.pieces[1][9].id, this.pieces[1][9]);
-        this.scene.registerForPick(this.pieces[6][9].id, this.pieces[6][9]);
-        this.scene.registerForPick(this.pieces[9][8].id, this.pieces[9][8]);
-        this.scene.registerForPick(this.pieces[9][0].id, this.pieces[9][0]);
-        this.scene.registerForPick(this.pieces[6][0].id, this.pieces[6][0]);
-
-        for (let row = 1; row < 9; row++) {
-            for (let col = 1; col < 9; col++) {
-                this.scene.registerForPick(this.pieces[row][col].id, this.pieces[row][col]);
-            }
-        }
-    }
+    //     for (let row = 1; row < 9; row++) {
+    //         for (let col = 1; col < 9; col++) {
+    //             this.scene.registerForPick(this.pieces[row][col].id, this.pieces[row][col]);
+    //         }
+    //     }
+    // }
 }

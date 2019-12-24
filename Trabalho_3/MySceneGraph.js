@@ -11,6 +11,7 @@ var TRANSFORMATIONS_INDEX = 6;
 var ANIMATIONS_INDEX = 7;
 var PRIMITIVES_INDEX = 8;
 var COMPONENTS_INDEX = 9;
+let n = 9;
 
 /**
  * MySceneGraph class, representing the scene graph.
@@ -218,7 +219,7 @@ class MySceneGraph {
         this.loadBoard();
     }
 
-    loadOddRow(n, row, rectangles) {
+    loadOddRow(row, rectangles) {
         let line = [];
 
         if (row < 5) {
@@ -231,10 +232,11 @@ class MySceneGraph {
                 //first up triangle; second down triangle
                 let triangles = [];
                 triangles.push(new MyPiece(this.scene, n, this.components['TriangleId5']));
-                triangles.push(new MyPiece(this.scene, n, this.components['TriangleId6']));
+                triangles.push(new MyPiece(this.scene, n + 1, this.components['TriangleId6']));
                 line.push(triangles);
+                n++;
             } else
-                line.push(new MyPiece(this.scene, n + i, this.components['Square']));
+                line.push(new MyPiece(this.scene, n, this.components['Square']));
             n++;
         }
 
@@ -247,7 +249,7 @@ class MySceneGraph {
 
     }
 
-    loadEvenRow(n, row, rectangles) {
+    loadEvenRow(row, rectangles) {
         let line = [];
 
         if (row < 5) {
@@ -261,11 +263,12 @@ class MySceneGraph {
             if (i % 2 == 0) {
                 //first up triangle; second down triangle
                 let triangles = [];
-                triangles.push(new MyPiece(this.scene, n + i, this.components['TriangleId3']));
-                triangles.push(new MyPiece(this.scene, n + i, this.components['TriangleId4']));
+                triangles.push(new MyPiece(this.scene, n, this.components['TriangleId3']));
+                triangles.push(new MyPiece(this.scene, n + 1, this.components['TriangleId4']));
                 line.push(triangles);
+                n++;
             } else
-                line.push(new MyPiece(this.scene, n + i, this.components['Square']));
+                line.push(new MyPiece(this.scene, n, this.components['Square']));
             n++;
         }
 
@@ -313,16 +316,16 @@ class MySceneGraph {
 
     loadBoard() {
         let rectangles = this.loadRectangles();
-        let n = 9;
         for (let i = 0; i < 10; i++) {
             if (i == 0)
                 this.pieces.push(this.firstLine(rectangles));
             else if (i == 9)
                 this.pieces.push(this.lastLine(rectangles));
             else if (i % 2 == 0)
-                this.pieces.push(this.loadEvenRow(n, i, rectangles));
+                this.pieces.push(this.loadEvenRow(i, rectangles));
             else if (i % 2 != 0)
-                this.pieces.push(this.loadOddRow(n, i, rectangles));
+                this.pieces.push(this.loadOddRow(i, rectangles));
+            console.log(n);
         }
     }
 

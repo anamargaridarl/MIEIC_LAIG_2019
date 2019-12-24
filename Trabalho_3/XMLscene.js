@@ -136,7 +136,7 @@ class XMLscene extends CGFscene {
 
         this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
         this.orchestrator = new MyGameOrchestrator(this, this.board);
-        this.orchestrator.registerPickables();
+        // this.orchestrator.registerPickables();
 
     }
 
@@ -147,7 +147,8 @@ class XMLscene extends CGFscene {
                     const obj = this.pickResults[i][0];
                     if (obj) {
                         const clickId = this.pickResults[i][1];
-                        console.log("Picked object: " + obj + ", with pick id " + customId);
+                        console.log("Picked object: " + obj + ", with pick id " + clickId);
+                        //test function
                         this.orchestrator.changeColor(clickId);
                     }
                 }
@@ -248,7 +249,7 @@ class XMLscene extends CGFscene {
         this.texRTT.detachFromFrameBuffer();
         this.render(false);
 
-        if (this.graph != undefined) {
+        if (this.orchestrator != undefined) {
             this.orchestrator.display();
         }
         // this.gl.disable(this.gl.DEPTH_TEST);
