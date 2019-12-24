@@ -10,7 +10,6 @@ class MyGameBoard extends CGFobject {
     constructor(scene, pieces) {
         super(scene);
 
-        //pieces is already an array of arrays
         this.pieces = pieces;
 
         this.initBuffers();
@@ -20,10 +19,20 @@ class MyGameBoard extends CGFobject {
         return this.pieces[row][column];
     }
 
+    //test function
+    //sim isto esta esparguete mas e so para ver se funciona
     changeColorId(id) {
         for (let row = 1; row < 9; row++) {
             for (let col = 1; col < 9; col++) {
-                if (this.pieces[row][col].id == id) {
+                if (Array.isArray(this.pieces[row][col])) {
+                    if (this.pieces[row][col][0].id == id) {
+                        this.pieces[row][col][0].changeColor(1, 1);
+                        return;
+                    } else if (this.pieces[row][col][1].id == id) {
+                        this.pieces[row][col][1].changeColor(1, 1);
+                        return;
+                    }
+                } else if (this.pieces[row][col].id == id) {
                     this.pieces[row][col].changeColor(1, 1);
                     return;
                 }
@@ -32,6 +41,30 @@ class MyGameBoard extends CGFobject {
     }
 
 
+    display() {
+
+        this.scene.pushMatrix();
+        let transfMatrix = mat4.create();
+        mat4.translate(transfMatrix, transfMatrix, [-11, 0.01, -8]);
+        transfMatrix = mat4.scale(transfMatrix, transfMatrix, [2, 2, 2]);
+        this.scene.multMatrix(transfMatrix);
+        this.displayRectangles(this.pieces);
+        for (let row = 1; row < 9; row++) {
+            for (let col = 1; col < 9; col++) {
+                this.applyTransformation(row, col, this.pieces[row][col]);
+            }
+        }
+        this.scene.popMatrix();
+
+    }
+
+    //test function
+    changeColor() {
+        this.pieces[1][1].changeColor(1, 1);
+        this.pieces[1][3].changeColor(1, 2);
+        this.pieces[0][0].changeColor(1, 2);
+    }
+
     applyTransformation(row, col, unit) {
 
         if (Array.isArray(unit)) {
@@ -39,6 +72,7 @@ class MyGameBoard extends CGFobject {
             let transfMatrix = mat4.create();
             mat4.translate(transfMatrix, transfMatrix, [col, 0, row]);
             this.scene.multMatrix(transfMatrix);
+            this.scene.registerForPick(unit[0].id, unit[0]);
             unit[0].applyColor();
             unit[0].piece.display();
             this.scene.popMatrix();
@@ -47,6 +81,7 @@ class MyGameBoard extends CGFobject {
             let transfMatrix2 = mat4.create();
             mat4.translate(transfMatrix2, transfMatrix2, [col, 0, row]);
             this.scene.multMatrix(transfMatrix2);
+            this.scene.registerForPick(unit[1].id, unit[1]);
             unit[1].applyColor();
             unit[1].piece.display();
             this.scene.popMatrix();
@@ -55,6 +90,7 @@ class MyGameBoard extends CGFobject {
             let transfMatrix = mat4.create();
             mat4.translate(transfMatrix, transfMatrix, [col, 0, row]);
             this.scene.multMatrix(transfMatrix);
+            this.scene.registerForPick(unit.id, unit);
             unit.applyColor();
             unit.piece.display();
             this.scene.popMatrix();
@@ -147,63 +183,21 @@ class MyGameBoard extends CGFobject {
 
     displayRectangles(pieces) {
         this.applyTransformationRectangle1(pieces[0][0]);
-        this.applyTransformationRectangle2(pieces[0][1]);
-        this.applyTransformationRectangle3(pieces[0][6]);
-        this.applyTransformationRectangle4(pieces[1][9]);
-        this.applyTransformationRectangle5(pieces[6][9]);
-        this.applyTransformationRectangle6(pieces[9][8]);
-        this.applyTransformationRectangle7(pieces[9][0]);
-        this.applyTransformationRectangle8(pieces[6][0]);
-        console.log(this.pieces[0][0].id);
         this.scene.registerForPick(this.pieces[0][0].id, this.pieces[0][0]);
+        this.applyTransformationRectangle2(pieces[0][1]);
         this.scene.registerForPick(this.pieces[0][1].id, this.pieces[0][1]);
+        this.applyTransformationRectangle3(pieces[0][6]);
         this.scene.registerForPick(this.pieces[0][6].id, this.pieces[0][6]);
+        this.applyTransformationRectangle4(pieces[1][9]);
         this.scene.registerForPick(this.pieces[1][9].id, this.pieces[1][9]);
+        this.applyTransformationRectangle5(pieces[6][9]);
         this.scene.registerForPick(this.pieces[6][9].id, this.pieces[6][9]);
+        this.applyTransformationRectangle6(pieces[9][8]);
         this.scene.registerForPick(this.pieces[9][8].id, this.pieces[9][8]);
+        this.applyTransformationRectangle7(pieces[9][0]);
         this.scene.registerForPick(this.pieces[9][0].id, this.pieces[9][0]);
+        this.applyTransformationRectangle8(pieces[6][0]);
         this.scene.registerForPick(this.pieces[6][0].id, this.pieces[6][0]);
     }
 
-    display() {
-
-        this.scene.pushMatrix();
-        let transfMatrix = mat4.create();
-        mat4.translate(transfMatrix, transfMatrix, [-11, 0.01, -8]);
-        transfMatrix = mat4.scale(transfMatrix, transfMatrix, [2, 2, 2]);
-        this.scene.multMatrix(transfMatrix);
-        this.displayRectangles(this.pieces);
-        for (let row = 1; row < 9; row++) {
-            for (let col = 1; col < 9; col++) {
-                this.applyTransformation(row, col, this.pieces[row][col]);
-                this.scene.registerForPick(this.pieces[row][col].id, this.pieces[row][col]);
-            }
-        }
-        this.scene.popMatrix();
-
-    }
-
-    changeColor() {
-        this.pieces[1][1].changeColor(1, 1);
-        this.pieces[1][3].changeColor(1, 2);
-        this.pieces[0][0].changeColor(1, 2);
-    }
-
-    // registerPickables() {
-
-    //     this.scene.registerForPick(this.pieces[0][0].id, this.pieces[0][0]);
-    //     this.scene.registerForPick(this.pieces[0][1].id, this.pieces[0][1]);
-    //     this.scene.registerForPick(this.pieces[0][6].id, this.pieces[0][6]);
-    //     this.scene.registerForPick(this.pieces[1][9].id, this.pieces[1][9]);
-    //     this.scene.registerForPick(this.pieces[6][9].id, this.pieces[6][9]);
-    //     this.scene.registerForPick(this.pieces[9][8].id, this.pieces[9][8]);
-    //     this.scene.registerForPick(this.pieces[9][0].id, this.pieces[9][0]);
-    //     this.scene.registerForPick(this.pieces[6][0].id, this.pieces[6][0]);
-
-    //     for (let row = 1; row < 9; row++) {
-    //         for (let col = 1; col < 9; col++) {
-    //             this.scene.registerForPick(this.pieces[row][col].id, this.pieces[row][col]);
-    //         }
-    //     }
-    // }
 }
