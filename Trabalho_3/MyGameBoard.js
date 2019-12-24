@@ -22,8 +22,8 @@ class MyGameBoard extends CGFobject {
     //test function
     //sim isto esta esparguete mas e so para ver se funciona
     changeColorId(id) {
-        for (let row = 1; row < 9; row++) {
-            for (let col = 1; col < 9; col++) {
+        for (let row = 0; row < 10; row++) {
+            for (let col = 0; col < 10; col++) {
                 if (Array.isArray(this.pieces[row][col])) {
                     if (this.pieces[row][col][0].id == id) {
                         this.pieces[row][col][0].changeColor(1, 1);
@@ -103,6 +103,7 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 1]);
         this.scene.multMatrix(transfMatrix);
+        this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
@@ -113,6 +114,7 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [1, 0, 0]);
         this.scene.multMatrix(transfMatrix);
+        this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
@@ -123,6 +125,7 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 0]);
         this.scene.multMatrix(transfMatrix);
+        this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
@@ -134,6 +137,7 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 10]);
         this.scene.multMatrix(transfMatrix);
+        this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
@@ -145,6 +149,7 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-9, 0, 10]);
         this.scene.multMatrix(transfMatrix);
+        this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
@@ -155,6 +160,7 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 9]);
         this.scene.multMatrix(transfMatrix);
+        this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
@@ -165,6 +171,7 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [0, 0, 9]);
         this.scene.multMatrix(transfMatrix);
+        this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
@@ -176,6 +183,7 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-8, 0, 1]);
         this.scene.multMatrix(transfMatrix);
+        this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
@@ -183,21 +191,13 @@ class MyGameBoard extends CGFobject {
 
     displayRectangles(pieces) {
         this.applyTransformationRectangle1(pieces[0][0]);
-        this.scene.registerForPick(this.pieces[0][0].id, this.pieces[0][0]);
         this.applyTransformationRectangle2(pieces[0][1]);
-        this.scene.registerForPick(this.pieces[0][1].id, this.pieces[0][1]);
         this.applyTransformationRectangle3(pieces[0][6]);
-        this.scene.registerForPick(this.pieces[0][6].id, this.pieces[0][6]);
         this.applyTransformationRectangle4(pieces[1][9]);
-        this.scene.registerForPick(this.pieces[1][9].id, this.pieces[1][9]);
         this.applyTransformationRectangle5(pieces[6][9]);
-        this.scene.registerForPick(this.pieces[6][9].id, this.pieces[6][9]);
         this.applyTransformationRectangle6(pieces[9][8]);
-        this.scene.registerForPick(this.pieces[9][8].id, this.pieces[9][8]);
         this.applyTransformationRectangle7(pieces[9][0]);
-        this.scene.registerForPick(this.pieces[9][0].id, this.pieces[9][0]);
         this.applyTransformationRectangle8(pieces[6][0]);
-        this.scene.registerForPick(this.pieces[6][0].id, this.pieces[6][0]);
     }
 
 }
