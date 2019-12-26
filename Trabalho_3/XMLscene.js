@@ -229,6 +229,7 @@ class XMLscene extends CGFscene {
     update(t) {
         if (this.sceneInited) {
             this.graph.components["Root"].updateAnimation(t / 1000);
+            this.orchestrator.update(t / 1000);
             // this.secureCam.update(t);
         }
     }

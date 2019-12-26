@@ -17,11 +17,6 @@ class MyComponent {
 
     display(textureP, materialP) {
 
-        if (this.animation != null) {
-            this.scene = this.original;
-            this.animation.display(this.scene);
-        }
-
         if (this.transformation) {
             this.scene.multMatrix(this.transformation);
         }
@@ -71,14 +66,14 @@ class MyComponent {
             return texStruct.tex_t;
     }
 
-    updateMaterial() {
-        this.currMatIndex = (this.currMatIndex + 1) % this.materials.length;
+    // updateMaterial() {
+    //     this.currMatIndex = (this.currMatIndex + 1) % this.materials.length;
 
-        for (let child of this.children) {
-            if (child instanceof MyComponent)
-                child.updateMaterial();
-        }
-    }
+    //     for (let child of this.children) {
+    //         if (child instanceof MyComponent)
+    //             child.updateMaterial();
+    //     }
+    // }
 
     changeCurrentMaterialIndex(ind) {
         this.currMatIndex = ind;

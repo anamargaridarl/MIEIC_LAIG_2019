@@ -32,13 +32,16 @@ class MyGameOrchestrator extends CGFobject {
     display() {
         this.gameboard.display();
         //test function
-        this.gameboard.changeColor();
-        
+        // this.gameboard.changeColor();
     }
 
     //test function
     changeColor(id) {
         this.gameboard.changeColorId(id);
+    }
+
+    update(t) {
+        this.gameboard.update(t);
     }
 
 
