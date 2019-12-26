@@ -6,13 +6,19 @@ class MyGameOrchestrator extends CGFobject {
         this.gamesequence = [];
         this.gameboard = gameboard;
         this.initBuffers();
+        this.buildBoard();
+    }
 
-    };
+    async buildBoard() {
+        let board = await MyRequestHandler.initBoard();
+        console.log(board);
+    }
 
     display() {
         this.gameboard.display();
         //test function
         this.gameboard.changeColor();
+        
     }
 
     //test function

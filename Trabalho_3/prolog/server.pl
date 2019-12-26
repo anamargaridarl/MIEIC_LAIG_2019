@@ -1,3 +1,4 @@
+:- set_setting(http:cors, [*]).
 :- use_module(library(http/http_server)).
 :- use_module(library(http/http_json)).
 :- use_module(library(http/http_error)).
@@ -11,7 +12,7 @@
 :- http_handler(root(cpumove),cpuMove,[]).
 
 :- json_object
-    board(board:list).
+    board(b:list).
 
 :- json_object
     boardState(board:list(list), plays:list).
@@ -32,7 +33,7 @@
 buildBoard(_) :-
   cors_enable,  
   buildBlankList(B),
-  prolog_to_json(B, board(JSONOut)),
+  prolog_to_json(board(B), JSONOut),
   reply_json(JSONOut).
 
 getPossiblePlays(Request) :-
@@ -62,4 +63,4 @@ cpuMove(Request) :-
   
 
 server :-
-  http_server(http_dispatch,[port(8080)]).
+  http_server(http_dispatch,[port(8081)]).
