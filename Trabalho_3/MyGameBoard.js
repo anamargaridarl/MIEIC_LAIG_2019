@@ -26,9 +26,11 @@ class MyGameBoard extends CGFobject {
             for (let col = 0; col < 10; col++) {
                 if (Array.isArray(this.pieces[row][col])) {
                     if (this.pieces[row][col][0].id == id) {
+                        this.pieces[row][col][0].addAnimation();
                         this.pieces[row][col][0].changeColor(1, 1);
                         return;
                     } else if (this.pieces[row][col][1].id == id) {
+                        this.pieces[row][col][1].addAnimation();
                         this.pieces[row][col][1].changeColor(1, 1);
                         return;
                     }
@@ -42,6 +44,18 @@ class MyGameBoard extends CGFobject {
     }
 
 
+    updateAnimationRectangles(t) {
+
+        this.pieces[0][0].updateAnimation(t);
+        this.pieces[0][1].updateAnimation(t);
+        this.pieces[0][6].updateAnimation(t);
+        this.pieces[1][9].updateAnimation(t);
+        this.pieces[6][9].updateAnimation(t);
+        this.pieces[9][8].updateAnimation(t);
+        this.pieces[9][0].updateAnimation(t);
+        this.pieces[6][0].updateAnimation(t);
+    }
+
     updateAnimation(t) {
         for (let row = 1; row < 9; row++) {
             for (let col = 1; col < 9; col++) {
@@ -52,6 +66,8 @@ class MyGameBoard extends CGFobject {
                     this.pieces[row][col].updateAnimation(t);
             }
         }
+
+        this.updateAnimationRectangles(t);
     }
 
     update(t) {
@@ -90,7 +106,6 @@ class MyGameBoard extends CGFobject {
             mat4.translate(transfMatrix, transfMatrix, [col, 0, row]);
             this.scene.multMatrix(transfMatrix);
             this.scene.registerForPick(unit[0].id, unit[0]);
-            unit[0].applyColor();
             unit[0].display();
             this.scene.popMatrix();
 
@@ -99,7 +114,6 @@ class MyGameBoard extends CGFobject {
             mat4.translate(transfMatrix2, transfMatrix2, [col, 0, row]);
             this.scene.multMatrix(transfMatrix2);
             this.scene.registerForPick(unit[1].id, unit[1]);
-            unit[1].applyColor();
             unit[1].display();
             this.scene.popMatrix();
         } else {
@@ -108,7 +122,6 @@ class MyGameBoard extends CGFobject {
             mat4.translate(transfMatrix, transfMatrix, [col, 0, row]);
             this.scene.multMatrix(transfMatrix);
             this.scene.registerForPick(unit.id, unit);
-            unit.applyColor();
             unit.display();
             this.scene.popMatrix();
         }
@@ -121,7 +134,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 1]);
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
-        unit.applyColor();
         unit.display();
         this.scene.popMatrix();
     }
@@ -132,7 +144,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [1, 0, 0]);
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
-        unit.applyColor();
         unit.display();
         this.scene.popMatrix();
     }
@@ -143,7 +154,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 0]);
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
-        unit.applyColor();
         unit.display();
         this.scene.popMatrix();
     }
@@ -155,7 +165,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 10]);
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
-        unit.applyColor();
         unit.display();
         this.scene.popMatrix();
     }
@@ -167,7 +176,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [-9, 0, 10]);
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
-        unit.applyColor();
         unit.display();
         this.scene.popMatrix();
     }
@@ -178,7 +186,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 9]);
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
-        unit.applyColor();
         unit.display();
         this.scene.popMatrix();
     }
@@ -189,7 +196,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [0, 0, 9]);
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
-        unit.applyColor();
         unit.display();
         this.scene.popMatrix();
     }
@@ -201,7 +207,6 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [-8, 0, 1]);
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
-        unit.applyColor();
         unit.piece.display();
         this.scene.popMatrix();
     }

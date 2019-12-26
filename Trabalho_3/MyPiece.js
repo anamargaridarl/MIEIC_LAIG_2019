@@ -14,17 +14,16 @@ class MyPiece extends CGFobject {
         this.id = id;
         this.piece = piece;
         this.animation = null;
-        this.original = scene;
         this.initBuffers();
     };
 
     display() {
 
         if (this.animation != null) {
-            this.scene = this.original;
             this.animation.display(this.scene);
         }
 
+        this.applyColor();
         this.piece.display();
     }
 
@@ -56,10 +55,13 @@ class MyPiece extends CGFobject {
 
     addAnimation() {
         let keyframes = [];
-        let translation = new MyTranslation(0, 1, 0);
-        let scale = new MyScale(1.5, 1.5, 1.5);
+        let translation1 = new MyTranslation(0, 0.2, 0);
+        let scale1 = new MyScale(1.1, 1.1, 1.1);
+        let translation2 = new MyTranslation(0, 0.03, 0);
+        let scale2 = new MyScale(0.85, 0.85, 0.85);
         let rotation = new MyRotation(this.scene, 0, 0, 0);
-        keyframes.push(new KeyFrameAnimation(1, 0, 2, rotation, translation, scale));
+        keyframes.push(new KeyFrameAnimation(1, 0, 2, rotation, translation1, scale1));
+        keyframes.push(new KeyFrameAnimation(2, 2, 4, rotation, translation2, scale2));
         let animation = new Animation(keyframes);
         this.animation = animation;
     }
