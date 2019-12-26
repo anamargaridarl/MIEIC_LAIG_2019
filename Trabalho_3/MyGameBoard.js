@@ -33,6 +33,7 @@ class MyGameBoard extends CGFobject {
                         return;
                     }
                 } else if (this.pieces[row][col].id == id) {
+                    this.pieces[row][col].addAnimation();
                     this.pieces[row][col].changeColor(1, 1);
                     return;
                 }
@@ -40,6 +41,22 @@ class MyGameBoard extends CGFobject {
         }
     }
 
+
+    updateAnimation(t) {
+        for (let row = 1; row < 9; row++) {
+            for (let col = 1; col < 9; col++) {
+                if (Array.isArray(this.pieces[row][col])) {
+                    this.pieces[row][col][0].updateAnimation(t);
+                    this.pieces[row][col][1].updateAnimation(t);
+                } else
+                    this.pieces[row][col].updateAnimation(t);
+            }
+        }
+    }
+
+    update(t) {
+        this.updateAnimation(t);
+    }
 
     display() {
 
@@ -74,7 +91,7 @@ class MyGameBoard extends CGFobject {
             this.scene.multMatrix(transfMatrix);
             this.scene.registerForPick(unit[0].id, unit[0]);
             unit[0].applyColor();
-            unit[0].piece.display();
+            unit[0].display();
             this.scene.popMatrix();
 
             this.scene.pushMatrix();
@@ -83,7 +100,7 @@ class MyGameBoard extends CGFobject {
             this.scene.multMatrix(transfMatrix2);
             this.scene.registerForPick(unit[1].id, unit[1]);
             unit[1].applyColor();
-            unit[1].piece.display();
+            unit[1].display();
             this.scene.popMatrix();
         } else {
             this.scene.pushMatrix();
@@ -92,7 +109,7 @@ class MyGameBoard extends CGFobject {
             this.scene.multMatrix(transfMatrix);
             this.scene.registerForPick(unit.id, unit);
             unit.applyColor();
-            unit.piece.display();
+            unit.display();
             this.scene.popMatrix();
         }
     }
@@ -105,7 +122,7 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
-        unit.piece.display();
+        unit.display();
         this.scene.popMatrix();
     }
 
@@ -116,7 +133,7 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
-        unit.piece.display();
+        unit.display();
         this.scene.popMatrix();
     }
 
@@ -127,7 +144,7 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
-        unit.piece.display();
+        unit.display();
         this.scene.popMatrix();
     }
 
@@ -139,7 +156,7 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
-        unit.piece.display();
+        unit.display();
         this.scene.popMatrix();
     }
 
@@ -151,7 +168,7 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
-        unit.piece.display();
+        unit.display();
         this.scene.popMatrix();
     }
 
@@ -162,7 +179,7 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
-        unit.piece.display();
+        unit.display();
         this.scene.popMatrix();
     }
 
@@ -173,7 +190,7 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         this.scene.registerForPick(unit.id, unit);
         unit.applyColor();
-        unit.piece.display();
+        unit.display();
         this.scene.popMatrix();
     }
 
