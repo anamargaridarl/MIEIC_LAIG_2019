@@ -11,13 +11,12 @@ class MyGameOrchestrator extends CGFobject {
 
     display() {
         this.gameboard.display();
-        //test function
-        // this.gameboard.changeColor();
     }
 
-    //test function
-    changeColor(id) {
-        this.gameboard.changeColorId(id);
+    play(id) {
+        let coord = this.gameboard.play(id, this.prolog.player);
+        this.prolog.addplay(coord[0], coord[1], coord[2]);
+        console.log(this.prolog.getPossiblePlays());
     }
 
     update(t) {

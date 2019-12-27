@@ -26,7 +26,6 @@ class MyTranslation {
         }
 
         if (per != 0) {
-            console.log('bananas');
             let divX = (this.x - a_x) * per;
             let divY = (this.y - a_y) * per;
             let divZ = (this.z - a_z) * per;

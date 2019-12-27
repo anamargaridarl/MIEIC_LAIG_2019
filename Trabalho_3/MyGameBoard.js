@@ -21,23 +21,23 @@ class MyGameBoard extends CGFobject {
 
     //test function
     //sim isto esta esparguete mas e so para ver se funciona
-    changeColorId(id) {
+    play(id, player) {
         for (let row = 0; row < 10; row++) {
             for (let col = 0; col < 10; col++) {
                 if (Array.isArray(this.pieces[row][col])) {
                     if (this.pieces[row][col][0].id == id) {
                         this.pieces[row][col][0].addAnimation();
-                        this.pieces[row][col][0].changeColor(1, 1);
-                        return;
+                        this.pieces[row][col][0].changeColor(1, player);
+                        return [row, col, 0];;
                     } else if (this.pieces[row][col][1].id == id) {
                         this.pieces[row][col][1].addAnimation();
-                        this.pieces[row][col][1].changeColor(1, 1);
-                        return;
+                        this.pieces[row][col][1].changeColor(1, player);
+                        return [row, col, 1];;
                     }
                 } else if (this.pieces[row][col].id == id) {
                     this.pieces[row][col].addAnimation();
-                    this.pieces[row][col].changeColor(1, 1);
-                    return;
+                    this.pieces[row][col].changeColor(1, player);
+                    return [row, col, -1];;
                 }
             }
         }

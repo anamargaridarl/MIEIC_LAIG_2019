@@ -148,7 +148,7 @@ class XMLscene extends CGFscene {
                         const clickId = this.pickResults[i][1];
                         console.log("Picked object: " + obj + ", with pick id " + clickId);
                         //test function
-                        this.orchestrator.changeColor(clickId);
+                        this.orchestrator.play(clickId);
                     }
                 }
                 this.pickResults = [];
