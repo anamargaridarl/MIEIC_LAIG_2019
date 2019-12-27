@@ -129,14 +129,13 @@ class XMLscene extends CGFscene {
 
         this.initViews();
 
-        this.sceneInited = true;
 
         this.interface.createViewDropdown();
         this.interface.createLightsCheckboxes();
 
         this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
         this.orchestrator = new MyGameOrchestrator(this, this.board);
-        // this.orchestrator.registerPickables();
+        this.sceneInited = true;
 
     }
 

@@ -91,12 +91,6 @@ class MyGameBoard extends CGFobject {
 
     }
 
-    //test function
-    changeColor() {
-        this.pieces[1][1].changeColor(1, 1);
-        this.pieces[1][3].changeColor(1, 2);
-        this.pieces[0][0].changeColor(1, 2);
-    }
 
     applyTransformation(row, col, unit) {
 
