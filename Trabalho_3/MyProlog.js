@@ -5,11 +5,29 @@ class MyProlog extends CGFobject {
 
         this.initBuffers();
         this.player = 1;
+        this.player1Points = 0;
+        this.player2Points = 0;
         this.alreadyplayed = [];
         this.gamestate = 0;
         this.board;
         this.possibleplays = [];
         this.initBoard();
+    }
+
+    async getPoints() {
+        return [this.player1Points, this.player2Points];
+
+    }
+
+    async getBoard() {
+        return this.board;
+
+    }
+
+    async getPossiblePlays() {
+        let plays = await MyRequestHandler.getPossiblePlays(this.board, this.alreadyplayed);
+        this.possibleplays = plays.poss;
+        return this.possibleplays;
     }
 
     async initBoard() {
@@ -37,11 +55,15 @@ class MyProlog extends CGFobject {
         console.log(playermove);
     }
 
+
     changePlayer() {
-        if (this.player == 1)
+        if (this.player == 1) {
+            this.player1Points++;
             this.player = 2;
-        else
+        } else {
+            this.player2Points++;
             this.player = 1;
+        }
     }
 
     async addplay(row, column, T) {
@@ -51,12 +73,6 @@ class MyProlog extends CGFobject {
         this.gamestate = playermove.state;
         this.changePlayer();
 
-    }
-
-    async getPossiblePlays() {
-        let plays = await MyRequestHandler.getPossiblePlays(this.board, this.alreadyplayed);
-        this.possibleplays = plays;
-        return this.possibleplays;
     }
 
 

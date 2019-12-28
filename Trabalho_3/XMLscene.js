@@ -134,7 +134,7 @@ class XMLscene extends CGFscene {
         this.interface.createLightsCheckboxes();
 
         this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
-        this.orchestrator = new MyGameOrchestrator(this, this.board);
+        this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
         this.sceneInited = true;
 
     }
