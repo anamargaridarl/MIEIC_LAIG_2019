@@ -135,6 +135,7 @@ class XMLscene extends CGFscene {
 
         this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
         this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
+        this.orchestrator.init();
         this.sceneInited = true;
 
     }

@@ -15,16 +15,15 @@ class MyProlog extends CGFobject {
 
     async getPoints() {
         return [this.player1Points, this.player2Points];
-
     }
 
     async getBoard() {
         return this.board;
-
     }
 
     async getPossiblePlays() {
         const plays = await MyRequestHandler.getPossiblePlays(this.board, this.alreadyplayed);
+        console.log(plays);
         this.possibleplays = plays.poss;
         return this.possibleplays;
     }
@@ -32,6 +31,7 @@ class MyProlog extends CGFobject {
     async initBoard() {
         const auxboard = await MyRequestHandler.initBoard();
         this.board = auxboard.b;
+        console.log(this.board);
     }
 
     async testRequests() {

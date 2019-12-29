@@ -8,17 +8,21 @@ class MyGameOrchestrator extends CGFobject {
         this.initBuffers();
         this.prolog = new MyProlog(scene);
         this.points = new MyPoints(scene, p1, p2);
-        
+        this.possibleplays;
+    }
+
+    init() {
         this.possibleplays = this.prolog.getPossiblePlays();
+        this.gameboard.registerPicking(this.possibleplays);
     }
 
     display() {
-        this.gameboard.registerPicking(this.possibleplays);
         this.gameboard.display();
         this.points.display();
     }
 
     play(id) {
+        this.gameboard.registerPicking(this.possibleplays);
         //fetch information from gameboard
         let coord = this.gameboard.getPlayPiece(id);
         let piece = this.gameboard.getPiece(coord[0], coord[1], coord[2]);
