@@ -16,14 +16,13 @@ class MyGameOrchestrator extends CGFobject {
         this.possibleplays = await this.prolog.getPossiblePlays();
     }
 
-    display() {
+    async display() {
         this.gameboard.registerPicking(this.possibleplays);
         this.gameboard.display();
         this.points.display();
     }
 
     async play(id) {
-        this.gameboard.registerPicking(this.possibleplays);
         //fetch information from gameboard
         let coord = this.gameboard.getPlayPiece(id);
         let piece = this.gameboard.getPiece(coord[0], coord[1], coord[2]);
@@ -34,8 +33,7 @@ class MyGameOrchestrator extends CGFobject {
         //update points 
         this.points.addPoints(this.prolog.player);
         //actions passed to prolog
-        this.prolog.addplay(coord[0], coord[1], coord[2]);
-        //update possibleplays
+        await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
         this.possibleplays = await this.prolog.getPossiblePlays();
     }
 

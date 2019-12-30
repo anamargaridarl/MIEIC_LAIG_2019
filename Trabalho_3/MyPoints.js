@@ -44,7 +44,6 @@ class MyPoints extends CGFobject {
             
         this.setScoreTex(this.points1,this.points2);
 
-        console.log(this.points1);
     }
 
     createNumbersTex() {

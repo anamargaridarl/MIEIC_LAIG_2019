@@ -22,7 +22,6 @@ class MyProlog {
 
     async getPossiblePlays() {
         const plays = await MyRequestHandler.getPossiblePlays(this.board, this.alreadyplayed);
-        console.log(plays.poss);
         this.possibleplays = plays.poss;
         return this.possibleplays;
     }
@@ -30,7 +29,6 @@ class MyProlog {
     async initBoard() {
         const auxboard = await MyRequestHandler.initBoard();
         this.board = auxboard.b;
-        console.log(this.board);
     }
 
     async testRequests() {
@@ -65,7 +63,7 @@ class MyProlog {
     }
 
     async addplay(row, column, T) {
-        let playermove = await MyRequestHandler.playerMove(this.board, [], this.player, row, column, T);
+        let playermove = await MyRequestHandler.playerMove(this.board, this.alreadyplayed, this.player, row, column, T);
         this.board = playermove.board;
         this.alreadyplayed = playermove.played;
         this.gamestate = playermove.state;
