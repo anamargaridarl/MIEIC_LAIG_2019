@@ -1,8 +1,16 @@
+const GAME_STATE = Object.freeze({
+    "menu" : 0,
+    "playing" : 1,
+    "game_over" : 2,
+    "game_movie" : 3
+});
+
 class MyGameOrchestrator extends CGFobject {
 
     constructor(scene, gameboard, p1, p2) {
         super(scene);
 
+        this.gameState = GAME_STATE.menu;
         this.gamesequence = [];
         this.gameboard = gameboard;
         this.initBuffers();

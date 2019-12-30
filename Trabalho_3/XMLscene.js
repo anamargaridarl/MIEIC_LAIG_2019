@@ -39,9 +39,7 @@ class XMLscene extends CGFscene {
 
         this.board;
         this.orchestrator;
-        this.texRTT = new CGFtextureRTT(this, this.gl.canvas.width, this.gl.canvas.height);
         this.orchestratorInit = false;
-        // this.secureCam = new MySecurityCamera(this);
     }
 
     /**
@@ -51,13 +49,10 @@ class XMLscene extends CGFscene {
         this.camera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(10, 8, 30), vec3.fromValues(10, 0, 5));
         this.sceneCamera = this.camera;
 
-        // this.secCamera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(16, 10, 20), vec3.fromValues(8, 2, 8));
 
     }
 
     initViews() {
-            this.graph.views["secCamera"] = this.secCamera;
-            this.secCamID = "secCamera";
 
             this.camera = this.graph.views[this.graph.viewID];
             this.sceneCamera = this.camera;
@@ -162,7 +157,7 @@ class XMLscene extends CGFscene {
     /**
      * Renders the scene.
      */
-    render(usingSecCam) {
+    render() {
         // ---- BEGIN Background, camera and axis setup
 
         // Clear image and depth buffer everytime we update the scene
@@ -250,18 +245,12 @@ class XMLscene extends CGFscene {
 
         this.logPicking();
         this.clearPickRegistration();
-
-        this.texRTT.attachToFrameBuffer();
-        this.render(true);
-        this.texRTT.detachFromFrameBuffer();
-        this.render(false);
+        
+        this.render();
 
         if (this.orchestrator != undefined) {
             this.orchestrator.display();
         }
-        // this.gl.disable(this.gl.DEPTH_TEST);
-        // this.secureCam.display(this.texRTT);
-        // this.gl.enable(this.gl.DEPTH_TEST);
     }
 
 
