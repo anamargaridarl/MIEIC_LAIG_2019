@@ -40,6 +40,7 @@ class XMLscene extends CGFscene {
         this.board;
         this.orchestrator;
         this.texRTT = new CGFtextureRTT(this, this.gl.canvas.width, this.gl.canvas.height);
+        this.orchestratorInit = false;
         // this.secureCam = new MySecurityCamera(this);
     }
 
@@ -134,8 +135,9 @@ class XMLscene extends CGFscene {
         this.interface.createLightsCheckboxes();
 
         this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
-        this.orchestrator = new MyGameOrchestrator(this, this.board);
+        this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
         this.sceneInited = true;
+        this.orchestratorInit = true;
 
     }
 
@@ -186,6 +188,11 @@ class XMLscene extends CGFscene {
 
 
         if (this.sceneInited) {
+
+            if (this.orchestratorInit) {
+                this.orchestrator.init();
+                this.orchestratorInit = false;
+            }
 
             // Draw axis
             this.setDefaultAppearance();
