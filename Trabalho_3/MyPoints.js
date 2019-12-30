@@ -7,6 +7,7 @@ class MyPoints extends CGFobject {
         this.points2 = 0;
         this.p1 = p1;
         this.p2 = p2;
+        //.
     }
 
     display() {
