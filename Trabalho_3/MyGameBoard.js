@@ -6,7 +6,6 @@
 var DEGREE_TO_RAD = Math.PI / 180;
 
 class MyGameBoard extends CGFobject {
-
     constructor(scene, pieces) {
         super(scene);
 
@@ -22,8 +21,8 @@ class MyGameBoard extends CGFobject {
             return this.pieces[row][column]
     }
 
-    //test function
-    //sim isto esta esparguete mas e so para ver se funciona
+    // test function
+    // sim isto esta esparguete mas e so para ver se funciona
     getPlayPiece(id) {
         for (let row = 0; row < 10; row++) {
             for (let col = 0; col < 10; col++) {
@@ -37,6 +36,25 @@ class MyGameBoard extends CGFobject {
                     return [row, col, -1];;
                 }
             }
+        }
+    }
+
+
+    registerPicking(possibleplays) {
+        if (possibleplays == undefined) return;
+        let piece;
+        for (let i = 0; i < possibleplays.length; i++) {
+            let row = possibleplays[i][0][0];
+            let col = possibleplays[i][0][1];
+            let id = possibleplays[i][1][1];
+            if (id == 3 || id == 5)
+                piece = this.pieces[row - 1][col - 1][0];
+            else if (id == 4 || id == 6)
+                piece = this.pieces[row - 1][col - 1][1];
+            else
+                piece = this.pieces[row - 1][col - 1];
+
+            this.scene.registerForPick(piece.id, piece);
         }
     }
 
@@ -69,8 +87,8 @@ class MyGameBoard extends CGFobject {
         this.updateAnimation(t);
     }
 
-    display() {
 
+    display() {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [-11, 0.01, -8]);
@@ -83,31 +101,9 @@ class MyGameBoard extends CGFobject {
             }
         }
         this.scene.popMatrix();
-
-    }
-
-    registerPicking(possibleplays) {
-
-        if (possibleplays == undefined)
-            return;
-        let piece;
-        for (let i = 0; i < possibleplays.length; i++) {
-            let row = possibleplays[i][0][0];
-            let col = possibleplays[i][0][1];
-            let id = possibleplays[i][1][1];
-            if (id == 3 || id == 5)
-                piece = this.pieces[row - 1][col - 1][0];
-            else if (id == 4 || id == 6)
-                piece = this.pieces[row - 1][col - 1][1];
-            else
-                piece = this.pieces[row - 1][col - 1];
-
-            this.scene.registerForPick(piece.id, piece);
-        }
     }
 
     applyTransformation(row, col, unit) {
-
         if (Array.isArray(unit)) {
             this.scene.pushMatrix();
             let transfMatrix = mat4.create();
@@ -218,5 +214,4 @@ class MyGameBoard extends CGFobject {
         this.applyTransformationRectangle7(pieces[9][0]);
         this.applyTransformationRectangle8(pieces[6][0]);
     }
-
 }
