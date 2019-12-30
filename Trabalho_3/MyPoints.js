@@ -27,7 +27,6 @@ class MyPoints extends CGFobject {
         else
             this.points2++;
 
-        console.log(this.points1);
     }
 
 }
