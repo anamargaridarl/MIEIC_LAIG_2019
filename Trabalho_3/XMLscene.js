@@ -151,7 +151,6 @@ class XMLscene extends CGFscene {
                         console.log("Picked object: " + obj + ", with pick id " + clickId);
                         //test function
                         this.orchestrator.play(clickId);
-                        this.orchestrator.updatePieces();
                     }
                 }
                 this.pickResults = [];
