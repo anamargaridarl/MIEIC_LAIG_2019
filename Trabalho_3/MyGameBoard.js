@@ -96,11 +96,11 @@ class MyGameBoard extends CGFobject {
             let col = possibleplays[i][0][1];
             let id = possibleplays[i][1][1];
             if (id == 3 || id == 5)
-                piece = this.pieces[row][col][0];
+                piece = this.pieces[row - 1][col - 1][0];
             else if (id == 4 || id == 6)
-                piece = this.pieces[row][col][1];
+                piece = this.pieces[row - 1][col - 1][1];
             else
-                piece = this.pieces[row][col];
+                piece = this.pieces[row - 1][col - 1];
 
             this.scene.registerForPick(piece.id, piece);
         }
