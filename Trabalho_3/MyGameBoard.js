@@ -96,7 +96,7 @@ class MyGameBoard extends CGFobject {
         mat4.translate(transfMatrix, transfMatrix, [-11, 0.01, -8]);
         transfMatrix = mat4.scale(transfMatrix, transfMatrix, [2, 2, 2]);
         this.scene.multMatrix(transfMatrix);
-        this.displayRectangles(this.pieces);
+        this.displayRectangles(this.pieces, possibleplays);
         for (let row = 1; row < 9; row++) {
             for (let col = 1; col < 9; col++) {
                 this.applyTransformation(row, col, this.pieces[row][col], possibleplays);
@@ -136,90 +136,106 @@ class MyGameBoard extends CGFobject {
         }
     }
 
-    applyTransformationRectangle1(unit) {
+    applyTransformationRectangle1(unit, possibleplays) {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 1]);
         this.scene.multMatrix(transfMatrix);
+        if (this.verifyregisterPicking(possibleplays, unit.id))
+            this.scene.registerForPick(unit.id, unit);
         unit.display();
         this.scene.popMatrix();
     }
 
-    applyTransformationRectangle2(unit) {
+    applyTransformationRectangle2(unit, possibleplays) {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [1, 0, 0]);
         this.scene.multMatrix(transfMatrix);
+        if (this.verifyregisterPicking(possibleplays, unit.id))
+            this.scene.registerForPick(unit.id, unit);
         unit.display();
         this.scene.popMatrix();
     }
 
-    applyTransformationRectangle3(unit) {
+    applyTransformationRectangle3(unit, possibleplays) {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 0]);
         this.scene.multMatrix(transfMatrix);
+        if (this.verifyregisterPicking(possibleplays, unit.id))
+            this.scene.registerForPick(unit.id, unit);
         unit.display();
         this.scene.popMatrix();
     }
 
-    applyTransformationRectangle4(unit) {
+    applyTransformationRectangle4(unit, possibleplays) {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 10]);
         this.scene.multMatrix(transfMatrix);
+        if (this.verifyregisterPicking(possibleplays, unit.id))
+            this.scene.registerForPick(unit.id, unit);
         unit.display();
         this.scene.popMatrix();
     }
 
-    applyTransformationRectangle5(unit) {
+    applyTransformationRectangle5(unit, possibleplays) {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-9, 0, 10]);
         this.scene.multMatrix(transfMatrix);
+        if (this.verifyregisterPicking(possibleplays, unit.id))
+            this.scene.registerForPick(unit.id, unit);
         unit.display();
         this.scene.popMatrix();
     }
 
-    applyTransformationRectangle6(unit) {
+    applyTransformationRectangle6(unit, possibleplays) {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 9]);
         this.scene.multMatrix(transfMatrix);
+        if (this.verifyregisterPicking(possibleplays, unit.id))
+            this.scene.registerForPick(unit.id, unit);
         unit.display();
         this.scene.popMatrix();
     }
 
-    applyTransformationRectangle7(unit) {
+    applyTransformationRectangle7(unit, possibleplays) {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [0, 0, 9]);
         this.scene.multMatrix(transfMatrix);
+        if (this.verifyregisterPicking(possibleplays, unit.id))
+            this.scene.registerForPick(unit.id, unit);
         unit.display();
         this.scene.popMatrix();
     }
 
-    applyTransformationRectangle8(unit) {
+    applyTransformationRectangle8(unit, possibleplays) {
         this.scene.pushMatrix();
         let transfMatrix = mat4.create();
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-8, 0, 1]);
         this.scene.multMatrix(transfMatrix);
+        if (this.verifyregisterPicking(possibleplays, unit.id))
+            this.scene.registerForPick(unit.id, unit);
         unit.piece.display();
         this.scene.popMatrix();
     }
 
-    displayRectangles(pieces) {
-        this.applyTransformationRectangle1(pieces[0][0]);
-        this.applyTransformationRectangle2(pieces[0][1]);
-        this.applyTransformationRectangle3(pieces[0][6]);
-        this.applyTransformationRectangle4(pieces[1][9]);
-        this.applyTransformationRectangle5(pieces[6][9]);
-        this.applyTransformationRectangle6(pieces[9][8]);
-        this.applyTransformationRectangle7(pieces[9][0]);
-        this.applyTransformationRectangle8(pieces[6][0]);
+    displayRectangles(pieces, possibleplays) {
+        this.applyTransformationRectangle1(pieces[0][0], possibleplays);
+        this.applyTransformationRectangle2(pieces[0][1], possibleplays);
+        this.applyTransformationRectangle3(pieces[0][6], possibleplays);
+        this.applyTransformationRectangle4(pieces[1][9], possibleplays);
+        this.applyTransformationRectangle5(pieces[6][9], possibleplays);
+        this.applyTransformationRectangle6(pieces[9][8], possibleplays);
+        this.applyTransformationRectangle7(pieces[9][0], possibleplays);
+        this.applyTransformationRectangle8(pieces[6][0], possibleplays);
     }
 }
