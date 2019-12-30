@@ -1,16 +1,15 @@
-class MyProlog extends CGFobject {
+class MyProlog {
 
     constructor(scene) {
-        super(scene);
-
-        this.initBuffers();
+        this.scene = scene
         this.player = 1;
         this.player1Points = 0;
         this.player2Points = 0;
         this.alreadyplayed = [];
         this.gamestate = 0;
         this.possibleplays = [];
-        this.initBoard();
+        this.board = [];
+
     }
 
     async getPoints() {

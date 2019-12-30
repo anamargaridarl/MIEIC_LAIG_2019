@@ -12,6 +12,7 @@ class MyGameOrchestrator extends CGFobject {
     }
 
     init() {
+        this.prolog.initBoard();
         this.possibleplays = this.prolog.getPossiblePlays();
         this.gameboard.registerPicking(this.possibleplays);
     }
