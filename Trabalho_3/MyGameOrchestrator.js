@@ -1,8 +1,8 @@
 const GAME_STATE = Object.freeze({
-    "menu" : 0,
-    "playing" : 1,
-    "game_over" : 2,
-    "game_movie" : 3
+    "menu": 0,
+    "playing": 1,
+    "game_over": 2,
+    "game_movie": 3
 });
 
 class MyGameOrchestrator extends CGFobject {
@@ -21,12 +21,11 @@ class MyGameOrchestrator extends CGFobject {
 
     async init() {
         this.prolog.initBoard();
-        this.possibleplays = await this.prolog.getPossiblePlays();
     }
 
     async display() {
-        this.gameboard.registerPicking(this.possibleplays);
-        this.gameboard.display();
+        this.possibleplays = await this.prolog.getPossiblePlays();
+        this.gameboard.display(this.possibleplays);
         this.points.display();
     }
 
@@ -42,7 +41,6 @@ class MyGameOrchestrator extends CGFobject {
         this.points.addPoints(this.prolog.player);
         //actions passed to prolog
         await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
-        this.possibleplays = await this.prolog.getPossiblePlays();
     }
 
     update(t) {
