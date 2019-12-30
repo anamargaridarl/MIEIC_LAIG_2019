@@ -49,6 +49,7 @@
         <texture id="pink" file="scenes/images/pink.jpg"/>
         <texture id="green" file="scenes/images/green.jpg"/>
         <texture id="darkgreen" file="scenes/images/darkgreen.jpg"/>
+        <texture id="black" file="scenes/images/black.jpg"/>
 
     </textures>
 
@@ -739,12 +740,42 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="black" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
+                <componentref id="LeftNumber"/>
+                <componentref id="RightNumber"/>
             </children>
         </component>
 
+        <component id="LeftNumber">
+            <transformation>
+                <scale x="0.2" y="1" z="1" />
+                <translate x="-0.5" y="0" z="0.01" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="blue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle"/>
+            </children>
+        </component>
+
+        <component id="RightNumber">
+            <transformation>
+                <scale x="0.2" y="1" z="1" />
+                <translate x="0.5" y="0" z="0.01" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="blue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle"/>
+            </children>
+        </component>
+        
         <component id="ClockFace">
             <transformation>
                 <translate x="0" y="0" z="0.2"/>
