@@ -88,11 +88,13 @@ class MyGameBoard extends CGFobject {
 
     registerPicking(possibleplays) {
 
+        if (possibleplays == undefined)
+            return;
         let piece;
         for (let i = 0; i < possibleplays.length; i++) {
             let row = possibleplays[i][0][0];
             let col = possibleplays[i][0][1];
-            let id = possibleplays[i][1][2];
+            let id = possibleplays[i][1][1];
             if (id == 3 || id == 5)
                 piece = this.pieces[row][col][0];
             else if (id == 4 || id == 6)
