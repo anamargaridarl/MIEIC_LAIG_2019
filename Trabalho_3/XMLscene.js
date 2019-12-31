@@ -48,8 +48,6 @@ class XMLscene extends CGFscene {
     initCameras() {
         this.camera = new CGFcamera(0.78, 0.1, 500, vec3.fromValues(10, 8, 30), vec3.fromValues(10, 0, 5));
         this.sceneCamera = this.camera;
-
-
     }
 
     initViews() {
@@ -144,7 +142,6 @@ class XMLscene extends CGFscene {
                     if (obj) {
                         const clickId = this.pickResults[i][1];
                         console.log("Picked object: " + obj + ", with pick id " + clickId);
-                        //test function
                         this.orchestrator.play(clickId);
                     }
                 }
@@ -245,7 +242,7 @@ class XMLscene extends CGFscene {
 
         this.logPicking();
         this.clearPickRegistration();
-        
+
         this.render();
 
         if (this.orchestrator != undefined) {

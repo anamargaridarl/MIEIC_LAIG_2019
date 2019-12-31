@@ -66,15 +66,6 @@ class MyComponent {
             return texStruct.tex_t;
     }
 
-    // updateMaterial() {
-    //     this.currMatIndex = (this.currMatIndex + 1) % this.materials.length;
-
-    //     for (let child of this.children) {
-    //         if (child instanceof MyComponent)
-    //             child.updateMaterial();
-    //     }
-    // }
-
     changeCurrentMaterialIndex(ind) {
         this.currMatIndex = ind;
     }

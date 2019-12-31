@@ -636,7 +636,7 @@
             </materials>
             <texture id="demoTexture" length_s="1" length_t="1"/>
             <children>
-                <componentref id="ScoreBox" />
+                <componentref id="ScoreBox2" />
             </children>
         </component>
 
@@ -763,6 +763,67 @@
         </component>
 
         <component id="RightNumber">
+            <transformation>
+                <scale x="0.2" y="1" z="1" />
+                <translate x="0.5" y="0" z="0.01" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="blue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle"/>
+            </children>
+        </component>
+
+        <component id="ScoreBox2">
+            <transformation>
+            </transformation>
+            <materials>
+                <material id="inherit"/>
+            </materials>
+            <texture id="inherit" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="LeftScoreSide"/>
+                <componentref id="RightScoreSide"/>
+                <componentref id="TopScoreSide"/>
+                <componentref id="BottomScoreSide"/>
+                <componentref id="BackScoreSide"/>
+                <componentref id="FrontScoreSide2"/>   
+            </children>     
+        </component>
+
+        <component id="FrontScoreSide2"> 
+            <transformation>
+                <scale x="4" y="0.5" z="1" />
+                <translate x="0" y="0" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="black" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+                <componentref id="LeftNumber2"/>
+                <componentref id="RightNumber2"/>
+            </children>
+        </component>
+
+        <component id="LeftNumber2">
+            <transformation>
+                <scale x="0.2" y="1" z="1" />
+                <translate x="-0.5" y="0" z="0.01" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="blue" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle"/>
+            </children>
+        </component>
+
+        <component id="RightNumber2">
             <transformation>
                 <scale x="0.2" y="1" z="1" />
                 <translate x="0.5" y="0" z="0.01" />

@@ -42,7 +42,6 @@ class MyGameOrchestrator extends CGFobject {
         //actions passed to prolog
         await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
         this.possibleplays = await this.prolog.getPossiblePlays();
-
     }
 
     update(t) {

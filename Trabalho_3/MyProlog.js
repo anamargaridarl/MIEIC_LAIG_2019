@@ -3,8 +3,6 @@ class MyProlog {
     constructor(scene) {
         this.scene = scene
         this.player = 1;
-        this.player1Points = 0;
-        this.player2Points = 0;
         this.alreadyplayed = [];
         this.gamestate = 0;
         this.possibleplays = [];
@@ -54,10 +52,8 @@ class MyProlog {
 
     changePlayer() {
         if (this.player == 1) {
-            this.player1Points++;
             this.player = 2;
         } else {
-            this.player2Points++;
             this.player = 1;
         }
     }
