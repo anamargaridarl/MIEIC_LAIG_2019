@@ -25,6 +25,7 @@ class XMLscene extends CGFscene {
         this.roomLight = true;
         this.treeLight = true;
         this.axisActive = false;
+        this.undoActive = false;
         this.initCameras();
         this.enableTextures(true);
         this.setPickEnabled(true);
@@ -40,6 +41,9 @@ class XMLscene extends CGFscene {
         this.board;
         this.orchestrator;
         this.orchestratorInit = false;
+        this.type_player = ["pc", "human"];
+        this.player1 = "human";
+        this.player2 = "human";
     }
 
     /**
@@ -124,14 +128,26 @@ class XMLscene extends CGFscene {
         this.initViews();
 
 
-        this.interface.createViewDropdown();
-        this.interface.createLightsCheckboxes();
-
         this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
         this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
         this.sceneInited = true;
         this.orchestratorInit = true;
 
+        this.interface.createStartButton();
+        this.interface.createViewDropdown1();
+        this.interface.createViewDropdown2();
+        this.interface.createLightsCheckboxes();
+        this.interface.createUndoButton();
+
+    }
+
+    undo() {
+        console.log('undo');
+    }
+
+
+    start() {
+        console.log('start');
     }
 
     logPicking() {
@@ -214,10 +230,12 @@ class XMLscene extends CGFscene {
         // ---- END Background, camera and axis setup
     }
 
-    updateCurrView(viewID) {
-        this.camera = this.graph.views[viewID];
-        this.interface.setActiveCamera(this.camera);
-        this.sceneCamera = this.camera;
+    updatePlayer1(tid) {
+        this.player1 = tid;
+    }
+
+    updatePlayer2(tid) {
+        this.player2 = tid;
     }
 
     // updateSecCam(secID) {

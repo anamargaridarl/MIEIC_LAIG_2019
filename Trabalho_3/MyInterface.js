@@ -19,12 +19,18 @@ class MyInterface extends CGFinterface {
         //  http://workshop.chromeexperiments.com/examples/gui
 
         this.gui = new dat.GUI();
+        this.f0 = this.gui.addFolder('Game Menu');
+        this.f1 = this.gui.addFolder('Movie');
+        this.f2 = this.gui.addFolder('Lights');
+        this.f3 = this.gui.addFolder('Cameras');
+
 
         // add a group of controls (and open/expand by defult)
         this.initKeys();
 
         return true;
     }
+
 
     /**
      * initKeys
@@ -38,18 +44,37 @@ class MyInterface extends CGFinterface {
         this.scene.checkKeys(event.code);
     };
 
-    createViewDropdown() {
-        // this.viewKeys = Object.keys(this.scene.graph.views);
-        // this.gui.add(this.scene.graph, "viewID", this.viewKeys)
-        //     .name("Current view:")
-        //     .onChange(vID => this.scene.updateCurrView(vID));
-        // this.gui.add(this.scene, "secCamID", this.viewKeys)
-        //     .name("Security Camera:")
-        //     .onChange(sID => this.scene.updateSecCam(sID));
+    createViewDropdown1() {
+        this.typeKeys = this.scene.type_player;
+        this.f0.add(this.scene, 'player1', this.typeKeys)
+            .name('Player1:')
+            .onChange(tID => this.scene.updatePlayer1(tID));
+    }
+
+    createViewDropdown2() {
+        this.typeKeys = this.scene.type_player;
+        this.f0.add(this.scene, 'player2', this.typeKeys)
+            .name('Player2:')
+            .onChange(tID => this.scene.updatePlayer2(tID));
+    }
+
+    //USE THIS TO ADD SCENE
+    // createViewDropdown3() {
+    //     this.typeKeys = this.scene.type_player;
+    //     this.gui.add(this.scene, 'player2', this.typeKeys)
+    //         .name('Player2:')
+    //         .onChange(tID => this.scene.updatePlayer2(tID));
+    // }
+
+    createUndoButton() {
+        this.f0.add(this.scene, 'undo').name('Undo');
+    }
+
+    createStartButton() {
+        this.f0.add(this.scene, 'start').name('Start');
     }
 
     createLightsCheckboxes() {
-        this.gui.add(this.scene, "axisActive")
-            .name("Display axis");
+        this.f0.add(this.scene, 'axisActive').name('Display axis');
     }
 }
