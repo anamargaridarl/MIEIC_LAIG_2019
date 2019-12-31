@@ -14,6 +14,19 @@ class MyGameBoard extends CGFobject {
         this.initBuffers();
     };
 
+
+    cleanBoard() {
+        for (let row = 0; row < 10; row++) {
+            for (let col = 0; col < 10; col++) {
+                if (Array.isArray(this.pieces[row][col])) {
+                    this.pieces[row][col][0].cleanPiece();
+                    this.pieces[row][col][1].cleanPiece();
+                } else
+                    this.pieces[row][col].cleanPiece();
+            }
+        }
+    }
+
     getPiece(row, column, T) {
         if (T != -1)
             return this.pieces[row][column][T];

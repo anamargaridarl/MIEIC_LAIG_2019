@@ -17,6 +17,11 @@ class MyPiece extends CGFobject {
         this.initBuffers();
     };
 
+    cleanPiece() {
+        this.animation = null;
+        this.color = 0;
+    }
+
     display() {
 
         if (this.animation != null) {

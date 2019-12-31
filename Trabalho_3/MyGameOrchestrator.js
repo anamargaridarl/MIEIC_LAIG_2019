@@ -50,5 +50,9 @@ class MyGameOrchestrator extends CGFobject {
         this.gameboard.update(t);
     }
 
+    cleanBoard() {
+        this.gameboard.cleanBoard();
+    }
+
 
 }

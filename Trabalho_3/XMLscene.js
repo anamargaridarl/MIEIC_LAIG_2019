@@ -147,7 +147,10 @@ class XMLscene extends CGFscene {
 
 
     start() {
-        console.log('start');
+        this.board.cleanBoard();
+        this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
+        this.sceneInited = true;
+        this.orchestratorInit = true;
     }
 
     logPicking() {
