@@ -26,6 +26,7 @@ class XMLscene extends CGFscene {
         this.treeLight = true;
         this.axisActive = false;
         this.undoActive = false;
+        this.orchestratorInit = false;
         this.initCameras();
         this.enableTextures(true);
         this.setPickEnabled(true);
@@ -40,7 +41,6 @@ class XMLscene extends CGFscene {
 
         this.board;
         this.orchestrator;
-        this.orchestratorInit = false;
         this.type_player = ["pc", "human"];
         this.player1 = "human";
         this.player2 = "human";
@@ -133,7 +133,6 @@ class XMLscene extends CGFscene {
         this.board = new MyGameBoard(this.graph.scene, this.graph.pieces);
         this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
         this.sceneInited = true;
-        this.orchestratorInit = true;
 
         /*Create interface options*/
         this.interface.createStartButton();
@@ -147,18 +146,25 @@ class XMLscene extends CGFscene {
     }
 
     undo() {
-        this.orchestrator.undo();
+        if (this.orchestrator.gameState == GAME_STATE.playing)
+            this.orchestrator.undo();
     }
 
     start() {
+        this.pickResults.splice(0, this.pickResults.length);
+        this.clearPickRegistration();
         this.board.cleanBoard();
         this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
         this.sceneInited = true;
         this.orchestratorInit = true;
+        this.orchestrator.gameState = GAME_STATE.playing;
     }
 
     movie() {
-        this.orchestrator.movie();
+        if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie) {
+            console.log('movie');
+            this.orchestrator.movie();
+        }
     }
 
     updatePlayer1(tid) {
@@ -218,9 +224,9 @@ class XMLscene extends CGFscene {
 
         if (this.sceneInited) {
 
-            if (this.orchestratorInit) {
+            if (!this.orchestratorInit) {
                 this.orchestrator.init();
-                this.orchestratorInit = false;
+                this.orchestratorInit = true;
             }
 
             // Draw axis
@@ -271,24 +277,21 @@ class XMLscene extends CGFscene {
 
     play() {
 
-        if (!this.orchestratorInit) {
-            if (this.player == 1 && this.player1 == "pc")
-                this.player = this.orchestrator.playCPU();
-            else if (this.player == 2 && this.player2 == "pc")
-                this.player = this.orchestrator.playCPU();
-        }
+        if (this.player == 1 && this.player1 == "pc")
+            this.player = this.orchestrator.playCPU();
+        else if (this.player == 2 && this.player2 == "pc")
+            this.player = this.orchestrator.playCPU();
     }
 
     display() {
 
-        this.play();
-        this.logPicking();
-        this.clearPickRegistration();
-
         this.render();
 
-        if (this.orchestrator != undefined) {
+        if (this.orchestratorInit) {
+            this.play();
+            this.logPicking();
             this.orchestrator.display();
+            this.clearPickRegistration();
         }
     }
 

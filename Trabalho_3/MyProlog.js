@@ -69,6 +69,7 @@ class MyProlog {
         this.board = playermove.board;
         this.alreadyplayed = playermove.played;
         this.gamestate = playermove.state;
+        console.log(playermove.state);
         this.changePlayer();
         return playermove.state;
     }

@@ -46,13 +46,6 @@ class MyGameOrchestrator extends CGFobject {
         //actions passed to prolog
         let state = await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
 
-        console.log('state:', state);
-        if (state == 0)
-            console.log("continue game");
-        else if (state == 2) {
-            console.log("end game");
-            this.gameState = GAME_STATE.game_over;
-        }
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
 
@@ -85,13 +78,6 @@ class MyGameOrchestrator extends CGFobject {
         //update points 
         this.points.addPoints(player);
 
-        console.log('state:', state);
-        if (state == 0)
-            console.log("continue game");
-        else if (state == 2) {
-            console.log("end game");
-            this.gameState = GAME_STATE.game_over;
-        }
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
 
