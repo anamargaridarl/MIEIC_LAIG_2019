@@ -63,7 +63,7 @@ class XMLscene extends CGFscene {
             this.camera = this.graph.views[this.graph.viewID];
             this.sceneCamera = this.camera;
             this.interface.setActiveCamera(this.camera);
-            this.povs = new MyPOV(this,this.camera);
+            this.povs = new MyPOV(this, this.camera);
             this.currentPOV = this.povs.currentPOV;
         }
         /**
@@ -273,15 +273,15 @@ class XMLscene extends CGFscene {
     }
 
     setPOV(pov) {
-        this.currentPov = pov; 
-        this.povs.setChangingPOV(pov,this.updatePeriod);
+        this.currentPov = pov;
+        this.povs.setChangingPOV(pov, this.updatePeriod);
     }
 
     update(t) {
         if (this.sceneInited) {
             this.graph.components["Root"].updateAnimation(t / 1000);
             this.orchestrator.update(t / 1000);
-            if(this.povs.changingPOV) this.updateCamera();
+            if (this.povs.changingPOV) this.updateCamera();
         }
     }
 
@@ -320,6 +320,7 @@ class XMLscene extends CGFscene {
             this.clearPickRegistration();
             this.orchestrator.display();
         }
+
     }
 
 
