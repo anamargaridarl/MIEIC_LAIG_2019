@@ -147,15 +147,22 @@ class XMLscene extends CGFscene {
     }
 
     undo() {
-        this.orchestrator.undo();
+        if (this.orchestrator.gameState == GAME_STATE.playing) {
+            console.log('undo');
+            this.orchestrator.undo();
+        }
     }
 
     start() {
 
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie) {
+            console.log('start')
+                //clean pickresults and board
             this.pickResults.splice(0, this.pickResults.length);
             this.clearPickRegistration();
             this.board.cleanBoard();
+
+            //start game
             this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
             this.sceneInited = true;
             this.orchestratorInit = true;
@@ -165,6 +172,7 @@ class XMLscene extends CGFscene {
 
     movie() {
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie) {
+            console.log('movie');
             this.orchestrator.movie();
             this.orchestrator.gameState = GAME_STATE.game_movie;
         }

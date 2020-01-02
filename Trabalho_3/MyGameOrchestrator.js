@@ -33,6 +33,21 @@ class MyGameOrchestrator extends CGFobject {
         this.points.display();
     }
 
+    // async processState(state) {
+    //     console.log(state);
+    //     switch (state) {
+    //         case 0:
+    //             break;
+    //         case 1:
+    //             console.log('tie');
+    //             this.gameState = GAME_STATE.tie;
+    //             break;
+    //         case 2:
+    //             console.log('game_over');
+    //             this.gameState = GAME_STATE.game_over;
+    //             break;
+    //     }
+    // }
     async play(id) {
         //fetch information from gameboard
         let coord = this.gameboard.getPlayPiece(id);
@@ -46,7 +61,7 @@ class MyGameOrchestrator extends CGFobject {
         //actions passed to prolog
         let state = await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
 
-
+        // this.processState(state);
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
 

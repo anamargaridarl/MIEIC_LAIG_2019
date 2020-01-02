@@ -325,7 +325,6 @@ class MySceneGraph {
                 this.pieces.push(this.loadEvenRow(i, rectangles));
             else if (i % 2 != 0)
                 this.pieces.push(this.loadOddRow(i, rectangles));
-            console.log(n);
         }
     }
 
