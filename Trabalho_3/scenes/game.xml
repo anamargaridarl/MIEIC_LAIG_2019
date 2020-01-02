@@ -40,7 +40,9 @@
         <texture id="Loki_Miguel" file="scenes/images/loki_player.jpg" />
         <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
         <texture id="clockface" file="scenes/images/clock.jpg"/>
-        <texture id="noplay" file="scenes/images/noplay.jpg"/>
+        <texture id="color" file="scenes/images/noplay.jpg"/>
+        <texture id="color2" file="scenes/images/color2.png"/>
+        <texture id="color3" file="scenes/images/color3.png"/>
         <texture id="darkblue" file="scenes/images/darkblue.jpg"/>
         <texture id="blue" file="scenes/images/blue.jpg"/>
         <texture id="bordo" file="scenes/images/bordo.png"/>
@@ -60,6 +62,7 @@
             <diffuse r="0.5" g="0.50" b="0.5" a="1.0" />
             <specular r="0.05" g="0.05" b="0.05" a="1.0" />
         </material>
+
 
 
         <material id="player1" shininess="10">
@@ -174,7 +177,6 @@
             <children>
                <componentref id="Player1"/>
                <componentref id="Player2"/>
-               <!-- <componentref id="ScoreBoards"/> -->
                <componentref id="Clock"/>
                <componentref id="GameBoardStructure"/>
 
@@ -299,7 +301,7 @@
                 <material id="player1" />
                 <material id="player2" />
             </materials>
-            <texture id="noplay" length_s="1" length_t="1"/>
+            <texture id="color3" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="RectangleT4"/>
             </children>
@@ -314,7 +316,7 @@
                 <material id="player1" />
                 <material id="player2" />
             </materials>
-            <texture id="noplay" length_s="1" length_t="1"/>
+            <texture id="color" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Square"/>
             </children>
@@ -325,14 +327,13 @@
         <component id="RectangleT5T">
             <transformation>
             <rotate axis="x" angle="-90" />
-
             </transformation>
             <materials>
                  <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
             </materials>
-            <texture id="noplay" length_s="1" length_t="1"/>
+            <texture id="color3" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="RectangleT5"/>
             </children>
@@ -348,7 +349,7 @@
                 <material id="player1" />
                 <material id="player2" />
             </materials>
-            <texture id="noplay" length_s="1" length_t="1"/>
+            <texture id="color2" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Triangle"/>
             </children>
@@ -366,7 +367,7 @@
                 <material id="player1" />
                 <material id="player2" />
             </materials>
-            <texture id="noplay" length_s="1" length_t="1"/>
+            <texture id="color2" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Triangle"/>
             </children>
@@ -383,7 +384,7 @@
                 <material id="player1" />
                 <material id="player2" />
             </materials>
-            <texture id="noplay" length_s="1" length_t="1"/>
+            <texture id="color2" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Triangle"/>
             </children>
@@ -399,7 +400,7 @@
                 <material id="player1" />
                 <material id="player2" />
             </materials>
-            <texture id="noplay" length_s="1" length_t="1"/>
+            <texture id="color2" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="Triangle"/>
             </children>
@@ -407,7 +408,6 @@
 
         <component id="Player1">
             <transformation>
-                <!-- <translate x="8" y="3" z="8" /> -->
                 <translate x="12" y="0" z="0" />
             </transformation>
             <materials>
