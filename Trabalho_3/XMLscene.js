@@ -36,7 +36,8 @@ class XMLscene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.axis = new CGFaxis(this);
-        this.setUpdatePeriod(50);
+        this.updatePeriod = 50;
+        this.setUpdatePeriod(this.updatePeriod);
 
         this.board;
         this.orchestrator;
@@ -144,7 +145,7 @@ class XMLscene extends CGFscene {
         this.interface.createLightsCheckboxes();
         this.interface.createUndoButton();
         this.interface.createMovieButton();
-
+        this.interface.createPOVDropdown();
 
     }
 
@@ -253,15 +254,16 @@ class XMLscene extends CGFscene {
         // ---- END Background, camera and axis setup
     }
 
-    updatePov(pov) {
-        console.log(pov);
+    setPOV(pov) {
+        this.currentPov = pov; 
+        this.povs.setChangingPOV(pov,this.updatePeriod);
     }
 
     update(t) {
         if (this.sceneInited) {
             this.graph.components["Root"].updateAnimation(t / 1000);
             this.orchestrator.update(t / 1000);
-            // this.secureCam.update(t);
+            if(this.povs.changingPOV) this.povs.update();
         }
     }
 

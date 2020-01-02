@@ -86,6 +86,6 @@ class MyInterface extends CGFinterface {
         this.typeKeys = POV;
         this.f3.add(this.scene, 'currentPOV',this.typeKeys)
            .name('POV: ')
-           .onChange(pov => this.scene.updatePov(pov)); 
+           .onChange(pov => this.scene.setPOV(pov)); 
     }
 }
