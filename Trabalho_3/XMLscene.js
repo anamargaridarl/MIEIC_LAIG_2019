@@ -36,7 +36,8 @@ class XMLscene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.axis = new CGFaxis(this);
-        this.setUpdatePeriod(50);
+        this.updatePeriod = 50;
+        this.setUpdatePeriod(this.updatePeriod);
 
         this.board;
         this.orchestrator;
@@ -62,6 +63,8 @@ class XMLscene extends CGFscene {
             this.camera = this.graph.views[this.graph.viewID];
             this.sceneCamera = this.camera;
             this.interface.setActiveCamera(this.camera);
+            this.povs = new MyPOV(this,this.camera);
+            this.currentPOV = this.povs.currentPOV;
         }
         /**
          * Initializes the scene lights with the values read from the XML file.
@@ -143,7 +146,7 @@ class XMLscene extends CGFscene {
         this.interface.createLightsCheckboxes();
         this.interface.createUndoButton();
         this.interface.createMovieButton();
-
+        this.interface.createPOVDropdown();
 
     }
 
@@ -269,16 +272,22 @@ class XMLscene extends CGFscene {
         // ---- END Background, camera and axis setup
     }
 
-    // updateSecCam(secID) {
-    //     this.secCamera = this.graph.views[secID];
-    // }
+    setPOV(pov) {
+        this.currentPov = pov; 
+        this.povs.setChangingPOV(pov,this.updatePeriod);
+    }
 
     update(t) {
         if (this.sceneInited) {
             this.graph.components["Root"].updateAnimation(t / 1000);
             this.orchestrator.update(t / 1000);
-            // this.secureCam.update(t);
+            if(this.povs.changingPOV) this.updateCamera();
         }
+    }
+
+    updateCamera() {
+        this.camera = this.povs.update(this.camera);
+        this.interface.setActiveCamera(this.camera);
     }
 
     checkKeys(eventCode) {

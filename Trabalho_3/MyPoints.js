@@ -25,7 +25,6 @@ class MyPoints extends CGFobject {
     setScoreTex(points1, points2) {
         let pts1 = "00" + points1;
         pts1 = pts1.substr(pts1.length - 2);
-        console.log("left: " + parseInt(pts1[0]) + " right: " + parseInt(pts1[1]));
         this.p1.children[0].children[5].children[1].texture = this.numbersTex[parseInt(pts1[0])];
         this.p1.children[0].children[5].children[2].texture = this.numbersTex[parseInt(pts1[1])];
 
