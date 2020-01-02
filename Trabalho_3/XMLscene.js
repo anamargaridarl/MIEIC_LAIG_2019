@@ -141,6 +141,8 @@ class XMLscene extends CGFscene {
         this.interface.createViewDropdown2();
         this.interface.createLightsCheckboxes();
         this.interface.createUndoButton();
+        this.interface.createMovieButton();
+
 
     }
 
@@ -155,6 +157,9 @@ class XMLscene extends CGFscene {
         this.orchestratorInit = true;
     }
 
+    movie() {
+        this.orchestrator.movie();
+    }
 
     updatePlayer1(tid) {
         this.player1 = tid;

@@ -74,6 +74,11 @@ class MyInterface extends CGFinterface {
         this.f0.add(this.scene, 'start').name('Start');
     }
 
+    createMovieButton() {
+        this.f1.add(this.scene, 'movie').name('Movie');
+    }
+
+
     createLightsCheckboxes() {
         this.f0.add(this.scene, 'axisActive').name('Display axis');
     }
