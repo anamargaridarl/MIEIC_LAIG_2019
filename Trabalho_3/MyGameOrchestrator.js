@@ -5,6 +5,8 @@ const GAME_STATE = Object.freeze({
     "game_movie": 3
 });
 
+let i = 0;
+
 class MyGameOrchestrator extends CGFobject {
 
     constructor(scene, gameboard, p1, p2) {
@@ -21,6 +23,8 @@ class MyGameOrchestrator extends CGFobject {
             - used to know which pieces to register for picking*/
         this.possibleplays;
         this.initBuffers();
+
+        this.gamesequenceLength = 0;
     }
 
     async init() {
@@ -31,6 +35,22 @@ class MyGameOrchestrator extends CGFobject {
     async display() {
         this.gameboard.display(this.possibleplays);
         this.points.display();
+    }
+
+    async processState(state) {
+        console.log(state);
+        switch (state) {
+            case 0:
+                break;
+            case 1:
+                console.log('tie');
+                this.gameState = GAME_STATE.tie;
+                break;
+            case 2:
+                console.log('game_over');
+                this.gameState = GAME_STATE.game_over;
+                break;
+        }
     }
 
     async play(id) {
@@ -46,13 +66,7 @@ class MyGameOrchestrator extends CGFobject {
         //actions passed to prolog
         let state = await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
 
-        console.log('state:', state);
-        if (state == 0)
-            console.log("continue game");
-        else if (state == 2) {
-            console.log("end game");
-            this.gameState = GAME_STATE.game_over;
-        }
+        this.processState(state);
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
 
@@ -85,13 +99,6 @@ class MyGameOrchestrator extends CGFobject {
         //update points 
         this.points.addPoints(player);
 
-        console.log('state:', state);
-        if (state == 0)
-            console.log("continue game");
-        else if (state == 2) {
-            console.log("end game");
-            this.gameState = GAME_STATE.game_over;
-        }
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
 
@@ -116,7 +123,32 @@ class MyGameOrchestrator extends CGFobject {
         lastPiece.cleanPiece();
     }
 
+
+    movieSequence() {
+
+        if (i >= this.gamesequenceLength)
+            clearInterval();
+        else {
+            this.gamesequence[i].play();
+            i++;
+        }
+
+    }
+
     movie() {
         this.gameState = GAME_STATE.game_movie;
+        this.possibleplays = [];
+        this.gameboard.cleanBoard();
+        this.gamesequenceLength = this.gamesequence.length;
+
+        window.setInterval(function movieSequence(gamesequenceLength, gamesequence) {
+            if (i >= gamesequenceLength)
+                clearInterval();
+            else {
+                gamesequence[i].play();
+                i++;
+            }
+        }, 3000, this.gamesequenceLength, this.gamesequence);
+
     }
 }
