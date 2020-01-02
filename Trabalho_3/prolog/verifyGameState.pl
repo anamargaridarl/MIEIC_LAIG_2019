@@ -60,7 +60,7 @@ verifyPlayerState(_,_,[],0).
 verifyPlayerState(TabIn,Player,InPlay,StateOut) :-
   verifyPieceState(TabIn,Player, InPlay, InPlay2, AuxTab, PieceState),
   ((PieceState == 0, verifyPlayerState(AuxTab,Player,InPlay2,StateOut));
-  (PieceState == 1, getOposPlayer(Player,Opp),display_game(TabIn,Opp), StateOut = 1)).
+  (PieceState == 1, StateOut = 1)).
 
 %value(+TabIn,+InPlay,-StateOut)
 %To verify game state, verify if player 1 and player 2 has some piece/pieces surrounded
