@@ -23,6 +23,7 @@ class MyInterface extends CGFinterface {
         this.f1 = this.gui.addFolder('Movie');
         this.f2 = this.gui.addFolder('Lights');
         this.f3 = this.gui.addFolder('Cameras');
+        this.f0.open();
 
 
         // add a group of controls (and open/expand by defult)

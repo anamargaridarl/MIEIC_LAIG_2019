@@ -11,7 +11,7 @@ class MyPOV extends CGFobject {
     this.camera = camera;
     this.currentPOV = POV.menu;
     this.changingPOV = false;
-    this.animationTime = 2000; // in milliseconds
+    this.animationTime = 1000; // in milliseconds
 
     this.createMenuPOV();
     this.createPlayer1POV();
@@ -84,15 +84,17 @@ class MyPOV extends CGFobject {
     this.targetStep = vec3.fromValues((this.finalTarget[0]-initTarget[0])/timeStep, (this.finalTarget[1]-initTarget[1])/timeStep, (this.finalTarget[2]-initTarget[2])/timeStep);
   }
 
-  update() {
-    if(vec3.distance(this.finalPos,this.camera.position) <= 0.01 || vec3.distance(this.finalTarget,this.camera.target) <= 0.01) {
+  update(camera) {
+    console.log(camera.position + " " + this.finalPos + " " + this.posStep);
+    if(vec3.distance(this.finalPos,camera.position) <= 0.01 || vec3.distance(this.finalTarget,camera.target) <= 0.01) {
       this.changingPOV = false;
+      return camera;
     } else {
       let newPos = vec3.create(), newTarget = vec3.create();
-      vec3.add(newPos,this.camera.position,this.posStep);
-      vec3.add(newTarget,this.camera.target,this.targetStep);
-      this.camera.setPosition(newPos);
-      this.camera.setTarget(newTarget);
+      vec3.add(newPos,camera.position,this.posStep);
+      vec3.add(newTarget,camera.target,this.targetStep);
+      this.camera = new CGFcamera(DEGREE_TO_RAD * 45,0.1,1000,newPos,newTarget);
+      return this.camera;
     }
   }
 }

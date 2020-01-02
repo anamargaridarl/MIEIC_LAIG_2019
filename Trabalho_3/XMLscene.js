@@ -281,8 +281,13 @@ class XMLscene extends CGFscene {
         if (this.sceneInited) {
             this.graph.components["Root"].updateAnimation(t / 1000);
             this.orchestrator.update(t / 1000);
-            if(this.povs.changingPOV) this.povs.update();
+            if(this.povs.changingPOV) this.updateCamera();
         }
+    }
+
+    updateCamera() {
+        this.camera = this.povs.update(this.camera);
+        this.interface.setActiveCamera(this.camera);
     }
 
     checkKeys(eventCode) {
