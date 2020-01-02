@@ -61,6 +61,8 @@ class XMLscene extends CGFscene {
             this.camera = this.graph.views[this.graph.viewID];
             this.sceneCamera = this.camera;
             this.interface.setActiveCamera(this.camera);
+            this.povs = new MyPOV(this,this.camera);
+            this.currentPOV = this.povs.currentPOV;
         }
         /**
          * Initializes the scene lights with the values read from the XML file.
@@ -251,9 +253,9 @@ class XMLscene extends CGFscene {
         // ---- END Background, camera and axis setup
     }
 
-    // updateSecCam(secID) {
-    //     this.secCamera = this.graph.views[secID];
-    // }
+    updatePov(pov) {
+        console.log(pov);
+    }
 
     update(t) {
         if (this.sceneInited) {

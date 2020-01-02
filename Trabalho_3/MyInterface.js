@@ -78,8 +78,14 @@ class MyInterface extends CGFinterface {
         this.f1.add(this.scene, 'movie').name('Movie');
     }
 
-
     createLightsCheckboxes() {
         this.f0.add(this.scene, 'axisActive').name('Display axis');
+    }
+
+    createPOVDropdown() {
+        this.typeKeys = POV;
+        this.f3.add(this.scene, 'currentPOV',this.typeKeys)
+           .name('POV: ')
+           .onChange(pov => this.scene.updatePov(pov)); 
     }
 }
