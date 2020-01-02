@@ -36,7 +36,7 @@ class MyGameOrchestrator extends CGFobject {
         let coord = this.gameboard.getPlayPiece(id);
         let piece = this.gameboard.getPiece(coord[0], coord[1], coord[2]);
         //actions in selected piece
-        let seqPiece = new MyGameBoardMove(this.scene, piece, this.prolog.player);
+        let seqPiece = new MyGameBoardMove(this.scene, piece, this.prolog.player, this.prolog.board);
         seqPiece.play();
         this.gamesequence.push(seqPiece);
         //update points 
@@ -50,9 +50,14 @@ class MyGameOrchestrator extends CGFobject {
         this.gameboard.update(t);
     }
 
-    cleanBoard() {
-        this.gameboard.cleanBoard();
+    undo() {
+        this.lastMove = this.gamesequence.pop();
+        let lastBoard = this.lastMove.getBoard();
+        let lastPiece = this.lastMove.getPiece();
+        this.prolog.undo(lastBoard);
+        lastPiece.cleanPiece();
     }
+
 
 
 }

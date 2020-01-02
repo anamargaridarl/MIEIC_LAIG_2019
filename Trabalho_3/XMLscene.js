@@ -142,7 +142,7 @@ class XMLscene extends CGFscene {
     }
 
     undo() {
-        console.log('undo');
+        this.orchestrator.undo();
     }
 
 

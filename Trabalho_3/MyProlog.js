@@ -10,6 +10,12 @@ class MyProlog {
 
     }
 
+    async undo(board) {
+        this.board = board;
+        this.alreadyplayed.pop();
+        this.changePlayer();
+    }
+
     async getPoints() {
         return [this.player1Points, this.player2Points];
     }
