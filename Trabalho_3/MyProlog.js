@@ -37,7 +37,7 @@ class MyProlog {
 
     async testRequests() {
         let board = await MyRequestHandler.initBoard();
-        console.log(board);
+        // console.log(board);
 
         let cpumove = await MyRequestHandler.cpuMove(board.b, [], 1, 1);
         console.log(cpumove);
@@ -46,13 +46,13 @@ class MyProlog {
         console.log(cpumove);
 
         let plays = await MyRequestHandler.getPossiblePlays(cpumove.board, cpumove.played);
-        console.log(plays);
+        // console.log(plays);
 
         const row = plays.poss[0][0][0];
         const column = plays.poss[0][0][1];
-        console.log(row);
+        // console.log(row);
         let playermove = await MyRequestHandler.playerMove(cpumove.board, cpumove.played, 1, row, column, -1);
-        console.log(playermove);
+        // console.log(playermove);
     }
 
 
@@ -70,8 +70,16 @@ class MyProlog {
         this.alreadyplayed = playermove.played;
         this.gamestate = playermove.state;
         this.changePlayer();
-
+        return playermove.state;
     }
 
+    async addplayCPU() {
+        let cpumove = await MyRequestHandler.cpuMove(this.board, this.alreadyplayed, this.player, 1);
+        this.board = cpumove.board;
+        this.alreadyplayed = cpumove.played;
+        this.gamestate = cpumove.state;
+        this.changePlayer();
+        return [cpumove.state, this.alreadyplayed[0]];
+    }
 
 }

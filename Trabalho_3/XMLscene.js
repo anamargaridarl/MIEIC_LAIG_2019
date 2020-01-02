@@ -44,6 +44,8 @@ class XMLscene extends CGFscene {
         this.type_player = ["pc", "human"];
         this.player1 = "human";
         this.player2 = "human";
+
+        this.player = 1;
     }
 
     /**
@@ -133,6 +135,7 @@ class XMLscene extends CGFscene {
         this.sceneInited = true;
         this.orchestratorInit = true;
 
+        /*Create interface options*/
         this.interface.createStartButton();
         this.interface.createViewDropdown1();
         this.interface.createViewDropdown2();
@@ -145,12 +148,22 @@ class XMLscene extends CGFscene {
         this.orchestrator.undo();
     }
 
-
     start() {
         this.board.cleanBoard();
         this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
         this.sceneInited = true;
         this.orchestratorInit = true;
+    }
+
+
+    updatePlayer1(tid) {
+        this.player1 = tid;
+        this.start();
+    }
+
+    updatePlayer2(tid) {
+        this.player2 = tid;
+        this.start();
     }
 
     logPicking() {
@@ -161,7 +174,7 @@ class XMLscene extends CGFscene {
                     if (obj) {
                         const clickId = this.pickResults[i][1];
                         console.log("Picked object: " + obj + ", with pick id " + clickId);
-                        this.orchestrator.play(clickId);
+                        this.player = this.orchestrator.play(clickId);
                     }
                 }
                 this.pickResults = [];
@@ -233,14 +246,6 @@ class XMLscene extends CGFscene {
         // ---- END Background, camera and axis setup
     }
 
-    updatePlayer1(tid) {
-        this.player1 = tid;
-    }
-
-    updatePlayer2(tid) {
-        this.player2 = tid;
-    }
-
     // updateSecCam(secID) {
     //     this.secCamera = this.graph.views[secID];
     // }
@@ -259,8 +264,19 @@ class XMLscene extends CGFscene {
         }
     }
 
+    play() {
+
+        if (!this.orchestratorInit) {
+            if (this.player == 1 && this.player1 == "pc")
+                this.player = this.orchestrator.playCPU();
+            else if (this.player == 2 && this.player2 == "pc")
+                this.player = this.orchestrator.playCPU();
+        }
+    }
+
     display() {
 
+        this.play();
         this.logPicking();
         this.clearPickRegistration();
 

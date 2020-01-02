@@ -15,6 +15,28 @@ class MyGameBoard extends CGFobject {
     };
 
 
+    getPieceFromProlog(piece) {
+        let row = piece[0][0];
+        let column = piece[0][1];
+        let id = piece[1][1];
+
+        if (id == 3 || id == 5)
+            return this.getPiece(row, column, 0);
+        else if (id == 4 || id == 6)
+            return this.getPiece(row, column, 1);
+        else
+            return this.getPiece(row, column, -1);
+
+    }
+
+
+    getPiece(row, column, T) {
+        if (T != -1)
+            return this.pieces[row][column][T];
+        else
+            return this.pieces[row][column]
+    }
+
     /*Function used to restart game 
         - cleans all the players' colors from the board*/
     cleanBoard() {

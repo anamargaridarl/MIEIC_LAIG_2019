@@ -44,9 +44,58 @@ class MyGameOrchestrator extends CGFobject {
         //update points 
         this.points.addPoints(this.prolog.player);
         //actions passed to prolog
-        await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
+        let state = await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
+
+        console.log('state:', state);
+        if (state == 0)
+            console.log("continue game");
+        else if (state == 2) {
+            console.log("end game");
+            this.gameState = GAME_STATE.game_over;
+        }
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
+
+        return this.prolog.player;
+
+    }
+
+    async playCPU() {
+
+        //fetch information for this play move
+        let lastBoard = this.prolog.board;
+        let player = this.prolog.player;
+
+        //play action in prolog
+        //      -returns state and already played pieces
+        let result = await this.prolog.addplayCPU();
+
+        //piece played in this round
+        let pieceProlog = result[1];
+        let state = result[0];
+        //fetch gameboard piece based on the "prolog piece"
+        let piece = this.gameboard.getPieceFromProlog(pieceProlog);
+
+        //save gamemove and actions in board
+        let seqPiece = new MyGameBoardMove(this.scene, piece, player, lastBoard);
+        seqPiece.play();
+
+        this.gamesequence.push(seqPiece);
+
+        //update points 
+        this.points.addPoints(player);
+
+        console.log('state:', state);
+        if (state == 0)
+            console.log("continue game");
+        else if (state == 2) {
+            console.log("end game");
+            this.gameState = GAME_STATE.game_over;
+        }
+        //get possible pieces to play for next round
+        this.possibleplays = await this.prolog.getPossiblePlays();
+
+        return this.prolog.player;
     }
 
     update(t) {
