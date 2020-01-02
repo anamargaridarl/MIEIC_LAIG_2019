@@ -61,4 +61,13 @@ class MyPoints extends CGFobject {
         this.numbersTex[8] = { s: 1, t: 1, tex_t: new CGFtexture(this.scene, "scenes/images/8.png") };
         this.numbersTex[9] = { s: 1, t: 1, tex_t: new CGFtexture(this.scene, "scenes/images/9.png") };
     }
+
+    undo(player) {
+        if (player == 1)
+            this.points1--;
+        else
+            this.points2--;
+
+        this.setScoreTex(this.points1, this.points2);
+    }
 }

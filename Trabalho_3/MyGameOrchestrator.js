@@ -54,7 +54,9 @@ class MyGameOrchestrator extends CGFobject {
         this.lastMove = this.gamesequence.pop();
         let lastBoard = this.lastMove.getBoard();
         let lastPiece = this.lastMove.getPiece();
+        let lastPlayer = this.lastMove.getPlayer();
         this.prolog.undo(lastBoard);
+        this.points.undo(lastPlayer);
         lastPiece.cleanPiece();
     }
 

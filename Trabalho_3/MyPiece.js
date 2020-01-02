@@ -37,21 +37,8 @@ class MyPiece extends CGFobject {
             this.animation.update(t);
     }
 
-    //step = 1 --> next 
-    //step = 0 --> undo
-    changeColor(step, player) {
-        if (step == 1) {
-            if (this.color == 1)
-                return "Already played piece";
-            else
-                this.color = player;
-        } else {
-            if (this.color == 0)
-                return "Piece still wasn't played ";
-            else
-                this.color = 0;
-        }
-
+    changeColor(player) {
+        this.color = player;
     }
 
     applyColor() {

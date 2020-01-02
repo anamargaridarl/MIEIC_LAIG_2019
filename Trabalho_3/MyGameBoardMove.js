@@ -10,7 +10,7 @@ class MyGameBoardMove extends CGFobject {
 
     play() {
         this.piece.addAnimation();
-        this.piece.changeColor(1, this.player);
+        this.piece.changeColor(this.player);
     }
 
     getBoard() {
@@ -21,4 +21,7 @@ class MyGameBoardMove extends CGFobject {
         return this.piece;
     }
 
+    getPlayer() {
+        return this.player;
+    }
 }
