@@ -35,7 +35,6 @@ class MyPoints extends CGFobject {
         this.p2.children[0].children[5].children[1].texture = this.numbersTex[parseInt(pts2[0])];
         this.p2.children[0].children[5].children[2].texture = this.numbersTex[parseInt(pts2[1])];
 
-        console.log('meias');
     }
 
     addPoints(player) {

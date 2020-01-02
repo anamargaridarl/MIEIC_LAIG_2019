@@ -147,18 +147,35 @@ class XMLscene extends CGFscene {
     }
 
     undo() {
-        this.orchestrator.undo();
+        if (this.orchestrator.gameState == GAME_STATE.playing) {
+            console.log('undo');
+            this.orchestrator.undo();
+        }
     }
 
     start() {
-        this.board.cleanBoard();
-        this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
-        this.sceneInited = true;
-        this.orchestratorInit = true;
+
+        if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie) {
+            console.log('start')
+                //clean pickresults and board
+            this.pickResults.splice(0, this.pickResults.length);
+            this.clearPickRegistration();
+            this.board.cleanBoard();
+
+            //start game
+            this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"]);
+            this.sceneInited = true;
+            this.orchestratorInit = true;
+            this.orchestrator.gameState = GAME_STATE.playing;
+        }
     }
 
     movie() {
-        this.orchestrator.movie();
+        if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie) {
+            console.log('movie');
+            this.orchestrator.movie();
+            this.orchestrator.gameState = GAME_STATE.game_movie;
+        }
     }
 
     updatePlayer1(tid) {
@@ -172,17 +189,20 @@ class XMLscene extends CGFscene {
     }
 
     logPicking() {
-        if (!this.pickMode) {
-            if (this.pickResults !== null && this.pickResults.length > 0) {
-                for (let i = 0; i < this.pickResults.length; i++) {
-                    const obj = this.pickResults[i][0];
-                    if (obj) {
-                        const clickId = this.pickResults[i][1];
-                        console.log("Picked object: " + obj + ", with pick id " + clickId);
-                        this.player = this.orchestrator.play(clickId);
+
+        if (this.orchestrator.gameState == GAME_STATE.playing) {
+            if (!this.pickMode) {
+                if (this.pickResults !== null && this.pickResults.length > 0) {
+                    for (let i = 0; i < this.pickResults.length; i++) {
+                        const obj = this.pickResults[i][0];
+                        if (obj) {
+                            const clickId = this.pickResults[i][1];
+                            console.log("Picked object: " + obj + ", with pick id " + clickId);
+                            this.player = this.orchestrator.play(clickId);
+                        }
                     }
+                    this.pickResults.splice(0, this.pickResults.length);
                 }
-                this.pickResults = [];
             }
         }
 
@@ -220,7 +240,7 @@ class XMLscene extends CGFscene {
 
             if (this.orchestratorInit) {
                 this.orchestrator.init();
-                this.orchestratorInit = false;
+                this.orchestratorInit = true;
             }
 
             // Draw axis
@@ -271,18 +291,21 @@ class XMLscene extends CGFscene {
 
     play() {
 
-        if (!this.orchestratorInit) {
+        if (this.orchestrator.gameState == GAME_STATE.playing) {
             if (this.player == 1 && this.player1 == "pc")
                 this.player = this.orchestrator.playCPU();
             else if (this.player == 2 && this.player2 == "pc")
                 this.player = this.orchestrator.playCPU();
         }
+
     }
 
     display() {
 
-        this.play();
-        this.logPicking();
+        if (this.orchestratorInit) {
+            this.play();
+            this.logPicking();
+        }
         this.clearPickRegistration();
 
         this.render();
