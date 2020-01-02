@@ -190,19 +190,17 @@ class XMLscene extends CGFscene {
 
     logPicking() {
 
-        if (this.orchestrator.gameState == GAME_STATE.playing) {
-            if (!this.pickMode) {
-                if (this.pickResults !== null && this.pickResults.length > 0) {
-                    for (let i = 0; i < this.pickResults.length; i++) {
-                        const obj = this.pickResults[i][0];
-                        if (obj) {
-                            const clickId = this.pickResults[i][1];
-                            console.log("Picked object: " + obj + ", with pick id " + clickId);
-                            this.player = this.orchestrator.play(clickId);
-                        }
+        if (!this.pickMode) {
+            if (this.pickResults !== null && this.pickResults.length > 0) {
+                for (let i = 0; i < this.pickResults.length; i++) {
+                    const obj = this.pickResults[i][0];
+                    if (obj) {
+                        const clickId = this.pickResults[i][1];
+                        console.log("Picked object: " + obj + ", with pick id " + clickId);
+                        this.player = this.orchestrator.play(clickId);
                     }
-                    this.pickResults.splice(0, this.pickResults.length);
                 }
+                this.pickResults.splice(0, this.pickResults.length);
             }
         }
 
@@ -240,7 +238,7 @@ class XMLscene extends CGFscene {
 
             if (this.orchestratorInit) {
                 this.orchestrator.init();
-                this.orchestratorInit = true;
+                this.orchestratorInit = false;
             }
 
             // Draw axis
@@ -291,26 +289,25 @@ class XMLscene extends CGFscene {
 
     play() {
 
-        if (this.orchestrator.gameState == GAME_STATE.playing) {
-            if (this.player == 1 && this.player1 == "pc")
-                this.player = this.orchestrator.playCPU();
-            else if (this.player == 2 && this.player2 == "pc")
-                this.player = this.orchestrator.playCPU();
-        }
+        if (this.player == 1 && this.player1 == "pc")
+            this.player = this.orchestrator.playCPU();
+        else if (this.player == 2 && this.player2 == "pc")
+            this.player = this.orchestrator.playCPU();
 
     }
 
     display() {
 
-        if (this.orchestratorInit) {
-            this.play();
-            this.logPicking();
-        }
-        this.clearPickRegistration();
-
         this.render();
 
-        if (this.orchestrator != undefined) {
+        if (!this.orchestratorInit && this.orchestrator != undefined) {
+
+            if (this.orchestrator.gameState == GAME_STATE.playing) {
+                this.play();
+                this.logPicking();
+            }
+
+            this.clearPickRegistration();
             this.orchestrator.display();
         }
     }
