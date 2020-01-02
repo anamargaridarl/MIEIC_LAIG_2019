@@ -15,6 +15,8 @@ class MyGameBoard extends CGFobject {
     };
 
 
+    /*Function used to restart game 
+        - cleans all the players' colors from the board*/
     cleanBoard() {
         for (let row = 0; row < 10; row++) {
             for (let col = 0; col < 10; col++) {
@@ -27,15 +29,11 @@ class MyGameBoard extends CGFobject {
         }
     }
 
-    getPiece(row, column, T) {
-        if (T != -1)
-            return this.pieces[row][column][T];
-        else
-            return this.pieces[row][column]
-    }
-
-    // test function
-    // sim isto esta esparguete mas e so para ver se funciona
+    /* Get information of the selected piece in the board
+        -returns an array with row, column and id 
+                                                (0 - upper triangle
+                                                 1 - lower triangle
+                                                 -1 - other piece */
     getPlayPiece(id) {
         for (let row = 0; row < 10; row++) {
             for (let col = 0; col < 10; col++) {
@@ -52,6 +50,7 @@ class MyGameBoard extends CGFobject {
         }
     }
 
+    /* ------------------------- Display functions ---------------------*/
 
     verifyregisterPicking(possibleplays, id_piece) {
         if (possibleplays == undefined) return false;
@@ -74,34 +73,6 @@ class MyGameBoard extends CGFobject {
         return false;
     }
 
-    updateAnimationRectangles(t) {
-        this.pieces[0][0].updateAnimation(t);
-        this.pieces[0][1].updateAnimation(t);
-        this.pieces[0][6].updateAnimation(t);
-        this.pieces[1][9].updateAnimation(t);
-        this.pieces[6][9].updateAnimation(t);
-        this.pieces[9][8].updateAnimation(t);
-        this.pieces[9][0].updateAnimation(t);
-        this.pieces[6][0].updateAnimation(t);
-    }
-
-    updateAnimation(t) {
-        for (let row = 1; row < 9; row++) {
-            for (let col = 1; col < 9; col++) {
-                if (Array.isArray(this.pieces[row][col])) {
-                    this.pieces[row][col][0].updateAnimation(t);
-                    this.pieces[row][col][1].updateAnimation(t);
-                } else
-                    this.pieces[row][col].updateAnimation(t);
-            }
-        }
-
-        this.updateAnimationRectangles(t);
-    }
-
-    update(t) {
-        this.updateAnimation(t);
-    }
 
     display(possibleplays) {
         this.scene.pushMatrix();
@@ -250,5 +221,36 @@ class MyGameBoard extends CGFobject {
         this.applyTransformationRectangle6(pieces[9][8], possibleplays);
         this.applyTransformationRectangle7(pieces[9][0], possibleplays);
         this.applyTransformationRectangle8(pieces[6][0], possibleplays);
+    }
+
+    /* -----------------------Update animations of pieces ------------------------*/
+
+    updateAnimationRectangles(t) {
+        this.pieces[0][0].updateAnimation(t);
+        this.pieces[0][1].updateAnimation(t);
+        this.pieces[0][6].updateAnimation(t);
+        this.pieces[1][9].updateAnimation(t);
+        this.pieces[6][9].updateAnimation(t);
+        this.pieces[9][8].updateAnimation(t);
+        this.pieces[9][0].updateAnimation(t);
+        this.pieces[6][0].updateAnimation(t);
+    }
+
+    updateAnimation(t) {
+        for (let row = 1; row < 9; row++) {
+            for (let col = 1; col < 9; col++) {
+                if (Array.isArray(this.pieces[row][col])) {
+                    this.pieces[row][col][0].updateAnimation(t);
+                    this.pieces[row][col][1].updateAnimation(t);
+                } else
+                    this.pieces[row][col].updateAnimation(t);
+            }
+        }
+
+        this.updateAnimationRectangles(t);
+    }
+
+    update(t) {
+        this.updateAnimation(t);
     }
 }

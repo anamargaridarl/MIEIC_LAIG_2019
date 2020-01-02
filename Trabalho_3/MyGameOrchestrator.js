@@ -5,20 +5,22 @@ const GAME_STATE = Object.freeze({
     "game_movie": 3
 });
 
-
-
 class MyGameOrchestrator extends CGFobject {
 
     constructor(scene, gameboard, p1, p2) {
         super(scene);
 
         this.gameState = GAME_STATE.menu;
+        //GameBoardMove objects
         this.gamesequence = [];
+        //GameBoard object
         this.gameboard = gameboard;
-        this.initBuffers();
         this.prolog = new MyProlog(scene);
         this.points = new MyPoints(scene, p1, p2);
+        /*Stores possible pieces to play in the round
+            - used to know which pieces to register for picking*/
         this.possibleplays;
+        this.initBuffers();
     }
 
     async init() {
@@ -43,6 +45,7 @@ class MyGameOrchestrator extends CGFobject {
         this.points.addPoints(this.prolog.player);
         //actions passed to prolog
         await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
+        //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
     }
 
@@ -51,12 +54,16 @@ class MyGameOrchestrator extends CGFobject {
     }
 
     undo() {
+        //Fetch information from last move
         this.lastMove = this.gamesequence.pop();
         let lastBoard = this.lastMove.getBoard();
         let lastPiece = this.lastMove.getPiece();
         let lastPlayer = this.lastMove.getPlayer();
+        //Undo the prolog information
         this.prolog.undo(lastBoard);
+        //Update points
         this.points.undo(lastPlayer);
+        //Clean color piece in the board displayed
         lastPiece.cleanPiece();
     }
 

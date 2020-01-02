@@ -7,9 +7,9 @@ class MyPiece extends CGFobject {
     constructor(scene, id, piece) {
         super(scene);
 
-        //color 0 --> transparent
-        //color 1 --> color player1
-        //color 2 --> color player2
+        /*color 0 --> transparent
+          color 1 --> color player1
+          color 2 --> color player2*/
         this.color = 0;
         this.id = id;
         this.piece = piece;
