@@ -116,6 +116,7 @@ class MyGameOrchestrator extends CGFobject {
         lastPiece.cleanPiece();
     }
 
-
-
+    movie() {
+        this.gameState = GAME_STATE.game_movie;
+    }
 }
