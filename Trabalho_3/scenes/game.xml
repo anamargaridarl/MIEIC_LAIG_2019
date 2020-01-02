@@ -33,7 +33,7 @@
 
     <textures>
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
-        <texture id="Loki_Miguel" file="scenes/images/loki_player.jpg" />
+        <texture id="Loki_Miguel" file="scenes/images/loki.jpg" />
         <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
         <texture id="clockface" file="scenes/images/clock.jpg"/>
         <texture id="color" file="scenes/images/noplay.jpg"/>
