@@ -5,6 +5,8 @@ const GAME_STATE = Object.freeze({
     "game_movie": 3
 });
 
+let i = 0;
+
 class MyGameOrchestrator extends CGFobject {
 
     constructor(scene, gameboard, p1, p2) {
@@ -21,6 +23,8 @@ class MyGameOrchestrator extends CGFobject {
             - used to know which pieces to register for picking*/
         this.possibleplays;
         this.initBuffers();
+
+        this.gamesequenceLength = 0;
     }
 
     async init() {
@@ -119,7 +123,32 @@ class MyGameOrchestrator extends CGFobject {
         lastPiece.cleanPiece();
     }
 
+
+    movieSequence() {
+
+        if (i >= this.gamesequenceLength)
+            clearInterval();
+        else {
+            this.gamesequence[i].play();
+            i++;
+        }
+
+    }
+
     movie() {
         this.gameState = GAME_STATE.game_movie;
+        this.possibleplays = [];
+        this.gameboard.cleanBoard();
+        this.gamesequenceLength = this.gamesequence.length;
+
+        window.setInterval(function movieSequence(gamesequenceLength, gamesequence) {
+            if (i >= gamesequenceLength)
+                clearInterval();
+            else {
+                gamesequence[i].play();
+                i++;
+            }
+        }, 3000, this.gamesequenceLength, this.gamesequence);
+
     }
 }

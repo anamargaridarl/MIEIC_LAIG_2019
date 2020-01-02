@@ -46,6 +46,7 @@ class XMLscene extends CGFscene {
         this.player2 = "human";
 
         this.player = 1;
+
     }
 
     /**
@@ -172,7 +173,6 @@ class XMLscene extends CGFscene {
 
     movie() {
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie) {
-            console.log('movie');
             this.orchestrator.movie();
             this.orchestrator.gameState = GAME_STATE.game_movie;
         }
@@ -306,6 +306,7 @@ class XMLscene extends CGFscene {
                 this.play();
                 this.logPicking();
             }
+
 
             this.clearPickRegistration();
             this.orchestrator.display();
