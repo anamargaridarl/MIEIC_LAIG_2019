@@ -171,6 +171,8 @@ class XMLscene extends CGFscene {
             this.sceneInited = true;
             this.orchestratorInit = true;
             this.orchestrator.gameState = GAME_STATE.playing;
+            this.orchestrator.timer.setTimer();
+            this.setPOV(POV.player1);
         }
     }
 
@@ -192,15 +194,18 @@ class XMLscene extends CGFscene {
     }
 
     logPicking() {
-
         if (!this.pickMode) {
             if (this.pickResults !== null && this.pickResults.length > 0) {
                 for (let i = 0; i < this.pickResults.length; i++) {
                     const obj = this.pickResults[i][0];
                     if (obj) {
+                        this.orchestrator.timer.unsetTimer();
                         const clickId = this.pickResults[i][1];
                         console.log("Picked object: " + obj + ", with pick id " + clickId);
-                        this.player = this.orchestrator.play(clickId);
+                        this.player = this.orchestrator.play(clickId).then(response => {
+                            this.setPOV(String(response));
+                        });
+                        this.orchestrator.timer.setTimer();
                     }
                 }
                 this.pickResults.splice(0, this.pickResults.length);
@@ -297,11 +302,12 @@ class XMLscene extends CGFscene {
     }
 
     play() {
-
-        if (this.player == 1 && this.player1 == "pc")
+        if (this.player == 1 && this.player1 == "pc") {
             this.player = this.orchestrator.playCPU();
-        else if (this.player == 2 && this.player2 == "pc")
+        }
+        else if (this.player == 2 && this.player2 == "pc") {
             this.player = this.orchestrator.playCPU();
+        }
 
     }
 
@@ -315,6 +321,7 @@ class XMLscene extends CGFscene {
                 this.play();
                 this.logPicking();
             }
+
 
 
             this.clearPickRegistration();

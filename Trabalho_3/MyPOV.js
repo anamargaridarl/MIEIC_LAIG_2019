@@ -23,11 +23,11 @@ class MyPOV extends CGFobject {
       "near" : 0.1,
       "far" : 1000,
       "angle" : 45,
-      "from" : vec4.fromValues( -30, 18, 0, 1),
-      "to" : vec4.fromValues(0, 0, 0, 1)
+      "from" : vec3.fromValues( -30, 18, 0),
+      "to" : vec3.fromValues(0, 0, 0)
     };
 
-    //change scoreboards, player frames and clocks
+    //change scoreboards, player frames and timer
   }
 
   createPlayer1POV() {
@@ -35,11 +35,11 @@ class MyPOV extends CGFobject {
       "near" : 0.1,
       "far" : 1000,
       "angle" : 45,
-      "from" : vec4.fromValues( 0, 18, 30, 1),
-      "to" : vec4.fromValues(0, 0, -5, 1)
+      "from" : vec3.fromValues( 0, 18, 30),
+      "to" : vec3.fromValues(0, 0, -5)
     };
 
-    //change scoreboards, player frames and clocks
+    //change scoreboards, player frames and timer
   }
 
   createPlayer2POV() {
@@ -47,11 +47,11 @@ class MyPOV extends CGFobject {
       "near" : 0.1,
       "far" : 1000,
       "angle" : 45,
-      "from" : vec4.fromValues( 0, 18, -30, 1),
-      "to" : vec4.fromValues(0, 0, 5, 1)
+      "from" : vec3.fromValues( 0, 18, -30),
+      "to" : vec3.fromValues(0, 0, 5)
     };
 
-    //change scoreboards, player frames and clocks
+    //change scoreboards, player frames and timer
   }
 
   setChangingPOV(pov,updatePeriod) {
@@ -85,7 +85,6 @@ class MyPOV extends CGFobject {
   }
 
   update(camera) {
-    console.log(camera.position + " " + this.finalPos + " " + this.posStep);
     if(vec3.distance(this.finalPos,camera.position) <= 0.01 || vec3.distance(this.finalTarget,camera.target) <= 0.01) {
       this.changingPOV = false;
       return camera;
