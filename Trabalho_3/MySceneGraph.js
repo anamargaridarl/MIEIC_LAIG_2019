@@ -59,7 +59,21 @@ class MySceneGraph {
         this.reader.open('scenes/' + filename, this);
     }
 
-    loadXML(filename) {
+    loadXML(filename, scene) {
+
+        this.scene = scene;
+        scene.graph = this;
+        this.loadedOk = null;
+        this.animations = [];
+        this.nodes = [];
+        this.components = [];
+        this.pieces = [];
+        this.board;
+        this.idRoot = null; // The id of the root element.
+        this.views = {};
+        this.viewID = null;
+        this.axisCoords = [];
+        this.idRoot = null;
         this.filename = filename;
         this.reader = new CGFXMLreader();
         this.reader.open('scenes/' + filename, this);
