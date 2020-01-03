@@ -147,12 +147,13 @@ class XMLscene extends CGFscene {
         this.interface.createUndoButton();
         this.interface.createMovieButton();
         this.interface.createPOVDropdown();
+        this.interface.createThemeDropdown();
+
 
     }
 
     undo() {
         if (this.orchestrator.gameState == GAME_STATE.playing) {
-            console.log('undo');
             this.orchestrator.undo();
         }
     }
@@ -160,8 +161,7 @@ class XMLscene extends CGFscene {
     start() {
 
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie) {
-            console.log('start')
-                //clean pickresults and board
+            //clean pickresults and board
             this.pickResults.splice(0, this.pickResults.length);
             this.clearPickRegistration();
             this.board.cleanBoard();

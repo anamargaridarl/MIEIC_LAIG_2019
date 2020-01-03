@@ -205,8 +205,9 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 9]);
         this.scene.multMatrix(transfMatrix);
-        if (this.verifyregisterPicking(possibleplays, unit.id))
+        if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
+        }
         unit.display();
         this.scene.popMatrix();
     }
@@ -228,8 +229,9 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-8, 0, 1]);
         this.scene.multMatrix(transfMatrix);
-        if (this.verifyregisterPicking(possibleplays, unit.id))
+        if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
+        }
         unit.piece.display();
         this.scene.popMatrix();
     }

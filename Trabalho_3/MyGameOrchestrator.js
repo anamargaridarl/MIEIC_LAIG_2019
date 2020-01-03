@@ -24,7 +24,7 @@ class MyGameOrchestrator extends CGFobject {
         this.possibleplays;
         this.initBuffers();
 
-        this.timer = new MyTimer(scene,this.scene.graph.components["Pointer"]);
+        this.timer = new MyTimer(scene, this.scene.graph.components["Pointer"]);
 
         this.gamesequenceLength = 0;
     }
@@ -41,17 +41,14 @@ class MyGameOrchestrator extends CGFobject {
     }
 
     async processState(state) {
-        console.log(state);
         switch (state) {
             case 0:
                 break;
             case 1:
-                console.log('tie');
                 this.gameState = GAME_STATE.tie;
                 this.timer.unsetTimer();
                 break;
             case 2:
-                console.log('game_over');
                 this.gameState = GAME_STATE.game_over;
                 this.timer.unsetTimer();
                 break;
@@ -112,8 +109,8 @@ class MyGameOrchestrator extends CGFobject {
 
     update(t) {
         this.gameboard.update(t);
-        if(this.timer.isCounting) this.timer.update(t);
-        if(this.timer.timeout) this.processState(GAME_STATE.game_over)
+        if (this.timer.isCounting) this.timer.update(t);
+        if (this.timer.timeout) this.processState(GAME_STATE.game_over)
     }
 
     undo() {

@@ -23,8 +23,10 @@ class MyInterface extends CGFinterface {
         this.f1 = this.gui.addFolder('Movie');
         this.f2 = this.gui.addFolder('Lights');
         this.f3 = this.gui.addFolder('Cameras');
+        this.f4 = this.gui.addFolder('Themes');
         this.f0.open();
 
+        this.sceneIndex;
 
         // add a group of controls (and open/expand by defult)
         this.initKeys();
@@ -85,8 +87,22 @@ class MyInterface extends CGFinterface {
 
     createPOVDropdown() {
         this.typeKeys = POV;
-        this.f3.add(this.scene, 'currentPOV',this.typeKeys)
-           .name('POV: ')
-           .onChange(pov => this.scene.setPOV(pov)); 
+        this.f3.add(this.scene, 'currentPOV', this.typeKeys)
+            .name('POV: ')
+            .onChange(pov => this.scene.setPOV(pov));
+    }
+
+    createThemeDropdown() {
+
+        const sceneDropdownModel = [
+            "game.xml",
+            "game2.xml"
+        ];
+
+        this.sceneIndex = this.scene.graph.filename;
+
+        this.gui.add(this, "sceneIndex", sceneDropdownModel)
+            .name("Current Scene")
+            .onChange(filename => this.scene.graph.loadXML(filename));
     }
 }

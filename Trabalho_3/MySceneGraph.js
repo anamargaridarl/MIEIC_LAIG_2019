@@ -27,6 +27,7 @@ class MySceneGraph {
         // Establish bidirectional references between scene and graph.
         this.scene = scene;
         scene.graph = this;
+        this.filename = filename;
 
 
         this.nodes = [];
@@ -55,6 +56,12 @@ class MySceneGraph {
          * on this object. If any error occurs, the reader calls onXMLError on this
          * object, with an error message
          */
+        this.reader.open('scenes/' + filename, this);
+    }
+
+    loadXML(filename) {
+        this.filename = filename;
+        this.reader = new CGFXMLreader();
         this.reader.open('scenes/' + filename, this);
     }
 
