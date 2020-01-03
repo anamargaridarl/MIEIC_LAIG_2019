@@ -35,6 +35,8 @@ class MySceneGraph {
         this.pieces = [];
         this.board;
 
+        //used for changing themes
+        this.change = false;
 
         this.idRoot = null; // The id of the root element.
 
@@ -59,10 +61,8 @@ class MySceneGraph {
         this.reader.open('scenes/' + filename, this);
     }
 
-    loadXML(filename, scene) {
+    loadXML(filename) {
 
-        this.scene = scene;
-        scene.graph = this;
         this.loadedOk = null;
         this.animations = [];
         this.nodes = [];
@@ -77,6 +77,7 @@ class MySceneGraph {
         this.filename = filename;
         this.reader = new CGFXMLreader();
         this.reader.open('scenes/' + filename, this);
+        this.change = true;
     }
 
     /*
@@ -99,7 +100,8 @@ class MySceneGraph {
 
         // As the graph loaded ok, signal the scene so that any additional
         // initialization depending on the graph can take place
-        this.scene.onGraphLoaded();
+        if (!this.change)
+            this.scene.onGraphLoaded();
     }
 
     /**

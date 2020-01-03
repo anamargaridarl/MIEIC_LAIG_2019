@@ -103,6 +103,6 @@ class MyInterface extends CGFinterface {
 
         this.f4.add(this, "sceneIndex", sceneDropdownModel)
             .name("Current Scene")
-            .onChange(filename => this.scene.graph.loadXML(filename, this.scene));
+            .onChange(filename => this.scene.graph.loadXML(filename));
     }
 }
