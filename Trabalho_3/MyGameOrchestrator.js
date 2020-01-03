@@ -72,6 +72,7 @@ class MyGameOrchestrator extends CGFobject {
         this.processState(state);
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
+        this.gameboard.changePlayer();
         return this.prolog.player;
 
     }

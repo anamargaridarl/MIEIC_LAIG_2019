@@ -72,6 +72,20 @@
             <diffuse r="0.234" g="0.32" b="0.176" a="1.0" />
             <specular r="0.02" g="0.032" b="0.176" a="1.0" />
         </material>
+        
+        <material id="player1Pos" shininess="10">
+            <emission r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <ambient r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <diffuse r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <specular r="0.0001" g="0.01" b="0.0216" a="0.1" />
+        </material>
+
+        <material id="player2Pos" shininess="10">
+            <emission r="0.200" g="0.02" b="0.52" a="0.1" />
+            <ambient r="0.200" g="0.02" b="0.52" a="0.1" />
+            <diffuse r="0.200" g="0.02" b="0.52" a="0.1" />
+            <specular r="0.200" g="0.02" b="0.52" a="0.1" />
+        </material>
 
     </materials>
 

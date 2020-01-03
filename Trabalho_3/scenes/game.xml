@@ -75,8 +75,6 @@
             <specular r="0.05" g="0.05" b="0.05" a="1.0" />
         </material>
 
-
-
         <material id="player1" shininess="10">
             <emission r="0.0001" g="0.121" b="0.4" a="1.0" />
             <ambient r="0.0001" g="0.121" b="0.4" a="1.0" />
@@ -84,12 +82,25 @@
             <specular r="0.0001" g="0.01" b="0.04" a="1.0" />
         </material>
 
-
         <material id="player2" shininess="10">
             <emission r="0.89" g="0.02" b="0.52" a="1.0" />
             <ambient r="0.89" g=".02" b="0.52" a="1.0" />
             <diffuse r="0.89" g="0.02" b="0.52" a="1.0" />
             <specular r="0.09" g="0.02" b="0.52" a="1.0" />
+        </material>
+
+        <material id="player1Pos" shininess="10">
+            <emission r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <ambient r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <diffuse r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <specular r="0.0001" g="0.01" b="0.0216" a="0.1" />
+        </material>
+
+        <material id="player2Pos" shininess="10">
+            <emission r="0.200" g="0.02" b="0.52" a="0.1" />
+            <ambient r="0.200" g="0.02" b="0.52" a="0.1" />
+            <diffuse r="0.200" g="0.02" b="0.52" a="0.1" />
+            <specular r="0.200" g="0.02" b="0.52" a="0.1" />
         </material>
 
     </materials>
@@ -312,6 +323,8 @@
                  <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color3" length_s="1" length_t="1"/>
             <children>
@@ -327,6 +340,8 @@
                  <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color" length_s="1" length_t="1"/>
             <children>
@@ -344,6 +359,8 @@
                  <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color3" length_s="1" length_t="1"/>
             <children>
@@ -360,6 +377,8 @@
                  <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color2" length_s="1" length_t="1"/>
             <children>
@@ -378,6 +397,8 @@
                 <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color2" length_s="1" length_t="1"/>
             <children>
@@ -395,6 +416,8 @@
                  <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color2" length_s="1" length_t="1"/>
             <children>
@@ -411,6 +434,8 @@
                  <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color2" length_s="1" length_t="1"/>
             <children>

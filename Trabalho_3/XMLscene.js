@@ -163,7 +163,6 @@ class XMLscene extends CGFscene {
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie) {
             //clean pickresults and board
             this.pickResults.splice(0, this.pickResults.length);
-            // this.clearPickRegistration();
             this.board.cleanBoard();
 
             //start game
