@@ -41,6 +41,15 @@
         <texture id="tokyo" file="scenes/images/tokyo.png" />
         <texture id="wallpaper" file="scenes/images/wallpaper.png" />
         <texture id="gold" file="scenes/images/gold.png" />
+        <texture id="white" file="scenes/images/white.png" />
+        <texture id="board" file="scenes/images/board.jpg" />
+        <texture id="bluetokyo" file="scenes/images/bluetokyo.png" />
+
+        <texture id="blueolimpic" file="scenes/images/blueolimpic.png" />
+        <texture id="goldolimpic" file="scenes/images/goldolimpic.png" />
+        <texture id="greenolimpic" file="scenes/images/greenolympic.png" />
+        <texture id="redolimpic" file="scenes/images/redolimpic.png" />
+        <texture id="black" file="scenes/images/black.jpg"/>
 
 
 
@@ -48,13 +57,13 @@
         <texture id="color" file="scenes/images/noplay.jpg"/>
         <texture id="color2" file="scenes/images/color2.png"/>
         <texture id="color3" file="scenes/images/color3.png"/>
+
         <texture id="darkblue" file="scenes/images/darkblue.jpg"/>
         <texture id="bordo" file="scenes/images/bordo.png"/>
         <texture id="purple" file="scenes/images/purple.jpg"/>
         <texture id="wood" file="scenes/images/wood.jpg"/>
         <texture id="green" file="scenes/images/green.jpg"/>
         <texture id="darkgreen" file="scenes/images/yellow.jpg"/>
-        <texture id="black" file="scenes/images/black.jpg"/>
 
     </textures>
 
@@ -194,7 +203,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="goldolimpic" length_s="1" length_t="1"/>
             <children>
                 <componentref id="BottomBoard"/>
                 <componentref id="BottomBottomBoard"/>
@@ -274,7 +283,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="inherit" />
+            <texture id="tokyo" length_s="1" length_t="1" />
             <children>
                 <primitiveref id="plane"/>
             </children>
@@ -289,7 +298,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="inherit"/>
+            <texture id="tokyo" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="plane"/>
             </children>
@@ -444,7 +453,7 @@
              <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="bluetokyo" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="platform"/>
                 <componentref id="TimerFace"/>
@@ -633,7 +642,7 @@
             <materials>
                 <material id="inherit"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="greenolimpic" length_s="1" length_t="1"/>
             <children>
                 <componentref id="LeftScoreSide"/>
                 <componentref id="RightScoreSide"/>
@@ -769,7 +778,7 @@
             <materials>
                 <material id="inherit"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="greenolimpic" length_s="1" length_t="1"/>
             <children>
                 <componentref id="LeftScoreSide"/>
                 <componentref id="RightScoreSide"/>
@@ -865,7 +874,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-                <texture id="inherit"/>
+                <texture id="tokyo"  length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -926,7 +935,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="gold" length_s="1" length_t="1"/>
+            <texture id="blueolimpic" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -941,7 +950,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="gold" length_s="1" length_t="1"/>
+            <texture id="redolimpic" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
