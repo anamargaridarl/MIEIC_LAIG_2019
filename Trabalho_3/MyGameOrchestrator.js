@@ -34,7 +34,7 @@ class MyGameOrchestrator extends CGFobject {
         this.possibleplays = await this.prolog.getPossiblePlays();
     }
 
-    async display() {
+    display() {
         this.gameboard.display(this.possibleplays);
         this.points.display();
         this.timer.display();

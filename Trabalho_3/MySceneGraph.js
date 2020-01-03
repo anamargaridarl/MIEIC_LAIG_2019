@@ -11,7 +11,7 @@ var TRANSFORMATIONS_INDEX = 6;
 var ANIMATIONS_INDEX = 7;
 var PRIMITIVES_INDEX = 8;
 var COMPONENTS_INDEX = 9;
-let n = 9;
+var n = 1;
 
 /**
  * MySceneGraph class, representing the scene graph.
@@ -254,15 +254,14 @@ class MySceneGraph {
             if (i % 2 != 0) {
                 //first up triangle; second down triangle
                 let triangles = [];
-                triangles.push(new MyPiece(this.scene, n, this.components['TriangleId5']));
-                triangles.push(new MyPiece(this.scene, n + 1, this.components['TriangleId6']));
+                triangles.push(new MyPiece(this.scene, n*100 + (i+1)*10 + 1, this.components['TriangleId5']));
+                triangles.push(new MyPiece(this.scene, n*100 + (i+1)*10 + 2, this.components['TriangleId6']));
                 line.push(triangles);
-                n++;
             } else
-                line.push(new MyPiece(this.scene, n, this.components['Square']));
-            n++;
+                line.push(new MyPiece(this.scene, n*100 + (i+1)*10, this.components['Square']));
         }
-
+        n++;
+            
         if (row < 5) {
             line.push(rectangles[3]);
         } else
@@ -286,14 +285,13 @@ class MySceneGraph {
             if (i % 2 == 0) {
                 //first up triangle; second down triangle
                 let triangles = [];
-                triangles.push(new MyPiece(this.scene, n, this.components['TriangleId3']));
-                triangles.push(new MyPiece(this.scene, n + 1, this.components['TriangleId4']));
+                triangles.push(new MyPiece(this.scene, n*100 + (i+1)*10 + 1, this.components['TriangleId3']));
+                triangles.push(new MyPiece(this.scene, n*100 + (i+1)*10 + 2, this.components['TriangleId4']));
                 line.push(triangles);
-                n++;
             } else
-                line.push(new MyPiece(this.scene, n, this.components['Square']));
-            n++;
+                line.push(new MyPiece(this.scene, n*100 + (i+1)*10 , this.components['Square']));
         }
+        n++;
 
         if (row < 5) {
             line.push(rectangles[3]);
