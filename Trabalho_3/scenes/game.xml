@@ -44,6 +44,10 @@
         <texture id="white" file="scenes/images/white.png" />
         <texture id="board" file="scenes/images/board.jpg" />
         <texture id="bluetokyo" file="scenes/images/bluetokyo.png" />
+        <texture id="winner" file="scenes/images/winner.png" />
+        <texture id="looser" file="scenes/images/looser.png" />
+
+
 
         <texture id="blueolimpic" file="scenes/images/blueolimpic.png" />
         <texture id="goldolimpic" file="scenes/images/goldolimpic.png" />
@@ -192,6 +196,7 @@
                <componentref id="Timer"/>
                <componentref id="GameBoardStructure"/>
                <componentref id="Cabin"/>
+
             </children>
         </component>
 
@@ -951,6 +956,116 @@
                 <material id="inherit" />
             </materials>
             <texture id="redolimpic" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="Result">
+            <transformation>
+            <translate x="0" y="8" z="0" />
+            <scale x="3" y="1.5" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="goldolimpic"  length_s="1" length_t="1" />
+            <children>
+                <componentref id="LeftResult" />
+                <componentref id="RightResult" />
+                <componentref id="TopResult" />
+                <componentref id="BottomResult" />
+                <componentref id="FrontResult" />
+                <componentref id="BackResult" />       
+            </children>
+        </component>
+
+
+         <component id="LeftResult">
+            <transformation>
+                <scale x="0.5" y="2" z="1" />
+                <rotate axis="y" angle="-90"/>
+                <translate x="0" y="0" z="4" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="RightResult">
+            <transformation>
+                <scale x="0.5" y="2" z="1" />
+                <rotate axis="y" angle="90"/>
+                <translate x="0" y="0" z="4" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+        
+        <component id="TopResult">
+            <transformation>
+                <scale x="4" y="1" z="0.5" />
+                <rotate axis="x" angle="-90"/>
+                <translate x="0" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="inherit"/>
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+        
+        <component id="BottomResult">
+            <transformation>
+                <scale x="4" y="1" z="0.5" />
+                <rotate axis="x" angle="90"/>
+                <translate x="0" y="0" z="2" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="inherit" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+
+        <component id="BackResult">
+            <transformation>
+                <scale x="4" y="2" z="1" />
+                <rotate axis="z" angle="180"/>
+                <rotate axis="x" angle="-180"/>
+                <translate x="0" y="0" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="looser"  length_s="1" length_t="1" />
+            <children>
+                <primitiveref id="rectangle" />
+            </children>
+        </component>
+        
+        <component id="FrontResult">
+            <transformation>
+                <scale x="4" y="2" z="1" />
+                <translate x="0" y="0" z="0.5" />
+            </transformation>
+            <materials>
+                <material id="defaultMat"/>
+            </materials>
+            <texture id="winner" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
