@@ -33,8 +33,6 @@
 
     <textures>
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
-        <texture id="marmore" file="scenes/images/marmore.jpg" />
-
         <texture id="Loki_Miguel" file="scenes/images/loki.jpg" />
         <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
         <texture id="timer" file="scenes/images/timer.png"/>
@@ -44,7 +42,7 @@
         <texture id="darkblue" file="scenes/images/darkblue.jpg"/>
         <texture id="bordo" file="scenes/images/bordo.png"/>
         <texture id="purple" file="scenes/images/purple.jpg"/>
-        <texture id="wood" file="scenes/images/purple.jpg"/>
+        <texture id="wood" file="scenes/images/riscas.jpg"/>
         <texture id="green" file="scenes/images/green.jpg"/>
         <texture id="darkgreen" file="scenes/images/yellow.jpg"/>
         <texture id="black" file="scenes/images/black.jpg"/>

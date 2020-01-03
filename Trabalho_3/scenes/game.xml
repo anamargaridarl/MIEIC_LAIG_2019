@@ -33,10 +33,17 @@
 
     <textures>
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
-        <texture id="marmore" file="scenes/images/marmore.jpg" />
+        <texture id="menina" file="scenes/images/mascotemenina.png" />
+        <texture id="pinkmenina" file="scenes/images/pinkmenina.png" />
+        <texture id="menino" file="scenes/images/mascotemenino.png" />
+        <texture id="bluemenino" file="scenes/images/bluemenino.png" />
+        <texture id="simbolo" file="scenes/images/olimpicflag.png" />
+        <texture id="tokyo" file="scenes/images/tokyo.png" />
+        <texture id="wallpaper" file="scenes/images/wallpaper.png" />
+        <texture id="gold" file="scenes/images/gold.png" />
 
-        <texture id="Loki_Miguel" file="scenes/images/loki.jpg" />
-        <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
+
+
         <texture id="timer" file="scenes/images/timer.png"/>
         <texture id="color" file="scenes/images/noplay.jpg"/>
         <texture id="color2" file="scenes/images/color2.png"/>
@@ -62,18 +69,18 @@
 
 
         <material id="player1" shininess="10">
-            <emission r="0.153" g="0.223" b="0.34" a="1.0" />
-            <ambient r="0.153" g="0.223" b="0.34" a="1.0" />
-            <diffuse r="0.153" g="0.223" b="0.34" a="1.0" />
-            <specular r="0.01" g="0.0" b="0.02" a="1.0" />
+            <emission r="0.0001" g="0.121" b="0.4" a="1.0" />
+            <ambient r="0.0001" g="0.121" b="0.4" a="1.0" />
+            <diffuse r="0.0001" g="0.121" b="0.4" a="1.0" />
+            <specular r="0.0001" g="0.01" b="0.04" a="1.0" />
         </material>
 
 
         <material id="player2" shininess="10">
-            <emission r="0.234" g="0.32" b="0.176" a="1.0" />
-            <ambient r="0.234" g=".32" b="0.176" a="1.0" />
-            <diffuse r="0.234" g="0.32" b="0.176" a="1.0" />
-            <specular r="0.02" g="0.032" b="0.176" a="1.0" />
+            <emission r="0.89" g="0.02" b="0.52" a="1.0" />
+            <ambient r="0.89" g=".02" b="0.52" a="1.0" />
+            <diffuse r="0.89" g="0.02" b="0.52" a="1.0" />
+            <specular r="0.09" g="0.02" b="0.52" a="1.0" />
         </material>
 
     </materials>
@@ -409,7 +416,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="bluemenino" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Platform"/>
                 <componentref id="Player_Screen_P1" />
@@ -423,7 +430,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="pinkmenina" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Platform"/>
                 <componentref id="Player_Screen_P2" />
@@ -451,7 +458,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" />
+            <texture id="inherit" />
             <children>
                 <primitiveref id="platform" />
             </children>
@@ -574,7 +581,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="Loki_Miguel" length_s="1" length_t="1"/>
+            <texture id="menino" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -588,7 +595,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="Daisyzinha" length_s="1" length_t="1"/>
+            <texture id="menina" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -838,7 +845,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="marmore" length_s="10" length_t="10"/>
+            <texture id="wallpaper" length_s="1" length_t="1"/>
             <children>
                 <componentref id="northWall" />
                  <componentref id="southWall" /> 
@@ -858,7 +865,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="inherit" />
+                <texture id="inherit"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -919,7 +926,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="wood" length_s="2" length_t="2"/>
+            <texture id="gold" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -934,7 +941,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="wood" length_s="2" length_t="2"/>
+            <texture id="gold" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
