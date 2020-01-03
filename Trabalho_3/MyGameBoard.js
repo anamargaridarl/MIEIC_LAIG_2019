@@ -76,7 +76,6 @@ class MyGameBoard extends CGFobject {
 
     verifyregisterPicking(possibleplays, id_piece) {
         if (possibleplays == undefined) return false;
-
         for (let i = 0; i < possibleplays.length; i++) {
             let piece;
             let row = possibleplays[i][0][0];
@@ -117,27 +116,39 @@ class MyGameBoard extends CGFobject {
             let transfMatrix = mat4.create();
             mat4.translate(transfMatrix, transfMatrix, [col, 0, row]);
             this.scene.multMatrix(transfMatrix);
-            if (this.verifyregisterPicking(possibleplays, unit[0].id))
+            if (this.verifyregisterPicking(possibleplays, unit[0].id)) {
                 this.scene.registerForPick(unit[0].id, unit[0]);
-            unit[0].display();
-            this.scene.popMatrix();
+                unit[0].display();
+                this.scene.clearPickRegistration();
+            } else {
+                unit[0].display();
+            }
 
+            this.scene.popMatrix();
             this.scene.pushMatrix();
             let transfMatrix2 = mat4.create();
             mat4.translate(transfMatrix2, transfMatrix2, [col, 0, row]);
             this.scene.multMatrix(transfMatrix2);
-            if (this.verifyregisterPicking(possibleplays, unit[1].id))
+            if (this.verifyregisterPicking(possibleplays, unit[1].id)) {
                 this.scene.registerForPick(unit[1].id, unit[1]);
-            unit[1].display();
+                unit[1].display();
+                this.scene.clearPickRegistration();
+            } else {
+                unit[1].display();
+            }
             this.scene.popMatrix();
         } else {
             this.scene.pushMatrix();
             let transfMatrix = mat4.create();
             mat4.translate(transfMatrix, transfMatrix, [col, 0, row]);
             this.scene.multMatrix(transfMatrix);
-            if (this.verifyregisterPicking(possibleplays, unit.id))
+            if (this.verifyregisterPicking(possibleplays, unit.id)) {
                 this.scene.registerForPick(unit.id, unit);
-            unit.display();
+                unit.display();
+                this.scene.clearPickRegistration();
+            } else {
+                unit.display();
+            }
             this.scene.popMatrix();
         }
     }
@@ -148,9 +159,14 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 1]);
         this.scene.multMatrix(transfMatrix);
-        if (this.verifyregisterPicking(possibleplays, unit.id))
+        if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
-        unit.display();
+            unit.display();
+            this.scene.clearPickRegistration();
+        } else {
+            unit.display();
+        }
+
         this.scene.popMatrix();
     }
 
@@ -159,9 +175,14 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [1, 0, 0]);
         this.scene.multMatrix(transfMatrix);
-        if (this.verifyregisterPicking(possibleplays, unit.id))
+        if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
-        unit.display();
+            unit.display();
+            this.scene.clearPickRegistration();
+        } else {
+            unit.display();
+        }
+
         this.scene.popMatrix();
     }
 
@@ -170,9 +191,14 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [5, 0, 0]);
         this.scene.multMatrix(transfMatrix);
-        if (this.verifyregisterPicking(possibleplays, unit.id))
+        if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
-        unit.display();
+            unit.display();
+            this.scene.clearPickRegistration();
+        } else {
+            unit.display();
+        }
+
         this.scene.popMatrix();
     }
 
@@ -182,9 +208,13 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-4, 0, 10]);
         this.scene.multMatrix(transfMatrix);
-        if (this.verifyregisterPicking(possibleplays, unit.id))
+        if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
-        unit.display();
+            unit.display();
+            this.scene.clearPickRegistration();
+        } else {
+            unit.display();
+        }
         this.scene.popMatrix();
     }
 
@@ -194,9 +224,13 @@ class MyGameBoard extends CGFobject {
         mat4.rotateY(transfMatrix, transfMatrix, 90 * DEGREE_TO_RAD);
         mat4.translate(transfMatrix, transfMatrix, [-9, 0, 10]);
         this.scene.multMatrix(transfMatrix);
-        if (this.verifyregisterPicking(possibleplays, unit.id))
+        if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
-        unit.display();
+            unit.display();
+            this.scene.clearPickRegistration();
+        } else {
+            unit.display();
+        }
         this.scene.popMatrix();
     }
 
@@ -207,8 +241,11 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
+            unit.display();
+            this.scene.clearPickRegistration();
+        } else {
+            unit.display();
         }
-        unit.display();
         this.scene.popMatrix();
     }
 
@@ -217,9 +254,13 @@ class MyGameBoard extends CGFobject {
         let transfMatrix = mat4.create();
         mat4.translate(transfMatrix, transfMatrix, [0, 0, 9]);
         this.scene.multMatrix(transfMatrix);
-        if (this.verifyregisterPicking(possibleplays, unit.id))
+        if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
-        unit.display();
+            unit.display();
+            this.scene.clearPickRegistration();
+        } else {
+            unit.display();
+        }
         this.scene.popMatrix();
     }
 
@@ -231,8 +272,11 @@ class MyGameBoard extends CGFobject {
         this.scene.multMatrix(transfMatrix);
         if (this.verifyregisterPicking(possibleplays, unit.id)) {
             this.scene.registerForPick(unit.id, unit);
+            unit.display();
+            this.scene.clearPickRegistration();
+        } else {
+            unit.display();
         }
-        unit.piece.display();
         this.scene.popMatrix();
     }
 
