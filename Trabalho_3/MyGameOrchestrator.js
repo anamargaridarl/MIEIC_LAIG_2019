@@ -9,7 +9,7 @@ let i = 0;
 
 class MyGameOrchestrator extends CGFobject {
 
-    constructor(scene, gameboard, p1, p2) {
+    constructor(scene, gameboard, p1, p2, end) {
         super(scene);
 
         this.gameState = GAME_STATE.menu;
@@ -19,6 +19,7 @@ class MyGameOrchestrator extends CGFobject {
         this.gameboard = gameboard;
         this.prolog = new MyProlog(scene);
         this.points = new MyPoints(scene, p1, p2);
+        this.result = new MyResult(scene, end);
         /*Stores possible pieces to play in the round
             - used to know which pieces to register for picking*/
         this.possibleplays;
@@ -38,6 +39,8 @@ class MyGameOrchestrator extends CGFobject {
         this.gameboard.display(this.possibleplays);
         this.points.display();
         this.timer.display();
+        if (this.gameState == GAME_STATE.tie || this.gameState == GAME_STATE.game_over)
+            this.result.display();
     }
 
     async processState(state) {
@@ -46,10 +49,12 @@ class MyGameOrchestrator extends CGFobject {
                 break;
             case 1:
                 this.gameState = GAME_STATE.tie;
+                this.result.setTex(-1, 1);
                 this.timer.unsetTimer();
                 break;
             case 2:
                 this.gameState = GAME_STATE.game_over;
+                this.result.setTex(this.prolog.player, 0);
                 this.timer.unsetTimer();
                 break;
         }
