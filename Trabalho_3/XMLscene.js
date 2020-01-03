@@ -304,8 +304,7 @@ class XMLscene extends CGFscene {
     play() {
         if (this.player == 1 && this.player1 == "pc") {
             this.player = this.orchestrator.playCPU();
-        }
-        else if (this.player == 2 && this.player2 == "pc") {
+        } else if (this.player == 2 && this.player2 == "pc") {
             this.player = this.orchestrator.playCPU();
         }
 
