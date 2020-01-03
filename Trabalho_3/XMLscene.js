@@ -202,9 +202,10 @@ class XMLscene extends CGFscene {
                         this.orchestrator.timer.unsetTimer();
                         const clickId = this.pickResults[i][1];
                         console.log("Picked object: " + obj + ", with pick id " + clickId);
-                        this.player = this.orchestrator.play(clickId).then(response => {
-                            this.setPOV(String(response));
-                        });
+                        this.player = this.orchestrator.play(clickId);
+                        // this.player = this.orchestrator.play(clickId).then(response => {
+                        //     this.setPOV(String(response));
+                        // });
                         this.orchestrator.timer.setTimer();
                     }
                 }

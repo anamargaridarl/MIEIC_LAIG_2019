@@ -33,20 +33,17 @@
 
     <textures>
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
-        <texture id="marmore" file="scenes/images/marmore.jpg" />
-
         <texture id="Loki_Miguel" file="scenes/images/loki.jpg" />
         <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
         <texture id="timer" file="scenes/images/timer.png"/>
         <texture id="color" file="scenes/images/noplay.jpg"/>
         <texture id="color2" file="scenes/images/color2.png"/>
         <texture id="color3" file="scenes/images/color3.png"/>
-        <texture id="darkblue" file="scenes/images/darkblue.jpg"/>
-        <texture id="bordo" file="scenes/images/bordo.png"/>
-        <texture id="purple" file="scenes/images/purple.jpg"/>
-        <texture id="wood" file="scenes/images/purple.jpg"/>
-        <texture id="green" file="scenes/images/green.jpg"/>
-        <texture id="darkgreen" file="scenes/images/yellow.jpg"/>
+        <texture id="space" file="scenes/images/space.jpg"/>
+        <texture id="metal" file="scenes/images/metal.jpg"/>
+
+    
+    
         <texture id="black" file="scenes/images/black.jpg"/>
 
     </textures>
@@ -62,18 +59,18 @@
 
 
         <material id="player1" shininess="10">
-            <emission r="1" g="0.08" b="0.6" a="1.0" />
-            <ambient r="1" g=".08" b=".6" a="1.0" />
-            <diffuse r="1" g="0.08" b="0.6" a="1.0" />
-            <specular r="0.1" g="0.0" b="0.06" a="1.0" />
+            <emission r="0.153" g="0.223" b="0.34" a="1.0" />
+            <ambient r="0.153" g="0.223" b="0.34" a="1.0" />
+            <diffuse r="0.153" g="0.223" b="0.34" a="1.0" />
+            <specular r="0.01" g="0.0" b="0.02" a="1.0" />
         </material>
 
 
         <material id="player2" shininess="10">
-            <emission r="0.11" g="0.6" b="1" a="1.0" />
-            <ambient r="0.11" g=".6" b="1" a="1.0" />
-            <diffuse r="0.11" g="0.6" b="1" a="1.0" />
-            <specular r="0.01" g="0.06" b="0.1" a="1.0" />
+            <emission r="0.234" g="0.32" b="0.176" a="1.0" />
+            <ambient r="0.234" g=".32" b="0.176" a="1.0" />
+            <diffuse r="0.234" g="0.32" b="0.176" a="1.0" />
+            <specular r="0.02" g="0.032" b="0.176" a="1.0" />
         </material>
 
     </materials>
@@ -187,7 +184,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <componentref id="BottomBoard"/>
                 <componentref id="BottomBottomBoard"/>
@@ -282,7 +279,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="inherit"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="plane"/>
             </children>
@@ -409,7 +406,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Platform"/>
                 <componentref id="Player_Screen_P1" />
@@ -423,7 +420,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <componentref id="Platform"/>
                 <componentref id="Player_Screen_P2" />
@@ -437,7 +434,7 @@
              <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="platform"/>
                 <componentref id="TimerFace"/>
@@ -451,7 +448,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" />
+            <texture id="metal" length_s="1" length_t="1" />
             <children>
                 <primitiveref id="platform" />
             </children>
@@ -601,7 +598,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <componentref id="ScoreBox" />
             </children>
@@ -614,7 +611,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <componentref id="ScoreBox2" />
             </children>
@@ -626,7 +623,7 @@
             <materials>
                 <material id="inherit"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <componentref id="LeftScoreSide"/>
                 <componentref id="RightScoreSide"/>
@@ -646,7 +643,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="inherit" />
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -661,7 +658,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="inherit" />
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -676,7 +673,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="inherit" />
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -691,7 +688,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="inherit" />
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -706,7 +703,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="inherit" />
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -736,7 +733,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="space" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle"/>
             </children>
@@ -750,7 +747,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="space" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle"/>
             </children>
@@ -762,7 +759,7 @@
             <materials>
                 <material id="inherit"/>
             </materials>
-            <texture id="inherit" length_s="1" length_t="1"/>
+            <texture id="metal" length_s="1" length_t="1"/>
             <children>
                 <componentref id="LeftScoreSide"/>
                 <componentref id="RightScoreSide"/>
@@ -797,7 +794,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="space" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle"/>
             </children>
@@ -811,7 +808,7 @@
             <materials>
                 <material id="defaultMat"/>
             </materials>
-            <texture id="wood" length_s="1" length_t="1"/>
+            <texture id="space" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle"/>
             </children>
@@ -838,7 +835,7 @@
             <materials>
                 <material id="defaultMat" />
             </materials>
-            <texture id="marmore" length_s="10" length_t="10"/>
+            <texture id="space" length_s="1" length_t="1"/>
             <children>
                 <componentref id="northWall" />
                  <componentref id="southWall" /> 
@@ -919,7 +916,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="wood" length_s="2" length_t="2"/>
+            <texture id="inherit"/>
             <children>
                 <primitiveref id="rectangle" />
             </children>
@@ -934,7 +931,7 @@
             <materials>
                 <material id="inherit" />
             </materials>
-            <texture id="wood" length_s="2" length_t="2"/>
+            <texture id="inherit" />
             <children>
                 <primitiveref id="rectangle" />
             </children>
