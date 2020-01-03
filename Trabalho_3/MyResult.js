@@ -19,11 +19,11 @@ class MyResult extends CGFobject {
         switch (state) {
             case 0:
                 if (player == 1) {
-                    this.result.children[0].texture = this.tex[1];
-                    this.result.children[1].texture = this.tex[0];
+                    this.result.children[4].texture = this.tex[1];
+                    this.result.children[5].texture = this.tex[0];
                 } else {
-                    this.result.children[0].texture = this.tex[0];
-                    this.result.children[1].texture = this.tex[1];
+                    this.result.children[4].texture = this.tex[0];
+                    this.result.children[5].texture = this.tex[1];
                 }
                 break;
             case 1:
