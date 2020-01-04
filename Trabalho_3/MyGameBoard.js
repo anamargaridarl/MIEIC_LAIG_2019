@@ -51,6 +51,13 @@ class MyGameBoard extends CGFobject {
         }
     }
 
+    cleanHighlight(possibleplays) {
+        for (let i = 0; i < possibleplays.length; i++) {
+            let piece = this.getPieceFromProlog(possibleplays[i]);
+            piece.cleanHighlight();
+        }
+    }
+
     changePlayer(player) {
             for (let row = 0; row < 10; row++) {
                 for (let col = 0; col < 10; col++) {

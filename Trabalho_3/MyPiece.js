@@ -61,19 +61,23 @@ class MyPiece extends CGFobject {
         this.piece.changeCurrentMaterialIndex(this.color);
     }
 
+    cleanHighlight() {
+        this.highlight = false;
+    }
+
     setPlayerHighlight() {
         this.color = this.player + 2;
     }
 
-    changePlayer(player) {
-        this.player = player;
-    }
 
     setHighlight() {
         if (!this.played)
             this.highlight = true;
     }
 
+    changePlayer(player) {
+        this.player = player;
+    }
 
     addAnimation() {
         let keyframes = [];

@@ -113,10 +113,10 @@
         </material>
 
         <material id="player2Pos" shininess="10">
-            <emission r="0.5" g="0.5" b="0.50" a="0.1" />
-            <ambient r="0.4" g="0.05" b="0.30" a="0.1" />
-            <diffuse r="0.4" g="0.05" b="0.30" a="0.1" />
-            <specular r="0.04" g="0.005" b="0.030" a="0.1" />
+              <emission r="0.6" g="0.6" b="0.6" a="1.0" />
+            <ambient r="0.80" g=".02" b="0.52" a="1.0" />
+            <diffuse r="0.80" g="0.02" b="0.52" a="1.0" />
+            <specular r="0.08" g="0.02" b="0.52" a="1.0" />
         </material>
 
     </materials>
