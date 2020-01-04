@@ -15,19 +15,26 @@
     </globals>
 
     <lights>
-        <omni id="roomLight" enabled="1">
-            <location x="9.8" y="10" z="10" w="1.0" />
-            <ambient r="0.8" g="0.8" b="0.8" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-            <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+       <omni id="roomLight" enabled="1">
+            <location x="0" y="8" z="0" w="1.0" />
+            <ambient r="1" g="1" b="1" a="1.0" />
+            <diffuse r="0.8" g="0.8" b="0.8" a="1.0" />
+            <specular r="0.8" g="0.8" b="0.8" a="1.0" />
             <attenuation constant="1" linear="0" quadratic="0" /> 
         </omni>
-        <spot id="treeLight" enabled="1" angle="1" exponent="1">
-            <location x="4" y="7" z="4" w="1" />
-            <target x="0" y="-7" z="0" />
-            <ambient r="0.5" g="0.5" b="0.5" a="1.0" />
-            <diffuse r="1" g="1" b="1" a="1.0" />
-            <specular r="1" g="1" b="1" a="1" />
+        <spot id="player1" enabled="1" angle="40" exponent="20">
+            <location x="10" y="1" z="-5" w="1.0" />
+            <target x="0" y="0.1" z="0" />
+            <ambient r="0.01" g="0.0" b="0.008" a="1.0" />
+            <diffuse r="1.0" g="0.0" b="0.8" a="1.0" />
+            <specular r="1.0" g="0.0" b="0.8" a="1.0" /> 
+        </spot>
+        <spot id="player2" enabled="1" angle="40" exponent="20">
+            <location x="10" y="1" z="5" w="1" />
+            <target x="0" y="0.1" z="0" />
+            <ambient r="0.0" g="0.0" b="0.01" a="1.0" />
+            <diffuse r="0" g="0" b="1" a="1.0" />
+            <specular r="0" g="0" b="1" a="1" />
         </spot>
     </lights>
 
@@ -35,7 +42,6 @@
         <texture id="demoTexture" file="scenes/images/vidral.jpg" />
         <texture id="Loki_Miguel" file="scenes/images/loki.jpg" />
         <texture id="Daisyzinha" file="scenes/images/daisy.jpg" />
-        <texture id="timer" file="scenes/images/timer.png"/>
         <texture id="color" file="scenes/images/noplay.jpg"/>
         <texture id="color2" file="scenes/images/color2.png"/>
         <texture id="color3" file="scenes/images/color3.png"/>
@@ -73,6 +79,20 @@
             <diffuse r="0.234" g="0.32" b="0.176" a="1.0" />
             <specular r="0.02" g="0.032" b="0.176" a="1.0" />
         </material>
+        
+        <material id="player1Pos" shininess="10">
+            <emission r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <ambient r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <diffuse r="0.0001" g="0.121" b="0.216" a="0.1" />
+            <specular r="0.0001" g="0.01" b="0.0216" a="0.1" />
+        </material>
+
+        <material id="player2Pos" shininess="10">
+            <emission r="0.200" g="0.02" b="0.52" a="0.1" />
+            <ambient r="0.200" g="0.02" b="0.52" a="0.1" />
+            <diffuse r="0.200" g="0.02" b="0.52" a="0.1" />
+            <specular r="0.200" g="0.02" b="0.52" a="0.1" />
+        </material>
 
     </materials>
 
@@ -90,10 +110,6 @@
 
         <transformation id="scoreTrans">
             <translate x="12" y="6" z="0" />
-        </transformation>
-
-        <transformation id="timerTrans">
-            <translate x="-10" y="10" z="0" />
         </transformation>
 
     </transformations>
@@ -171,7 +187,6 @@
             <children>
                <componentref id="Player1"/>
                <componentref id="Player2"/>
-               <componentref id="Timer"/>
                <componentref id="GameBoardStructure"/>
                <componentref id="Cabin"/>
 
@@ -403,7 +418,8 @@
 
         <component id="Player1">
             <transformation>
-                <translate x="12" y="0" z="0" />
+                <translate x="12" y="4" z="-5" />
+                <rotate axis="y" angle="-90"/>
             </transformation>
             <materials>
                 <material id="defaultMat" />
@@ -417,7 +433,8 @@
 
         <component id="Player2">
             <transformation>
-                <translate x="18" y="0" z="0" /> 
+                <translate x="12" y="4" z="5" />
+                <rotate axis="y" angle="-90" /> 
             </transformation>
             <materials>
                 <material id="defaultMat" />
@@ -426,20 +443,6 @@
             <children>
                 <componentref id="Platform"/>
                 <componentref id="Player_Screen_P2" />
-            </children>
-        </component>
-
-        <component id="Timer">
-            <transformation>
-                <transformationref id="timerTrans"/>
-            </transformation>
-             <materials>
-                <material id="defaultMat"/>
-            </materials>
-            <texture id="metal" length_s="1" length_t="1"/>
-            <children>
-                <primitiveref id="platform"/>
-                <componentref id="TimerFace"/>
             </children>
         </component>
 
@@ -595,7 +598,8 @@
 
         <component id="Score_P1">
             <transformation>
-                <translate x="12" y="10" z="0" />
+                <translate x="12" y="8" z="-5" />
+                <rotate axis="y" angle="-90"/>
             </transformation>
             <materials>
                 <material id="defaultMat"/>
@@ -608,7 +612,8 @@
 
         <component id="Score_P2">
             <transformation>
-                <translate x="12" y="8" z="0" />
+                <translate x="12" y="8" z="5" />
+                <rotate axis="y" angle="-90"/>
             </transformation>
             <materials>
                 <material id="defaultMat"/>
@@ -813,21 +818,6 @@
             <texture id="space" length_s="1" length_t="1"/>
             <children>
                 <primitiveref id="rectangle"/>
-            </children>
-        </component>
-        
-        <component id="TimerFace">
-            <transformation>
-                <translate x="0" y="0" z="0.2"/>
-                <rotate axis="x" angle="90"/>
-                <scale x="2" y="1" z="2" />
-            </transformation>
-            <materials>
-                <material id="defaultMat"/>
-            </materials>
-            <texture id="timer" length_s="1" length_t="1"/>
-            <children>
-                <primitiveref id="circle" />
             </children>
         </component>
         

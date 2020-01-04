@@ -14,12 +14,18 @@ class MyPiece extends CGFobject {
         this.id = id;
         this.piece = piece;
         this.animation = null;
+        this.player = 1;
+        this.highlight = false;
+        this.played = false;
         this.initBuffers();
     };
 
     cleanPiece() {
         this.animation = null;
         this.color = 0;
+        this.highlight = false;
+        this.played = false;
+        this.player = 1;
     }
 
     display() {
@@ -27,9 +33,9 @@ class MyPiece extends CGFobject {
         if (this.animation != null) {
             this.animation.display(this.scene);
         }
-
         this.applyColor();
         this.piece.display();
+        this.highlight = false;
     }
 
     updateAnimation(t) {
@@ -39,11 +45,33 @@ class MyPiece extends CGFobject {
 
     changeColor(player) {
         this.color = player;
+        this.highlight = false;
+        this.played = true;
     }
 
     applyColor() {
+        if(this.highlight) {
+            this.setPlayerHighlight();
+        }
+        else if(!this.played)
+            this.cleanPiece();
+
         this.piece.changeCurrentMaterialIndex(this.color);
     }
+
+    setPlayerHighlight() {
+        this.color = this.player + 2;
+    }
+
+    changePlayer() {
+        this.player = this.player == 1 ? 2: 1;
+    }
+
+    setHighlight() {
+        if(!this.played)
+            this.highlight = true;
+    }
+
 
     addAnimation() {
         let keyframes = [];
