@@ -45,6 +45,7 @@ class XMLscene extends CGFscene {
         this.board;
         this.orchestrator;
         this.orchestratorInit = false;
+        this.undoFlag = false;
 
 
         this.player1 = 1;
@@ -153,8 +154,9 @@ class XMLscene extends CGFscene {
     }
 
     undo() {
-        if (this.orchestrator.gameState == GAME_STATE.playing) {
+        if (this.orchestrator.gameState == GAME_STATE.playing && !this.undoFlag) {
             this.orchestrator.undo();
+            this.undoFlag = true;
         }
     }
 
@@ -212,6 +214,7 @@ class XMLscene extends CGFscene {
                             this.setPOV(String(response));
                         });
                         this.orchestrator.timer.setTimer();
+                        this.undoFlag = false;
                     }
                 }
                 this.pickResults.splice(0, this.pickResults.length);
