@@ -51,23 +51,26 @@ class MyGameOrchestrator extends CGFobject {
     }
 
     async processState(state) {
+        console.log(state);
         switch (state) {
             case 0:
                 break;
             case 1:
-                this.gameState = GAME_STATE.tie;
-                this.result.setTex(-1, 1);
-                this.timer.unsetTimer();
-                this.gameboard.cleanHighlight(this.possibleplays);
-                this.possibleplays = [];
-                break;
-            case 2:
                 this.gameState = GAME_STATE.game_over;
                 this.result.setTex(this.prolog.player, 0);
                 this.timer.unsetTimer();
                 this.gameboard.cleanHighlight(this.possibleplays);
                 this.possibleplays = [];
                 break;
+
+            case 2:
+                this.gameState = GAME_STATE.tie;
+                this.result.setTex(-1, 1);
+                this.timer.unsetTimer();
+                this.gameboard.cleanHighlight(this.possibleplays);
+                this.possibleplays = [];
+                break;
+
         }
     }
 
