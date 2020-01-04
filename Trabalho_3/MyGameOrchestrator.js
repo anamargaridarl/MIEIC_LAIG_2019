@@ -60,13 +60,15 @@ class MyGameOrchestrator extends CGFobject {
                 this.gameState = GAME_STATE.tie;
                 this.result.setTex(-1, 1);
                 this.timer.unsetTimer();
-                // this.gameboard.cleanHighlight(this.possibleplays);
+                this.gameboard.cleanHighlight(this.possibleplays);
+                this.possibleplays = [];
                 break;
             case 2:
                 this.gameState = GAME_STATE.game_over;
                 this.result.setTex(this.prolog.player, 0);
                 this.timer.unsetTimer();
-                // this.gameboard.cleanHighlight(this.possibleplays);
+                this.gameboard.cleanHighlight(this.possibleplays);
+                this.possibleplays = [];
                 break;
         }
     }
@@ -85,9 +87,9 @@ class MyGameOrchestrator extends CGFobject {
         //actions passed to prolog
         let state = await this.prolog.addplay(coord[0] + 1, coord[1] + 1, coord[2]);
 
-        this.processState(state);
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
+        this.processState(state);
         this.gameboard.changePlayer(this.prolog.player);
         return this.prolog.player;
 

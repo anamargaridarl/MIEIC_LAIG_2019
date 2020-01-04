@@ -21,11 +21,11 @@ class MyGameBoard extends CGFobject {
         let id = piece[1][1];
 
         if (id == 3 || id == 5)
-            return this.getPiece(row, column, 0);
+            return this.getPiece(row - 1, column - 1, 0);
         else if (id == 4 || id == 6)
-            return this.getPiece(row, column, 1);
+            return this.getPiece(row - 1, column - 1, 1);
         else
-            return this.getPiece(row, column, -1);
+            return this.getPiece(row - 1, column - 1, -1);
 
     }
 
