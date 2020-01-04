@@ -43,7 +43,10 @@ class MyGameOrchestrator extends CGFobject {
     }
 
     display() {
-        this.gameboard.display(this.possibleplays);
+        if (this.gameState != GAME_STATE.playing)
+            this.gameboard.display([]);
+        else
+            this.gameboard.display(this.possibleplays);
         this.points.display();
         if (this.gameState == GAME_STATE.playing)
             this.timer.display();
