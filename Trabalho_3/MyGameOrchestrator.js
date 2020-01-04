@@ -5,6 +5,11 @@ const GAME_STATE = Object.freeze({
     "game_movie": 3
 });
 
+const LEVELS = Object.freeze({
+    "easy": '1',
+    "hard": '2',
+});
+
 let i = 0;
 
 class MyGameOrchestrator extends CGFobject {

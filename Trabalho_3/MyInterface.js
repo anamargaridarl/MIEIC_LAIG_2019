@@ -48,14 +48,14 @@ class MyInterface extends CGFinterface {
     };
 
     createViewDropdown1() {
-        this.typeKeys = this.scene.type_player;
+        this.typeKeys = TYPE_PLAYER;
         this.f0.add(this.scene, 'player1', this.typeKeys)
             .name('Player1:')
             .onChange(tID => this.scene.updatePlayer1(tID));
     }
 
     createViewDropdown2() {
-        this.typeKeys = this.scene.type_player;
+        this.typeKeys = TYPE_PLAYER;
         this.f0.add(this.scene, 'player2', this.typeKeys)
             .name('Player2:')
             .onChange(tID => this.scene.updatePlayer2(tID));
@@ -83,6 +83,26 @@ class MyInterface extends CGFinterface {
 
     createLightsCheckboxes() {
         this.f0.add(this.scene, 'axisActive').name('Display axis');
+    }
+
+    createLevelP1Dropdown() {
+
+        if (this.scene.player1 == 2) {
+            this.typeKeys = LEVELS;
+            this.f0.add(this.scene, 'currentLevel', this.typeKeys)
+                .name('Level PLayer1: ')
+                .onChange(level => this.scene.setLevel(level));
+        }
+    }
+
+    createLevelP2Dropdown() {
+
+        if (this.scene.player2 == 2) {
+            this.typeKeys = LEVELS;
+            this.f0.add(this.scene, 'currentLevel', this.typeKeys)
+                .name('Level PLayer2: ')
+                .onChange(level => this.scene.setLevel(level));
+        }
     }
 
     createPOVDropdown() {

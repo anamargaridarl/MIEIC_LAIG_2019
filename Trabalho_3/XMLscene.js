@@ -1,5 +1,10 @@
 var DEGREE_TO_RAD = Math.PI / 180;
 
+const TYPE_PLAYER = Object.freeze({
+    "human": '1',
+    "pc": '2',
+});
+
 /**
  * XMLscene class, representing the scene that is to be rendered.
  */
@@ -40,11 +45,13 @@ class XMLscene extends CGFscene {
         this.board;
         this.orchestrator;
         this.orchestratorInit = false;
-        this.type_player = ["pc", "human"];
-        this.player1 = "human";
-        this.player2 = "human";
+
+
+        this.player1 = 1;
+        this.player2 = 1;
 
         this.player = 1;
+        this.currentLevel = 1;
 
     }
 
@@ -176,11 +183,18 @@ class XMLscene extends CGFscene {
 
     updatePlayer1(tid) {
         this.player1 = tid;
+        this.interface.createLevelP1Dropdown();
         this.start();
     }
 
     updatePlayer2(tid) {
         this.player2 = tid;
+        this.interface.createLevelP2Dropdown();
+        this.start();
+    }
+
+    setLevel(level) {
+        this.currentLevel = level;
         this.start();
     }
 
@@ -281,9 +295,9 @@ class XMLscene extends CGFscene {
     }
 
     play() {
-        if (this.player == 1 && this.player1 == "pc") {
+        if (this.player == 1 && this.player1 == 2) {
             this.player = this.orchestrator.playCPU();
-        } else if (this.player == 2 && this.player2 == "pc") {
+        } else if (this.player == 2 && this.player2 == 2) {
             this.player = this.orchestrator.playCPU();
         }
 
