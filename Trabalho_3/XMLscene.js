@@ -28,6 +28,7 @@ class XMLscene extends CGFscene {
 
         this.sceneInited = false;
         this.axisActive = false;
+        this.lightActive = true;
         this.undoActive = false;
         this.initCameras();
         this.enableTextures(true);
@@ -143,6 +144,7 @@ class XMLscene extends CGFscene {
             this.interface.createStartButton();
             this.interface.createViewDropdown1();
             this.interface.createViewDropdown2();
+            this.interface.createAxisCheckboxes();
             this.interface.createLightsCheckboxes();
             this.interface.createUndoButton();
             this.interface.createMovieButton();
@@ -255,11 +257,19 @@ class XMLscene extends CGFscene {
 
             // Draw axis
             this.setDefaultAppearance();
+
+            //used for light checkbox
+            if (!this.lightActive) {
+                this.lights[1].disable();
+            } else
+                this.lights[1].enable();
+
             //get Array of objects to allow iteration in for loop (JS behavior adaptation)
             const lightArr = Object.keys(this.graph.lights);
             for (var i = 0; i < lightArr.length; i++) {
                 this.lights[i].update();
             }
+
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
         }

@@ -64,14 +64,6 @@ class MyInterface extends CGFinterface {
             .onChange(tID => this.scene.updatePlayer2(tID));
     }
 
-    //USE THIS TO ADD SCENE
-    // createViewDropdown3() {
-    //     this.typeKeys = this.scene.type_player;
-    //     this.gui.add(this.scene, 'player2', this.typeKeys)
-    //         .name('Player2:')
-    //         .onChange(tID => this.scene.updatePlayer2(tID));
-    // }
-
     createUndoButton() {
         this.f0.add(this.scene, 'undo').name('Undo');
     }
@@ -84,8 +76,12 @@ class MyInterface extends CGFinterface {
         this.f1.add(this.scene, 'movie').name('Movie');
     }
 
-    createLightsCheckboxes() {
+    createAxisCheckboxes() {
         this.f0.add(this.scene, 'axisActive').name('Display axis');
+    }
+
+    createLightsCheckboxes() {
+        this.f2.add(this.scene, 'lightActive').name('Night Mode');
     }
 
     createLevelP1Dropdown() {
