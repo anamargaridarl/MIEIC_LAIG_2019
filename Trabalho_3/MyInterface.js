@@ -26,6 +26,9 @@ class MyInterface extends CGFinterface {
         this.f4 = this.gui.addFolder('Themes');
         this.f0.open();
 
+        this.P1;
+        this.P2;
+
         this.sceneIndex;
 
         // add a group of controls (and open/expand by defult)
@@ -87,22 +90,28 @@ class MyInterface extends CGFinterface {
 
     createLevelP1Dropdown() {
 
+
         if (this.scene.player1 == 2) {
             this.typeKeys = LEVELS;
-            this.f0.add(this.scene, 'currentLevel', this.typeKeys)
+            this.P1 = this.f0.add(this.scene, 'currentLevel', this.typeKeys)
                 .name('Level PLayer1: ')
                 .onChange(level => this.scene.setLevel(level));
-        }
+        } else
+            this.f0.remove(this.P1);
     }
 
     createLevelP2Dropdown() {
 
+
         if (this.scene.player2 == 2) {
             this.typeKeys = LEVELS;
-            this.f0.add(this.scene, 'currentLevel', this.typeKeys)
+            this.P2 = this.f0.add(this.scene, 'currentLevel', this.typeKeys)
                 .name('Level PLayer2: ')
                 .onChange(level => this.scene.setLevel(level));
-        }
+        } else
+            this.f0.remove(this.P2);
+
+
     }
 
     createPOVDropdown() {
