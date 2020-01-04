@@ -96,14 +96,14 @@ class MyGameOrchestrator extends CGFobject {
         return this.prolog.player;
     }
 
-    async playCPU() {
+    async playCPU(level) {
         // fetch information for this play move
         let lastBoard = this.prolog.board;
         let player = this.prolog.player;
 
         // play action in prolog
         //      -returns state and already played pieces
-        let result = await this.prolog.addplayCPU();
+        let result = await this.prolog.addplayCPU(level);
 
         // piece played in this round
         let pieceProlog = result[1];

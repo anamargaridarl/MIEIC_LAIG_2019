@@ -53,7 +53,8 @@ class XMLscene extends CGFscene {
         this.player2 = 1;
 
         this.player = 1;
-        this.currentLevel = 1;
+        this.currentLevel1 = 1;
+        this.currentLevel2 = 1;
 
     }
 
@@ -199,10 +200,21 @@ class XMLscene extends CGFscene {
         this.start();
     }
 
-    setLevel(level) {
-        this.currentLevel = level;
+    setLevel1(level) {
+        this.currentLevel1 = level;
         this.start();
     }
+
+    setLevel2(level) {
+        this.currentLevel2 = level;
+        this.start();
+    }
+
+    setPOV(pov) {
+        this.currentPov = pov;
+        this.povs.setChangingPOV(pov, this.updatePeriod);
+    }
+
 
     logPicking() {
         if (!this.pickMode) {
@@ -278,11 +290,6 @@ class XMLscene extends CGFscene {
         // ---- END Background, camera and axis setup
     }
 
-    setPOV(pov) {
-        this.currentPov = pov;
-        this.povs.setChangingPOV(pov, this.updatePeriod);
-    }
-
     update(t) {
         if (this.sceneInited) {
             this.graph.components["Root"].updateAnimation(t / 1000);
@@ -304,9 +311,9 @@ class XMLscene extends CGFscene {
 
     play() {
         if (this.player == 1 && this.player1 == 2) {
-            this.player = this.orchestrator.playCPU();
+            this.player = this.orchestrator.playCPU(this.currentLevel1);
         } else if (this.player == 2 && this.player2 == 2) {
-            this.player = this.orchestrator.playCPU();
+            this.player = this.orchestrator.playCPU(this.currentLevel2);
         }
 
     }

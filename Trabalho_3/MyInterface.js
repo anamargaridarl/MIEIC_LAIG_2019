@@ -89,9 +89,9 @@ class MyInterface extends CGFinterface {
 
         if (this.scene.player1 == 2) {
             this.typeKeys = LEVELS;
-            this.P1 = this.f0.add(this.scene, 'currentLevel', this.typeKeys)
+            this.P1 = this.f0.add(this.scene, 'currentLevel1', this.typeKeys)
                 .name('Level PLayer1: ')
-                .onChange(level => this.scene.setLevel(level));
+                .onChange(level => this.scene.setLevel1(level));
         } else
             this.f0.remove(this.P1);
     }
@@ -100,9 +100,9 @@ class MyInterface extends CGFinterface {
 
         if (this.scene.player2 == 2) {
             this.typeKeys = LEVELS;
-            this.P2 = this.f0.add(this.scene, 'currentLevel', this.typeKeys)
+            this.P2 = this.f0.add(this.scene, 'currentLevel2', this.typeKeys)
                 .name('Level PLayer2: ')
-                .onChange(level => this.scene.setLevel(level));
+                .onChange(level => this.scene.setLevel2(level));
         } else
             this.f0.remove(this.P2);
 
