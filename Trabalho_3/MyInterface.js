@@ -122,16 +122,19 @@ class MyInterface extends CGFinterface {
 
     createThemeDropdown() {
 
-        const sceneDropdownModel = [
-            "game.xml",
-            "game2.xml"
-        ];
+        const LEVELS = Object.freeze({
+            "OLYMPICS": "game.xml",
+            "SPACEDOGS": "game2.xml"
+        });
 
         this.sceneIndex = this.scene.graph.filename;
+        this.typeKeys = LEVELS;
 
-        this.f4.add(this, "sceneIndex", sceneDropdownModel)
+        this.f4.add(this, "sceneIndex", this.typeKeys)
             .name("Current Scene")
-            .onChange(filename => this.scene.graph.loadXML(filename));
+            .onChange(filename => {
+                this.scene.graph.loadXML(filename);
+            });
 
     }
 

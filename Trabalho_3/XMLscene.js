@@ -119,7 +119,8 @@ class XMLscene extends CGFscene {
         /** Handler called when the graph is finally loaded. 
          * As loading is asynchronous, this may be called already after the application has started the run loop
          */
-    onGraphLoaded() {
+    onGraphLoaded(change) {
+
         this.axis = new CGFaxis(this, this.graph.referenceLength);
 
         this.gl.clearColor(this.graph.background[0], this.graph.background[1], this.graph.background[2], this.graph.background[3]);
@@ -136,15 +137,17 @@ class XMLscene extends CGFscene {
         this.sceneInited = true;
         this.orchestratorInit = true;
 
-        /*Create interface options*/
-        this.interface.createStartButton();
-        this.interface.createViewDropdown1();
-        this.interface.createViewDropdown2();
-        this.interface.createLightsCheckboxes();
-        this.interface.createUndoButton();
-        this.interface.createMovieButton();
-        this.interface.createPOVDropdown();
-        this.interface.createThemeDropdown();
+        if (!change) {
+            /*Create interface options*/
+            this.interface.createStartButton();
+            this.interface.createViewDropdown1();
+            this.interface.createViewDropdown2();
+            this.interface.createLightsCheckboxes();
+            this.interface.createUndoButton();
+            this.interface.createMovieButton();
+            this.interface.createPOVDropdown();
+            this.interface.createThemeDropdown();
+        }
 
 
     }
@@ -156,7 +159,6 @@ class XMLscene extends CGFscene {
     }
 
     start() {
-
 
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie || this.orchestrator.gameState == GAME_STATE.playing) {
             //clean pickresults and board

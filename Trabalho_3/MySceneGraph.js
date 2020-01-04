@@ -63,6 +63,8 @@ class MySceneGraph {
 
     loadXML(filename) {
 
+        this.scene.sceneInited = false;
+        this.scene.axisActive = false;
         this.loadedOk = null;
         this.animations = [];
         this.nodes = [];
@@ -100,8 +102,8 @@ class MySceneGraph {
 
         // As the graph loaded ok, signal the scene so that any additional
         // initialization depending on the graph can take place
-        if (!this.change)
-            this.scene.onGraphLoaded();
+        this.scene.onGraphLoaded(this.change);
+
     }
 
     /**
@@ -254,14 +256,14 @@ class MySceneGraph {
             if (i % 2 != 0) {
                 //first up triangle; second down triangle
                 let triangles = [];
-                triangles.push(new MyPiece(this.scene, n*100 + (i+1)*10 + 1, this.components['TriangleId5']));
-                triangles.push(new MyPiece(this.scene, n*100 + (i+1)*10 + 2, this.components['TriangleId6']));
+                triangles.push(new MyPiece(this.scene, n * 100 + (i + 1) * 10 + 1, this.components['TriangleId5']));
+                triangles.push(new MyPiece(this.scene, n * 100 + (i + 1) * 10 + 2, this.components['TriangleId6']));
                 line.push(triangles);
             } else
-                line.push(new MyPiece(this.scene, n*100 + (i+1)*10, this.components['Square']));
+                line.push(new MyPiece(this.scene, n * 100 + (i + 1) * 10, this.components['Square']));
         }
         n++;
-            
+
         if (row < 5) {
             line.push(rectangles[3]);
         } else
@@ -285,11 +287,11 @@ class MySceneGraph {
             if (i % 2 == 0) {
                 //first up triangle; second down triangle
                 let triangles = [];
-                triangles.push(new MyPiece(this.scene, n*100 + (i+1)*10 + 1, this.components['TriangleId3']));
-                triangles.push(new MyPiece(this.scene, n*100 + (i+1)*10 + 2, this.components['TriangleId4']));
+                triangles.push(new MyPiece(this.scene, n * 100 + (i + 1) * 10 + 1, this.components['TriangleId3']));
+                triangles.push(new MyPiece(this.scene, n * 100 + (i + 1) * 10 + 2, this.components['TriangleId4']));
                 line.push(triangles);
             } else
-                line.push(new MyPiece(this.scene, n*100 + (i+1)*10 , this.components['Square']));
+                line.push(new MyPiece(this.scene, n * 100 + (i + 1) * 10, this.components['Square']));
         }
         n++;
 

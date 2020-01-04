@@ -47,8 +47,7 @@
         <texture id="color3" file="scenes/images/color3.png"/>
         <texture id="space" file="scenes/images/space.jpg"/>
         <texture id="metal" file="scenes/images/metal.jpg"/>
-
-
+        <texture id="goldolimpic" file="scenes/images/goldolimpic.png"/>
       <texture id="winner" file="scenes/images/winner.png" />
         <texture id="looser" file="scenes/images/looser.png" />   
         <texture id="black" file="scenes/images/black.jpg"/>
@@ -307,9 +306,11 @@
                 <rotate axis="x" angle="-90" />
             </transformation>
             <materials>
-                 <material id="defaultMat" />
+                <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color3" length_s="1" length_t="1"/>
             <children>
@@ -322,9 +323,11 @@
                 <rotate axis="x" angle="-90" />
             </transformation>
             <materials>
-                 <material id="defaultMat" />
+                <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color" length_s="1" length_t="1"/>
             <children>
@@ -339,9 +342,11 @@
             <rotate axis="x" angle="-90" />
             </transformation>
             <materials>
-                 <material id="defaultMat" />
+                <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color3" length_s="1" length_t="1"/>
             <children>
@@ -355,9 +360,11 @@
 
             </transformation>
             <materials>
-                 <material id="defaultMat" />
+                <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color2" length_s="1" length_t="1"/>
             <children>
@@ -376,6 +383,8 @@
                 <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color2" length_s="1" length_t="1"/>
             <children>
@@ -390,9 +399,11 @@
             <rotate axis="z" angle="90" />
             </transformation>
             <materials>
-                 <material id="defaultMat" />
+                <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color2" length_s="1" length_t="1"/>
             <children>
@@ -406,9 +417,11 @@
                 <rotate axis="x" angle="90" />
             </transformation>
             <materials>
-                 <material id="defaultMat" />
+                <material id="defaultMat" />
                 <material id="player1" />
                 <material id="player2" />
+                <material id="player1Pos" />
+                <material id="player2Pos" />
             </materials>
             <texture id="color2" length_s="1" length_t="1"/>
             <children>
