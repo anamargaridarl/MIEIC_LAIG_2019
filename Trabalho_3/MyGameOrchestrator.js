@@ -17,6 +17,7 @@ class MyGameOrchestrator extends CGFobject {
         // GameBoardMove objects
         this.gamesequence = [];
         // GameBoard object
+
         this.gameboard = gameboard;
         this.prolog = new MyProlog(scene);
         this.points = new MyPoints(scene, p1, p2);
@@ -35,6 +36,7 @@ class MyGameOrchestrator extends CGFobject {
     async init() {
         this.prolog.initBoard();
         this.possibleplays = await this.prolog.getPossiblePlays();
+        this.result.setTheme();
     }
 
     display() {
@@ -51,21 +53,20 @@ class MyGameOrchestrator extends CGFobject {
     }
 
     async processState(state) {
-        console.log(state);
         switch (state) {
             case 0:
                 break;
             case 1:
                 this.gameState = GAME_STATE.game_over;
-                this.result.setTex(this.prolog.player, 0);
+                this.result.setTex(this.prolog.player, state);
                 this.timer.unsetTimer();
                 this.gameboard.cleanHighlight(this.possibleplays);
                 this.possibleplays = [];
                 break;
-
             case 2:
+            case 3:
                 this.gameState = GAME_STATE.tie;
-                this.result.setTex(-1, 1);
+                this.result.setTex(-1, state);
                 this.timer.unsetTimer();
                 this.gameboard.cleanHighlight(this.possibleplays);
                 this.possibleplays = [];
