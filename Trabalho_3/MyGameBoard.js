@@ -37,20 +37,6 @@ class MyGameBoard extends CGFobject {
             return this.pieces[row][column]
     }
 
-    /*Function used to restart game 
-        - cleans all the players' colors from the board*/
-    cleanBoard() {
-        for (let row = 0; row < 10; row++) {
-            for (let col = 0; col < 10; col++) {
-                if (Array.isArray(this.pieces[row][col])) {
-                    this.pieces[row][col][0].cleanPiece();
-                    this.pieces[row][col][1].cleanPiece();
-                } else
-                    this.pieces[row][col].cleanPiece();
-            }
-        }
-    }
-
     cleanHighlight(possibleplays) {
         for (let i = 0; i < possibleplays.length; i++) {
             let piece = this.getPieceFromProlog(possibleplays[i]);

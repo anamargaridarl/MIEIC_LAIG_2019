@@ -161,7 +161,7 @@ class XMLscene extends CGFscene {
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie || this.orchestrator.gameState == GAME_STATE.playing) {
             //clean pickresults and board
             this.pickResults.splice(0, this.pickResults.length);
-            this.board.cleanBoard();
+            this.orchestrator.cleanBoard();
 
             //start game
             this.orchestrator = new MyGameOrchestrator(this, this.board, this.graph.components["Score_P1"], this.graph.components["Score_P2"], this.graph.components['Result']);

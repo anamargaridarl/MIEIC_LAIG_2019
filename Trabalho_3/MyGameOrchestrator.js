@@ -170,4 +170,10 @@ class MyGameOrchestrator extends CGFobject {
         }, 1000, this.gamesequenceLength, this.gamesequence);
 
     }
+
+    cleanBoard() {
+        for (let i = 0; i < this.gamesequence.length; i++) {
+            this.gamesequence[i].piece.cleanPiece();
+        }
+    }
 }
