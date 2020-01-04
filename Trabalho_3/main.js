@@ -62,7 +62,7 @@ serialInclude(['../lib/CGF.js', 'XMLscene.js', 'MySceneGraph.js', 'MyTriangle.js
         // get file name provided in URL, e.g. http://localhost/myproj/?file=myfile.xml 
         // or use "demo.xml" as default (assumes files in subfolder "scenes", check MySceneGraph constructor) 
 
-        var filename = getUrlVars()['file'] || "game.xml" || "game2.xml";
+        var filename = getUrlVars()['file'] || "game2.xml" || "game.xml";
         var myGraph = new MySceneGraph(filename, myScene);
 
         app.run();
