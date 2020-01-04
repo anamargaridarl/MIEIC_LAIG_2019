@@ -10,6 +10,7 @@ const LEVELS = Object.freeze({
     "hard": '2',
 });
 
+//used for movie function
 let i = 0;
 
 class MyGameOrchestrator extends CGFobject {
@@ -32,6 +33,7 @@ class MyGameOrchestrator extends CGFobject {
 
         this.timer = new MyTimer(scene, this.scene.graph.components["Pointer"]);
 
+        //used in movie function
         this.gamesequenceLength = 0;
     }
 
@@ -128,7 +130,7 @@ class MyGameOrchestrator extends CGFobject {
         if (this.timer.timeout) this.processState(GAME_STATE.game_over)
     }
 
-    undo() {
+    async undo() {
         //Fetch information from last move
         this.lastMove = this.gamesequence.pop();
         let lastBoard = this.lastMove.getBoard();
@@ -140,6 +142,9 @@ class MyGameOrchestrator extends CGFobject {
         this.points.undo(lastPlayer);
         //Clean color piece in the board displayed
         lastPiece.cleanPiece();
+
+        this.possibleplays = await this.prolog.getPossiblePlays();
+
     }
 
 
@@ -157,7 +162,7 @@ class MyGameOrchestrator extends CGFobject {
     movie() {
         this.gameState = GAME_STATE.game_movie;
         this.possibleplays = [];
-        this.gameboard.cleanBoard();
+        this.cleanBoard();
         this.gamesequenceLength = this.gamesequence.length;
 
         window.setInterval(function movieSequence(gamesequenceLength, gamesequence) {
@@ -167,7 +172,7 @@ class MyGameOrchestrator extends CGFobject {
                 gamesequence[i].play();
                 i++;
             }
-        }, 1000, this.gamesequenceLength, this.gamesequence);
+        }, 1500, this.gamesequenceLength, this.gamesequence);
 
     }
 
