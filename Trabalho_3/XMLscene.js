@@ -150,7 +150,8 @@ class XMLscene extends CGFscene {
 
     start() {
 
-        if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie) {
+
+        if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie || this.orchestrator.gameState == GAME_STATE.playing) {
             //clean pickresults and board
             this.pickResults.splice(0, this.pickResults.length);
             this.board.cleanBoard();
@@ -164,6 +165,7 @@ class XMLscene extends CGFscene {
             this.setPOV(POV.player1);
         }
     }
+
 
     movie() {
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie) {
