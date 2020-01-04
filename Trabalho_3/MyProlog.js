@@ -5,14 +5,13 @@ class MyProlog {
         this.player = 1;
         this.alreadyplayed = [];
         this.gamestate = 0;
-        this.possibleplays = [];
         this.board = [];
 
     }
 
     async undo(board) {
         this.board = board;
-        this.alreadyplayed.pop();
+        this.alreadyplayed.shift();
         this.changePlayer();
     }
 

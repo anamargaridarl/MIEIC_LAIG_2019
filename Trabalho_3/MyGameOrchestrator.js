@@ -94,7 +94,10 @@ class MyGameOrchestrator extends CGFobject {
         this.possibleplays = await this.prolog.getPossiblePlays();
         this.processState(state);
         this.gameboard.changePlayer(this.prolog.player);
+        console.log(this.prolog.alreadyplayed);
         return this.prolog.player;
+
+
 
     }
 
@@ -137,6 +140,8 @@ class MyGameOrchestrator extends CGFobject {
 
     async undo() {
         //Fetch information from last move
+        this.gameboard.cleanHighlight(this.possibleplays);
+        this.possibleplays = [];
         this.lastMove = this.gamesequence.pop();
         let lastBoard = this.lastMove.getBoard();
         let lastPiece = this.lastMove.getPiece();
