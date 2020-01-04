@@ -9,7 +9,10 @@ class MyPiece extends CGFobject {
 
         /*color 0 --> transparent
           color 1 --> color player1
-          color 2 --> color player2*/
+          color 2 --> color player2
+          color 3 --> highlight player 1
+          color 4 -->highlight player 2
+          */
         this.color = 0;
         this.id = id;
         this.piece = piece;
@@ -50,10 +53,9 @@ class MyPiece extends CGFobject {
     }
 
     applyColor() {
-        if(this.highlight) {
+        if (this.highlight) {
             this.setPlayerHighlight();
-        }
-        else if(!this.played)
+        } else if (!this.played)
             this.cleanPiece();
 
         this.piece.changeCurrentMaterialIndex(this.color);
@@ -63,12 +65,12 @@ class MyPiece extends CGFobject {
         this.color = this.player + 2;
     }
 
-    changePlayer() {
-        this.player = this.player == 1 ? 2: 1;
+    changePlayer(player) {
+        this.player = player;
     }
 
     setHighlight() {
-        if(!this.played)
+        if (!this.played)
             this.highlight = true;
     }
 

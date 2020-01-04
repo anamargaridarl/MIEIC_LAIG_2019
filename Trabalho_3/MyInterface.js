@@ -106,4 +106,6 @@ class MyInterface extends CGFinterface {
             .onChange(filename => this.scene.graph.loadXML(filename));
 
     }
+
+
 }

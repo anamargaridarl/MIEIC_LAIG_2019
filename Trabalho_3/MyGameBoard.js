@@ -51,22 +51,22 @@ class MyGameBoard extends CGFobject {
         }
     }
 
-    changePlayer() {
-        for (let row = 0; row < 10; row++) {
-            for (let col = 0; col < 10; col++) {
-                if (Array.isArray(this.pieces[row][col])) {
-                    this.pieces[row][col][0].changePlayer();
-                    this.pieces[row][col][1].changePlayer();
-                } else
-                    this.pieces[row][col].changePlayer();
+    changePlayer(player) {
+            for (let row = 0; row < 10; row++) {
+                for (let col = 0; col < 10; col++) {
+                    if (Array.isArray(this.pieces[row][col])) {
+                        this.pieces[row][col][0].changePlayer(player);
+                        this.pieces[row][col][1].changePlayer(player);
+                    } else
+                        this.pieces[row][col].changePlayer(player);
+                }
             }
         }
-    }
-    /* Get information of the selected piece in the board
-        -returns an array with row, column and id 
-                                                (0 - upper triangle
-                                                 1 - lower triangle
-                                                 -1 - other piece */
+        /* Get information of the selected piece in the board
+            -returns an array with row, column and id 
+                                                    (0 - upper triangle
+                                                     1 - lower triangle
+                                                     -1 - other piece */
     getPlayPiece(id) {
         for (let row = 0; row < 10; row++) {
             for (let col = 0; col < 10; col++) {

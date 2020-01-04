@@ -40,7 +40,7 @@ class MyGameOrchestrator extends CGFobject {
         this.points.display();
         if (this.gameState == GAME_STATE.playing)
             this.timer.display();
-        
+
         if (this.gameState == GAME_STATE.tie || this.gameState == GAME_STATE.game_over)
             this.result.display();
     }
@@ -79,7 +79,7 @@ class MyGameOrchestrator extends CGFobject {
         this.processState(state);
         //get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
-        this.gameboard.changePlayer();
+        this.gameboard.changePlayer(this.prolog.player);
         return this.prolog.player;
 
     }
@@ -160,7 +160,7 @@ class MyGameOrchestrator extends CGFobject {
                 gamesequence[i].play();
                 i++;
             }
-        }, 3000, this.gamesequenceLength, this.gamesequence);
+        }, 1000, this.gamesequenceLength, this.gamesequence);
 
     }
 }
