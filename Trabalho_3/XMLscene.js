@@ -210,11 +210,9 @@ class XMLscene extends CGFscene {
                     if (obj) {
                         this.orchestrator.timer.unsetTimer();
                         const clickId = this.pickResults[i][1];
-                        console.log("Picked object: " + obj + ", with pick id " + clickId);
-                        this.player = this.orchestrator.play(clickId);
-                        // this.player = this.orchestrator.play(clickId).then(response => {
-                        //     this.setPOV(String(response));
-                        // });
+                        this.player = this.orchestrator.play(clickId).then(response => {
+                            this.setPOV(String(response));
+                        });
                         this.orchestrator.timer.setTimer();
                         this.undoFlag = false;
                     }
@@ -234,12 +232,6 @@ class XMLscene extends CGFscene {
         // Clear image and depth buffer everytime we update the scene
         this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
-        // if (usingSecCam) {
-        //     this.camera = this.secCamera;
-        // } else {
-        //     this.camera = this.sceneCamera;
-        // }
-        //
         // Initialize Model-View matrix as identity (no transformation
         this.updateProjectionMatrix();
         this.loadIdentity();
