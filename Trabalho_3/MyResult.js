@@ -10,7 +10,6 @@ class MyResult extends CGFobject {
 
     setTheme() {
         this.theme = this.scene.graph.filename;
-        console.log(this.theme);
     }
     display() {
         this.scene.pushMatrix();

@@ -19,7 +19,7 @@ class MyProlog {
         return [this.player1Points, this.player2Points];
     }
 
-    async getBoard() {
+    getBoard() {
         return this.board;
     }
 

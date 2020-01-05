@@ -2,8 +2,8 @@ const GAME_STATE =
     Object.freeze({ 'menu': 0, 'playing': 1, 'game_over': 2, 'game_movie': 3 });
 
 const LEVELS = Object.freeze({
-    'easy': '1',
-    'hard': '2',
+    'easy': 0,
+    'hard': 1,
 });
 
 // used for movie function
@@ -34,9 +34,13 @@ class MyGameOrchestrator extends CGFobject {
     }
 
     async init() {
-        this.prolog.initBoard();
+        await this.prolog.initBoard();
         this.possibleplays = await this.prolog.getPossiblePlays();
         this.result.setTheme();
+    }
+
+    isInitialized() {
+        return this.prolog.getBoard().length;
     }
 
     display() {
@@ -122,7 +126,9 @@ class MyGameOrchestrator extends CGFobject {
 
         // get possible pieces to play for next round
         this.possibleplays = await this.prolog.getPossiblePlays();
+        this.processState(state);
 
+        this.gameboard.changePlayer(this.prolog.player);
         return this.prolog.player;
     }
 
