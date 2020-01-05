@@ -662,7 +662,6 @@
         <component id="Score_P2">
             <transformation>
                 <translate x="12" y="8" z="-5" />
-                 <translate x="12" y="8" z="-5" />
                 <rotate axis="y" angle="-90" />
             </transformation>
             <materials>
