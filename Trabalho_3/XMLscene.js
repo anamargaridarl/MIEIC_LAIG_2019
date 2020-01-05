@@ -202,11 +202,14 @@ class XMLscene extends CGFscene {
     updatePlayer1(tid) {
         this.player1 = tid;
         this.interface.createLevelP1Dropdown();
+        this.interface.createUndoButton();
     }
 
     updatePlayer2(tid) {
         this.player2 = tid;
         this.interface.createLevelP2Dropdown();
+        this.interface.createUndoButton();
+
     }
 
     setLevel1(level) {

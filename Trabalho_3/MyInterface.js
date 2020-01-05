@@ -29,6 +29,8 @@ class MyInterface extends CGFinterface {
         this.P1;
         this.P2;
 
+        this.undo;
+
         this.sceneIndex;
 
 
@@ -50,8 +52,12 @@ class MyInterface extends CGFinterface {
     }
 
     createUndoButton() {
-        this.f0.add(this.scene, 'undo').name('Undo');
+        if (this.scene.player1 == 2 || this.scene.player2 == 2)
+            this.f0.remove(this.undo);
+        else
+            this.undo = this.f0.add(this.scene, 'undo').name('Undo');
     }
+
 
     createStartButton() {
         this.f0.add(this.scene, 'start').name('Start');
