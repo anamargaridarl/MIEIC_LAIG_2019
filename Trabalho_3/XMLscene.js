@@ -176,6 +176,7 @@ class XMLscene extends CGFscene {
 
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie || this.orchestrator.gameState == GAME_STATE.menu || this.orchestrator.gameState == GAME_STATE.game_movie || this.orchestrator.gameState == GAME_STATE.playing) {
             //clean pickresults and board
+            this.player = 1;
             this.pickResults.splice(0, this.pickResults.length);
             this.orchestrator.cleanBoard();
 
@@ -201,23 +202,19 @@ class XMLscene extends CGFscene {
     updatePlayer1(tid) {
         this.player1 = tid;
         this.interface.createLevelP1Dropdown();
-        this.start();
     }
 
     updatePlayer2(tid) {
         this.player2 = tid;
         this.interface.createLevelP2Dropdown();
-        this.start();
     }
 
     setLevel1(level) {
         this.currentLevel1 = level;
-        // this.start();
     }
 
     setLevel2(level) {
         this.currentLevel2 = level;
-        // this.start();
     }
 
     setPOV(pov) {
@@ -312,12 +309,6 @@ class XMLscene extends CGFscene {
     updateCamera() {
         this.camera = this.povs.update(this.camera);
         this.interface.setActiveCamera(this.camera);
-    }
-
-    checkKeys(eventCode) {
-        if (eventCode == "KeyM") {
-            this.graph.components["Root"].updateMaterial();
-        }
     }
 
     async play() {

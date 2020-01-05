@@ -31,24 +31,9 @@ class MyInterface extends CGFinterface {
 
         this.sceneIndex;
 
-        // add a group of controls (and open/expand by defult)
-        this.initKeys();
 
         return true;
     }
-
-
-    /**
-     * initKeys
-     */
-    initKeys() {
-        this.scene.gui = this;
-        this.processKeyboard = function() {};
-    }
-
-    processKeyDown(event) {
-        this.scene.checkKeys(event.code);
-    };
 
     createViewDropdown1() {
         this.typeKeys = TYPE_PLAYER;
