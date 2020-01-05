@@ -15,6 +15,13 @@
     </globals>
 
     <lights>
+     <omni id="roomLight2" enabled="1">
+            <location x="0" y="10" z="0" w="1.0" />
+            <ambient r="1" g="1" b="1" a="1.0" />
+            <diffuse r="0.8" g="0.8" b="0.8" a="1.0" />
+            <specular r="0.8" g="0.8" b="0.8" a="1.0" />
+            <attenuation constant="0" linear="1" quadratic="0" /> 
+        </omni>
        <omni id="roomLight" enabled="1">
             <location x="0" y="8" z="0" w="1.0" />
             <ambient r="1" g="1" b="1" a="1.0" />
@@ -23,18 +30,18 @@
             <attenuation constant="1" linear="0" quadratic="0" /> 
         </omni>
         <spot id="player1" enabled="1" angle="40" exponent="20">
-            <location x="10" y="1" z="-5" w="1.0" />
+            <location x="9" y="1" z="-5" w="1.0" />
             <target x="0" y="0.1" z="0" />
-            <ambient r="0.01" g="0.0" b="0.008" a="1.0" />
-            <diffuse r="1.0" g="0.0" b="0.8" a="1.0" />
-            <specular r="1.0" g="0.0" b="0.8" a="1.0" /> 
+            <ambient r="0.01" g="0.001" b="0.001" a="1.0" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="1.0" />
+            <specular r="0.5" g="0.5" b="0.5" a="1.0" /> 
         </spot>
         <spot id="player2" enabled="1" angle="40" exponent="20">
             <location x="10" y="1" z="5" w="1" />
             <target x="0" y="0.1" z="0" />
-            <ambient r="0.0" g="0.0" b="0.01" a="1.0" />
-            <diffuse r="0" g="0" b="1" a="1.0" />
-            <specular r="0" g="0" b="1" a="1" />
+            <ambient r="0.0" g="0.01" b="0.0" a="1.0" />
+            <diffuse r="0" g="1" b="0" a="1.0" />
+            <specular r="0" g="1" b="0" a="1" />
         </spot>
     </lights>
 
@@ -51,6 +58,16 @@
       <texture id="winner" file="scenes/images/winner.png" />
         <texture id="looser" file="scenes/images/looser.png" />   
         <texture id="black" file="scenes/images/black.jpg"/>
+        <texture id="meteo" file="scenes/images/meteo.jpg"/>
+        <texture id="planeta" file="scenes/images/planeta.jpg"/>
+        <texture id="planeta2" file="scenes/images/planeta2.png"/>
+        <texture id="planeta3" file="scenes/images/planeta3.jpg"/>
+        <texture id="donut" file="scenes/images/donut.jpg"/>
+
+
+
+
+
 
     </textures>
 
@@ -87,7 +104,7 @@
         </material>
 
         <material id="player2Pos" shininess="10">
-            <emission r="0.5" g="0.5" b="0.5" a="1.0" />
+            <emission r="0.4" g="0.4" b="0.4" a="1.0" />
             <ambient r="0.234" g=".32" b="0.176" a="1.0" />
             <diffuse r="0.234" g="0.32" b="0.176" a="1.0" />
             <specular r="0.02" g="0.032" b="0.176" a="1.0" />
@@ -188,7 +205,18 @@
                <componentref id="Player2"/>
                <componentref id="GameBoardStructure"/>
                <componentref id="Cabin"/>
+               <componentref id="BolinhasDireita"/>
+               <componentref id="BolinhasEsquerda"/>
+               <componentref id="BolinhasFrente"/>
+               <componentref id="BolinhasAtras"/>
+               <componentref id="planeta"/>
+               <componentref id="donut"/>
+               <componentref id="planeta2"/>
+               <componentref id="planeta3"/>
 
+
+
+        
             </children>
         </component>
 
@@ -1053,6 +1081,210 @@
             </children>
         </component>
 
+
+        <component id="BolinhasDireita">
+            <transformation>
+            <scale x="4" y="4" z="4" />
+            <translate x="2.3" y="0" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Bolinha1"  />
+                <componentref id="Bolinha2"  />
+                <componentref id="Bolinha3"  />
+                <componentref id="Bolinha4"  />
+                <componentref id="Bolinha5"  />
+            </children>
+        </component>
+
+        <component id="BolinhasEsquerda">
+            <transformation>
+            <scale x="4" y="4" z="4" />
+            <translate x="-2.8" y="0" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Bolinha1"  />
+                <componentref id="Bolinha2"  />
+                <componentref id="Bolinha3"  />
+                <componentref id="Bolinha4"  />
+                <componentref id="Bolinha5"  />
+            </children>
+        </component>
+
+         <component id="BolinhasFrente">
+            <transformation>
+            <scale x="4" y="4" z="4" />
+            <translate x="0" y="0" z="2.55" />
+            <rotate axis="y" angle="90"/>
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Bolinha1"  />
+                <componentref id="Bolinha2"  />
+                <componentref id="Bolinha3"  />
+                <componentref id="Bolinha4"  />
+                <componentref id="Bolinha5"  />
+            </children>
+        </component>
+
+ <component id="BolinhasAtras">
+            <transformation>
+            <scale x="4" y="4" z="4" />
+            <translate x="0" y="0" z="-2.55" />
+            <rotate axis="y" angle="90"/>
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <componentref id="Bolinha1"  />
+                <componentref id="Bolinha2"  />
+                <componentref id="Bolinha3"  />
+                <componentref id="Bolinha4"  />
+                <componentref id="Bolinha5"  />
+            </children>
+        </component>
+
+        <component id="Bolinha1">
+            <transformation>
+            <translate x="0" y="-0.1" z="1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="sphere"  />
+            </children>
+        </component>
+
+         <component id="Bolinha3">
+            <transformation>
+            <translate x="0" y="-0.1" z="2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="sphere"  />
+            </children>
+        </component>
+
+        <component id="Bolinha4">
+            <transformation>
+            <translate x="0" y="-0.1" z="-1" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="sphere"  />
+            </children>
+        </component>
+
+        <component id="Bolinha5">
+            <transformation>
+            <translate x="0" y="-0.1" z="-2" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="sphere"  />
+            </children>
+        </component>
+
+         <component id="Bolinha2">
+            <transformation>
+            <translate x="0" y="-0.1" z="0" />
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="metal" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="sphere"  />
+            </children>
+        </component>
+
+        <component id="planeta">
+            <transformation>
+            <translate x="-15" y="10" z="-20" />
+            <scale x="20" y="20" z="20" />
+            <rotate axis="x" angle="90"/>
+
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="planeta3" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="sphere"  />
+
+            </children>
+        </component>
+
+        <component id="donut">
+            <transformation>
+            <translate x="-15" y="10" z="-20" />
+            <scale x="5" y="0.5" z="5" />
+            <rotate axis="x" angle="90"/>
+
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="donut" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="demoTorus"  />
+            </children>
+        </component>
+
+        <component id="planeta2">
+            <transformation>
+            <translate x="15" y="10" z="20" />
+            <scale x="20" y="20" z="20" />
+            <rotate axis="x" angle="90"/>
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="planeta2" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="sphere"  />
+
+            </children>
+        </component>
+
+        <component id="planeta3">
+            <transformation>
+            <translate x="15" y="5" z="-20" />
+            <scale x="20" y="20" z="20" />
+            <rotate axis="x" angle="90"/>
+            </transformation>
+            <materials>
+                <material id="inherit" />
+            </materials>
+            <texture id="planeta" length_s="1" length_t="1"/>
+            <children>
+                <primitiveref id="sphere"  />
+
+            </children>
+        </component>
 
     </components>
 

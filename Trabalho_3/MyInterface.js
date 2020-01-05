@@ -64,14 +64,6 @@ class MyInterface extends CGFinterface {
             .onChange(tID => this.scene.updatePlayer2(tID));
     }
 
-    //USE THIS TO ADD SCENE
-    // createViewDropdown3() {
-    //     this.typeKeys = this.scene.type_player;
-    //     this.gui.add(this.scene, 'player2', this.typeKeys)
-    //         .name('Player2:')
-    //         .onChange(tID => this.scene.updatePlayer2(tID));
-    // }
-
     createUndoButton() {
         this.f0.add(this.scene, 'undo').name('Undo');
     }
@@ -84,8 +76,12 @@ class MyInterface extends CGFinterface {
         this.f1.add(this.scene, 'movie').name('Movie');
     }
 
-    createLightsCheckboxes() {
+    createAxisCheckboxes() {
         this.f0.add(this.scene, 'axisActive').name('Display axis');
+    }
+
+    createLightsCheckboxes() {
+        this.f2.add(this.scene, 'lightActive').name('Night Mode');
     }
 
     createLevelP1Dropdown() {
@@ -93,9 +89,9 @@ class MyInterface extends CGFinterface {
 
         if (this.scene.player1 == 2) {
             this.typeKeys = LEVELS;
-            this.P1 = this.f0.add(this.scene, 'currentLevel', this.typeKeys)
+            this.P1 = this.f0.add(this.scene, 'currentLevel1', this.typeKeys)
                 .name('Level PLayer1: ')
-                .onChange(level => this.scene.setLevel(level));
+                .onChange(level => this.scene.setLevel1(parseInt(level)));
         } else
             this.f0.remove(this.P1);
     }
@@ -104,9 +100,9 @@ class MyInterface extends CGFinterface {
 
         if (this.scene.player2 == 2) {
             this.typeKeys = LEVELS;
-            this.P2 = this.f0.add(this.scene, 'currentLevel', this.typeKeys)
+            this.P2 = this.f0.add(this.scene, 'currentLevel2', this.typeKeys)
                 .name('Level PLayer2: ')
-                .onChange(level => this.scene.setLevel(level));
+                .onChange(level => this.scene.setLevel2(parseInt(level)));
         } else
             this.f0.remove(this.P2);
 

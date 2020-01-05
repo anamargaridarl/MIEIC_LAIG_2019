@@ -28,6 +28,7 @@ class XMLscene extends CGFscene {
 
         this.sceneInited = false;
         this.axisActive = false;
+        this.lightActive = true;
         this.undoActive = false;
         this.initCameras();
         this.enableTextures(true);
@@ -52,7 +53,8 @@ class XMLscene extends CGFscene {
         this.player2 = 1;
 
         this.player = 1;
-        this.currentLevel = 1;
+        this.currentLevel1 = 0;
+        this.currentLevel2 = 0;
         this.awaitingCPUmove = false;
         this.awaitingPlayermove = false;
     }
@@ -144,6 +146,7 @@ class XMLscene extends CGFscene {
             this.interface.createStartButton();
             this.interface.createViewDropdown1();
             this.interface.createViewDropdown2();
+            this.interface.createAxisCheckboxes();
             this.interface.createLightsCheckboxes();
             this.interface.createUndoButton();
             this.interface.createMovieButton();
@@ -199,10 +202,21 @@ class XMLscene extends CGFscene {
         this.start();
     }
 
-    setLevel(level) {
-        this.currentLevel = level;
-        this.start();
+    setLevel1(level) {
+        this.currentLevel1 = level;
+        // this.start();
     }
+
+    setLevel2(level) {
+        this.currentLevel2 = level;
+        // this.start();
+    }
+
+    setPOV(pov) {
+        this.currentPov = pov;
+        this.povs.setChangingPOV(pov, this.updatePeriod);
+    }
+
 
     async logPicking() {
         if (!this.pickMode && !this.awaitingPlayermove) {
@@ -257,22 +271,25 @@ class XMLscene extends CGFscene {
 
             // Draw axis
             this.setDefaultAppearance();
+
+            //used for light checkbox
+            if (!this.lightActive) {
+                this.lights[1].disable();
+            } else
+                this.lights[1].enable();
+
             //get Array of objects to allow iteration in for loop (JS behavior adaptation)
             const lightArr = Object.keys(this.graph.lights);
             for (var i = 0; i < lightArr.length; i++) {
                 this.lights[i].update();
             }
+
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
         }
 
         this.popMatrix();
         // ---- END Background, camera and axis setup
-    }
-
-    setPOV(pov) {
-        this.currentPov = pov;
-        this.povs.setChangingPOV(pov, this.updatePeriod);
     }
 
     update(t) {
@@ -297,10 +314,11 @@ class XMLscene extends CGFscene {
     async play() {
         const cpuIsPlaying = (this.player == 1 && this.player1 == 2) || (this.player == 2 && this.player2 == 2);
         if (cpuIsPlaying && !this.awaitingCPUmove) {
+            const level = this.player == 1 ? this.currentLevel1 : this.currentLevel2
             this.orchestrator.timer.setTimer();
             this.awaitingCPUmove = true;
             await this.waitSecs(2);
-            this.player = await this.orchestrator.playCPU();
+            this.player = await this.orchestrator.playCPU(level);
             this.orchestrator.timer.unsetTimer();
             this.setPOV(this.player.toString());
             this.awaitingCPUmove = false;

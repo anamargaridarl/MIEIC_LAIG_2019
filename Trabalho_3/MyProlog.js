@@ -66,8 +66,8 @@ class MyProlog {
         return playermove.state;
     }
 
-    async addplayCPU() {
-        let cpumove = await MyRequestHandler.cpuMove(this.board, this.alreadyplayed, this.player, 1);
+    async addplayCPU(level) {
+        let cpumove = await MyRequestHandler.cpuMove(this.board, this.alreadyplayed, this.player, level);
         this.board = cpumove.board;
         this.alreadyplayed = cpumove.played;
         this.gamestate = cpumove.state;

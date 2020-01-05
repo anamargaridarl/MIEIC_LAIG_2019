@@ -2,8 +2,8 @@ const GAME_STATE =
     Object.freeze({ 'menu': 0, 'playing': 1, 'game_over': 2, 'game_movie': 3 });
 
 const LEVELS = Object.freeze({
-    'easy': '1',
-    'hard': '2',
+    'easy': 0,
+    'hard': 1,
 });
 
 // used for movie function
@@ -17,6 +17,7 @@ class MyGameOrchestrator extends CGFobject {
         // GameBoardMove objects
         this.gamesequence = [];
         // GameBoard object
+
         this.gameboard = gameboard;
         this.prolog = new MyProlog(scene);
         this.points = new MyPoints(scene, p1, p2);
@@ -35,6 +36,7 @@ class MyGameOrchestrator extends CGFobject {
     async init() {
         await this.prolog.initBoard();
         this.possibleplays = await this.prolog.getPossiblePlays();
+        this.result.setTheme();
     }
 
     isInitialized() {
@@ -59,19 +61,21 @@ class MyGameOrchestrator extends CGFobject {
             case 0:
                 break;
             case 1:
-                this.gameState = GAME_STATE.tie;
-                this.result.setTex(-1, 1);
+                this.gameState = GAME_STATE.game_over;
+                this.result.setTex(this.prolog.player, state);
                 this.timer.unsetTimer();
                 this.gameboard.cleanHighlight(this.possibleplays);
                 this.possibleplays = [];
                 break;
             case 2:
-                this.gameState = GAME_STATE.game_over;
-                this.result.setTex(this.prolog.player, 0);
+            case 3:
+                this.gameState = GAME_STATE.tie;
+                this.result.setTex(-1, state);
                 this.timer.unsetTimer();
                 this.gameboard.cleanHighlight(this.possibleplays);
                 this.possibleplays = [];
                 break;
+
         }
     }
 
@@ -96,14 +100,14 @@ class MyGameOrchestrator extends CGFobject {
         return this.prolog.player;
     }
 
-    async playCPU() {
+    async playCPU(level) {
         // fetch information for this play move
         let lastBoard = this.prolog.board;
         let player = this.prolog.player;
 
         // play action in prolog
         //      -returns state and already played pieces
-        let result = await this.prolog.addplayCPU();
+        let result = await this.prolog.addplayCPU(level);
 
         // piece played in this round
         let pieceProlog = result[1];
