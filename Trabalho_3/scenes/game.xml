@@ -456,7 +456,7 @@
             </children>
         </component>
 
-        <component id="Player1">
+        <component id="Player2">
             <transformation>
                 <translate x="12" y="4" z="-5" />
                 <rotate axis="y" angle="-90" />
@@ -471,7 +471,7 @@
             </children>
         </component>
 
-        <component id="Player2">
+        <component id="Player1">
             <transformation>
                 <translate x="12" y="4" z="5" /> 
                 <rotate axis="y" angle="-90" />
@@ -639,7 +639,7 @@
 
         <component id="Score_P1">
             <transformation>
-                <translate x="12" y="8" z="-5" />
+                <translate x="12" y="8" z="5" />
                 <rotate axis="y" angle="-90" />
             </transformation>
             <materials>
@@ -653,7 +653,7 @@
 
         <component id="Score_P2">
             <transformation>
-                <translate x="12" y="8" z="5" />
+                <translate x="12" y="8" z="-5" />
                 <rotate axis="y" angle="-90" />
             </transformation>
             <materials>
