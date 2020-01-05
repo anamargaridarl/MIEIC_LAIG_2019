@@ -20,7 +20,6 @@ class MyResult extends CGFobject {
 
     setTex(player, state) {
 
-        console.log(state);
         if (this.theme == "game.xml") {
             switch (state) {
                 case 1:
