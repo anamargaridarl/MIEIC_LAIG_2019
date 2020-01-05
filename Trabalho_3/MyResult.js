@@ -20,6 +20,7 @@ class MyResult extends CGFobject {
 
     setTex(player, state) {
 
+        console.log(state);
         if (this.theme == "game.xml") {
             switch (state) {
                 case 1:
@@ -31,7 +32,7 @@ class MyResult extends CGFobject {
                     this.result.children[4].texture = this.tex[2];
                     this.result.children[5].texture = this.tex[1];
                     break;
-                case 0:
+                case 3:
                     this.result.children[4].texture = this.tex[3];
                     this.result.children[5].texture = this.tex[3];
                     break;
@@ -47,7 +48,7 @@ class MyResult extends CGFobject {
                     this.result.children[4].texture = this.tex[6];
                     this.result.children[5].texture = this.tex[4];
                     break;
-                case 0:
+                case 3:
                     this.result.children[4].texture = this.tex[7];
                     this.result.children[5].texture = this.tex[7];
                     break;
