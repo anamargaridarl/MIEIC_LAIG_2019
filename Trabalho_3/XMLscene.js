@@ -53,7 +53,8 @@ class XMLscene extends CGFscene {
 
         this.player = 1;
         this.currentLevel = 1;
-
+        this.awaitingCPUmove = false;
+        this.awaitingPlayermove = false;
     }
 
     /**
@@ -180,6 +181,7 @@ class XMLscene extends CGFscene {
 
     movie() {
         if (this.orchestrator.gameState == GAME_STATE.game_over || this.orchestrator.gameState == GAME_STATE.tie) {
+            this.setPOV(POV.menu);
             this.orchestrator.movie();
             this.orchestrator.gameState = GAME_STATE.game_movie;
         }
@@ -202,17 +204,18 @@ class XMLscene extends CGFscene {
         this.start();
     }
 
-    logPicking() {
-        if (!this.pickMode) {
+    async logPicking() {
+        if (!this.pickMode && !this.awaitingPlayermove) {
             if (this.pickResults !== null && this.pickResults.length > 0) {
                 for (let i = 0; i < this.pickResults.length; i++) {
                     const obj = this.pickResults[i][0];
                     if (obj) {
                         this.orchestrator.timer.unsetTimer();
                         const clickId = this.pickResults[i][1];
-                        this.player = this.orchestrator.play(clickId).then(response => {
-                            this.setPOV(String(response));
-                        });
+                        this.awaitingPlayermove = true;
+                        this.player = await this.orchestrator.play(clickId);
+                        this.awaitingPlayermove = false;
+                        this.setPOV(this.player.toString());
                         this.orchestrator.timer.setTimer();
                         this.undoFlag = false;
                     }
@@ -226,7 +229,7 @@ class XMLscene extends CGFscene {
     /**
      * Renders the scene.
      */
-    render() {
+    async render() {
         // ---- BEGIN Background, camera and axis setup
 
         // Clear image and depth buffer everytime we update the scene
@@ -247,9 +250,9 @@ class XMLscene extends CGFscene {
 
         if (this.sceneInited) {
 
-            if (this.orchestratorInit) {
-                this.orchestrator.init();
+            if (this.orchestratorInit && !this.orchestrator.isInitialized()) {
                 this.orchestratorInit = false;
+                await this.orchestrator.init();
             }
 
             // Draw axis
@@ -291,24 +294,36 @@ class XMLscene extends CGFscene {
         }
     }
 
-    play() {
-        if (this.player == 1 && this.player1 == 2) {
-            this.player = this.orchestrator.playCPU();
-        } else if (this.player == 2 && this.player2 == 2) {
-            this.player = this.orchestrator.playCPU();
+    async play() {
+        const cpuIsPlaying = (this.player == 1 && this.player1 == 2) || (this.player == 2 && this.player2 == 2);
+        if (cpuIsPlaying && !this.awaitingCPUmove) {
+            this.orchestrator.timer.setTimer();
+            this.awaitingCPUmove = true;
+            await this.waitSecs(2);
+            this.player = await this.orchestrator.playCPU();
+            this.orchestrator.timer.unsetTimer();
+            this.setPOV(this.player.toString());
+            this.awaitingCPUmove = false;
+        } else {
+            this.logPicking();
         }
+        return;
+    }
 
+    waitSecs(secs){
+        return new Promise((resolve) => {
+            setTimeout(resolve, secs * 1000);
+        })
     }
 
     display() {
 
         this.render();
 
-        if (!this.orchestratorInit && this.orchestrator != undefined) {
+        if (!this.orchestratorInit && this.orchestrator && this.orchestrator.isInitialized()) {
 
             if (this.orchestrator.gameState == GAME_STATE.playing) {
                 this.play();
-                this.logPicking();
             }
 
             this.orchestrator.display();
