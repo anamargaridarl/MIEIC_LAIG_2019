@@ -157,9 +157,17 @@ class XMLscene extends CGFscene {
 
     }
 
+    changePlayer() {
+        if (this.player == 1)
+            this.player = 2;
+        else
+            this.player = 1;
+    }
     undo() {
         if (this.orchestrator.gameState == GAME_STATE.playing && !this.undoFlag) {
             this.orchestrator.undo();
+            this.changePlayer();
+            this.setPOV(this.player.toString());
             this.undoFlag = true;
         }
     }
@@ -232,6 +240,7 @@ class XMLscene extends CGFscene {
                         this.setPOV(this.player.toString());
                         this.orchestrator.timer.setTimer();
                         this.undoFlag = false;
+
                     }
                 }
                 this.pickResults.splice(0, this.pickResults.length);
@@ -328,7 +337,7 @@ class XMLscene extends CGFscene {
         return;
     }
 
-    waitSecs(secs){
+    waitSecs(secs) {
         return new Promise((resolve) => {
             setTimeout(resolve, secs * 1000);
         })
