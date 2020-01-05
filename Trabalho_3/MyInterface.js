@@ -86,7 +86,6 @@ class MyInterface extends CGFinterface {
 
     createLevelP1Dropdown() {
 
-
         if (this.scene.player1 == 2) {
             this.typeKeys = LEVELS;
             this.P1 = this.f0.add(this.scene, 'currentLevel1', this.typeKeys)
