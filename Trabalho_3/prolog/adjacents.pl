@@ -88,10 +88,15 @@ adjacentSquareLeftTop(Col,Row,Board,Adjacents,Colmore,Colless,Rowmore,Rowless):-
 % calculate adjacent pieces to left column square based on its coordinates
 adjacentSquareLeft(Col,Row,Board,Adjacents,Colmore,Colless,Rowmore,Rowless):-
   getTriangleDown(Colmore,Row,Board,Piece1),
+
   getPiece(Colless,Row,Board,Piece2),
   adjRect(Board,Row,Colless,Pieces1,Piece2),
-  getTriangleDown(Col,Rowmore,Board,Piece3),
-  getTriangleUp(Col,Rowless,Board,Piece4),
+
+  getTriangleUp(Col,Rowmore,Board,Piece3),
+
+  getTriangleDown(Col,Rowless,Board,Piece4),
+
+  
   append([  [[Row,Colmore],Piece1],[ [Rowmore,Col], Piece3], [[Rowless,Col],Piece4]],Pieces1,Adjacents).
 
 %adjacentSquareTop(+Col,+Row,+Board,+Adjacents,+Colmore,+Colless,+Rowmore,+Rowless)
